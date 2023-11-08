@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                    <div class="sb-sidenav-footer">
+                     <div class="sb-sidenav-footer" style="left-padding:30px">
+                   <img src="${root }image/img1.svg" style="float:left;width:40px; margin-right: 10px;"/>
                         <div class="small">접속자명</div>
-                        박정민
+                        박정민  바지사장
                     </div>
                         <div class="nav">
+                        	<button style="margin-top: 10px; height: 40px; border-radius: 20px;">출근하기</button>
                             <div class="sb-sidenav-menu-heading">알림</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMessenger" aria-expanded="false" aria-controls="collapseMessenger">
                               
