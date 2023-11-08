@@ -31,12 +31,103 @@
       
       <c:import url="/WEB-INF/views/include/side_menu.jsp" /> 
 
-            <div id="layoutSidenav_content">
-                <main>
-                    <h1>Hello World!</h1>
-                </main>
-               
+            <div id="layoutSidenav_content" class="container" style="margin-top: 10px">
+         <div class="row">
+            <div class="col-lg-4" style="margin-top: 20px">
+               <div class="card shadow">
+                  <div class="card-body">
+                     <h4 class="card-title">
+                        내 정보 <a href="board_main.html" class="btn btn-primary">관리</a>
+                     </h4>
+                     <hr />
+                     <table style="width: 100%">
+                        <tr>
+                           <th rowspan="3"><img src="error-404-monochrome.svg" alt="이미지" style="width: 100px; height: 100px;"></th>
+                           <th>이름</th>
+                           <td>박정민</td>
+                           <th>사번</th>
+                           <td>123456</td>
+                        </tr>
+                        <tr>
+                           <th>소속부서</th>
+                           <td>우주최강4조</td>
+                           <td></td>
+                           <td></td>
+                        </tr>
+                        <tr>
+                           <th>직종</th>
+                           <td>인사</td>
+                           <th>직무</th>
+                           <td>팀장</td>
+                        </tr>
+                     </table>
+
+                  </div>
+               </div>
             </div>
+
+            <div class="col-lg-4" style="margin-top: 20px">
+               <div class="card shadow">
+                  <div class="card-body">
+                     <h4 class="card-title">공지사항</h4>
+
+                     <a href="board_main.html" class="btn btn-primary">더보기</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-lg-4" style="margin-top: 20px">
+               <div class="card shadow">
+                  <div class="card-body">
+                     <h4 class="card-title">메뉴 바로가기(즐겨찾기)</h4>
+
+                     <a href="board_main.html" class="btn btn-primary">더보기</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-lg-6" style="margin-top: 20px">
+               <div class="card shadow">
+                  <div class="card-body">
+                     <h4 class="card-title">근로시간</h4>
+
+                     <a href="board_main.html" class="btn btn-primary">더보기</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-lg-6" style="margin-top: 20px">
+               <div class="card shadow">
+                  <div class="card-body">
+                     <h4 class="card-title">일일 나의 근태</h4>
+
+                     <a href="board_main.html" class="btn btn-primary">더보기</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-lg-6" style="margin-top: 20px">
+               <div class="card shadow">
+                  <div class="card-body">
+                     <h4 class="card-title">휴가정보</h4>
+
+                     <a href="board_main.html" class="btn btn-primary">더보기</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-lg-6" style="margin-top: 20px">
+               <div class="card shadow">
+                  <div class="card-body">
+                     <h4 class="card-title">부서원 근태</h4>
+
+                     <a href="board_main.html" class="btn btn-primary">더보기</a>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
        
         </div>
        
