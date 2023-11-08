@@ -19,7 +19,7 @@
                                 메신저
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseMessenger" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseMessenger" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971" >
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="Messenger-received.html">받은 메신저</a>
                                     <a class="nav-link" href="Messenger-send.html">보낸 메신저</a>
@@ -35,7 +35,7 @@
                                 공지사항
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="notice-all.html">전체 공지사항</a>
                                     <a class="nav-link" href="notice-department.html">부서 공지사항</a>
@@ -47,7 +47,7 @@
                                 구성원
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseMember" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseMember" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="member.html">구성원</a>
                                     <a class="nav-link" href="organization-chart.html">조직도</a>
