@@ -12,7 +12,7 @@
                         박정민  바지사장
                     </div>
                         <div class="nav">
-                        	<button style="margin-top: 10px; height: 40px; border-radius: 20px;">출근하기</button>
+                        	<button style="margin-top: 10px; height: 40px; border-radius: 20px; border-style: solid; border-color: rgb(190, 190, 190);">출근하기</button>
                             <div class="sb-sidenav-menu-heading">알림</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMessenger" aria-expanded="false" aria-controls="collapseMessenger">
                               

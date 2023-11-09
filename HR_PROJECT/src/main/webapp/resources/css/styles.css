@@ -3168,6 +3168,8 @@ textarea.form-control-lg {
   --bs-btn-border-radius: 0.25rem;
 }
 
+
+
 .fade {
   transition: opacity 0.15s linear;
 }
@@ -3871,6 +3873,7 @@ textarea.form-control-lg {
 .navbar-nav-scroll {
   max-height: var(--bs-scroll-height, 75vh);
   overflow-y: auto;
+  
 }
 
 @media (min-width: 576px) {
