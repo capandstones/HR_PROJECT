@@ -37,9 +37,9 @@
                             </a>
                             <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="notice-all.html">전체 공지사항</a>
-                                    <a class="nav-link" href="notice-department.html">부서 공지사항</a>
-                                    <a class="nav-link" href="notice-favorites.html">즐겨찾기</a>
+                                    <a class="nav-link" href="${root}notice/all">전체 공지사항</a>
+                                    <a class="nav-link" href="${root}notice/department">부서 공지사항</a>
+                                    <a class="nav-link" href="${root}notice/favorites">즐겨찾기</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMember" aria-expanded="false" aria-controls="collapseMember">
@@ -49,27 +49,27 @@
                             </a>
                             <div class="collapse" id="collapseMember" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="member.html">구성원</a>
-                                    <a class="nav-link" href="organization-chart.html">조직도</a>
+                                    <a class="nav-link" href="${root}member/member">구성원</a>
+                                    <a class="nav-link" href="${root}member/chart">조직도</a>
                                 </nav>
                             </div>
-                            <a class="nav-link" href="calendar.html">
+                            <a class="nav-link" href="${root}calendar/main">
                                 
                                 캘린더
                             </a>
-                            <a class="nav-link" href="commute.html">
+                            <a class="nav-link" href="${root}commute/main">
                                
                                 출퇴근
                             </a>
-                            <a class="nav-link" href="workflow.html">
+                            <a class="nav-link" href="${root}workflow/main">
                                
                                 워크플로우
                             </a>
-                            <a class="nav-link" href="vacation.html">
+                            <a class="nav-link" href="${root}vacation/main">
                                
                                 휴가
                             </a>
-                            <a class="nav-link" href="salary.html">
+                            <a class="nav-link" href="${root}salary/main">
                                 
                                 급여
                             </a>

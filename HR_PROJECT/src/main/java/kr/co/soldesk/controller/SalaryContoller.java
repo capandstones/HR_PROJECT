@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main")
-public class MainContoller {
+@RequestMapping("/salary")
+public class SalaryContoller {
 	
 	@GetMapping("/main")
 	public String main() {
-		return "main/main";
+		return "salary/main";
 		
 	}
 
