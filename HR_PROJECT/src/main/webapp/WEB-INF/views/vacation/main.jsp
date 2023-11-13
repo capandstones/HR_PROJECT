@@ -61,37 +61,104 @@ body {
    float: right;
    margin-top: 20px;
 }
+
+.vacation-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 </style>
 
 <script>
-   function showContent(contentId) {
-      var contents = document.querySelectorAll('.content');
-      contents.forEach(function(content) {
-         content.style.display = 'none';
-      });
+   function showMyVacation() {
+      var myVacationContent = document.getElementById('myVacation');
+      var membersVacationContent = document.getElementById('membersVacation');
+
+      if (myVacationContent && membersVacationContent) {
+         myVacationContent.style.display = 'block';
+         membersVacationContent.style.display = 'none';
+      }
 
       var menuItems = document.querySelectorAll('.menu a');
       menuItems.forEach(function(item) {
          item.classList.remove('selected');
       });
 
-      var selectedContent = document.getElementById(contentId);
-      if (selectedContent) {
-         selectedContent.style.display = 'block';
+      var selectedMenuItem = document
+            .querySelector('.menu a[href="#myVacation"]');
+      if (selectedMenuItem) {
+         selectedMenuItem.classList.add('selected');
+      }
+   }
+
+   function showMembersVacation() {
+      var myVacationContent = document.getElementById('myVacation');
+      var membersVacationContent = document.getElementById('membersVacation');
+
+      if (myVacationContent && membersVacationContent) {
+         myVacationContent.style.display = 'none';
+         membersVacationContent.style.display = 'block';
       }
 
-      var selectedMenuItem = document.querySelector('.menu a[href="#' + contentId + '"]');
+      var menuItems = document.querySelectorAll('.menu a');
+      menuItems.forEach(function(item) {
+         item.classList.remove('selected');
+      });
+
+      var selectedMenuItem = document
+            .querySelector('.menu a[href="#membersVacation"]');
+      if (selectedMenuItem) {
+         selectedMenuItem.classList.add('selected');
+      }
+   }
+
+   function showVacationRequest() {
+      var vacationRequestContent = document.getElementById('vacationRequest');
+      var vacationStatusContent = document.getElementById('vacationStatus');
+
+      if (vacationRequestContent && vacationStatusContent) {
+         vacationRequestContent.style.display = 'block';
+         vacationStatusContent.style.display = 'none';
+      }
+
+      var menuItems = document.querySelectorAll('.menu a');
+      menuItems.forEach(function(item) {
+         item.classList.remove('selected');
+      });
+
+      var selectedMenuItem = document
+            .querySelector('.menu a[href="#vacationRequest"]');
+      if (selectedMenuItem) {
+         selectedMenuItem.classList.add('selected');
+      }
+   }
+
+   function showVacationStatus() {
+      var vacationRequestContent = document.getElementById('vacationRequest');
+      var vacationStatusContent = document.getElementById('vacationStatus');
+
+      if (vacationRequestContent && vacationStatusContent) {
+         vacationRequestContent.style.display = 'none';
+         vacationStatusContent.style.display = 'block';
+      }
+
+      var menuItems = document.querySelectorAll('.menu a');
+      menuItems.forEach(function(item) {
+         item.classList.remove('selected');
+      });
+
+      var selectedMenuItem = document
+            .querySelector('.menu a[href="#vacationStatus"]');
       if (selectedMenuItem) {
          selectedMenuItem.classList.add('selected');
       }
    }
 </script>
 
-<title>vacation</title>
+<title>Vacation</title>
 
-<link
-   href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
-   rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root }css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
@@ -109,8 +176,8 @@ body {
             <div class="container-fluid px-4">
 
                <div class="menu">
-                  <a href="#" onclick="showContent('myVacation')" class="selected">내 휴가</a>
-                  <a href="#" onclick="showContent('membersVacation')">구성원 휴가</a>
+                  <a href="#" onclick="showMyVacation()" class="selected">내 휴가</a>
+                  <a href="#" onclick="showMembersVacation()">구성원 휴가</a>
                </div>
 
                <div class="divider"></div>
@@ -155,17 +222,19 @@ body {
                   </div>
 
                   <div>
-                     <h3>예정 휴가</h3>
-                     <p>예정 휴가 내용 추가</p>
-                  </div>
+                     <div class="vacation-heading">
+                        <h3>예정 휴가</h3>
+                        <div class="year-select">
+                           <label for="year">년도 선택: </label> <select id="year" name="year">
+                              <option value="2023">2023년</option>
+                              <option value="2024">2024년</option>
+                              <option value="2025">2025년</option>
+                              <option value="2026">2026년</option>
+                           </select>
+                        </div>
 
-                  <div class="year-select">
-                     <label for="year">년도 선택: </label> <select id="year" name="year">
-                        <option value="2023">2023년</option>
-                        <option value="2024">2024년</option>
-                        <option value="2025">2025년</option>
-                        <option value="2026">2026년</option>
-                     </select>
+                     </div>
+                     <p>예정 휴가 내용 추가</p>
                   </div>
 
                   <div>
@@ -175,33 +244,28 @@ body {
                </div>
 
                <div id="membersVacation" class="content" style="display: none;">
-
-
                   <div class="menu">
-                     <a href="#" onclick="showContent('vacationRequest')"
-                        class="selected">휴가 신청내역</a> <a href="#"
-                        onclick="showContent('vacationStatus')">휴가보유/사용현황</a>
+                     <a href="#" onclick="showVacationRequest()" class="selected">휴가 신청내역</a>
+                     <a href="#" onclick="showVacationStatus()">휴가보유/사용현황</a>
                   </div>
 
                   <div class="divider"></div>
 
                   <div id="vacationRequest" class="content" style="display: block;">
                      <h2>휴가 신청내역</h2>
-                     <p>휴가 신청내역 내용...</p>
+                     <p>휴가 신청내역 내용</p>
                   </div>
 
                   <div id="vacationStatus" class="content" style="display: none;">
                      <h2>휴가보유/사용현황</h2>
                      <p>휴가보유/사용현황 내용</p>
-
                      <div class="divider"></div>
-
-
                   </div>
 
                   <div class="divider"></div>
 
                </div>
+            </div>
          </main>
 
       </div>
