@@ -31,7 +31,7 @@
 		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
 
 		<div id="layoutSidenav_content"
-			style="padding-top: 20px; height: auto; background-color: rgb(224, 224, 224);">
+			style="padding-top: 20px; height: auto; background-color: #fff;">
 			<main>
 				<h1>워크플로우 메인입니다</h1>
 
@@ -41,17 +41,18 @@
 		</div>
 	</div>
 	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="js/scripts.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-		crossorigin="anonymous"></script>
-	<script src="assets/demo/chart-area-demo.js"></script>
-	<script src="assets/demo/chart-bar-demo.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-		crossorigin="anonymous"></script>
-	<script src="js/datatables-simple-demo.js"></script>
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"></script>
+   <script src="${root }js/scripts.js"></script>
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+      crossorigin="anonymous"></script>
+   <script src="${root }assets/demo/chart-area-demo.js"></script>
+   <script src="${root }assets/demo/chart-bar-demo.js"></script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+      crossorigin="anonymous"></script>
+   <script src="${root }js/datatables-simple-demo.js"></script>
+
 </body>
 </html>
