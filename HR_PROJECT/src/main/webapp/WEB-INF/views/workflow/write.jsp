@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Dashboard - SB Admin</title>
+<title>HR</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
@@ -22,7 +22,7 @@
 
 <style type="text/css">
 .card {
-	width: 250px;
+	width: 310px;
 	height: 190px;
 	border: 2px solid gray;
 	margin: 25px 20px;
@@ -61,8 +61,8 @@ div#fontpurpose {
 /* 	margin: 13px; */
 /* } */
 div#parent {
-	width: 100%;
-	display: flex;
+   display: flex;
+   justify-content: space-between;
 }
 
 div#child {
@@ -70,12 +70,18 @@ div#child {
 }
 
 div#parent2 {
-	width: 100%;
 	display: flex;
+   justify-content: space-between;
 }
 
 div#child2 {
 	flex: 0.15;
+}
+
+.card:hover {
+  transform: perspective(1500px) rotateY(30deg);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
 </style>
 
@@ -95,10 +101,9 @@ div#child2 {
 		<div id="layoutSidenav_content"
 			style="padding-top: 20px; height: auto; background-color: #fff;">
 			<main>
-				<div id="parent" style="margin-top: 30px;">
-					<form name="selectFrm">
-						<div class="card" onclick="goWrite()" id="child"
-							style="margin-left: 45px;">
+				<div id="parent">
+					<form name="selectFrm" style="margin-left: 20px; ">
+						<div class="card" onclick="goWrite()" id="child">
 							<div class="icon">
 								<img> <input type="hidden" name="icon" value="tem.png"
 									readonly />
@@ -168,27 +173,8 @@ div#child2 {
 							<div id="fontpurpose">구매 신청</div>
 						</div>
 					</form>
-					<form name="selectFrm4">
-						<div class="card" onclick="goWrite4()" id="child">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="food.png"
-									readonly />
-							</div>
-							<div id="fontSubject">
-								식비 사용 내역 <input type="hidden" name="subject" value="식비 사용 내역"
-									readonly /> <input type="hidden" name="information"
-									value="작성 시 영수증을 첨부해 주세요." readonly />
-								<textarea style="display: none;" name="guide_form">사용 금액:	
 
-식사 인원 :
-
-비고 :
-				 </textarea>
-							</div>
-							<div id="fontpurpose">복리 후생</div>
-						</div>
-					</form>
-					<form name="selectFrm5">
+					<form name="selectFrm4" style="margin-right: 20px">
 						<div class="card" onclick="goWrite5()" id="child">
 							<div class="icon">
 								<img> <input type="hidden" name="icon" value="paper.png"
@@ -208,9 +194,8 @@ div#child2 {
 				</div>
 
 				<div id="parent2">
-					<form name="selectFrm6">
-						<div class="card" onclick="goWrite6()" id="child2"
-							style="margin-left: 45px;">
+					<form name="selectFrm5" style="margin-left: 20px;">
+						<div class="card" onclick="goWrite6()" id="child2">
 							<div class="icon">
 								<img> <input type="hidden" name="icon" value="board.png"
 									readonly />
@@ -225,7 +210,7 @@ div#child2 {
 							<div id="fontpurpose">양식구분 없음</div>
 						</div>
 					</form>
-					<form name="selectFrm7">
+					<form name="selectFrm6">
 						<div class="card" onclick="goWrite7()" id="child2">
 							<div class="icon">
 								<img> <input type="hidden" name="icon" value="star.png"
@@ -241,7 +226,7 @@ div#child2 {
 							<div id="fontpurpose">업무 신청</div>
 						</div>
 					</form>
-					<form name="selectFrm8">
+					<form name="selectFrm7">
 						<div class="card" onclick="goWrite8()" id="child2">
 							<div class="icon">
 								<img> <input type="hidden" name="icon" value="bag.png"
@@ -257,7 +242,7 @@ div#child2 {
 							<div id="fontpurpose">경비 청구</div>
 						</div>
 					</form>
-					<form name="selectFrm9">
+					<form name="selectFrm8" style="margin-right: 20px;">
 						<div class="card" onclick="goWrite9()" id="child2">
 							<div class="icon">
 								<img> <input type="hidden" name="icon"

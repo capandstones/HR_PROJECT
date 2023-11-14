@@ -18,7 +18,18 @@
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+          
+           headerToolbar: {
+            start: 'dayGridMonth,timeGridWeek,timeGridDay today',
+            center: 'title',
+            end: 'prevYear,prev,next,nextYear'
+          },
+          footerToolbar: {
+            start: '',
+            center: '',
+            end: 'prev,next'
+          }
+           
         });
         calendar.render();
       });

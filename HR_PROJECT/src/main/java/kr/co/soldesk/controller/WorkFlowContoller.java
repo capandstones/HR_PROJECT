@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/workflow")
 public class WorkFlowContoller {
 	
-	@GetMapping("/main")
-	public String main() {
-		return "workflow/main";
+	@GetMapping("/write")
+	public String write() {
+		return "workflow/write";
+		
+	}
+	
+	@GetMapping("/document")
+	public String document() {
+		return "workflow/document";
 		
 	}
 

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value='${pageContext.request.contextPath }/' />
 
@@ -7,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+   content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 
@@ -18,7 +20,7 @@ body {
 
 .menu {
    display: flex;
-   justify-content: space-between;
+   justify-content: flex-start;
    padding: 10px;
 }
 
@@ -30,9 +32,10 @@ body {
    font-size: 25px;
 }
 
-.selected {
+.menu a.selected {
    color: #000000;
    font-size: 25px;
+   border-bottom: 2px solid #000000;
 }
 
 .divider {
@@ -55,6 +58,7 @@ body {
    border: 1px solid #ccc;
    padding: 10px;
    margin-bottom: 10px;
+   margin-right: 2%;
 }
 
 .year-select {
@@ -63,104 +67,20 @@ body {
 }
 
 .vacation-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
-
 </style>
-
-<script>
-   function showMyVacation() {
-      var myVacationContent = document.getElementById('myVacation');
-      var membersVacationContent = document.getElementById('membersVacation');
-
-      if (myVacationContent && membersVacationContent) {
-         myVacationContent.style.display = 'block';
-         membersVacationContent.style.display = 'none';
-      }
-
-      var menuItems = document.querySelectorAll('.menu a');
-      menuItems.forEach(function(item) {
-         item.classList.remove('selected');
-      });
-
-      var selectedMenuItem = document
-            .querySelector('.menu a[href="#myVacation"]');
-      if (selectedMenuItem) {
-         selectedMenuItem.classList.add('selected');
-      }
-   }
-
-   function showMembersVacation() {
-      var myVacationContent = document.getElementById('myVacation');
-      var membersVacationContent = document.getElementById('membersVacation');
-
-      if (myVacationContent && membersVacationContent) {
-         myVacationContent.style.display = 'none';
-         membersVacationContent.style.display = 'block';
-      }
-
-      var menuItems = document.querySelectorAll('.menu a');
-      menuItems.forEach(function(item) {
-         item.classList.remove('selected');
-      });
-
-      var selectedMenuItem = document
-            .querySelector('.menu a[href="#membersVacation"]');
-      if (selectedMenuItem) {
-         selectedMenuItem.classList.add('selected');
-      }
-   }
-
-   function showVacationRequest() {
-      var vacationRequestContent = document.getElementById('vacationRequest');
-      var vacationStatusContent = document.getElementById('vacationStatus');
-
-      if (vacationRequestContent && vacationStatusContent) {
-         vacationRequestContent.style.display = 'block';
-         vacationStatusContent.style.display = 'none';
-      }
-
-      var menuItems = document.querySelectorAll('.menu a');
-      menuItems.forEach(function(item) {
-         item.classList.remove('selected');
-      });
-
-      var selectedMenuItem = document
-            .querySelector('.menu a[href="#vacationRequest"]');
-      if (selectedMenuItem) {
-         selectedMenuItem.classList.add('selected');
-      }
-   }
-
-   function showVacationStatus() {
-      var vacationRequestContent = document.getElementById('vacationRequest');
-      var vacationStatusContent = document.getElementById('vacationStatus');
-
-      if (vacationRequestContent && vacationStatusContent) {
-         vacationRequestContent.style.display = 'none';
-         vacationStatusContent.style.display = 'block';
-      }
-
-      var menuItems = document.querySelectorAll('.menu a');
-      menuItems.forEach(function(item) {
-         item.classList.remove('selected');
-      });
-
-      var selectedMenuItem = document
-            .querySelector('.menu a[href="#vacationStatus"]');
-      if (selectedMenuItem) {
-         selectedMenuItem.classList.add('selected');
-      }
-   }
-</script>
 
 <title>Vacation</title>
 
-<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+<link
+   href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+   rel="stylesheet" />
 <link href="${root }css/styles.css" rel="stylesheet" />
-<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+   crossorigin="anonymous"></script>
 
 </head>
 
@@ -171,18 +91,19 @@ body {
 
       <c:import url="/WEB-INF/views/include/side_menu.jsp" />
 
-      <div id="layoutSidenav_content" style="padding-top: 20px; height: auto; background-color: #fff;">
+      <div id="layoutSidenav_content"
+         style="padding-top: 20px; height: auto; background-color: #fff;">
          <main>
             <div class="container-fluid px-4">
 
                <div class="menu">
-                  <a href="#" onclick="showMyVacation()" class="selected">내 휴가</a>
-                  <a href="#" onclick="showMembersVacation()">구성원 휴가</a>
+                  <a href="#1" onclick="showMyVacation()" class="menu-item selected">내
+                     휴가</a> <a href="#2" onclick="showMembersVacation()" class="menu-item">구성원
+                     휴가</a>
                </div>
 
-               <div class="divider"></div>
-
                <div id="myVacation" class="content" style="display: block;">
+               <div class="divider"></div>
                   <h2>휴가 등록</h2>
                   <div class="vacation-types">
                      <div class="vacation-type">
@@ -224,7 +145,7 @@ body {
                   <div>
                      <div class="vacation-heading">
                         <h3>예정 휴가</h3>
-                        <div class="year-select">
+                        <div class="year-select" id="yearSelect">
                            <label for="year">년도 선택: </label> <select id="year" name="year">
                               <option value="2023">2023년</option>
                               <option value="2024">2024년</option>
@@ -232,21 +153,24 @@ body {
                               <option value="2026">2026년</option>
                            </select>
                         </div>
-
                      </div>
+
                      <p>예정 휴가 내용 추가</p>
+
                   </div>
 
                   <div>
-                     <h3>사용한 휴가</h3>
-                     <p>사용한 휴가 내용 추가</p>
+                     <h3>사용 기록</h3>
+                     <p>사용 기록 추가</p>
                   </div>
+
                </div>
 
                <div id="membersVacation" class="content" style="display: none;">
+
                   <div class="menu">
-                     <a href="#" onclick="showVacationRequest()" class="selected">휴가 신청내역</a>
-                     <a href="#" onclick="showVacationStatus()">휴가보유/사용현황</a>
+                     <a href="#3" onclick="showVacationRequest()" class="menu-item2 selected">휴가 신청내역</a>
+                     <a href="#4" onclick="showVacationStatus()" class="menu-item2">휴가보유/사용현황</a>
                   </div>
 
                   <div class="divider"></div>
@@ -259,7 +183,6 @@ body {
                   <div id="vacationStatus" class="content" style="display: none;">
                      <h2>휴가보유/사용현황</h2>
                      <p>휴가보유/사용현황 내용</p>
-                     <div class="divider"></div>
                   </div>
 
                   <div class="divider"></div>
@@ -267,9 +190,100 @@ body {
                </div>
             </div>
          </main>
-
       </div>
    </div>
+
+   <script>
+      function showMyVacation() {
+         var myVacationContent = document.getElementById('myVacation');
+         var membersVacationContent = document
+               .getElementById('membersVacation');
+
+         if (myVacationContent && membersVacationContent) {
+            myVacationContent.style.display = 'block';
+            membersVacationContent.style.display = 'none';
+         }
+
+         var menuItems = document.querySelectorAll('.menu-item');
+         menuItems.forEach(function(item) {
+            item.classList.remove('selected');
+         });
+
+         var selectedMenuItem = document
+               .querySelector('.menu-item[href="#1"]');
+         if (selectedMenuItem) {
+            selectedMenuItem.classList.add('selected');
+         }
+      }
+
+      function showMembersVacation() {
+         var myVacationContent = document.getElementById('myVacation');
+         var membersVacationContent = document
+               .getElementById('membersVacation');
+
+         if (myVacationContent && membersVacationContent) {
+            myVacationContent.style.display = 'none';
+            membersVacationContent.style.display = 'block';
+         }
+
+         var menuItems = document.querySelectorAll('.menu-item');
+         menuItems.forEach(function(item) {
+            item.classList.remove('selected');
+         });
+
+         var selectedMenuItem = document
+               .querySelector('.menu-item[href="#2"]');
+         if (selectedMenuItem) {
+            selectedMenuItem.classList.add('selected');
+         }
+      }
+
+      function showVacationRequest() {
+         var vacationRequestContent = document
+               .getElementById('vacationRequest');
+         var vacationStatusContent = document
+               .getElementById('vacationStatus');
+
+         if (vacationRequestContent && vacationStatusContent) {
+            vacationRequestContent.style.display = 'block';
+            vacationStatusContent.style.display = 'none';
+         }
+
+         var menuItems = document.querySelectorAll('.menu-item2');
+         menuItems.forEach(function(item) {
+            item.classList.remove('selected');
+         });
+
+         var selectedMenuItem = document
+               .querySelector('.menu-item2[href="#3"]');
+         if (selectedMenuItem) {
+            selectedMenuItem.classList.add('selected');
+         }
+      }
+
+      function showVacationStatus() {
+         var vacationRequestContent = document
+               .getElementById('vacationRequest');
+         var vacationStatusContent = document
+               .getElementById('vacationStatus');
+
+         if (vacationRequestContent && vacationStatusContent) {
+            vacationRequestContent.style.display = 'none';
+            vacationStatusContent.style.display = 'block';
+         }
+
+         var menuItems = document.querySelectorAll('.menu-item2');
+         menuItems.forEach(function(item) {
+            item.classList.remove('selected');
+         });
+
+         var selectedMenuItem = document
+               .querySelector('.menu-item2[href="#4"]');
+         if (selectedMenuItem) {
+            selectedMenuItem.classList.add('selected');
+         }
+      }
+   </script>
 
    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
