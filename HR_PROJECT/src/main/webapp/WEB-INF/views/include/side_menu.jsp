@@ -57,7 +57,6 @@
             <a class="nav-link" href="${root}commute/main"> 출퇴근 </a>
             <a class="nav-link" href="${root}workflow/document"> 워크플로우 </a>
             <a class="nav-link" href="${root}vacation/main"> 휴가 </a>
-            <a class="nav-link" href="${root}salary/main"> 급여 </a>
          </div>
       </div>
    </nav>
