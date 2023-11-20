@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.net.InetAddress" %>
+<%@ page import="java.net.UnknownHostException" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <div id="layoutSidenav_nav">
@@ -60,6 +63,23 @@
    </nav>
 </div>
 
+<!-- 출근하기 버튼 클릭시 자동으로 시간계산
+퇴근하기 버튼 클릭시 점심시간이 공제된 근무시간 기록
+욜로는 이렇게 했는데 점심시간도 자율인 회사를 만들고 싶었지만 너무 어려워 포기해야겠다.
+걍 욜로나 따라하자 -->
+
+<%
+String ipAddress = null;
+try {
+   ipAddress = request.getHeader("X-FORWARDED-FOR");
+   if (ipAddress == null) {
+      ipAddress = request.getRemoteAddr();
+   }
+} catch (Exception e) {
+   e.printStackTrace();
+}
+%>
+
 <script>
    function toggleAttendance() {
       var attendanceButton = document.getElementById("attendanceButton");
@@ -80,6 +100,6 @@
       var formattedHours = String(hours).padStart(2, '0');
       var formattedMinutes = String(minutes).padStart(2, '0');
       var attendanceTimeDiv = document.getElementById("attendanceTime");
-      attendanceTimeDiv.innerHTML = type + " 시간: " + formattedHours + ":" + formattedMinutes;
+      attendanceTimeDiv.innerHTML = type + " 시간: " + formattedHours + ":" + formattedMinutes +  "<br>IP 주소: <%=ipAddress%>";
    }
 </script>

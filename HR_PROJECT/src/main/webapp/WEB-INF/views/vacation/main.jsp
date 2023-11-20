@@ -1,15 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value='${pageContext.request.contextPath }/' />
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-   content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 
@@ -75,12 +72,9 @@ body {
 
 <title>Vacation</title>
 
-<link
-   href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
-   rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root }css/styles.css" rel="stylesheet" />
-<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-   crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -97,9 +91,8 @@ body {
             <div class="container-fluid px-4">
 
                <div class="menu">
-                  <a href="#1" onclick="showMyVacation()" class="menu-item selected">내
-                     휴가</a> <a href="#2" onclick="showMembersVacation()" class="menu-item">구성원
-                     휴가</a>
+                  <a href="#1" onclick="showMyVacation()" class="menu-item selected">내 휴가</a>
+                  <a href="#2" onclick="showMembersVacation()" class="menu-item">구성원 휴가</a>
                </div>
 
                <div id="myVacation" class="content" style="display: block;">

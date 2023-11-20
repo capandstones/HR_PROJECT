@@ -12,6 +12,8 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
+<link href="${root }css/calendar.css" rel="stylesheet" />
+
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
     <script>
 
