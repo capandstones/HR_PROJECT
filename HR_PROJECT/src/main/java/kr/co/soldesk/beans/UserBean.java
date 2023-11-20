@@ -9,8 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserBean {
-
-	private int employee_id;
+	
+	@Size(min=2, max=40)
+	@Pattern(regexp = "[a-zA-Z0-9]*")
+	private String employee_id;
 
 	@Size(min=2, max=40)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
@@ -34,11 +36,13 @@ public class UserBean {
 		this.userLogin = userLogin;
 	}
 
-	public int getEmployee_id() {
+	
+
+	public String getEmployee_id() {
 		return employee_id;
 	}
 
-	public void setEmployee_id(int employee_id) {
+	public void setEmployee_id(String employee_id) {
 		this.employee_id = employee_id;
 	}
 
