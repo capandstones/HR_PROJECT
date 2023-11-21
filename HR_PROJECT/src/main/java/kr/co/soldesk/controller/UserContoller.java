@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.soldesk.beans.UserBean;
 import kr.co.soldesk.service.UserService;
-import kr.co.soldesk.vaildator.UserValidator;
 
 @Controller
 @RequestMapping("/user")
@@ -61,9 +58,24 @@ public class UserContoller {
 	}
 
 
-	@GetMapping("/modify_user")
-	public String modify_user() {
-		return "user/modify_user";
+	@GetMapping("/modify")
+	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
+		
+		userService.getModifyUserInfo(modifyUserBean);
+		
+		return "user/modify";
+	}
+	
+	@PostMapping("/modify_pro")
+	public String modify(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "user/modify";
+		}
+		
+		userService.modifyUserInfo(modifyUserBean);
+		
+		return "user/modify_success";
 	}
 
 	@GetMapping("/logout")

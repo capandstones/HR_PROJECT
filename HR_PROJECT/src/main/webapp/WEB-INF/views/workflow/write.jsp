@@ -32,26 +32,26 @@
 }
 
 .card:hover {
-	background-color: #efefef;
+	border: 5px solid #5291EA;
 	cursor: pointer;
 	border-radius: 0.5rem;
+	box-shadow: 0 0 5px 5px rgba(36,65,128,.3);
 }
 
 div#fontSubject {
-	font-size: 15pt;
+	font-size: 20pt;
 	font-weight: bold;
-	margin-top: 25px;
+	margin-top: 10px;
 	margin-left: 13px;
 	margin-bottom: 3px;
 	color: #4d4d4d;
 }
 
 div#fontpurpose {
-	font-size: 12pt;
+	font-size: 13pt;
 	margin-left: 13px;
 	margin-top: 2px;
 }
-
 
 
 /* img { */
@@ -78,11 +78,8 @@ div#child2 {
 	flex: 0.15;
 }
 
-.card:hover {
-  transform: perspective(1500px) rotateY(30deg);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-}
+
+
 </style>
 
 
@@ -104,14 +101,11 @@ div#child2 {
 				<div id="parent">
 					<form name="selectFrm" style="margin-left: 20px; ">
 						<div class="card" onclick="goWrite()" id="child">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="tem.png"
-									readonly />
-							</div>
-							<div id="fontSubject">
-								비품 신청 <input type="hidden" name="subject" value="비품 신청" readonly />
-								<input type="hidden" name="information"
-									value="일하는 데 필요한 물품을 신청해주세요!" readonly />
+							<img class="icon" src="${root}image/free-icon-bulk-buying-3040081.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+								<div id="fontSubject">
+									비품 신청 <input type="hidden" name="subject" value="비품 신청" readonly />
+									<input type="hidden" name="information"
+										value="일하는 데 필요한 물품을 신청해주세요!" readonly />
 								<textarea style="display: none;" name="guide_form">품명 :		
 
 상품 정보(링크) :
@@ -131,10 +125,7 @@ div#child2 {
 					</form>
 					<form name="selectFrm2">
 						<div class="card" onclick="goWrite2()" id="child">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="clip.png"
-									readonly />
-							</div>
+							<img class="icon" src="${root}image/free-icon-marriage-3370933_1.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								경조비 신청 <input type="hidden" name="subject" value="경조비 신청"
 									readonly /> <input type="hidden" name="information"
@@ -154,10 +145,7 @@ div#child2 {
 					</form>
 					<form name="selectFrm3">
 						<div class="card" onclick="goWrite3()" id="child">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="key.png"
-									readonly />
-							</div>
+							<img class="icon" src="${root}image/free-icon-user-860784.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								계정 신청 <input type="hidden" name="subject" value="계정 신청" readonly />
 								<input type="hidden" name="information"
@@ -176,10 +164,7 @@ div#child2 {
 
 					<form name="selectFrm4" style="margin-right: 20px">
 						<div class="card" onclick="goWrite5()" id="child">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="paper.png"
-									readonly />
-							</div>
+							<img class="icon" src="${root}image/free-icon-award-11239533.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								계약서 검토 요청 <input type="hidden" name="subject" value="계약서 검토 요청"
 									readonly /> <input type="hidden" name="information"
@@ -196,10 +181,7 @@ div#child2 {
 				<div id="parent2">
 					<form name="selectFrm5" style="margin-left: 20px;">
 						<div class="card" onclick="goWrite6()" id="child2">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="board.png"
-									readonly />
-							</div>
+							<img class="icon" src="${root}image/free-icon-parenting-3079243.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								휴직 신청 <input type="hidden" name="subject" value="휴직 신청" readonly />
 								<input type="hidden" name="information"
@@ -212,10 +194,7 @@ div#child2 {
 					</form>
 					<form name="selectFrm6">
 						<div class="card" onclick="goWrite7()" id="child2">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="star.png"
-									readonly />
-							</div>
+							<img class="icon" src="${root}image/free-icon-project-5956597.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								신규 프로젝트 <input type="hidden" name="subject" value="신규 프로젝트"
 									readonly /> <input type="hidden" name="information"
@@ -228,10 +207,7 @@ div#child2 {
 					</form>
 					<form name="selectFrm7">
 						<div class="card" onclick="goWrite8()" id="child2">
-							<div class="icon">
-								<img> <input type="hidden" name="icon" value="bag.png"
-									readonly />
-							</div>
+							<img class="icon" src="${root}image/free-icon-receipt-866091.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								개인경비청구서 <input type="hidden" name="subject" value="개인경비청구서 "
 									readonly /> <input type="hidden" name="information"
@@ -244,10 +220,7 @@ div#child2 {
 					</form>
 					<form name="selectFrm8" style="margin-right: 20px;">
 						<div class="card" onclick="goWrite9()" id="child2">
-							<div class="icon">
-								<img> <input type="hidden" name="icon"
-									value="receipt.png" readonly />
-							</div>
+							<img class="icon" src="${root}image/free-icon-receipt-866091.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								지출결의서 <input type="hidden" name="subject" value="지출결의서" readonly />
 								<input type="hidden" name="information"

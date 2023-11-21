@@ -67,17 +67,6 @@
 욜로는 이렇게 했는데 점심시간도 자율인 회사를 만들고 싶었지만 너무 어려워 포기해야겠다.
 걍 욜로나 따라하자 -->
 
-<%
-String ipAddress = null;
-try {
-   ipAddress = request.getHeader("X-FORWARDED-FOR");
-   if (ipAddress == null) {
-      ipAddress = request.getRemoteAddr();
-   }
-} catch (Exception e) {
-   e.printStackTrace();
-}
-%>
 
 <script>
    function toggleAttendance() {
@@ -99,6 +88,6 @@ try {
       var formattedHours = String(hours).padStart(2, '0');
       var formattedMinutes = String(minutes).padStart(2, '0');
       var attendanceTimeDiv = document.getElementById("attendanceTime");
-      attendanceTimeDiv.innerHTML = type + " 시간: " + formattedHours + ":" + formattedMinutes +  "<br>IP 주소: <%=ipAddress%>";
+      attendanceTimeDiv.innerHTML = type + " 시간: " + formattedHours + ":" + formattedMinutes ;
    }
 </script>

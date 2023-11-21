@@ -17,5 +17,15 @@ public class UserDao {
 		
 		return userMapper.getLoginUserInfo(tempLoginUserBean);
 	}
+	
+	
+	public UserBean getModifyUserInfo(String employee_id) {
+		
+		return userMapper.getModifyUserInfo(employee_id);
+	}
+
+	public void modifyUserInfo(UserBean modifyUserBean) {
+		userMapper.modifyUserInfo(modifyUserBean);
+	}
 
 }

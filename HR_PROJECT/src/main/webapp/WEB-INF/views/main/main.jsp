@@ -47,10 +47,10 @@
                      </div>
                   </div>
                   <div class="col-xl-9 col-md-9">
-                     <div class="card text-black mb-4" style="height: 250px; color: #fff;">
+                     <div class="card text-black mb-4" style="height: 240px; color: #fff;">
                         <div class="card-header">근로시간</div>
                         <div class="card-body">
-                           <div class="card text-black mb-4" style="height: 180px; width: 50%; color: #fff; float: right;">
+                           <div class="card text-black mb-4" style="height: 170px; width: 50%; color: #fff; float: right;">
                               <div class="card-header">출퇴근 시간</div>
                               <div class="card-body">
 
@@ -65,19 +65,19 @@
                      </div>
                   </div>
                   <div class="col-xl-3 col-md-3">
-                     <div class="card text-black mb-4" style="height: 250px; color: #fff;">
+                     <div class="card text-black mb-4" style="height: 240px; color: #fff;">
                         <div class="card-header">일일 나의 근태</div>
                         <div class="card-body"></div>
                      </div>
                   </div>
                   <div class="col-xl-3 col-md-3">
-                     <div class="card text-black mb-4" style="height: 320px; color: #fff;">
+                     <div class="card text-black mb-4" style="height: 300px; color: #fff;">
                         <div class="card-header">휴가 정보</div>
                         <div class="card-body"></div>
                      </div>
                   </div>
                   <div class="col-xl-9 col-md-9">
-                     <div class="card text-black mb-4" style="height: 320px; color: #fff;">
+                     <div class="card text-black mb-4" style="height: 300px; color: #fff;">
                         <div class="card-header">부서원 근태</div>
                         <div class="card-body"></div>
                      </div>

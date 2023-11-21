@@ -10,9 +10,13 @@ import lombok.Setter;
 @Setter
 public class UserBean {
 	
-	@Size(min=10, max=10)
-	@Pattern(regexp = "[0-9]*")
+	@Size(min=1, max=10)
+	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String employee_id;
+	
+	@Size(min=2, max=4)
+	@Pattern(regexp = "[가-힣]*")
+	private String employee_name;
 
 	@Size(min=2, max=40)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
