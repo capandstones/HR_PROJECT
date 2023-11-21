@@ -26,25 +26,25 @@
 
 
 
-<body class="sb-nav-fixed">
+<body>
 	<div id="layoutSidenav">
 
 		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
 
 		<div id="layoutSidenav_content"
-			style="padding-top: 20px; height: auto; background-color: rgb(224, 224, 224);">
+			style="padding-top: 20px; height: auto; background-color: #fff; justify-content: center; align-items: center; padding-bottom: 100px;">
 			<main>
-			<div class="col-sm-6">
+			<div style="width:600px;">
          <div class="card shadow">
             <div class="card-body">
                <form:form action="${root }user/modify_pro" method="post" modelAttribute="modifyUserBean">
                <div class="form-group">
                   <form:label path="employee_name">이름</form:label>
-                  <form:input path="employee_name" class="form-control" readonly="true"/>
+                  <form:input path="employee_name" class="form-control" readonly="true"  style="background: #D1D1D1;"/>
                </div>
                <div class="form-group">
                   <form:label path="employee_id">아이디</form:label>
-                  <form:input path="employee_id" class="form-control" readonly="true"/>
+                  <form:input path="employee_id" class="form-control" readonly="true" style="background: #D1D1D1;"/>
                </div>
                <div class="form-group">
                   <form:label path="employee_password">비밀번호</form:label>
@@ -56,10 +56,8 @@
                   <form:password path="employee_password2" class="form-control"/>
                   <form:errors path="employee_password2" style='color:red'/>
                </div>
-               <div class="form-group">
-                  <div class="text-right">
-                     <form:button class="btn btn-primary">정보수정</form:button>
-                  </div>
+               <div style="padding-top: 30px; padding-left: 230px;">
+                     <form:button class="btn btn-primary" style="background: #2C3E50; border:#2C3E50;">정보수정</form:button>                  
                </div>
        
                </form:form>

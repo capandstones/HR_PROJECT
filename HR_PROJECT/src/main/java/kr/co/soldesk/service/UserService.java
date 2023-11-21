@@ -44,7 +44,7 @@ public class UserService {
 
 		public void modifyUserInfo(UserBean modifyUserBean) {
 			
-			modifyUserBean.setEmployee_id(loginUserBean.getEmployee_name());
+			modifyUserBean.setEmployee_id(loginUserBean.getEmployee_id());
 			
 			userDao.modifyUserInfo(modifyUserBean);
 		}

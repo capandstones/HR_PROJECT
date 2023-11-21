@@ -16,8 +16,8 @@ public class UserValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 
 		UserBean userBean = (UserBean) target;
+		
 		String beanName = errors.getObjectName();
-		System.out.println(beanName);
 
 		// 회원가입과 마이페이지에서 동작하도록 설정
 		if (beanName.equals("modifyUserBean")) {
