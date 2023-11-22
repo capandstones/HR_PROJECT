@@ -67,17 +67,25 @@
 욜로는 이렇게 했는데 점심시간도 자율인 회사를 만들고 싶었지만 너무 어려워 포기해야겠다.
 걍 욜로나 따라하자 -->
 
-
 <script>
+   var startTime = "";
+   var endTime = "";
+   
    function toggleAttendance() {
       var attendanceButton = document.getElementById("attendanceButton");
       var buttonText = attendanceButton.innerText;
+
       if (buttonText === "출근하기") {
+         startTime = "";
          attendanceButton.innerText = "퇴근하기";
          showAttendanceTime("출근");
       } else {
+         endTime = getCurrentTime();
          attendanceButton.innerText = "출근하기";
          showAttendanceTime("퇴근");
+         if (startTime !== "") {
+            showWorkHours();
+         }
       }
    }
 
@@ -88,6 +96,26 @@
       var formattedHours = String(hours).padStart(2, '0');
       var formattedMinutes = String(minutes).padStart(2, '0');
       var attendanceTimeDiv = document.getElementById("attendanceTime");
-      attendanceTimeDiv.innerHTML = type + " 시간: " + formattedHours + ":" + formattedMinutes ;
+      if (type === "출근" && startTime === "") {
+         attendanceTimeDiv.innerHTML = "";
+      }
+
+      attendanceTimeDiv.innerHTML += type + " 시간: " + formattedHours + ":" + formattedMinutes + "<br />";
+   }
+
+   function showWorkHours() {
+      var workHoursDiv = document.getElementById("workHours");
+      var start = new Date("01/01/2023 " + startTime);
+      var end = new Date("01/01/2023 " + endTime);
+      var diff = (end - start) / (1000 * 60 * 60);
+      workHoursDiv.innerHTML = "근무 시간: " + diff.toFixed(2) + " 시간<br />";
+   }
+
+   function getCurrentTime() {
+      var currentTime = new Date();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      var formattedTime = String(hours).padStart(2, '0') + ":" + String(minutes).padStart(2, '0');
+      return formattedTime;
    }
 </script>

@@ -39,15 +39,14 @@
              {
                 googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com',
                 className:'holiday',
-                color:'#dee8fa',
-                textColor: '#000000'
+                color:'white',
+                textColor: 'red'
              }
           ],
 
           eventClick: function(arg) {
 
-            // opens events in a popup window
-            window.open(arg.event.url, '_blank', 'width=700,height=600');
+            
 
             // prevents current tab from navigating
             arg.jsEvent.preventDefault();

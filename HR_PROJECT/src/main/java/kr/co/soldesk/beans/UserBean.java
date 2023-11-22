@@ -15,7 +15,7 @@ public class UserBean {
 	private String employee_id;
 	
 	@Size(min=2, max=4)
-	@Pattern(regexp = "[가-힣]*")
+	@Pattern(regexp = "[가-힣a-zA-Z0-9]*")
 	private String employee_name;
 
 	@Size(min=2, max=40)
