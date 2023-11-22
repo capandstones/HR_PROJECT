@@ -28,6 +28,7 @@ public class UserBean {
 
 	private boolean userLogin;
 	
+	
 	public UserBean() {
 		this.userLogin=false;
 	}

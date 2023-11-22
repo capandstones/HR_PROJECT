@@ -22,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import attention.beans.UserBean;
 import attention.interceptor.CheckLoginInterceptor;
+import attention.mapper.EmployeesMapper;
 import attention.mapper.UserMapper;
 
 @Configuration
@@ -112,6 +113,13 @@ public class ServletAppContext implements WebMvcConfigurer {
    @Bean
    public static PropertySourcesPlaceholderConfigurer PropertySourcesPlaceholderConfigurer() {
       return new PropertySourcesPlaceholderConfigurer();
+   }
+   
+   @Bean
+   public MapperFactoryBean<EmployeesMapper> EmployeesMapper(SqlSessionFactory factory) throws Exception {
+      MapperFactoryBean<EmployeesMapper> factoryBean = new MapperFactoryBean<EmployeesMapper>(EmployeesMapper.class);
+      factoryBean.setSqlSessionFactory(factory);
+      return factoryBean;
    }
 
 }

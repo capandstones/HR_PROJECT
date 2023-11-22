@@ -14,7 +14,29 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script>
 
+function getEmpInfo() {
+	
+	$.ajax({
+		url : '${root}member/getEmpInfo/' + employee_id,
+		type : 'get',
+		dataType : 'text',
+		success : function(result) { // ArrayList<EmployeesBean> getEmpInfo
+		
+			var list = result.trim();
+			
+			comsole.log(list.length);
+		
+		//	for(var i = 0; i < list.length ; i++) {}
+			
+			
+
+	}); // ajax
+} // checkUserIdExist
+
+
+</script>
 </head>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -30,22 +52,18 @@
 			<main>
 				<h1>구성원/조직도 입니다</h1>
 
-
-				<form:form action="${root}user/login_pro" method="get" modelAttribute="tempLoginUserBean">
+				<form:form action="${root}user/join_pro" method="post" modelAttribute="joinUserBean">
+					
 					<div class="form-group">
-						<form:label path="user_id">아이디</form:label>
-						<form:input path="user_id" class="form-control" />
-						<form:errors path="user_id" style="color:red" />
+						<form:label path="employee_id">아이디</form:label>
+						<div class="input-group">
+							<form:input path="employee_id" class="form-control" />
+							<div class="input-group-append">
+								<button type="button" class="btn btn-primary" onclick="getEmpInfo()">사원정보받아오기</button>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<form:label path="user_pw">비밀번호</form:label>
-						<form:input path="user_pw" class="form-control" />
-						<form:errors path="user_pw" style="color:red" />
-					</div>
-					<div class="form-group text-right">
-						<form:button class="btn btn-primary">로그인</form:button>
-						<a href="${root}user/join" class="btn btn-danger">회원가입</a>
-					</div>
+					
 				</form:form>
 
 			</main>
