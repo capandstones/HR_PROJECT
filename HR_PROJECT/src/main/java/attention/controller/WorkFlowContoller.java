@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/workflow")
 public class WorkFlowContoller {
 	
-	@GetMapping("/write")
-	public String write() {
-		return "workflow/write";
+	@GetMapping("/selectWrite")
+	public String selectWrite() {
+		return "workflow/selectWrite";
 		
 	}
 	

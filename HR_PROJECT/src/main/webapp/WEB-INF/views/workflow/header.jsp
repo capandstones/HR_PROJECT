@@ -35,7 +35,7 @@ a:active {text-decoration: none; color: #cccccc;}
 <div style=" padding-top: 40px; padding-left: 40px; padding-bottom: 0px; ">
 	 <span><a class="mylink" href="javascript:location.href='<%= request.getContextPath()%>/workflow.yolo'"style="color: black; font-size: 20pt; font-weight: bold; padding-right: 20px;">내 문서함</a></span>
 	 <span><a class="link" href="javascript:location.href='<%= request.getContextPath()%>/cpWorkflow.yolo'" style=" font-size: 20pt; font-weight: bold; padding-left: 20px;">회사 문서함</a></span>
-	<button type="button" class="headerBtn" onclick="javascript:location.href='${root}workflow/write'">
+	<button type="button" class="headerBtn" onclick="javascript:location.href='${root}workflow/selectWrite'">
 	<div style="text-align: center; padding-bottom: 7px; padding-right: 3px;">
 		<i class="bi bi-pencil-fill"></i>
 		 작성하기
