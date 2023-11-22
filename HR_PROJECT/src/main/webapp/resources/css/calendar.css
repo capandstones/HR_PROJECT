@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+/* 일요일 : 빨간색 */
+.fc-day-sun a {
+   color: red;
+   text-decoration: none;
+}
+
+/* 토요일 : 파란색 */
+.fc-day-sat a {
+   color: blue;
+   text-decoration: none;
+}
+
+/* 평일 : 검은색 */
+.fc-day-mon a {
+   color: black;
+   text-decoration: none;
+}
+
+.fc-day-tue a {
+   color: black;
+   text-decoration: none;
+}
+
+.fc-day-wed a {
+   color: black;
+   text-decoration: none;
+}
+
+.fc-day-thu a {
+   color: black;
+   text-decoration: none;
+}
+
+.fc-day-fri a {
+   color: black;
+   text-decoration: none;
+}
+
+.fc .fc-toolbar-title {
+   font-size: 30px;
+   font-weight: bold;
+}

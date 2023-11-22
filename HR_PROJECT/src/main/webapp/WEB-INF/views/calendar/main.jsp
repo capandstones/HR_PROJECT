@@ -12,15 +12,50 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
-    <script>
+<link href="${root }css/calendar.css" rel="stylesheet" />
 
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.9/index.global.min.js'></script>
+    <script>
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+          
+           headerToolbar: {
+            start: 'dayGridMonth,timeGridWeek,timeGridDay today',
+            center: 'title',
+            end: 'prevYear,prev,next,nextYear'
+          },
+          footerToolbar: {
+            start: '',
+            center: '',
+            end: 'prev,next'
+          },
+          
+          googleCalendarApiKey: 'AIzaSyCznPneMB5rfwZDwhFLstuTbxI1ZuqfQsg',
+
+          // KO Holidays
+          eventSources:[
+             {
+                googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com',
+                className:'holiday',
+                color:'white',
+                textColor: 'red'
+             }
+          ],
+
+          eventClick: function(arg) {
+
+            
+
+            // prevents current tab from navigating
+            arg.jsEvent.preventDefault();
+            
+          }
+           
         });
         calendar.render();
+
       });
 
     </script>
