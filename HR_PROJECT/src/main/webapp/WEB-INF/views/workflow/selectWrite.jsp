@@ -35,7 +35,7 @@
 	border: 5px solid #5291EA;
 	cursor: pointer;
 	border-radius: 0.5rem;
-	box-shadow: 0 0 5px 5px rgba(36,65,128,.3);
+	box-shadow: 0 0 5px 5px rgba(36, 65, 128, .3);
 }
 
 div#fontSubject {
@@ -53,7 +53,6 @@ div#fontpurpose {
 	margin-top: 2px;
 }
 
-
 /* img { */
 
 /* 	width: 40px; */
@@ -61,8 +60,8 @@ div#fontpurpose {
 /* 	margin: 13px; */
 /* } */
 div#parent {
-   display: flex;
-   justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 div#child {
@@ -71,18 +70,92 @@ div#child {
 
 div#parent2 {
 	display: flex;
-   justify-content: space-between;
+	justify-content: space-between;
 }
 
 div#child2 {
 	flex: 0.15;
 }
 
-
-
+.icon  img{
+ width: 60px;
+ height: auto;
+}
 </style>
 
+<script type="text/javascript">
+	function goWrite() {
 
+		const frm = document.selectFrm;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+
+	function goWrite2() {
+
+		const frm = document.selectFrm2;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+
+	function goWrite3() {
+
+		const frm = document.selectFrm3;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+
+	function goWrite4() {
+
+		const frm = document.selectFrm5;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+
+	function goWrite5() {
+
+		const frm = document.selectFrm5;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+
+	function goWrite6() {
+
+		const frm = document.selectFrm6;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+
+	function goWrite7() {
+
+		const frm = document.selectFrm7;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+
+	function goWrite8() {
+
+		const frm = document.selectFrm8;
+		frm.method = "POST";
+		frm.action = "${root}workflow/write";
+		frm.submit();
+
+	}
+</script>
 
 </head>
 
@@ -96,16 +169,20 @@ div#child2 {
 		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
 
 		<div id="layoutSidenav_content"
-			style="padding-top: 20px; height: auto; background-color: #fff;">
+			style="padding-top: 0px; height: auto; background-color: #fff; justify-content: unset;">
+			<c:import url="/WEB-INF/views/workflow/writeheader.jsp" />
 			<main>
 				<div id="parent">
-					<form name="selectFrm" style="margin-left: 20px; ">
+					<form name="selectFrm" style="margin-left: 20px;">
 						<div class="card" onclick="goWrite()" id="child">
-							<img class="icon" src="${root}image/free-icon-bulk-buying-3040081.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
-								<div id="fontSubject">
-									비품 신청 <input type="hidden" name="subject" value="비품 신청" readonly />
-									<input type="hidden" name="information"
-										value="일하는 데 필요한 물품을 신청해주세요!" readonly />
+							<div class="icon">
+								<img src="${root}image/tem.svg" style="padding-left: 10px; "> <input
+									type="hidden" name="icon" value="tem.svg" readonly />
+							</div>
+							<div id="fontSubject">
+								비품 신청 <input type="hidden" name="subject" value="비품 신청" readonly />
+								<input type="hidden" name="information"
+									value="일하는 데 필요한 물품을 신청해주세요!" readonly />
 								<textarea style="display: none;" name="guide_form">품명 :		
 
 상품 정보(링크) :
@@ -125,7 +202,10 @@ div#child2 {
 					</form>
 					<form name="selectFrm2">
 						<div class="card" onclick="goWrite2()" id="child">
-							<img class="icon" src="${root}image/free-icon-marriage-3370933_1.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+							<div class="icon">
+								<img src="${root}image/clip.svg" style="padding-left: 10px"> <input
+									type="hidden" name="icon" value="clip.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								경조비 신청 <input type="hidden" name="subject" value="경조비 신청"
 									readonly /> <input type="hidden" name="information"
@@ -145,7 +225,10 @@ div#child2 {
 					</form>
 					<form name="selectFrm3">
 						<div class="card" onclick="goWrite3()" id="child">
-							<img class="icon" src="${root}image/free-icon-user-860784.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+							<div class="icon">
+								<img src="${root}image/key.svg" style="padding-left: 10px"> <input
+									type="hidden" name="icon" value="key.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								계정 신청 <input type="hidden" name="subject" value="계정 신청" readonly />
 								<input type="hidden" name="information"
@@ -163,8 +246,11 @@ div#child2 {
 					</form>
 
 					<form name="selectFrm4" style="margin-right: 20px">
-						<div class="card" onclick="goWrite5()" id="child">
-							<img class="icon" src="${root}image/free-icon-award-11239533.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+						<div class="card" onclick="goWrite4()" id="child">
+							<div class="icon">
+								<img src="${root}image/paper.svg" style="padding-left: 10px"> <input
+									type="hidden" name="icon" value="paper.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								계약서 검토 요청 <input type="hidden" name="subject" value="계약서 검토 요청"
 									readonly /> <input type="hidden" name="information"
@@ -180,8 +266,11 @@ div#child2 {
 
 				<div id="parent2">
 					<form name="selectFrm5" style="margin-left: 20px;">
-						<div class="card" onclick="goWrite6()" id="child2">
-							<img class="icon" src="${root}image/free-icon-parenting-3079243.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+						<div class="card" onclick="goWrite5()" id="child2">
+							<div class="icon">
+								<img src="${root}image/board.svg" style="padding-left: 10px"> <input
+									type="hidden" name="icon" value="board.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								휴직 신청 <input type="hidden" name="subject" value="휴직 신청" readonly />
 								<input type="hidden" name="information"
@@ -193,8 +282,11 @@ div#child2 {
 						</div>
 					</form>
 					<form name="selectFrm6">
-						<div class="card" onclick="goWrite7()" id="child2">
-							<img class="icon" src="${root}image/free-icon-project-5956597.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+						<div class="card" onclick="goWrite6()" id="child2">
+							<div class="icon">
+								<img src="${root}image/star.svg" style="padding-left: 10px"> <input
+									type="hidden" name="icon" value="star.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								신규 프로젝트 <input type="hidden" name="subject" value="신규 프로젝트"
 									readonly /> <input type="hidden" name="information"
@@ -206,8 +298,11 @@ div#child2 {
 						</div>
 					</form>
 					<form name="selectFrm7">
-						<div class="card" onclick="goWrite8()" id="child2">
-							<img class="icon" src="${root}image/free-icon-receipt-866091.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+						<div class="card" onclick="goWrite7()" id="child2">
+							<div class="icon">
+								<img src="${root}image/bag.svg" style="padding-left: 10px"> <input
+									type="hidden" name="icon" value="bag.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								개인경비청구서 <input type="hidden" name="subject" value="개인경비청구서 "
 									readonly /> <input type="hidden" name="information"
@@ -219,8 +314,11 @@ div#child2 {
 						</div>
 					</form>
 					<form name="selectFrm8" style="margin-right: 20px;">
-						<div class="card" onclick="goWrite9()" id="child2">
-							<img class="icon" src="${root}image/free-icon-receipt-866091.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+						<div class="card" onclick="goWrite8()" id="child2">
+							<div class="icon">
+								<img src="${root}image/receipt.svg" style="padding-left: 10px"> <input
+									type="hidden" name="icon" value="receipt.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								지출결의서 <input type="hidden" name="subject" value="지출결의서" readonly />
 								<input type="hidden" name="information"

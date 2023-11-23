@@ -442,30 +442,11 @@ button#delete:hover {
 
 	 $(document).ready(function(){
 		 
-		 
-		
-		 
-		if( ${requestScope.alarmDocno == null}){
-			 
-			
-			waitingDm(1);
-		 	
-		 	const doc_no = ${requestScope.doc_no};
-		 	const emp_no = ${requestScope.empno};
-		 	//alert(doc_no);
-		 	goReadDocument(doc_no,emp_no);
-		
-		 }
-		 else {
-			
 			 waitingDm(1);
 		  // const alarmDocno = ${requestScope.alarmDocno};
 		  // alert("${requestScope.alarmDocno}");
 			 goReadDocument("${requestScope.alarmDocno}", "${requestScope.empno}");
-		 }   
-		 
-		
-	
+
 	 	//체크박스 체크되면 전체 체크박스 선택
 	    $(".allCheckBox").click(function(){
 			var bool = $(this).is(":checked");
@@ -603,19 +584,16 @@ button#delete:hover {
 			if(json.doc_no != "10") {
 				//console.log(json.doc_subject);
 					//console.log("preset:"+json.prestepApp);
-					console.log("deny : "+json.deny);
-					const names = json.appName.split(",");
+					//console.log("levelno:"+json.levelno);
+					
+			
 	 				  html += 
 						"<div style='padding : 15px 10px' id='contents' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='approvalModal("+json.doc_no+"," +json.fk_writer_empno+")'>"+
-					    	"<span id='status2' style='font-size: 11pt; font-weight:bold; color:#4d4d4d; padding:3px;'> &nbsp;"+json.nowApprovalStep+"/"+names.length+"&nbsp; </span>";
-					    	if(json.end_doc == "0"){
-					    	html += "<span style='font-size: 12pt;'> &nbsp;&nbsp;"+json.nowApprovalStep+"단계 승인대기 중입니다.</span>" ;
-					    	}
-					    	else{
-						    	html += "<span style='font-size: 12pt;'> &nbsp;&nbsp;결재가 완료되었습니다.</span>" ;
-						    	}
-					    	html += "&nbsp;&nbsp;&nbsp;&nbsp;"+
+					    	"<span id='status2' style='font-size: 11pt; font-weight:bold; color:#4d4d4d; padding:3px;'> &nbsp;1/2&nbsp; </span>"+
+					    	"<span style='font-size: 12pt;'> &nbsp;&nbsp;1단계 승인대기 중입니다.</span>" +
+					    	"&nbsp;&nbsp;&nbsp;&nbsp;"+
 					    	"<span style='float:right; color:#cccccc; font-weight: bold; padding-left: 20px; font-size:12pt;'>></span>";
+					    	const names = json.appName.split(",");
 					    	//console.log(names.length);
 					    	 for(let i=0; i<names.length; i++) {
 					    	
@@ -657,20 +635,15 @@ button#delete:hover {
 				    		"<span class='font' style='margin-right: 10px;'>&nbsp;&nbsp;희망기한 </span>"+
 				    		"<span style='font-size:11pt; color:#262626;'>"+json.d_day.substring(0,10)+" </span>"+
 						"</div>";
-						if(json.levelno == 1 && json.approval == "0" && json.end_doc == "0") {
+						if(json.levelno == 1 && json.approval == "0") {
 								html += "<button type='button' id='denial' class='bhover' onclick='goApproval(2,"+doc_no+","+json.levelno+");'>반려</button>"+
 								"&nbsp;<button type='button' id='accept' class='bhover' onclick='goApproval(1,"+doc_no+","+json.levelno+");'>✓ 승인</button>";
 							
 						}
-						else if( (json.prestepApp == "1" || json.prestepApp == "2") && json.approval =="0" && json.end_doc == "0") {
+						else if(json.prestepApp == "1" && json.approval =="0") {
 						html += "<button type='button' id='denial' class='bhover' onclick='goApproval(2,"+doc_no+","+json.levelno+");'>반려</button>"+
 						"&nbsp;<button type='button' id='accept' class='bhover' onclick='goApproval(1,"+doc_no+","+json.levelno+");'>✓ 승인</button>";
 						}
-						else if(json.deny && json.end_doc == "0") {
-							html += "<button type='button' id='denial' class='bhover' onclick='goApproval(2,"+doc_no+","+json.levelno+");'>반려</button>"+
-							"&nbsp;<button type='button' id='accept' class='bhover' onclick='goApproval(1,"+doc_no+","+json.levelno+");'>✓ 승인</button>";
-							}
-						
 			    	html += "</div>"+
 			    	
 			    	// 첨부파일 토글버튼 
@@ -685,7 +658,7 @@ button#delete:hover {
 						"<div class='collapse' id='collapseExample'>"+
 						 "<div class='' style='margin-left: 10px;'>";
 						 if(json.orgfilename != null){
-						  html+= "<a href='${root}download.yolo?doc_no="+json.doc_no+"'>"+json.orgfilename+"</a>"+      
+						  html+= "${root}download.yolo?doc_no="+json.doc_no+"'>"+json.orgfilename+"</a>"+      
 						  "<br><img src='${root}files/workflow/"+json.filename+"' style='width=100px; height=100px;'>";
 						 }		  
 						 else {
@@ -703,34 +676,22 @@ button#delete:hover {
 						   "히스토리"+
 						  "</span>"+
 						  "<span class='font' style='float: right;'> > </span>"+
-						"</p>";
-						if(json.historyFlag){
-							for(let i=0; i<json.historyList.length; i++ ) {
-								console.log(json.historyList);
-							html +="<div class='collapse' id='collapseExample2'>"+
+						"</p>"+
+						"<div class='collapse' id='collapseExample2'>"+
 						  "<div class='' style='margin-left: 10px; margin-bottom: 5px;'>"+ 
 						  "<span><i class='bi bi-pencil-square'></i></span>"+
-						  "<span id='sizebold' style='color: #404040;'> "+json.historyList[i].emp_name.substring(1,3)+" </span>"+
-						  "<span style='font-size:12pt; color:#404040;'> " +json.historyList[i].contents+"</span>"+
-						  "<span style='font-size:12pt; color:#404040;'>&nbsp;&nbsp;&nbsp; <i class='bi bi-table'> </i>"+json.historyList[i].historyDate.substring(0,10)+"</span>"+
-						  "</div>";
+						  "<span id='sizebold' style='color: #404040;'> 이름(코딩) </span>"+
+						  "<span style='font-size:12pt; color:#404040;'> 님이 문서를 작성했습니다.</span>"+
+						  "</div>"+
 						  
-							}
-						}
-					
-						else {
-							html +="<div class='collapse' id='collapseExample2'>"+
-							  "<div class='' style='margin-left: 10px; margin-bottom: 5px;'>"+ 
-							  "<span><i class='bi bi-pencil-square'></i></span>"+
-							  "<span id='sizebold' style='color: #404040;'> 이름(코딩) </span>"+
-							  "<span style='font-size:12pt; color:#404040;'> 님이 문서를 작성했습니다.</span>"+
-							  "<span style='font-size:12pt; color:#404040;'>&nbsp;&nbsp;&nbsp; <i class='bi bi-table'> </i>날짜(히스토리만들기이전 게시물 안나오는게 정상)</span>"+
-							  "</div>";
-						}
-						 
-					html += "</div>";	
+						  "<div class='' style='margin-left: 10px; margin-bottom: 5px;'>"+ 
+						  "<span><i class='bi bi-pencil-square'></i></span>"+
+						  "<span id='sizebold' style='color: #404040;'> 이름(코딩) </span>"+
+						  "<span style='font-size:12pt; color:#404040;'> 님이 문서를 수정했습니다.</span>"+
+						  "</div>"+
+						"</div>"+
+					"</div>";	
 	 				 approvalModal(doc_no,emp_no);
-	 				
 				}
 				else {
 					html +="<div style='padding-top: 15px; text-align: center; font-size: 15pt; margin-top:35%;' >"+
@@ -761,7 +722,7 @@ button#delete:hover {
 			  dataType:"JSON",
 			  success:function(json){
 				  
-				 console.log(JSON.stringify(json)); 
+				// console.log(JSON.stringify(json)); 
 				 
 					 
 				  let html = ""
@@ -769,26 +730,19 @@ button#delete:hover {
 				if(json.length > 0) {
 				//	console.log(json.length);
 					$.each(json, function(index, item){	
-						console.log(index + item); 
 						
 						if(index == 0){
+							
 							const appSize= json.length;
 							
 							const jsonsize = appSize -1;
 							console.log(jsonsize);
 					
 							 html+=  "<div id='modalStatus'>"+    
-		       			   		"<span id='status' style='font-size: 13pt; '> &nbsp;"+item.nowApprovalStep +"/"+jsonsize+"&nbsp; </span>";
-							 if(item.end_doc == "0"){
-								html+= "<span style='font-size: 13pt;'> &nbsp;&nbsp;"+item.nowApprovalStep+"단계 승인대기 중입니다.</span>";
-							  }
-					    	else{
-					    		html+= "<span style='font-size: 13pt;'> &nbsp;&nbsp;결재가 완료되었습니다.</span>";
-						    	}
-								
-			   				 html +="</div>";  
-			   				 
-							 
+		       			   		"<span id='status' style='font-size: 13pt; '> &nbsp;"+item.first+"/"+jsonsize+"&nbsp; </span>"+
+			    				"<span style='font-size: 13pt;'> &nbsp;&nbsp;"+item.first+"단계 승인대기 중입니다.</span>"+ 
+			   				 "</div>";  
+							
 						} 
 						
 						else {
@@ -897,12 +851,14 @@ button#delete:hover {
 							  		"<span id='getdocno' onclick='goReadDocument("+item.doc_no+","+item.emp_no+");'>"+
 							  		" <input type='hidden' class='doc_no' name='' value="+item.doc_no+" /> "+
 								  		"<label for='label-a' id='sub' >"+item.name+"</label>";
-								  		
-								  		if(item.end_Doc == "0") {
-								  			html += "<span id='status' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; color:#4d4d4d;'>진행중</span>";
-								  		}
+								  		if(item.levelno == 1 && item.approval == "0") {
+								  			html += "<span id='needstatus' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; background-color : #ffb3b3; color:#4d4d4d;'>승인필요</span>";
+										}
+								  		else if(item.prestepApp == 1 && item.approval =="0" ) {
+								  			html += "<span id='needstatus' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; background-color : #ffb3b3; color:#4d4d4d;'>승인필요</span>";
+										}
 								  		else {
-								  			html +=	"<span id='needstatus' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; background-color : #ff4d4d; color:#330000;'>완료</span>";
+								  			html += "<span id='status' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; color:#4d4d4d;'>진행중</span>";
 								  		}
 								  		
 								  		/* else if(item.approval == 1){
@@ -915,10 +871,10 @@ button#delete:hover {
 										"<span style='padding:30px; font-size: 12pt; margin-left:7px; '>"+item.doc_subject+"</span>"+
 										"<span style='font-size: 11pt; float:right; margin: 5px 8px; color:#737373;'>"+item.writeday.substring(5,7)+"월 "+item.writeday.substring(8,10)+"일</span>"+
 										"<br>"+
-										"<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'> "+item.doc_contents.substring(0,20)+"</span>"+
+										"<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'> "+item.doc_contents.substring(0,6)+"</span>"+
 										"<br>";
 										if(item.orgfilename != null ){
-										html += "<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'>첨부파일 : "+item.orgfilename.substring(0,35)+"</span>"+
+										html += "<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'>첨부파일 : "+item.orgfilename.substring(0,10)+"</span>"+
 										"<br>";
 										}
 										html+="<span>&nbsp;</span>"+
@@ -963,23 +919,16 @@ button#delete:hover {
 		  dataType:"JSON",
 		  success:function(json){
 			  let html = ""; 
-			/*   const jsonSize = json.length 
-			  if(json.waitinglistSize == 0) {
-				  jsonSize = 0;
-				  console.log("size1:"+jsonSize);
-			  }
-			  console.log("size2:"+jsonSize); */
-			  if(json.length > 1) {
-				  console.log(JSON.stringify(json));
-
+			 
+			 
+			  if(json.length > 0) {
 				  $.each(json, function(index, item){
 					 // console.log(item.name);
 					/*  console.log("이름: " + item.name);
 					  console.log("levelno:" +item.levelno);
 				 console.log("aprroval:" +item.approval);
 				 console.log("presetpApp: " + item.prestepApp); */
-				 //console.log(currentShowPageNo);
-				 console.log("진행중 문서empno :" + item.emp_no);
+				 console.log(currentShowPageNo);
 				 
 				
 						if(index == 0){
@@ -1007,17 +956,14 @@ button#delete:hover {
 					  html += 
 							"<div style='padding-top: 15px;' id='contents'>"+
 					    		"<div style='margin-left: 35px; margin-right: 25px;' class='border-bottom'>"+
-						    		"<input type='checkbox' id='label-a' class='checkNum' />&nbsp;&nbsp;"+
+						    		"<input type='checkbox' id='label-a' class='checkNum'/>&nbsp;&nbsp;"+
 							  		"<span id='getdocno' onclick='goReadDocument("+item.doc_no+","+item.emp_no+");'>"+
 							  		" <input type='hidden' class='doc_no' name='' value="+item.doc_no+" /> "+
 								  		"<label for='label-a' id='sub' >"+item.name+"</label>";
 								  		if(item.levelno == 1 && item.approval == "0") {
 								  			html += "<span id='needstatus' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; background-color : #ffb3b3; color:#4d4d4d;'>승인필요</span>";
 										}
-								  		else if((item.prestepApp == "1" || item.prestepApp == "2")&& item.approval == "0") {
-								  			html += "<span id='needstatus' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; background-color : #ffb3b3; color:#4d4d4d;'>승인필요</span>";
-										}
-								  		else if(item.deny) {
+								  		else if(item.prestepApp == 1 && item.approval == "0") {
 								  			html += "<span id='needstatus' style='font-size: 10.5pt; float:right; margin: 5px; padding-top:3px; font-weight:bold; background-color : #ffb3b3; color:#4d4d4d;'>승인필요</span>";
 										}
 								  		else {
@@ -1034,10 +980,10 @@ button#delete:hover {
 										"<span style='padding:30px; font-size: 12pt; margin-left:7px; '>"+item.doc_subject+"</span>"+
 										"<span style='font-size: 11pt; float:right; margin: 5px 8px; color:#737373;'>"+item.writeday.substring(5,7)+"월 "+item.writeday.substring(8,10)+"일</span>"+
 										"<br>"+
-										"<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'>"+item.doc_contents.substring(0,20)+"</span>"+
+										"<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'>요청내용 : "+item.doc_contents.substring(0,6)+"</span>"+
 										"<br>";
 										if(item.orgfilename != null ){
-										html += "<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'><i class='bi bi-paperclip'></i> 첨부파일 : "+item.orgfilename.substring(0,35)+"</span>"+
+										html += "<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'><i class='bi bi-paperclip'></i> 첨부파일 : "+item.orgfilename+"</span>"+
 										"<br>";
 										}
 										html+="<span>&nbsp;</span>"+
@@ -1050,7 +996,7 @@ button#delete:hover {
 			  }
 			  
 			  else {
-				  console.log("0보다작다고");
+				  
 				  html += 
 						"<div style='padding-top: 15px; text-align: center; font-size: 15pt; margin-top:50%;' >"+
 									
@@ -1075,7 +1021,7 @@ button#delete:hover {
    function completeDm(currentShowPageNo) {
 	  
 	   $.ajax({
-			  url:"<%= request.getContextPath()%>/workflow/completeDm.yolo",
+			  url:"${root}workflow/completeDm.yolo",
 			  data:{"currentShowPageNo":currentShowPageNo},
 			  dataType:"JSON",
 			  success:function(json){
@@ -1124,7 +1070,7 @@ button#delete:hover {
 											"<span style='padding:30px; font-size: 12pt; margin-left:7px; '>"+item.doc_subject+"</span>"+
 											"<span style='font-size: 11pt; float:right; margin: 5px 8px; color:#737373;'>"+item.writeday.substring(5,7)+"월 "+item.writeday.substring(8,10)+"일</span>"+
 											"<br>"+
-											"<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'>"+item.doc_contents.substring(0,10)+"</span>"+
+											"<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'>요청내용 : "+item.doc_contents.substring(0,6)+"</span>"+
 											"<br>";
 											if(item.orgfilename != null ){
 											html += "<span style='padding:30px; font-size: 11.5pt; margin-left:7px;'>첨부파일 : "+item.orgfilename+"</span>"+
@@ -1244,7 +1190,7 @@ button#delete:hover {
 		    		  // 게시글이 있는 경우
 		    		  
 		    		  const totalPage = json.totalPage;
-		    		  console.log("totalPage :" +totalPage);
+		    		  
 		    		  const blockSize = 5;
 		    		// blockSize 는 1개 블럭(토막)당 보여지는 페이지번호의 개수이다.
 		    		  let loop = 1;
@@ -1270,7 +1216,7 @@ button#delete:hover {
 								    }
 								    else {
 								    	pageBarHTML += "<li class='page-item'>"+
-								    	"<a class='page-link' href='javascript:completeDm(\""+pageNo+"\")'>"+pageNo+"</a></li>";
+								    	"<a class='page-link' href='javascript:waitingDm(\""+pageNo+"\")'>"+pageNo+"</a></li>";
 								    }
 								    loop++;
 				    				pageNo++;
@@ -1299,7 +1245,7 @@ button#delete:hover {
 
 	   <%-- === 원글에 대한 댓글의 totalPage 수를 알아와야 한다. === --%>
 		  $.ajax({
-			  url:"<%= request.getContextPath()%>/getTotalPagemy.yolo",
+			  url:"${root}getTotalPagemy.yolo",
 			  data:{"sizePerPage":"10"},
 		      type:"GET",
 		      dataType:"JSON",
@@ -1342,7 +1288,7 @@ button#delete:hover {
 				    			}// end of while--------------------------
   
 								    pageBarHTML += "<li class='page-item'>"+
-								      "<a class='page-link' href='#''>></a>"+
+								      "<a class='page-link' href='#''></a>"+
 								    "</li>"+
 								 " </ul>"+
 								"</nav>";
@@ -1362,7 +1308,7 @@ button#delete:hover {
   
   
   /////////////////////////////////////////////
-</script> 
+</script>
 
 </head>
 
@@ -1377,7 +1323,7 @@ button#delete:hover {
 
 		<div id="layoutSidenav_content"
 			style="height: auto; background-color: #fff;">
-			<c:import url="/WEB-INF/views/workflow/header.jsp" />
+			<c:import url="/WEB-INF/views/workflow/cpHeader.jsp" />
 			<main>
 				<div class="">
 					<div class="row">

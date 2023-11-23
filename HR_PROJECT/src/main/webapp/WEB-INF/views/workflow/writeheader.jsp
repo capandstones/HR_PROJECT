@@ -102,18 +102,13 @@ input::placeholder {
 
 </script> 
     
-<div style="display: flex; padding-top: 30px; padding-left: 30px; padding-bottom: 40px;]" class="border-bottom">
-	 <span ><a class="mylink" href="javascript:location.href='<%= request.getContextPath()%>/workflow.yolo'" style="color: #404040; font-size: 23pt; font-weight: bold; padding-right: 20px;"><</a></span>
+<div style="display: flex; padding-top: 20px; padding-left: 40px; padding-bottom: 20px;]" class="border-bottom">
+	 <span ><a class="mylink" href="javascript:location.href='${root}workflow/document'" style="color: #404040; font-size: 23pt; font-weight: bold; padding-right: 20px;"><</a></span>
 	 <span style="color:#404040; font-size: 23pt; font-weight: bold; margin-right: 65%; cursor:pointe;" >작성하기</span>
 	 <!-- <div id="search">
 	 	<input id="search" placeholder="양식검색 " />
 	 </div> -->
-	 <form name="searchFrm">
-	 <div class="searchWord" id="text">
-	 	<input placeholder="양식검색 " name="searchWord" id="search"/>
-		<span class="icon" onclick="goSearch();"><i class="bi bi-search"></i></span>
-	</div>
-	</form>
+	 
 </div >
 
 
