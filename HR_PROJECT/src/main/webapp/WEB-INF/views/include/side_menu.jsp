@@ -9,10 +9,10 @@
    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
       <div class="sb-sidenav-menu">
          <div class="sb-sidenav-footer" style="left-padding: 30px">
-            <img src="${root }image/img1.svg"
-               style="float: left; width: 40px; margin-right: 10px;" />
-            <div class="small">접속자명</div>
-            박정민 바지사장
+            <img src="${root }image/Black-_-White-Minimal-Business-Logo.svg"
+               style="float: left; width: 50px; height:auto; margin-right: 10px;" />
+            <div>${username}님</div>
+            <div>환영합니다!</div>
          </div>
          <div class="nav">
             <button id="attendanceButton" style="margin-top: 10px; height: 40px; border-radius: 20px; border-style: solid; border-color: rgb(190, 190, 190);" onclick="toggleAttendance()">출근하기</button>

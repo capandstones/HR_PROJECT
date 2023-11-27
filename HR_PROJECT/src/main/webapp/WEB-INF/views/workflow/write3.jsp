@@ -301,9 +301,9 @@ textarea:focus {
 		<div class="row" style="padding: 0px;">
 			
 				<div class="col-7 content">
-					<img src="${root}image/key.svg">
-					<span id="fontSubject">계정 신청</span>	
-					<h5>돔황챠.</h5>
+					<img src="${root}image/board.svg">
+					<span id="fontSubject">휴직 신청</span>	
+					<h5>아래 양식에 맞추어 신청해주세요.</h5>
 					
 					<input type="hidden" name="fk_writer_empno" value="${requestScope.empno}" readonly />
 					<input type="hidden" name="deptno" value="${requestScope.deptno}" readonly />
@@ -315,15 +315,14 @@ textarea:focus {
 						내용
 						<div style="margin-top: 5px;">
 						<textarea class="search" name="doc_contents" id="daterange" placeholder="" style="margin-top: 5px; padding: 6px 10px; ">
-계정 신청 페이지
-1
-2
-3
-4
-5
-6
-7
-8
+1. 휴직 사유
+
+
+2. 휴직 시작일
+
+
+3. 예상 휴직기간
+
 						
 						</textarea>
 						</div>

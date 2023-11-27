@@ -301,9 +301,9 @@ textarea:focus {
 		<div class="row" style="padding: 0px;">
 			
 				<div class="col-7 content">
-					<img src="${root}image/key.svg">
-					<span id="fontSubject">계정 신청</span>	
-					<h5>돔황챠.</h5>
+					<img src="${root}image/paper.svg">
+					<span id="fontSubject">계약서 검토 신청</span>	
+					<h5>작성 시 계약 서류를 첨부해주세요.</h5>
 					
 					<input type="hidden" name="fk_writer_empno" value="${requestScope.empno}" readonly />
 					<input type="hidden" name="deptno" value="${requestScope.deptno}" readonly />
@@ -315,15 +315,8 @@ textarea:focus {
 						내용
 						<div style="margin-top: 5px;">
 						<textarea class="search" name="doc_contents" id="daterange" placeholder="" style="margin-top: 5px; padding: 6px 10px; ">
-계정 신청 페이지
-1
-2
-3
-4
-5
-6
-7
-8
+계약서 검토 요청
+내 계약서 읽어 이시키야
 						
 						</textarea>
 						</div>

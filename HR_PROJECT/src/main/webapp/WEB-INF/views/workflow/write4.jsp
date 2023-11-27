@@ -301,9 +301,9 @@ textarea:focus {
 		<div class="row" style="padding: 0px;">
 			
 				<div class="col-7 content">
-					<img src="${root}image/key.svg">
-					<span id="fontSubject">계정 신청</span>	
-					<h5>돔황챠.</h5>
+					<img src="${root}image/receipt.svg">
+					<span id="fontSubject">지출 결의서</span>	
+					<h5>작성 시 영수증을 첨부해 주세요.</h5>
 					
 					<input type="hidden" name="fk_writer_empno" value="${requestScope.empno}" readonly />
 					<input type="hidden" name="deptno" value="${requestScope.deptno}" readonly />
@@ -315,15 +315,19 @@ textarea:focus {
 						내용
 						<div style="margin-top: 5px;">
 						<textarea class="search" name="doc_contents" id="daterange" placeholder="" style="margin-top: 5px; padding: 6px 10px; ">
-계정 신청 페이지
-1
-2
-3
-4
-5
-6
-7
-8
+1. 작성 안내
+원천징수에 대한 지출 결의서를 작성하시고,
+직인을 받은 계약서, 통장 사본, 신분증 사본을 파일로 첨부해주세요.
+
+2. 작성 기한
+매달 5일
+
+3. 승인·참조 설정
+1,000만원 이상
+1단계: 조직장(승인), 박부장(참조)
+1,000만원 이하
+1단계: 조직장(승인), 박부장(참조)
+2단계: 대표(승인)
 						
 						</textarea>
 						</div>

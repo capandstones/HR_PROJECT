@@ -22,27 +22,26 @@ import attention.vaildator.UserValidator;
 @Controller
 @RequestMapping("/user")
 public class UserContoller {
-   
-   @Autowired
-   private UserService userService;
 
-   @Resource(name = "loginUserBean")
-   private UserBean loginUserBean;
-   
-   
-   @GetMapping("/login")
-   public String login(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
-                  @RequestParam(value = "fail",defaultValue = "false")boolean fail,
-                  Model model) {
-      
-      model.addAttribute("fail",fail);//처음은 무조건 fail=false 이후 실패시 fail=true
-      
-      return "user/login";
-   }
+	@Autowired
+	private UserService userService;
 
-   @GetMapping("/login_pro")
+	@Resource(name = "loginUserBean")
+	private UserBean loginUserBean;
+
+	@GetMapping("/login")
+	public String login(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
+			@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
+
+		model.addAttribute("fail", fail);// 처음은 무조건 fail=false 이후 실패시 fail=true
+
+		return "user/login";
+	}
+
+	@GetMapping("/login_pro")
    public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
-         BindingResult result) {
+         BindingResult result,
+         Model  model) {
 
       if (result.hasErrors()) {
          return "user/login";
@@ -52,6 +51,7 @@ public class UserContoller {
 
       if (loginUserBean.isUserLogin() == true) {
 
+    	  
          return "user/login_success";
 
       } else {
@@ -60,48 +60,46 @@ public class UserContoller {
       }
    }
 
+	@GetMapping("/modify")
+	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
 
-   @GetMapping("/modify")
-   public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
-      
-      userService.getModifyUserInfo(modifyUserBean);
-      
-      return "user/modify";
-   }
-   
-   @PostMapping("/modify_pro")
-   public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
-      
-      if(result.hasErrors()) {
-         return "user/modify";
-      }
-      
-      userService.modifyUserInfo(modifyUserBean);
-      
-      return "user/modify_success";
-   }
+		userService.getModifyUserInfo(modifyUserBean);
 
-   @GetMapping("/logout")
-   public String logout() {
-      
-      loginUserBean.setUserLogin(false);
-      
-      return "user/logout";
-   }
-   
-   @GetMapping("/not_login")
-   public String not_login() {
-      
-      loginUserBean.setUserLogin(false);
+		return "user/modify";
+	}
 
-      return "user/not_login";
-   }
-   
-   @InitBinder
-      public void initBinder(WebDataBinder binder) {
-         UserValidator validator1 = new UserValidator();
-         binder.addValidators(validator1);
-      }
+	@PostMapping("/modify_pro")
+	public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
 
+		if (result.hasErrors()) {
+			return "user/modify";
+		}
+
+		userService.modifyUserInfo(modifyUserBean);
+
+		return "user/modify_success";
+	}
+
+	@GetMapping("/logout")
+	public String logout() {
+
+		loginUserBean.setUserLogin(false);
+
+		return "user/logout";
+	}
+
+	@GetMapping("/not_login")
+	public String not_login() {
+
+		loginUserBean.setUserLogin(false);
+
+		return "user/not_login";
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		UserValidator validator1 = new UserValidator();
+		binder.addValidators(validator1);
+	}
 
 }
