@@ -3,17 +3,19 @@ package attention.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import attention.beans.EmployeesBean;
 import attention.dao.EmployeesDao;
 
+@Service
 public class EmployeesService {
 	
 	@Autowired
-	private EmployeesDao emoEmployeesDao;
+	private EmployeesDao employeesDao;
 	
-	public ArrayList<EmployeesBean> getEmpInfo(String employee_id){
-		return emoEmployeesDao.getEmpInfo(employee_id);
+	public ArrayList<EmployeesBean> getEmpInfo() {
+		return employeesDao.getEmpInfo();
 	}
 	
 }

@@ -9,7 +9,7 @@ public class EmployeesBean {
 
 	private String employee_id;
 	private String department_name;
-	private String rank_num;
+	private int rank_num;
 	private String employee_name;
 	private String employee_email;
 	private String employee_password;
@@ -25,7 +25,7 @@ public class EmployeesBean {
 	private String employee_profile_picture;
 
 	
-	public EmployeesBean(String employee_id, String department_name, String rank_num, String employee_name,
+	public EmployeesBean(String employee_id, String department_name, int rank_num, String employee_name,
 			String employee_email, String employee_password, String employee_start_date, String employee_RRN,
 			String employee_end_date, String employee_phone, String employee_address, String employee_self_introduction,
 			String employee_status, String employee_last_name, String employee_first_name,
@@ -53,4 +53,5 @@ public class EmployeesBean {
 		
 	}
 
+	
 }

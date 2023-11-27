@@ -100,6 +100,14 @@ public class ServletAppContext implements WebMvcConfigurer {
       factoryBean.setSqlSessionFactory(factory);
       return factoryBean;
    }
+   
+   @Bean
+   public MapperFactoryBean<EmployeesMapper> getEmployeesMapper(SqlSessionFactory factory) throws Exception {
+      MapperFactoryBean<EmployeesMapper> factoryBean = new MapperFactoryBean<EmployeesMapper>(EmployeesMapper.class);
+      factoryBean.setSqlSessionFactory(factory);
+      return factoryBean;
+   }
+	
 
    // ======================================================================
    @Bean
@@ -115,11 +123,6 @@ public class ServletAppContext implements WebMvcConfigurer {
       return new PropertySourcesPlaceholderConfigurer();
    }
    
-   @Bean
-   public MapperFactoryBean<EmployeesMapper> EmployeesMapper(SqlSessionFactory factory) throws Exception {
-      MapperFactoryBean<EmployeesMapper> factoryBean = new MapperFactoryBean<EmployeesMapper>(EmployeesMapper.class);
-      factoryBean.setSqlSessionFactory(factory);
-      return factoryBean;
-   }
+   // ------------------------------------------------------------------------------------------------------------------
 
 }

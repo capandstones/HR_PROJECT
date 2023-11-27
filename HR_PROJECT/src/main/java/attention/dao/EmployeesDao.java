@@ -14,7 +14,7 @@ public class EmployeesDao {
 	@Autowired
 	private EmployeesMapper employeesMapper;
 	
-	public ArrayList<EmployeesBean> getEmpInfo(String employee_id) {
-		return employeesMapper.getEmpInfo(employee_id);
+	public ArrayList<EmployeesBean> getEmpInfo() {
+		return employeesMapper.getEmpInfo();
 	}
 }
