@@ -65,7 +65,7 @@ div#information {
 
 }
 
-img {
+img#icon{
 
 	width: 40px;
 	height: 40px;
@@ -201,7 +201,7 @@ textarea:focus {
 	    color: #fff;
 	    vertical-align: middle;
 	    text-align: center;
-	    background-color: #88eb1e;
+	    background-color: #496785;
 	    cursor: pointer;
 	    width : 25%;
 	    height: 40px;
@@ -298,96 +298,35 @@ textarea:focus {
 			<main>
 				<div class="contai" style="overflow-x: hidden;">
 	<form name="wirteFrm" enctype="multipart/form-data">
-		<div class="row" style="padding: 0px;">
-			
+		<div class="row" style="padding: 0px; justify-content: center;">
 				<div class="col-7 content">
-					<img src="${root}image/key.svg">
+					<img id="icon" src="${root}image/key.svg">
 					<span id="fontSubject">계정 신청</span>	
-					<h5>돔황챠.</h5>
-					
-					<input type="hidden" name="fk_writer_empno" value="${requestScope.empno}" readonly />
-					<input type="hidden" name="deptno" value="${requestScope.deptno}" readonly />
-					<input type="hidden" name="icon" value="${requestScope.icon}" readonly />
-					<input type="hidden" name="doc_subject" value="${requestScope.subject}" readonly />
-					<input type="hidden" name="information" value="${requestScope.information}" readonly />
-					
 					<div id="contents">
-						내용
-						<div style="margin-top: 5px;">
-						<textarea class="search" name="doc_contents" id="daterange" placeholder="" style="margin-top: 5px; padding: 6px 10px; ">
-계정 신청 페이지
-1
-2
-3
-4
-5
-6
-7
-8
-						
-						</textarea>
-						</div>
-					</div>
-					<div id="contents">
-						희망마감날짜<br>
+						제목<br>
 						<div class="daterange" style="margin-top: 5px;">
-						 <input type="text" class="startdate search" id="daterange" name="D_day" placeholder="날짜 선택" style="margin-top: 5px; padding-left: 10px;"/>
-						 
+						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
 						</div>
-						<!-- <input id="search" name="date" placeholder="날짜 선택" style="margin-top: 5px; padding-left: 10px;"/> -->
 					</div>
-						  
-			       <div id="attachArea">
-			        	<div class="filebox">
-			        		<label for="file">파일 찾기</label> 
-						    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-						    <input type="file" id="file" multiple="multiple" name="attach">
+					<div id="contents">
+						제목<br>
+						<div class="daterange" style="margin-top: 5px;">
+						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
 						</div>
-			        </div>
-
-				</div>	
-			
-			
-		<div class="col-5 " style="margin-top:50px; padding-left: 20px; width: 500px;">
-			<div style="float:left;">   
-			    <table style="border-collapse: collapse; border-radius: 10px;" id="mytable">
-			    	<thead>
-			    		<tr>
-			    			<th colspan="3" style="padding: 25px 10px 25px 25px; ">승인 · 참조 대상</th>
-			    		</tr>
-			    	</thead>
-			    	<tbody>
-			    		<!-- 반복시작 -->
-			    		<c:if test="${not empty requestScope.appList}">
-			    		<c:forEach var="map" items="${requestScope.appList}">
-			    		<tr>
-			    			<th colspan="3" style="color:#4d4d4d; font-size: 12pt; font-weight: bold; padding: 0px 25px;">${map.levelno}단계</th>
-			    		</tr>
-			    		<tr> 
-			    			<c:set var="TextValue" value="${map.name}"/>
-			    			<td class="td-1" rowspan="2" style="padding-left: 25px;"><span id="modalprof" style="background-color: ${map.profile_color}"></span></td>
-			    		    <td class="td-2 td-1" style="vertical-align : bottom; padding-bottom : 0px; margin-bottom: 0px; font-weight: bold; font-size: 12pt;">${map.name} </td>
-			    			<td class="td-1" rowspan="2" style="padding-right: 25px;"><span id="status2" style="font-size: 12pt; padding: 3px 5px; float: right;"> 
-			    			승인</span>	</td>		    			
-			    		</tr>    		
-			    		<tr> 	
-			    			<td class="td-1" style="vertical-align : top; padding-top: 0px; margin-top: 0px; color: gray; font-size: 11pt;">${map.position} · ${map.deptname}</td>
-			    		</tr>
-			    		<tr>
-			    			<td class="td-1" colspan="3" style="padding: 0px 20px;"><hr></td>
-			    		</tr>
-			    		</c:forEach>
-			    		</c:if>
-			    		<c:if test="${empty requestScope.appList}">
-			    		비었따
-			    		</c:if>
-			    		<!-- 반복 끝 -->
-			    		
-			    		
-			    	</tbody>
-			    </table>
-	   		 </div>
-		</div>	
+					</div>
+					<div id="contents">
+						제목<br>
+						<div class="daterange" style="margin-top: 5px;">
+						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
+						</div>
+					</div>
+					<div id="contents">
+						제목<br>
+						<div class="daterange" style="margin-top: 5px;">
+						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
+						</div>
+					</div>
+				</div>		
 			
 			
 		</div>
