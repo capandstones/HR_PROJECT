@@ -198,7 +198,7 @@ div#attachArea {
 			style="padding-top: 0x; height: auto; background-color: #fff; justify-content: unset;">
 			<c:import url="/WEB-INF/views/workflow/writeheader2.jsp" />
 			<main>
-				<div class="contain" style="overflow-x: hidden;">;
+				<div class="contain" style="overflow-x: hidden;">
 					<form name="wirteFrm" action="${root}workflow/write_pro" method="post" enctype="multipart/form-data">
 						<div class="row" style="padding: 0px;">
 							<div class="col-7 content">
@@ -236,27 +236,28 @@ div#attachArea {
 							<!-- =================================================================== -->
 
 							<div class="col-5 "
-								style="margin-top: 50px; padding-left: 20px; width: 500px;">
-								<div style="float: left;">
+								style="margin-top: 20px; padding-left: 20px; width: 500px; margin-left: 80px;">
+								<div style="float: left; ">
+								<button type="submit" class="headerBtn" style="margin-left: 300px; margin-right:10px; margin-bottom:30px;  background-color: #496785">
+                              <i class="bi bi-send" style="margin-right: 10px;"></i> 보내기
+                           </button>
 									<table style="border-collapse: collapse; border-radius: 10px;"
 										id="mytable">
 										<thead>
 											<tr>
 												<th colspan="3" style="padding: 25px 10px 25px 25px;">승인 · 참조 대상</th>
 											</tr>
+											<tr>
+												<th colspan="3" style="padding: 25px 10px 25px 25px;"></th>
+											</tr>
 										</thead>
 									</table>
 								</div>
-								 <button type="submit" class="headerBtn" style="margin-left: 250px; margin-top: 510px; background-color: #496785">
-                              <i class="bi bi-send" style="margin-right: 10px;"></i> 보내기
-                           </button>
 							</div>
 						</div>
 					</form>
 				</div>
-
 			</main>
-
 		</div>
 	</div>
 	<script

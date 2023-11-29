@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import attention.beans.DraftBean;
 import attention.service.WorkFlowService;
-import kr.co.soldesk.service.BoardService;
 
 @Controller
 @RequestMapping("/workflow")
