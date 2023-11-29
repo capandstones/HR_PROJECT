@@ -42,10 +42,6 @@ a:active {text-decoration: none; color: #cccccc;}
 <div style="display: flex; padding-top: 20px; padding-left: 40px; padding-bottom: 20px;]" class="border-bottom">
 	 <span ><a class="mylink" href="javascript:location.href='${root}workflow/selectWrite'" style="color: #404040; font-size: 23pt; font-weight: bold; padding-right: 20px;"><</a></span>
 	 <span style="color:#404040; font-size: 23pt; font-weight: bold;" onclick="javascript:location.href='${root}workflow/selectWrite'">작성하기</span>
-	<button type="button" class="headerBtn" onclick="goWrite();">
-		<i class="bi bi-send" style="margin-right: 10px;"></i>
-		 보내기
-	</button>
 </div >
 
 
