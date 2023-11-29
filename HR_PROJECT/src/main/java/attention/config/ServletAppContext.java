@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -123,6 +124,9 @@ public class ServletAppContext implements WebMvcConfigurer {
       return new PropertySourcesPlaceholderConfigurer();
    }
    
-   // ------------------------------------------------------------------------------------------------------------------
+   @Bean //multipart와 valid를 합꼐 읽 수 있도록 Bean 선언
+	public StandardServletMultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver(); //객체 생성하여 반환
+	}
 
 }

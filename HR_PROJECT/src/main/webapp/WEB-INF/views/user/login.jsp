@@ -123,7 +123,7 @@ span {
 		<div class="container" style="">	
 			<div class="sign-in-container">
 				<form:form action="${root}user/login_pro" method="get" modelAttribute="tempLoginUserBean">
-					<h1>Login</h1>
+					<img src="${root}image/login.svg" style="width: 200px; height: auto;">
 					<br>
 					<br> 
 					<form:input path="employee_id" placeholder="사번" class="form-control"/> 

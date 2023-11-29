@@ -35,7 +35,7 @@
 	border: 5px solid #5291EA;
 	cursor: pointer;
 	border-radius: 0.5rem;
-	box-shadow: 0 0 5px 5px rgba(36,65,128,.3);
+	box-shadow: 0 0 5px 5px rgba(36, 65, 128, .3);
 }
 
 div#fontSubject {
@@ -53,7 +53,6 @@ div#fontpurpose {
 	margin-top: 2px;
 }
 
-
 /* img { */
 
 /* 	width: 40px; */
@@ -61,8 +60,8 @@ div#fontpurpose {
 /* 	margin: 13px; */
 /* } */
 div#parent {
-   display: flex;
-   justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 div#child {
@@ -71,24 +70,23 @@ div#child {
 
 div#parent2 {
 	display: flex;
-   justify-content: space-between;
+	justify-content: space-between;
 }
 
 div#child2 {
 	flex: 0.15;
 }
 
-
-
+.icon  img {
+	width: 60px;
+	height: auto;
+}
 </style>
-
 
 
 </head>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
-
-
 
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
@@ -96,75 +94,31 @@ div#child2 {
 		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
 
 		<div id="layoutSidenav_content"
-			style="padding-top: 20px; height: auto; background-color: #fff;">
+			style="padding-top: 0px; height: auto; background-color: #fff; justify-content: unset;">
+			<c:import url="/WEB-INF/views/workflow/writeheader.jsp" />
 			<main>
 				<div id="parent">
-					<form name="selectFrm" style="margin-left: 20px; ">
-						<div class="card" onclick="goWrite()" id="child">
-							<img class="icon" src="${root}image/free-icon-bulk-buying-3040081.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
-								<div id="fontSubject">
-									비품 신청 <input type="hidden" name="subject" value="비품 신청" readonly />
-									<input type="hidden" name="information"
-										value="일하는 데 필요한 물품을 신청해주세요!" readonly />
-								<textarea style="display: none;" name="guide_form">품명 :		
-
-상품 정보(링크) :
-
-수량:
-
-단가:
-
-금액:
-
-사유:  
-
-				 </textarea>
+							
+					<form name="selectFrm1" style="margin-left: 20px;">
+						<div class="card" onclick="location.href='${root}workflow/write'" id="child" >
+							<div class="icon">
+								<img src="${root}image/key.svg" style="padding-left: 10px">
+								<input type="hidden" name="icon" value="key.svg" readonly />
 							</div>
-							<div id="fontpurpose">구매 신청</div>
-						</div>
-					</form>
-					<form name="selectFrm2">
-						<div class="card" onclick="goWrite2()" id="child">
-							<img class="icon" src="${root}image/free-icon-marriage-3370933_1.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
-								경조비 신청 <input type="hidden" name="subject" value="경조비 신청"
-									readonly /> <input type="hidden" name="information"
-									value="아래 양식에 맞추어 신청해 주세요" readonly />
-								<textarea style="display: none;" name="guide_form">경조내용  :		
-
-경조 대상자 성명 :
-
-관계(본인, 본인의 OO) :
-
-경조일 :
-
-				 </textarea>
-							</div>
-							<div id="fontpurpose">복리 후생</div>
-						</div>
-					</form>
-					<form name="selectFrm3">
-						<div class="card" onclick="goWrite3()" id="child">
-							<img class="icon" src="${root}image/free-icon-user-860784.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
-							<div id="fontSubject">
-								계정 신청 <input type="hidden" name="subject" value="계정 신청" readonly />
-								<input type="hidden" name="information"
-									value="G Suite, AWS, Zeplin 등 필요한 계정의 담당자를 지정하여 계정 신청을 해주세요."
-									readonly />
-								<textarea style="display: none;" name="guide_form">요청 계정:		
-
-희망 ID :
-
-사유 : 
-				 </textarea>
+								계정 신청 
+								
 							</div>
 							<div id="fontpurpose">구매 신청</div>
 						</div>
 					</form>
 
-					<form name="selectFrm4" style="margin-right: 20px">
-						<div class="card" onclick="goWrite5()" id="child">
-							<img class="icon" src="${root}image/free-icon-award-11239533.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+					<form name="selectFrm2" style="margin-right: 0px">
+						<div class="card" onclick="location.href='${root}workflow/write2'" id="child">
+							<div class="icon">
+								<img src="${root}image/paper.svg" style="padding-left: 10px">
+								<input type="hidden" name="icon" value="paper.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								계약서 검토 요청 <input type="hidden" name="subject" value="계약서 검토 요청"
 									readonly /> <input type="hidden" name="information"
@@ -172,16 +126,16 @@ div#child2 {
 							</div>
 							<textarea style="display: none;" name="guide_form">요청 사항 :
 				 </textarea>
-
 							<div id="fontpurpose">계약</div>
 						</div>
 					</form>
-				</div>
-
-				<div id="parent2">
-					<form name="selectFrm5" style="margin-left: 20px;">
-						<div class="card" onclick="goWrite6()" id="child2">
-							<img class="icon" src="${root}image/free-icon-parenting-3079243.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
+					
+					<form name="selectFrm3">
+						<div class="card" onclick="location.href='${root}workflow/write3'" id="child2">
+							<div class="icon">
+								<img src="${root}image/board.svg" style="padding-left: 10px">
+								<input type="hidden" name="icon" value="board.svg" readonly />
+							</div>
 							<div id="fontSubject">
 								휴직 신청 <input type="hidden" name="subject" value="휴직 신청" readonly />
 								<input type="hidden" name="information"
@@ -192,40 +146,19 @@ div#child2 {
 							<div id="fontpurpose">양식구분 없음</div>
 						</div>
 					</form>
-					<form name="selectFrm6">
-						<div class="card" onclick="goWrite7()" id="child2">
-							<img class="icon" src="${root}image/free-icon-project-5956597.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
-							<div id="fontSubject">
-								신규 프로젝트 <input type="hidden" name="subject" value="신규 프로젝트"
-									readonly /> <input type="hidden" name="information"
-									value="신규 프로젝트를 아래와 같이 작성해주세요." readonly />
-								<textarea style="display: none;" name="guide_form">요청 사항 :
-				 </textarea>
+
+					<form name="selectFrm4" style="margin-right: 20px;">
+						<div class="card" onclick="location.href='${root}workflow/write4'" id="child2">
+							<div class="icon">
+								<img src="${root}image/receipt.svg" style="padding-left: 10px">
+								<input type="hidden" name="icon" value="receipt.svg" readonly />
 							</div>
-							<div id="fontpurpose">업무 신청</div>
-						</div>
-					</form>
-					<form name="selectFrm7">
-						<div class="card" onclick="goWrite8()" id="child2">
-							<img class="icon" src="${root}image/free-icon-receipt-866091.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
-							<div id="fontSubject">
-								개인경비청구서 <input type="hidden" name="subject" value="개인경비청구서 "
-									readonly /> <input type="hidden" name="information"
-									value="개인경비청구서 입니다." readonly />
-								<textarea style="display: none;" name="guide_form">요청 사항 :
-				 </textarea>
-							</div>
-							<div id="fontpurpose">경비 청구</div>
-						</div>
-					</form>
-					<form name="selectFrm8" style="margin-right: 20px;">
-						<div class="card" onclick="goWrite9()" id="child2">
-							<img class="icon" src="${root}image/free-icon-receipt-866091.svg" style="width: 50px; height: auto; margin-top: 10px; margin-left: 10px;">	
 							<div id="fontSubject">
 								지출결의서 <input type="hidden" name="subject" value="지출결의서" readonly />
 								<input type="hidden" name="information"
 									value="작성 시 영수증을 첨부해 주세요." readonly />
-								<textarea style="display: none;" name="guide_form">1. 작성 안내
+								<textarea style="display: none;" name="guide_form">
+1. 작성 안내
 원천징수에 대한 지출 결의서를 작성하시고,
 직인을 받은 계약서, 통장 사본, 신분증 사본을 파일로 첨부해주세요.
 
@@ -243,11 +176,13 @@ div#child2 {
 							<div id="fontpurpose">원청징수</div>
 						</div>
 					</form>
+					
 				</div>
-
-
+				<div style="width:100%; display: flex; justify-content: center;">
+				<img src="${root}image/1.png"  >
+				</div>
+				
 			</main>
-
 		</div>
 	</div>
 	<script
