@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Dashboard - SB Admin</title>
+<title>조직도</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@ hr {
 }
 
 .side {
-	float: left;
+	margin-left: 0px;
 	border: 1px solid black;
 }
 
@@ -179,9 +179,18 @@ ul {
 }*/
 
 /* 모달 스타일링 끝 ------------------*/
+.divLeader {
+	border: 1px solid black;
+}
+
+.divFollower {
+	border: 1px solid black;
+}
 </style>
 
 <script>
+	
+<%request.setCharacterEncoding("utf-8");%>
 	/* 서브 버튼을 눌렀을 때 하부 카테고리 표시, 다시 누르면 감추기 */
 	function toggleButtons(buttonId) {
 		var subButtons = document.getElementById(buttonId + "-subbuttons");
@@ -218,21 +227,34 @@ ul {
 
 	// ------------------------------------------------------------------------
 
-	function getEmpInfo() {
-		$.ajax({
-			url : "${root}member/getEmpInfo",
-			type : "GET",
-			dataType : "text",
-			success : function(result) {
-				console.log(result);
-			},
-			error : function(error) {
-				console.error(error);
-			}
-		});
-	}
-</script>
+	$(document).ready(
+			function() {
+				$.ajaxSetup({
+					success : function(result) {
+						alert(result);
+					},
+					error : function(jqXHR) {
+						alert("jqXHR status code:" + jqXHR.status + " message:"
+								+ jqXHR.responseText);
+					}
+				}); // ajax setup	
 
+				$("#dep1").click(function() {
+					$.ajax({
+						type : "GET",
+						url : "/HR_Project/getEmpInfo",
+						success : function(empList) {
+							$("#divLeader").empty();
+							$.each(empList, function(i, emp) {
+								$("#divLeader").append(emp.employee_name+" "+emp.department_name+" "+emp.employee_position+" "+"<br>").css("background","lightgray");
+								
+							});
+						} // success
+
+					}); // ajax
+				}); // 
+			}); //document ready
+</script>
 
 </head>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -249,16 +271,15 @@ ul {
 				<hr />
 				<!-- top 끝 -->
 
-
-
 				<!-- main_container 시작 -->
 				<div class="main_container">
+
 					<!--  side 시작 -->
 					<div class="side">
 						<div>
 							<ul>
 								<li>
-									<button class="depth1" onclick="getEmpInfo()">개발부</button>
+									<button id="dep1" class="depth1">개발부</button>
 									<ul id="button1-subbuttons" class="hidden">
 										<li><button class="depth2" onclick="toggleScreen11(), toggleButtons('button11')">부차장</button></li>
 										<li><button class="depth2" onclick="toggleScreen12(), toggleButtons('button12')">개발 1팀</button></li>
@@ -305,6 +326,17 @@ ul {
 					</div>
 					<!--  side 종료 -->
 
+					<!--  동적 HTML 저장할 div  -->
+					<div id="list_area" class="list_area">
+
+						<div id="divLeader" class="divLeader">부장, 차장 자리입니다.</div>
+
+						<br />
+
+						<div id="divFollower" class="divFollower">팀원 자리입니다.</div>
+
+					</div>
+					<!--  동적 HTML 저장할 div 종료  -->
 
 				</div>
 				<!-- main_container 종료 -->

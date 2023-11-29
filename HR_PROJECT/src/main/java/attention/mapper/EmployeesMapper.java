@@ -14,8 +14,7 @@ public interface EmployeesMapper {
 //	 		+ "on emp.employee_id = dept.department_head_id")
 //	 ArrayList<EmployeesBean> getEmpInfo();
 	 
-	 @Select("select employee_name, department_name, employee_phone, employee_status "
-		 		+ "from HRPROJECT.employees")
+	 @Select("select * from HRPROJECT.employees")
 		 ArrayList<EmployeesBean> getEmpInfo();
 	 
 }
