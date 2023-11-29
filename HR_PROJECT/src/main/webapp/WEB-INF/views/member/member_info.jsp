@@ -191,3 +191,39 @@ button.bottom-line {
 	<script src="${root }js/datatables-simple-demo.js"></script>
 </body>
 </html>
+
+<!-- 
+
+<script>
+	function showMemberInfo() {
+
+		$.ajax({
+			url : "${root}member/showMemberInfo/" + employee_id,
+			type : "get",
+			dataType : "text",
+			success : function(result) {
+				for (var i = 0; i < list.size; i++) {
+
+				}
+			}
+		}); // ajax
+
+	} // showMemberInfo
+</script>
+
+<br />
+
+					<form:form action="${root}member/" method="post" modelAttribute="employeesBean">
+						<div class="form-group">
+							<form:label path="user_id">사원 아이디</form:label>
+							<form:input path="user_id" class="form-control" />
+							<form:errors path="user_id" style="color:red" />
+						</div>
+						<div class="form-group">
+							<div class="text-right">
+								<form:button type="submit" class="btn btn-primary">입력</form:button>
+							</div>
+						</div>
+					</form:form>
+
+ -->
