@@ -460,17 +460,14 @@ button#delete:hover {
 						<div id="leftFirst" class="col-4">
 
 							<div style="padding: 15px 10px 0px 35px;">
-
-								<button class="bottom-line" id="wating"
+							<!--  	<button class="bottom-line" id="wating"
 									style="border-bottom: 4px solid #00cc00;"
 									onclick="waitingDm(1);">
 									<span id=subject class="doc1" style="color: balck;">진행 중
 									</span><span id="number" class="num1"> </span>
-								</button>
-								<button class="bottom-line" id="mine" onclick="myDocument(1);">
-									<span id=subject class="doc2" style="color: gray;">내가 쓴
-										문서 </span><span id="number" class="num2">
-									</span>
+								</button>-->
+								<button class="bottom-line" id="mine"  onclick="myDocument(1); " style="border-bottom: 4px solid #00cc00;" >
+									<span id=subject class="doc2" style="color: balck;">내가 쓴 문서 </span><span id="number" class="num2"> </span>
 								</button>
 								<button class="bottom-line" id="complete"
 									onclick="completeDm(1);">
@@ -478,25 +475,25 @@ button#delete:hover {
 										id="number" class="num3">${requestScope.completeTotalCnt}
 									</span>
 								</button>
-
 							</div>
 							<div id="documentContent" class="border-top">
 
 								<div id="startContents" class="border-bottom startContents">
-
+										<table>
+										<tr>
+											<td>제목</td>
+											<td class="text-center d-none d-md-table-cell">글쓴이</td>
+											<td class="text-center d-none d-md-table-cell">날짜</td>
+										</tr>
+										</table>
 								</div>
-
 								<div style="margin: 20px auto auto 25px;" id="pageBar"></div>
 							</div>
 						</div>
 
 						<div id="rightFirst" class="col-8 rightFirst border-left"
 							style="text-align: left; padding: 20px 20px;"></div>
-
 					</div>
-
-
-
 					<div class="modal fade" id="exampleModal" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -507,18 +504,13 @@ button#delete:hover {
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>
 								</div>
-								<div class="modal-body" id="modal-body">
-
-
-
-								</div>
+								<div class="modal-body" id="modal-body"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- 모달창 끝 -->
 			</main>
-
 		</div>
 	</div>
 	<script

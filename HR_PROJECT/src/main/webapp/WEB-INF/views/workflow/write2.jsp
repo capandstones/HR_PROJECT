@@ -208,16 +208,17 @@ div#attachArea {
 								<div id="contents">
 									제목<br>
 									<div class="daterange" style="margin-top: 5px;">
-										<input type="text" class="startdate search" id="daterange" name="draft_subject" placeholder="제목" style="margin-top: 5px; padding-left: 10px;" />
+										<input type="text" class="startdate search" id="daterange" name="draft_subject" value="(계약서검토신청)" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
 									</div>
 								</div>
 								<div id="contents">
 									내용
 									<div style="margin-top: 5px;">
 										<textarea class="search" name="draft_text" id="daterange" style="margin-top: 5px; padding: 6px 10px;">
-계약서 검토 요청
-내 계약서 읽어 이시키야
-			
+1.계약서를 첨부해주세요
+
+
+2.검토 내용			
 						</textarea>
 									</div>
 								</div>
@@ -245,13 +246,22 @@ div#attachArea {
 										id="mytable">
 										<thead>
 											<tr>
-												<th colspan="3" style="padding: 25px 10px 25px 25px;">승인 · 참조 대상</th>
+												<th colspan="3" style="padding: 25px 10px 25px 25px; border-bottom: 0.5px solid #ddd;">승인 대상</th>
 											</tr>
-											<tr>
-												<th colspan="3" style="padding: 25px 10px 25px 25px;"></th>
+											<tr >
+												<th colspan="3" id="draft_looker_id1" style="padding: 20px 10px 20px 20px; font-size: 13pt;">${list[1].employee_name} · ${list[1].department_name} · ${list[1].employee_position}</th>
+											</tr>
+											<tr >
+												<th colspan="3" id="draft_looker_id2" style="padding: 20px 10px 20px 20px; font-size: 13pt;">${list[2].employee_name} · ${list[2].department_name} · ${list[2].employee_position}</th>
+											</tr>
+											<tr >
+												<th colspan="3" id="draft_looker_id3" style="padding: 20px 10px 20px 20px; font-size: 13pt;">${list[0].employee_name} · ${list[0].department_name} · ${list[0].employee_position}</th>
 											</tr>
 										</thead>
 									</table>
+									<input type="hidden" name="draft_looker_id1" value="${list[0].employee_id}">
+									<input type="hidden" name="draft_looker_id2" value="${list[1].employee_id}">
+									<input type="hidden" name="draft_looker_id3" value="${list[2].employee_id}">
 								</div>
 							</div>
 						</div>

@@ -23,11 +23,9 @@ public class DraftBean {
 	private String draft_writer_id;
 	private String draft_date;
 	private String draft_hope_date;
-	private String darft_looker_id1;
-	private String darft_looker_id2;
-	private String darft_looker_id3;
-	
-	
-	
+	private String draft_looker_id1;
+	private String draft_looker_id2;
+	private String draft_looker_id3;
+	private String draft_status;
 
 }

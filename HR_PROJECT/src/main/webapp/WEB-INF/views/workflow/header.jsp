@@ -33,7 +33,8 @@ a:active {text-decoration: none; color: #cccccc;}
 </head>
 <body>
 <div style=" padding-top: 20px; padding-left: 40px; padding-bottom: 0px; display: flex; ">
-	<button type="button" class="headerBtn" onclick="javascript:location.href='${root}workflow/selectWrite'">
+	<div style="color: #404040; font-size: 23pt; font-weight: bold; padding-right: 20px; font-family: sans-serif;">문서함</div>
+	<button type="button" class="headerBtn" onclick="javascript:location.href='${root}workflow/selectWrite'" style="margin-left: 1100px;">
 	<div style="text-align: center; padding-bottom: 7px; padding-right: 3px;">
 		<i class="bi bi-pencil-fill"></i>
 		 작성하기

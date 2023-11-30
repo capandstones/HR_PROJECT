@@ -27,7 +27,8 @@ public class UserBean {
 	private String employee_password2;
 
 	private String department_name;
-	private int rank_num;
+	private String line_name;
+	private String employee_position;
 	private String employee_email;
 	private String employee_start_date;
 	private String employee_RRN;
@@ -52,38 +53,6 @@ public class UserBean {
 
 	public void setUserLogin(boolean userLogin) {
 		this.userLogin = userLogin;
-	}
-
-	public String getEmployee_name() {
-		return employee_name;
-	}
-
-	public void setEmployee_name(String employee_name) {
-		this.employee_name = employee_name;
-	}
-
-	public String getEmployee_id() {
-		return employee_id;
-	}
-
-	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
-	}
-
-	public String getEmployee_password() {
-		return employee_password;
-	}
-
-	public void setEmployee_password(String employee_password) {
-		this.employee_password = employee_password;
-	}
-
-	public String getEmployee_password2() {
-		return employee_password2;
-	}
-
-	public void setEmployee_password2(String employee_password2) {
-		this.employee_password2 = employee_password2;
 	}
 
 }

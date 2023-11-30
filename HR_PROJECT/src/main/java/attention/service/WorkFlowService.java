@@ -1,6 +1,7 @@
 package attention.service;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -13,24 +14,35 @@ import org.springframework.web.multipart.MultipartFile;
 
 import attention.beans.DraftBean;
 import attention.beans.UserBean;
+import attention.dao.UserDao;
 import attention.dao.WorkFlowDao;
 
 @Service
 @PropertySource("/WEB-INF/properties/option.properties")
 public class WorkFlowService {
-	
+
 	@Value("${path.upload}")
 	private String path_upload;
-	
+
 	@Autowired
 	private WorkFlowDao workFlowDao;
-	
+
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
-	
+
 	@Resource(name = "draftContentBean")
 	private DraftBean draftContentBean;
-	
+
+	@Autowired
+	private UserDao userDao;
+
+	public List<UserBean> getLookerList(UserBean loginUserBean) {
+
+
+
+		return userDao.getLookerList(loginUserBean);
+	}
+
 	private String saveUploadFile(MultipartFile upload_file) {
 		String file_name = System.currentTimeMillis() + "_"
 				+ FilenameUtils.getBaseName(upload_file.getOriginalFilename()) + "."
@@ -44,7 +56,7 @@ public class WorkFlowService {
 
 		return file_name;
 	}
-	
+
 	public void addContentInfo(DraftBean draftContentBean) {
 		System.out.println(draftContentBean.getDraft_subject());
 		System.out.println(draftContentBean.getDraft_text());
