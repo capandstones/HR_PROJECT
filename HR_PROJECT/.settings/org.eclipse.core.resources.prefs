@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/attention/beans/UserBean.java=UTF-8
+encoding//src/main/java/attention/config/RootAppContext.java=UTF-8
 encoding//src/main/java/attention/config/ServletAppContext.java=UTF-8
+encoding//src/main/java/attention/config/SpringConfigClass.java=UTF-8

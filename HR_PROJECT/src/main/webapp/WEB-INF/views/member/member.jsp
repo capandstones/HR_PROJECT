@@ -22,11 +22,7 @@
 }
 
 hr {
-	border-bottom: 10px;
-	width: 95%;
-	text-align: center;
-	margin: auto;
-	width: 95%;
+	
 }
 
 /* .side { */
@@ -143,7 +139,7 @@ ul {
 }
 
 /* ---------------- 모달 내부 스타일링 ------------------*/
-#myModal {
+#modalWindow {
 	display: none;
 	position: fixed;
 	top: 55%;
@@ -167,11 +163,11 @@ ul {
 	margin-left: 650px;
 }
 
-/*
-#myModal svg {
-	background: white;
-	border: 1px solid lightgray;
-}*/
+.privacyList {
+	display: none;
+}
+
+
 
 /* 모달 스타일링 끝 ------------------*/
 </style>
@@ -190,8 +186,7 @@ ul {
 		} else {
 			screen.style.display = "none"; // Hide the content
 		}
-		
-		
+
 	}
 
 	function toggleScreen12() {
@@ -211,27 +206,9 @@ ul {
 			screen.style.display = "none"; // Hide the content
 		}
 	}
-	
+
 	// ------------------------------------------------------------------------
-	
-	const departments = ['Development', 'Sales', 'Human Resources', 'Planning', 'Design', 'Test'];
 
-  // Create a parent container
-  const parentContainer = document.createElement('div');
-
-  // Use a loop to create child elements
-  for (let i = 0; i < departments.length; i++) {
-    // Create a button for each department
-    const departmentButton = document.createElement('button');
-    departmentButton.className = 'depth1';
-    departmentButton.textContent = departments[i];
-
-    // Append the button to the parent container
-    parentContainer.appendChild(departmentButton);
-  }
-
-  // Append the parent container to the body
-  document.body.appendChild(parentContainer);
 	
 </script>
 
@@ -248,12 +225,12 @@ ul {
 				<div>
 					<h2 class="head">구성원 / 조직도</h2>
 				</div>
-				<hr />
-				
-				
+				<hr style="border-bottom: 10px; width: 95%;text-align: center; margin: auto; width: 95%;"/>
+
+
 				<!-- top 끝 -->
-				
-				
+
+
 				<!-- main_container 시작 -->
 				<div class="main_container">
 
@@ -316,8 +293,8 @@ ul {
 						<div>
 							<button class="teamNameButton">부차장</button>
 							<!-- 팀원 개개인의 멤버카드 시작  -->
-							<div class="member_card" id="myDiv">
-								<img class="userImage" src="${root }image/userImage1.jpg" alt="사원1 이미지" />
+							<div class="member_card" id="id3">
+								<img class="userImage" src="${root }image/userImage1.png" alt="사원1 이미지" />
 								<div>
 									<p class="member_name">
 										<b class="b1">강해린</b>
@@ -329,21 +306,20 @@ ul {
 									<div class="icons">
 										<button>
 											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-</svg>
+											  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+											</svg>
 										</button>
 										<button>
 											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-</svg>
+											  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+											</svg>
 										</button>
 										<button>
 											<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-  <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-</svg>
+											  <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
+											</svg>
 										</button>
 										<button>
-
 											<b style="font-size: 12px;">재직중</b>
 										</button>
 									</div>
@@ -365,18 +341,18 @@ ul {
 								<div class="icons">
 									<button>
 										<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-</svg>
+										  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+										</svg>
 									</button>
 									<button>
 										<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-</svg>
+										  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+										</svg>
 									</button>
 									<button>
 										<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-  <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-</svg>
+										  <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
+										</svg>
 									</button>
 									<button>
 
@@ -662,18 +638,18 @@ ul {
 								<div class="icons">
 									<button>
 										<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-</svg>
+										  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+										</svg>
 									</button>
 									<button>
 										<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-</svg>
+										  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+										</svg>
 									</button>
 									<button>
 										<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-  <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-</svg>
+										  <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
+										</svg>
 									</button>
 									<button>
 
@@ -695,22 +671,21 @@ ul {
 		</div>
 	</div>
 
-	<!-- 모달 -->
-	<div id="myModal">
+	<!------------------------------------ 모달 시작 ------------------------------------>
+	<div id="modalWindow">
 		<svg class="exitButton" onclick="closeModal()" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 30 30">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-</svg>
+			<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+			<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+		</svg>
 		<br />
 
-		<div style="display: flex">
-			<img src="${root }image/userImage1.jpg" style="width: 160px; height: 180px; margin-left: 20px; border: 1px solid black;"/>
+		<div style="display: flex; margin-bottom: 20px;">
+			<img src="${root }image/userImage4.png" style="width: 160px; height: 180px; margin-left: 20px; border: 1px solid black;" />
 
 			<div style="padding-left: 30px;">
-				<p style="padding-top: 10px; padding-bottom: 10px;">
+				<p style="padding-top: 10px; padding-bottom: 0px;">
 					<b style="font-size: 18px;">강해린</b>
 				</p>
-
 				<p>
 					<b style="font-size: 14px;">부서</b> &nbsp;&nbsp; <b style="font-size: 13px;">개발부</b>
 				</p>
@@ -720,18 +695,18 @@ ul {
 				<div style="padding-top: 5px;">
 					<button>
 						<svg style="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-</svg>
+							<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+						</svg>
 					</button>
 					<button>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-</svg>
+							<path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+						</svg>
 					</button>
 					<button>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-  <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-</svg>
+							<path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
+						</svg>
 					</button>
 					<button>
 						<!-- <div id="circle"></div> -->
@@ -739,24 +714,64 @@ ul {
 					</button>
 				</div>
 			</div>
-
 		</div>
+		<div>
+			<div style="display:flex; margin-left:10 margin-bottom:10px;">
+				<button class="personnelListBtn">인사 정보</button> &nbsp;&nbsp;
+				<button class="privacyListBtn">개인 정보</button>
+			</div>
+			<hr />
+			<ul class="personnelList">
+				<li>사번 &nbsp;&nbsp; id1</li> 
+				<li>입사일 &nbsp;&nbsp; 2023-01-01</li>
+				<li>부서 &nbsp;&nbsp; 개발부</li>
+				<li>직책 &nbsp;&nbsp; 부장</li>
+				<li>이메일 &nbsp;&nbsp; email@naver.com</li>
+			</ul>
+			<ul class="privacyList">
+				<li>주민번호 &nbsp;&nbsp; 010101-3</li>
+				<li>전화번호 &nbsp;&nbsp; 010-1234-1234</li>
+				<li>집주소 &nbsp;&nbsp; 서울시 종로구</li>
+				<li>영어이름 &nbsp;&nbsp; "employee_last_name" +"employee_first_name"</li>
+			</ul>
+			<div style="border: 1px solid black;">
+				자기소개칸 / 모달 style 고민중
+			</div>
+		</div>
+	</div>
+	<!------------------------------------ 모달 종료 ------------------------------------>
+<script>
+	<!------------------ 모달 스크립트 ----------------->
+	const modal = document.querySelector("#modalWindow");
+	
+	document.querySelector("#id3").addEventListener('click', function() {
+		modal.style.display = "block";
+	});
 
-		<!-- 모달 열기 스크립트 -->
-		<script>
-			document
-					.getElementById('myDiv')
-					.addEventListener(
-							'click',
-							function() {
-								document.getElementById('myModal').style.display = 'block';
-							});
+	function closeModal() {
+		modal.style.display = 'none';
+	}
+	
+/*
+	window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    };
+*/
+    
+	document.querySelector(".personnelListBtn").addEventListener("click", function() {
+		document.querySelector(".privacyList").style.display = "none";
+		document.querySelector(".personnelList").style.display = "block";
+	});
 
-			// 모달 닫기 스크립트
-			function closeModal() {
-				document.getElementById('myModal').style.display = 'none';
-			}
-		</script>
+    document.querySelector(".privacyListBtn").addEventListener("click", function() {
+    	document.querySelector(".personnelList").style.display = "none";
+    	document.querySelector(".privacyList").style.display = "block";
+	});
+    
+</script>
+	
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 		<script src="${root }js/scripts.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

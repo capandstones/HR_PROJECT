@@ -27,7 +27,7 @@ public class UserBean {
 	private String employee_password2;
 
 	private String department_name;
-	private int rank_num;
+	private String employee_position;
 	private String employee_email;
 	private String employee_start_date;
 	private String employee_RRN;
