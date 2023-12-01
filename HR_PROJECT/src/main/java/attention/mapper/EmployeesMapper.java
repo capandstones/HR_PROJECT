@@ -1,21 +1,18 @@
 package attention.mapper;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
-import org.springframework.ui.Model;
 
 import attention.beans.EmployeesBean;
 
 public interface EmployeesMapper {
-	
-//	 @Select("select employee_name, emp.department_name, department_depth, department_depth_row, emp.employee_phone, emp.employee_status "
-//	 		+ "from HRPROJECT.employees emp "
-//	 		+ "inner join department dept "
-//	 		+ "on emp.employee_id = dept.department_head_id")
-//	 ArrayList<EmployeesBean> getEmpInfo();
 	 
 	 @Select("select * from HRPROJECT.employees")
-		 ArrayList<EmployeesBean> getEmpInfo();
+	 ArrayList<EmployeesBean> getEmpInfo();
+	 
+	 @Select("select * from HRPROJECT.employees where employee_id=#{employee_id}")
+	 EmployeesBean getEmpInfoDetail(String employeeInfoKey);
 	 
 }

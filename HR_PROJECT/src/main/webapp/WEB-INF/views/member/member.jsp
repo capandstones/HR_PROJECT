@@ -13,163 +13,7 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
-<style>
-.head {
-	margin-left: 5%;
-	font-weight: bold;
-	text-shadow: 3px 3px 3px lightgray;
-}
-
-hr {
-	
-}
-
-/* .side { */
-/* 	float: left; */
-/* } */
-.depth1 {
-	width: 100px;
-	height: 40px;
-	margin-top: 15px;
-	color: black;
-	background: white;
-	border: none;
-	font-weight: bold;
-	font-size: 19px;
-	box-shadow: 3px 3px 3px 3px lightgray;
-	text-shadow: 2px 2px 2px lightgray;
-}
-
-.depth2 {
-	width: 100px;
-	height: 30px;
-	margin-left: 15px;
-	color: darkcyan;
-	background: white;
-	border: none;
-	font-weight: bold;
-	font-size: 17px;
-	box-shadow: 2px 2px 2px 2px lightgray;
-	text-shadow: 1px 1px 1px lightgray;
-	margin-top: 10px;
-}
-
-ul {
-	list-style-type: none;
-}
-
-.side>div {
-	
-}
-
-.depth1, .depth2 {
-	cursor: pointer;
-}
-
-.depth1:hover {
-	background: azure;
-}
-
-.depth2:hover {
-	background: azure;
-}
-
-/* 버튼을 안누른 기본 레이아웃은 숨겨짐 */
-.hidden {
-	display: none;
-}
-
-.member_card {
-	width: 280px;
-	height: 100px;
-	background-color: azure;
-	margin-left: 50px;
-	padding: 10px;
-	display: flex;
-	box-shadow: 2px 2px 2px 2px lightgray;
-	border: 1px solid lightgray;
-	mragin-top: 30px;
-	margin-bottom: 20px;
-	cursor: pointer;
-}
-
-.userImage {
-	width: 80px;
-	height: 80px;
-}
-
-.b1 {
-	margin-left: 15px;
-	margin-bottom: -10px;
-	font-size: 18px;
-	text-shadow: 2px 2px 2px lightgray;
-}
-
-.b2 {
-	margin-left: 15px;
-	font-size: 16px;
-}
-
-.icons {
-	margin-top: -34px;
-	margin-left: 15px;
-	font-size: 12px;
-}
-
-.icons>button {
-	background: white;
-	border: 1px solid lightgray;
-}
-
-.main_container {
-	display: flex;
-}
-
-#showTeam1, #showTeam2, #showTeam3 {
-	margin-top: 20px;
-	text-align: center;
-}
-
-.teamNameButton {
-	background: white;
-	border: 1px solid lightgray;
-	margin-bottom: 10px;
-	color: purple;
-}
-
-/* ---------------- 모달 내부 스타일링 ------------------*/
-#modalWindow {
-	display: none;
-	position: fixed;
-	top: 55%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 10px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	width: 700px;
-	height: 700px;
-	transform: translate(-50%, -50%);
-}
-
-.modal_userImage {
-	width: 150px;
-	height: 150px;
-}
-
-.exitButton {
-	cursor: pointer;
-	margin-left: 650px;
-}
-
-.privacyList {
-	display: none;
-}
-
-
-
-/* 모달 스타일링 끝 ------------------*/
+<link rel="stylesheet" href="${root}css/member/chart.css" />
 </style>
 
 <script>
@@ -225,7 +69,7 @@ ul {
 				<div>
 					<h2 class="head">구성원 / 조직도</h2>
 				</div>
-				<hr style="border-bottom: 10px; width: 95%;text-align: center; margin: auto; width: 95%;"/>
+				<hr class="topHr"/>
 
 
 				<!-- top 끝 -->
@@ -285,7 +129,7 @@ ul {
 						</div>
 					</div>
 					<!--  side 종료 -->
-
+					
 					<br />
 
 					<!-- 부서별 팀 시작 -->
@@ -716,24 +560,39 @@ ul {
 			</div>
 		</div>
 		<div>
-			<div style="display:flex; margin-left:10 margin-bottom:10px;">
+			<div class="BtnContainer">
 				<button class="personnelListBtn">인사 정보</button> &nbsp;&nbsp;
 				<button class="privacyListBtn">개인 정보</button>
 			</div>
-			<hr />
-			<ul class="personnelList">
-				<li>사번 &nbsp;&nbsp; id1</li> 
-				<li>입사일 &nbsp;&nbsp; 2023-01-01</li>
-				<li>부서 &nbsp;&nbsp; 개발부</li>
-				<li>직책 &nbsp;&nbsp; 부장</li>
-				<li>이메일 &nbsp;&nbsp; email@naver.com</li>
-			</ul>
-			<ul class="privacyList">
-				<li>주민번호 &nbsp;&nbsp; 010101-3</li>
-				<li>전화번호 &nbsp;&nbsp; 010-1234-1234</li>
-				<li>집주소 &nbsp;&nbsp; 서울시 종로구</li>
-				<li>영어이름 &nbsp;&nbsp; "employee_last_name" +"employee_first_name"</li>
-			</ul>
+			<hr class="modalHr" />
+			<div class="personnelList">
+				<div>
+					<p>사번</p>
+					<p>부서</p>
+					<p>직책</p>
+					<p>입사일</p>
+				</div>
+				<div>
+					<p>1001</p>
+					<p>개발부</p>
+					<p>부장</p>
+					<p>23-11-30</p>
+				</div>
+			</div>
+			<div class="privacyList, hidden">
+				<div>
+					<p>전화번호</p>
+					<p>이메일</p>
+					<p>집주소</p>
+					<p>영어이름</p>
+				</div>
+				<div>
+					<p>010-1234-1234</p>
+					<p>empl@naver.com</p>
+					<p>서울시 종로구</p>
+					<p>kang haerin</p>
+				</div>
+			</div>
 			<div style="border: 1px solid black;">
 				자기소개칸 / 모달 style 고민중
 			</div>
@@ -752,15 +611,14 @@ ul {
 		modal.style.display = 'none';
 	}
 	
-/*
 	window.onclick = function(event) {
         if (event.target === modal) {
             closeModal();
         }
     };
-*/
+
     
-	document.querySelector(".personnelListBtn").addEventListener("click", function() {
+    document.querySelector(".personnelListBtn").addEventListener("click", function() {
 		document.querySelector(".privacyList").style.display = "none";
 		document.querySelector(".personnelList").style.display = "block";
 	});
@@ -769,6 +627,7 @@ ul {
     	document.querySelector(".personnelList").style.display = "none";
     	document.querySelector(".privacyList").style.display = "block";
 	});
+    
     
 </script>
 	
