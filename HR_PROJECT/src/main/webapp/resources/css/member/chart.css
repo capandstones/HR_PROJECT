@@ -36,7 +36,8 @@ ul { list-style-type: none; }
 .privacyList { display:flex;margin-left:10px; }
 .showListButton { display:flex; margin-left:10; margin-bottom:10px; }
 .mainContainer { display: flex; margin-bottom: 20px; }
-
+.mainContainer>img { width: 160px; height: 180px; margin-left: 20px; border: 1px solid black; }
+.listContainer { display:flex; }
 /* ---------------- 모달 내부 스타일링 끝 ------------------*/
 
 .divFollower { border: 1px solid black; }

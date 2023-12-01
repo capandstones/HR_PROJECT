@@ -2,6 +2,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
 
+<script>
+	const modal = document.querySelector("#modalWindow");
+	const perList = document.querySelector(".personnelList");
+	const priList = document.querySelector(".privacyList");
+	
+	document.querySelector("#id3").addEventListener('click', function() {
+		modal.style.display = "block";
+	});
+	
+	function closeModal() {
+		modal.style.display = 'none';
+	}
+	
+	window.onclick = function(event) {
+	    if (event.target === modal) {
+	        closeModal();
+	    }
+	};
+	
+	document.querySelector(".personnelListBtn").addEventListener("click", function() {
+		priList.style.display = "block";
+	});
+	
+	document.querySelector(".privacyListBtn").addEventListener("click", function() {
+		priList.style.display = "block";
+	});
+	
+	document.querySelector('.exitButton').addEventListener('click', (event) => {
+		modal.style.display = 'none';
+	});
+</script>
 
 <div id="modalWindow">
 	<svg class="exitButton" onclick="closeModal()" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 30 30">
@@ -11,7 +42,7 @@
 	<br />
 
 	<div class="mainContainer">
-		<img src="${root }image/userImage4.png" style="width: 160px; height: 180px; margin-left: 20px; border: 1px solid black;" />
+		<img src=""/>
 
 		<div style="padding-left: 30px;">
 			<p style="padding-top: 10px; padding-bottom: 0px;">
@@ -40,8 +71,10 @@
 					</svg>
 				</button>
 				<button>
-					<!-- <div id="circle"></div> -->
-					<b style="font-size: 12px;">재직중</b>
+				<div class="employee-inner-status-wrap">
+					<div class="employee-inner-status-icon status-active"></div>
+					<span>재직중</span>
+				</div>
 				</button>
 			</div>
 		</div>
@@ -85,34 +118,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-	<!------------------ 모달 스크립트 ----------------->
-	const modal = document.querySelector("#modalWindow");
-	
-	document.querySelector("#id3").addEventListener('click', function() {
-		modal.style.display = "block";
-	});
-	
-	function closeModal() {
-		modal.style.display = 'none';
-	}
-	
-	window.onclick = function(event) {
-	       if (event.target === modal) {
-	           closeModal();
-	       }
-	   };
-	
-	   
-	   document.querySelector(".personnelListBtn").addEventListener("click", function() {
-		document.querySelector(".privacyList").style.display = "none";
-		document.querySelector(".personnelList").style.display = "block";
-	});
-	
-	   document.querySelector(".privacyListBtn").addEventListener("click", function() {
-	   	document.querySelector(".personnelList").style.display = "none";
-	   	document.querySelector(".privacyList").style.display = "block";
-	});
-	  
-</script>
