@@ -20,7 +20,7 @@ public class MemberRestApiController {
 
 	@GetMapping("/getEmpInfo")
 	public @ResponseBody ArrayList<EmployeesBean> getEmpInfo() {
-		System.out.println("getEmpInfo È£ÃâµÊ");
+		System.out.println("getEmpInfo í˜¸ì¶œ");
 		
 		return employeesMapper.getEmpInfo();
 	}

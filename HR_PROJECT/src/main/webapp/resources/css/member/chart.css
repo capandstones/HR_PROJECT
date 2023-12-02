@@ -48,7 +48,7 @@ ul { list-style-type: none; }
 .divLeader { max-width: 1000px; min-width: 1000px; }
 
 .employee-ul { list-style-type: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); }
-.employee-li { border: 1px solid black; margin: 10px; }
+.employee-li { border: 1px solid black; margin: 10px; cursor: pointer; }
 .employee-profile-wrap { display: flex; justify-content: space-between; width: 380px; margin: 8px; }
 .employee-profile-inner-img { border: 1px solid black; width: 100px; height: 130px; }
 .employee-info-wrap { position: relative; top: 7px }

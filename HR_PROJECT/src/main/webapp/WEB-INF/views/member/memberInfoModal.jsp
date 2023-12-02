@@ -7,10 +7,6 @@
 	const perList = document.querySelector(".personnelList");
 	const priList = document.querySelector(".privacyList");
 	
-	document.querySelector("#id3").addEventListener('click', function() {
-		modal.style.display = "block";
-	});
-	
 	function closeModal() {
 		modal.style.display = 'none';
 	}
@@ -21,17 +17,17 @@
 	    }
 	};
 	
-	document.querySelector(".personnelListBtn").addEventListener("click", function() {
-		priList.style.display = "block";
-	});
+// 	document.querySelector(".personnelListBtn").addEventListener("click", function() {
+// 		priList.style.display = "block";
+// 	});
 	
-	document.querySelector(".privacyListBtn").addEventListener("click", function() {
-		priList.style.display = "block";
-	});
+// 	document.querySelector(".privacyListBtn").addEventListener("click", function() {
+// 		priList.style.display = "block";
+// 	});
 	
-	document.querySelector('.exitButton').addEventListener('click', (event) => {
-		modal.style.display = 'none';
-	});
+// 	document.querySelector('.exitButton').addEventListener('click', (event) => {
+// 		modal.style.display = 'none';
+// 	});
 </script>
 
 <div id="modalWindow">

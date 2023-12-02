@@ -18,6 +18,7 @@
 
 <script>
 	/* 서브 버튼을 눌렀을 때 하부 카테고리 표시, 다시 누르면 감추기 */
+	
 	function toggleButtons(buttonId) {
 		var subButtons = document.getElementById(buttonId + "-subbuttons");
 		subButtons.classList.toggle("hidden");
