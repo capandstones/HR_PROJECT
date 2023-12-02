@@ -14,12 +14,15 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>HR</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
+
 
 
 <style type="text/css">
@@ -118,7 +121,7 @@ label#sub {
 	padding-top: 0px;
 	margin-top: 0px;
 	font-weight: bold;
-	margin-left: 10px;
+	margin-left: 0px;
 }
 
 span#status {
@@ -406,6 +409,7 @@ button.bottom-line {
 
 .startContents {
 	overflow-y: scroll;
+	height: 700px;
 }
 
 .startContents::-webkit-scrollbar {
@@ -437,6 +441,70 @@ button#delete:hover {
 	background-color: #efefef;
 }
 </style>
+<script type="text/javascript">
+$(document).ready(function () {
+    var draft_info_idx = 0;
+    var isCompleteView = false;
+
+    function loadDocumentList() {
+        $.ajax({
+            url: "${root}document/golist/" + draft_info_idx,
+            type: "GET",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                var output = ''; 
+                for (var i = 0; i < result.length; i++) {
+                    output += "<div style='padding-top: 15px;' id='contents'>" +
+                        "<div style='margin-left: 35px; margin-right: 25px;' class='border-bottom'>" +
+                        "<span id='getdocno' >" +
+                        "<label for='label-a' id='sub'>" + result[i].draft_subject + "</label>" +
+                        "<br>" +
+                        "<span style='padding:10px; font-size: 12pt; margin-left:0px; margin-bottom:15px;  display:inline-block; width:330px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;'>" + result[i].draft_text + "</span>" +
+                        "<span style='font-size: 11pt; float:right; margin: 5px 8px; color:#737373;'>" + result[i].draft_date.substring(5, 7) + "월 " + result[i].draft_date.substring(8, 10) + "일</span>" +
+                        "<br>" +
+                        "</span>" +
+                        "</div>" +
+                        "</div>";
+                }
+                $('#draftList').html(output);
+            }
+        });
+    }
+
+    $("#complete").click(function () {
+        isCompleteView = !isCompleteView;
+        draft_info_idx = isCompleteView ? 1 : 0; // 완료 버튼 클릭 시 draft_info_idx 변경
+        updateButtonStyles();
+        loadDocumentList();
+    });
+
+    $("#mine").click(function () {
+        isCompleteView = false;
+        draft_info_idx = 0; // 진행중 버튼 클릭 시 draft_info_idx 변경
+        updateButtonStyles();
+        loadDocumentList();
+    });
+
+    updateButtonStyles();
+    loadDocumentList();
+
+    function updateButtonStyles() {
+        if (isCompleteView) {
+            $("#complete").css("border-bottom", "4px solid #00cc00");
+            $("#mine").css("border-bottom", "none");
+            $("#complete span#subject").css("color", "black");
+            $("#mine span#subject").css("color", "gray");
+        } else {
+            $("#mine").css("border-bottom", "4px solid #00cc00");
+            $("#complete").css("border-bottom", "none");
+            $("#mine span#subject").css("color", "black");
+            $("#complete span#subject").css("color", "gray");
+        }
+    }
+});
+
+</script>
 
 
 </head>
@@ -460,34 +528,28 @@ button#delete:hover {
 						<div id="leftFirst" class="col-4">
 
 							<div style="padding: 15px 10px 0px 35px;">
-							<!--  	<button class="bottom-line" id="wating"
+								<!--  	<button class="bottom-line" id="wating"
 									style="border-bottom: 4px solid #00cc00;"
 									onclick="waitingDm(1);">
 									<span id=subject class="doc1" style="color: balck;">진행 중
 									</span><span id="number" class="num1"> </span>
 								</button>-->
-								<button class="bottom-line" id="mine"  onclick="myDocument(1); " style="border-bottom: 4px solid #00cc00;" >
-									<span id=subject class="doc2" style="color: balck;">내가 쓴 문서 </span><span id="number" class="num2"> </span>
+								<button class="bottom-line" id="mine" onclick="myDocument(1); "
+									style="border-bottom: 4px solid #00cc00;">
+									<span id=subject class="doc2" style="color: balck;">진행중</span><span
+										id="number" class="num2"> </span>
 								</button>
 								<button class="bottom-line" id="complete"
 									onclick="completeDm(1);">
 									<span id=subject class="doc3" style="color: gray;">완료</span> <span
-										id="number" class="num3">${requestScope.completeTotalCnt}
+										id="number" class="num3">
 									</span>
 								</button>
 							</div>
 							<div id="documentContent" class="border-top">
 
-								<div id="startContents" class="border-bottom startContents">
-										<table>
-										<tr>
-											<td>제목</td>
-											<td class="text-center d-none d-md-table-cell">글쓴이</td>
-											<td class="text-center d-none d-md-table-cell">날짜</td>
-										</tr>
-										</table>
-								</div>
-								<div style="margin: 20px auto auto 25px;" id="pageBar"></div>
+								<div id="draftList" class="border-bottom startContents"></div>
+
 							</div>
 						</div>
 

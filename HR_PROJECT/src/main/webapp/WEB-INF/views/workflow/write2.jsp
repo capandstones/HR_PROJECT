@@ -262,6 +262,7 @@ div#attachArea {
 									<input type="hidden" name="draft_looker_id1" value="${list[0].employee_id}">
 									<input type="hidden" name="draft_looker_id2" value="${list[1].employee_id}">
 									<input type="hidden" name="draft_looker_id3" value="${list[2].employee_id}">
+									<input type="hidden" name="draft_info_id" value="0">
 								</div>
 							</div>
 						</div>

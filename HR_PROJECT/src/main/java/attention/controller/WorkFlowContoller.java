@@ -39,9 +39,7 @@ public class WorkFlowContoller {
 	}
 
 	@GetMapping("/document")
-	public String document(
-			Model model) {
-		
+	public String document() {
 		
 		
 		return "workflow/document";

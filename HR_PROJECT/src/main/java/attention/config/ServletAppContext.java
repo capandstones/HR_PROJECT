@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,7 +25,6 @@ import attention.beans.UserBean;
 import attention.interceptor.CheckLoginInterceptor;
 import attention.mapper.UserMapper;
 import attention.mapper.WorkFlowMapper;
-import attention.service.WorkFlowService;
 
 @Configuration
 @EnableWebMvc // controller

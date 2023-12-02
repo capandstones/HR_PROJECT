@@ -2,13 +2,11 @@ package attention.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import attention.beans.DraftBean;
 import attention.mapper.WorkFlowMapper;
-import kr.co.soldesk.beans.ContentBean;
 
 @Repository
 public class WorkFlowDao{ 
@@ -20,8 +18,12 @@ public class WorkFlowDao{
 		workFlowMapper.addContentInfo(draftContentBean);
 	}
 	
-	public List<DraftBean> getContentList() {
-		return WorkFlowMapper.getContentList(board_info_idx, rowBounds);
+	public String getDraftInfoName(int draft_info_idx) {
+		return workFlowMapper.getDraftInfoName(draft_info_idx);
+	}
+
+	public List<DraftBean> getContentList(int draft_info_idx) {
+		return workFlowMapper.getContentList(draft_info_idx);
 	}
 	
 }

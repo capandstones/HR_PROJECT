@@ -20,7 +20,9 @@ public class GlobalControllerAdvice {
     public void globalAttributes(Model model, HttpSession session) {
     	
         String username = loginUserBean.getEmployee_name();
+        String employee_id = loginUserBean.getEmployee_id();
         
         model.addAttribute("username", username);
+        model.addAttribute("employee_id", employee_id);
     }
 }

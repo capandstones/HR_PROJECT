@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -26,6 +27,7 @@ public class DraftBean {
 	private String draft_looker_id1;
 	private String draft_looker_id2;
 	private String draft_looker_id3;
-	private String draft_status;
+	private int draft_info_idx;
+	private String draft_writer_name;
 
 }

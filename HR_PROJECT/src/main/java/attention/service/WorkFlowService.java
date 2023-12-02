@@ -35,10 +35,9 @@ public class WorkFlowService {
 
 	@Autowired
 	private UserDao userDao;
+	
 
 	public List<UserBean> getLookerList(UserBean loginUserBean) {
-
-
 
 		return userDao.getLookerList(loginUserBean);
 	}
@@ -73,6 +72,16 @@ public class WorkFlowService {
 		draftContentBean.setDraft_writer_id(loginUserBean.getEmployee_id());
 
 		workFlowDao.addContentInfo(draftContentBean);
+	}
+	
+	public String getDraftInfoName(int draft_info_idx) {
+		
+		return workFlowDao.getDraftInfoName(draft_info_idx);
+	}
+	
+	public List<DraftBean> getContentList(int draft_info_idx) {
+		
+		return workFlowDao.getContentList(draft_info_idx);
 	}
 
 }
