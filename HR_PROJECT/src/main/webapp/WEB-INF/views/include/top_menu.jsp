@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <c:set var='root' value="${pageContext.request.contextPath }/"/>
 
-
 <!-- 상단 메뉴 부분 -->
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->

@@ -1,7 +1,6 @@
 package attention.mapper;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 

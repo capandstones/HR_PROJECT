@@ -1,6 +1,11 @@
 @charset "UTF-8";
+/*
+	노토 산스 폰트 
+	fontawesome
+*/
 
 
+@font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 100; src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype'); }
 ul { list-style-type: none; }
 .topHr { border-bottom: 10px; width: 95%; text-align: center; margin: auto; width: 95%; }
 
@@ -24,9 +29,8 @@ ul { list-style-type: none; }
 #showTeam1, #showTeam2, #showTeam3 { margin-top: 20px; text-align: center; }
 .teamNameButton { background: white; border: 1px solid lightgray; margin-bottom: 10px; color: purple; }
 
-
 /* ---------------- 모달 내부 스타일링 시작 ------------------*/
-#modalWindow { display: none; position: fixed; top: 55%; left: 50%; transform: translate(-50%, -50%); padding: 10px; background-color: #fff; border: 1px solid #ccc; width: 700px; height: 700px; transform: translate(-50%, -50%); }
+#modalWindow { position: fixed; top: 45%; left: 55%; transform: translate(-50%, -50%); padding: 10px; background-color: #fff; border: 1px solid #ccc; width: 650px; height: 400px; transform: translate(-50%, -50%); z-index: 1; }
 .modal_userImage { width: 150px; height: 150px; }
 .exitButton { cursor: pointer; margin-left: 650px; }
 .BtnContainer{margin-left:10px;}
@@ -35,7 +39,7 @@ ul { list-style-type: none; }
 .personnelList { display:flex; margin-left:10px; }
 .privacyList { display:flex;margin-left:10px; }
 .showListButton { display:flex; margin-left:10; margin-bottom:10px; }
-.mainContainer { display: flex; margin-bottom: 20px; }
+.mainContainer { display: flex; margin: 20px; text-align: center;  }
 .mainContainer>img { width: 160px; height: 180px; margin-left: 20px; border: 1px solid black; }
 .listContainer { display:flex; }
 /* ---------------- 모달 내부 스타일링 끝 ------------------*/
@@ -47,7 +51,7 @@ ul { list-style-type: none; }
 /* 2023. 11. 30. Employee Container Css 추가 */
 .divLeader { max-width: 1000px; min-width: 1000px; }
 
-.employee-ul { list-style-type: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); }
+.employee-ul { list-style-type: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); }
 .employee-li { border: 1px solid black; margin: 10px; cursor: pointer; }
 .employee-profile-wrap { display: flex; justify-content: space-between; width: 380px; margin: 8px; }
 .employee-profile-inner-img { border: 1px solid black; width: 100px; height: 130px; }

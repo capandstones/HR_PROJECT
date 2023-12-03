@@ -19,25 +19,70 @@
 	<c:import url="/WEB-INF/views/member/memberInfoModal.jsp" />
 	<script>
 		
+		
 		// render함수 실행
 		$(document).ready(() => {
 			renderEmployeeList();
+			
+			const modal = document.querySelector('.modalWindow');
+			
+// 			function closeModal() {
+// 				modal.classList.add('hidden');
+// 			}
+			
+// 			window.onclick = function(event) {
+// 				console.log(modal);
+// 				console.log(event.target);
+// 			    if (event.target) {
+			    	
+// 			        closeModal();
+// 			    }
+// 			};	
+			
 		});
 		
+		const showEmployeeInfoModal = (employeeInfoKey) => {
+			const employeeInfo = getEmployeeInfo(employeeInfoKey);
+			
+			if (employeeInfo.length !== 0) {
+				const modalContainer = document.querySelector('.modalWindow');
+				modalContainer.style.display = 'block';
+				
+				document.querySelector('#modalWindow').classList.toggle("hidden");
+				
+				const employeeName = document.querySelector('.employee-span-name');
+				const employeeDepartment = document.querySelector('.employee-span-department');
+				const employeePosition = document.querySelector('.employee-span-position');
+				const employeeStatus = document.querySelector('.employee-span-status');
+				
+				employeeName.innerText = employeeInfo.employee_name + ' (' + employeeInfo.employee_first_name + ' ' +  employeeInfo.employee_last_name + ')';
+				employeeDepartment.innerText = employeeInfo.department_name;
+				employeePosition.innerText = employeeInfo.employee_position;
+				employeeStatus.innerText = employeeInfo.employee_status;
+				
+				if (employeeInfo.employee_status === '재직중') {
+					document.querySelector('.employee-inner-status-icon').classList.add('status-active');
+				} else {
+					document.querySelector('.employee-inner-status-icon').classList.add('status-inactive');
+				}
+			}
+		}
+		
 		// list의 id값을 토대로 모달에 넣을 사원 정보 받아오기
-		const getEmployeeInfoModal  = (employeeInfoKey) => {
-						
+		const getEmployeeInfo  = (employeeInfoKey) => {
 			let empInfoDetail = [];
 			
 			$.ajax({
-				type: "POST",
-				url: "/HR_Project/getEmpInfoDetail/"+ employeeInfoKey,
+				type: 'POST',
+				url: '/HR_Project/getEmpInfoDetail/',
 				data: employeeInfoKey,
+				contentType : "application/json",
 				async: false,
 				success: function(result) {
-					empInfoDetail = result;		
+					empInfoDetail = result;
 				}
 			});
+			
 			return empInfoDetail;
 		}
 				
@@ -61,14 +106,12 @@
 		// 받아온 모든 사원정보를 통해 card 형식으로 동적 html 생성
 		const renderEmployeeList = () => {
 			const divLeader = document.querySelector('.divLeader');
-
  			const employeeList = getEmployeeList(); // 함수 호출 후 return 값 저장
 			 			
 			let isSame = '';
 			let html = '';
 			
 			employeeList.forEach((item, index) => {
-				
 				if (isSame !== item.department_name) {
 					// 만약 첫 태그 생성이 아니거나 이전에 생성한 부서와 다음 생성할 부서가 다를 경우 다음 부서 ul tag 닫음
 					if (isSame !== '' || isSame !== item.department_name) html += '</ul>';
@@ -89,16 +132,9 @@
 				// onclick 사용시 함수 값의 직접적인 노출을 피하기 위해 closest 함수 사용함, dataset으로 li에 넣은 값을 갖고 다님
 				const employeeInfoKey = event.target.closest('.employee-li').dataset.employeeKey;
 				
-				console.log(employeeInfoKey);
-				
-				 // employeeInfoKey가 값을 가지고 있을 때 함수 실행 (null이 아니라면)
-				if(employeeInfoKey) {
-					
-					const empInfoDetail = getEmployeeInfoModal(employeeInfoKey);
-					
-					console.log(empInfoDetail);
-					
-					document.querySelector('#modalWindow').classList.toggle("hidden");
+				// employeeInfoKey가 값을 가지고 있을 때 함수 실행 (null이 아니라면)
+				if (employeeInfoKey) {
+					const empInfoDetail = showEmployeeInfoModal(employeeInfoKey);
 				}
 				 
 				else return;
@@ -109,14 +145,14 @@
 		const createEmployeeListItem = (item) => {
 			let html = '';
 			
-			html += '<li class="employee-li" data-employee-key=' + item.employee_id + '>';
+			html += '<li class="employee-li hidden" data-employee-key=' + item.employee_id + ' data-department-name=' + item.department_name + '>';
 			html += '	<div class="employee-profile-wrap">';
 			html += '		<div class="employee-profile-inner-img">';
 			html += '			<img src=""/>';
 			html += '		</div>';
 			html += '		<div class="employee-info-wrap">';
 			html += '			<p class="employee-name">' + item.employee_name + '</p>';
-			html += '			<span>' + item.department_name + ' ' + item.employee_position + '</span>';
+			html += '			<span class="departmentName">' + item.department_name + ' ' + item.employee_position + '</span>';
 			html += '			<div class="employee-wrap-btn">';
 			html += '				<button class="employee-inner-btn" data-employee-key='+ item.employee_id + '>Call</button>';
 			html += '				<button class="employee-inner-btn" data-employee-key='+ item.employee_id + '>Mail</button>';
@@ -133,22 +169,46 @@
 			return html;
 		}
 
-		// list를 눌렀을 때 사원정보를 토대로 모달 생성
-// 		const openEmpInfoModal = () => {
-			
-// 			const empInfoDetail = getEmployeeInfoModal();	// 함수 호출 후 값 저장
-// 			const employeeLi = document.querySelector('.employee-li');
-// 			const modal = document.querySelector('#modalWindow');
-			
-// 			employeeLi.addEventListener('click', function() {
-// 				modal.style.display = 'block';
-// 			});
-			
-// 		}
-
 		// 부서 버튼 클릭 시 세부 부서 버튼 열기
 		const openDeptBtn = (deptNum) => {
 			const subButtons = document.getElementById(deptNum+ "-subbuttons");
+			const employeeLi = document.querySelectorAll('.employee-li');
+			
+			employeeLi.forEach((item, index) => {
+				const departmentName = item.dataset.departmentName;
+				
+// 				if(departmentName === 'attention'){
+						
+// 				}
+				
+				if (deptNum === 'dept1' && departmentName === '개발부') {
+					item.classList.toggle('hidden');
+					
+				}
+				
+				if (deptNum === 'dept2' && departmentName === '영업부') {
+					item.classList.toggle('hidden');
+					
+				}
+				
+				if (deptNum === 'dept3' && departmentName === '인사부') {
+					item.classList.toggle('hidden');
+					
+				}
+				
+				if (deptNum === 'dept4' && departmentName === '기획부') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNum === 'dept5' && departmentName === '디자인부') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNum === 'dept6' && departmentName === '테스트부') {
+					item.classList.toggle('hidden');
+				}
+			});
+			
 			if (subButtons) {
 		        subButtons.classList.toggle("hidden");
 		    } else {
@@ -203,7 +263,7 @@
 									</ul>
 								</li>
 								<li>
-									<button class="depth1" onclick="openDeptBtn('dept')">기획부</button>
+									<button class="depth1" onclick="openDeptBtn('dept4')">기획부</button>
 									<ul id="dept4-subbuttons" class="hidden">
 										<li><button id="planningTeam1" class="depth2">기획 1팀</button></li>
 										<li><button id="planningTeam2" class="depth2">기획 2팀</button></li>

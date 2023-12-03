@@ -20,6 +20,12 @@ public class NoticeContoller {
 		
 	}
 	
+	@GetMapping("/write")
+	public String write() {
+		
+		return "notice/write";
+	}
+	
 	@GetMapping("/favorites")
 	public String favorites() {
 		return "notice/favorites";
