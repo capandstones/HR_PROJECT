@@ -1,12 +1,24 @@
 package attention.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import attention.service.VacationService;
 
 @Controller
 @RequestMapping("/vacation")
+@CrossOrigin(origins = "http://yourfrontenddomain.com")
 public class VacationController {
+   
+   @Autowired
+    private VacationService vacationService;
 
    @GetMapping("/main")
    public String main() {
@@ -14,7 +26,7 @@ public class VacationController {
    }
 
    @GetMapping("/request1")
-   public String request1() {
+   public String request1(HttpServletRequest request) {
       return "vacation/request1";
    }
 
@@ -53,4 +65,20 @@ public class VacationController {
       return "vacation/request8";
    }
 
+   @PostMapping("/submit_pro")
+   public String submit_pro(
+         @RequestParam("vacation_name") String vacation_name,
+           @RequestParam("employee_name") String employee_name,
+           @RequestParam("employee_id_ch") String employee_id_ch,
+           @RequestParam("employee_id_ch2") String employee_id_ch2,
+           @RequestParam("vacation_start_date") String vacation_start_date,
+           @RequestParam("vacation_end_date") String vacation_end_date,
+           @RequestParam("vacation_days") int vacation_days,
+           @RequestParam("vacation_reason") String vacation_reason) {
+
+       vacationService.saveVacation(vacation_name, employee_name, employee_id_ch, employee_id_ch2, vacation_start_date,
+             vacation_end_date, vacation_days, vacation_reason);
+
+       return "vacation/success";
+   }
 }

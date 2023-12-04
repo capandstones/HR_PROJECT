@@ -21,7 +21,8 @@ public class GlobalControllerAdvice {
     	
         String username = loginUserBean.getEmployee_name();
         String employee_id = loginUserBean.getEmployee_id();
-        
+        String employee_position = loginUserBean.getEmployee_position();
+        model.addAttribute("employee_position",employee_position);
         model.addAttribute("username", username);
         model.addAttribute("employee_id", employee_id);
     }

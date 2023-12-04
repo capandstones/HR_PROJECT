@@ -447,6 +447,43 @@ $(document).ready(function() {
     var isCompleteView = false;
     var employee_id =${employee_id};
 
+    const goApproval1 = () => {
+   		
+        function goApproval(draft_info_idx, opinion) {
+            // approvalStatus: 1 (승인), 2 (반려)
+            // docNo: 문서 번호
+            // levelNo: 문서 레벨
+
+            // Ajax 요청을 보내서 서버에서 업데이트를 처리
+            $.ajax({
+                url: "${root}document/approval",
+                type: "POST",
+                data: {
+                	draft_info_idx: draft_info_idx,
+                    opinion: opinion
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        // 성공적으로 업데이트되었을 때 처리
+                        alert("업데이트가 성공적으로 처리되었습니다.");
+                        
+                        // 성공 후 필요한 추가 작업 수행 가능
+                        // 예: 문서 목록 다시 로드 등
+                        loadDocumentList();
+                    } else {
+                        // 업데이트 실패 시 처리
+                        alert("업데이트가 실패하였습니다. 에러 메시지: " + response.errorMessage);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Ajax 요청 실패 시 처리
+                    console.error("Ajax 요청 실패:", textStatus, errorThrown);
+                }
+            });
+        }
+   	}
+    
     function loadDocumentList() {
         $.ajax({
             url: "${root}document/golist/" + draft_info_idx,
@@ -525,42 +562,11 @@ $(document).ready(function() {
                              "</div>" +
                              "</div>";
                             
-                            
                             $('#rightFirst').html(output2);
                             
-                            function goApproval(draft_info_idx, opinion) {
-                                // approvalStatus: 1 (승인), 2 (반려)
-                                // docNo: 문서 번호
-                                // levelNo: 문서 레벨
-
-                                // Ajax 요청을 보내서 서버에서 업데이트를 처리
-                                $.ajax({
-                                    url: "${root}document/approval",
-                                    type: "POST",
-                                    data: {
-                                    	draft_info_idx: draft_info_idx,
-                                        opinion: opinion
-                                    },
-                                    dataType: "json",
-                                    success: function(response) {
-                                        if (response.success) {
-                                            // 성공적으로 업데이트되었을 때 처리
-                                            alert("업데이트가 성공적으로 처리되었습니다.");
-                                            
-                                            // 성공 후 필요한 추가 작업 수행 가능
-                                            // 예: 문서 목록 다시 로드 등
-                                            loadDocumentList();
-                                        } else {
-                                            // 업데이트 실패 시 처리
-                                            alert("업데이트가 실패하였습니다. 에러 메시지: " + response.errorMessage);
-                                        }
-                                    },
-                                    error: function(jqXHR, textStatus, errorThrown) {
-                                        // Ajax 요청 실패 시 처리
-                                        console.error("Ajax 요청 실패:", textStatus, errorThrown);
-                                    }
-                                });
-                            }
+                            
+                            goApproval1();
+                           	
                             
                             
                         }
