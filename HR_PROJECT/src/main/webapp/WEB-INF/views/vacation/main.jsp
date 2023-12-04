@@ -149,7 +149,8 @@ div#child2 {
             <div class="container-fluid px-4">
 
                <div class="menu">
-                  <a href="#1" onclick="showMyVacation()" class="menu-item selected">내 휴가</a> <a href="#2" onclick="showMembersVacation()" class="menu-item">구성원 휴가</a>
+                  <a href="#1" onclick="showMyVacation()" class="menu-item selected">내 휴가</a>
+                  <a href="#2" onclick="showMembersVacation()" class="menu-item">구성원 휴가</a>
                </div>
 
                <div id="myVacation" class="content" style="display: block;">
@@ -257,11 +258,24 @@ div#child2 {
                               <option value="2024">2024년</option>
                               <option value="2025">2025년</option>
                               <option value="2026">2026년</option>
+                              <option value="2027">2027년</option>
                            </select>
                         </div>
                      </div>
 
-                     <p>예정 휴가 내용 추가</p>
+                     <table id="upcomingVacationTable" class="table">
+                        <thead>
+                           <tr>
+                              <th>이름</th>
+                              <th>휴가일자</th>
+                              <th>휴가종류</th>
+                              <th>휴가내용</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <!-- 예정된 휴가 정보가 여기에 동적으로 추가됩니다 -->
+                        </tbody>
+                     </table>
 
                   </div>
 
@@ -275,7 +289,8 @@ div#child2 {
                <div id="membersVacation" class="content" style="display: none;">
 
                   <div class="menu">
-                     <a href="#3" onclick="showVacationRequest()" class="menu-item2 selected">휴가 신청내역</a> <a href="#4" onclick="showVacationStatus()" class="menu-item2">휴가보유/사용현황</a>
+                     <a href="#3" onclick="showVacationRequest()" class="menu-item2 selected">휴가 신청내역</a>
+                     <a href="#4" onclick="showVacationStatus()" class="menu-item2">휴가보유/사용현황</a>
                   </div>
 
                   <div class="divider"></div>
@@ -297,6 +312,27 @@ div#child2 {
          </main>
       </div>
    </div>
+   
+   <script>
+
+   document.addEventListener("DOMContentLoaded", function () {
+
+       var userPosition = "${employee_position}";
+
+       var membersVacationMenu = document.querySelector('.menu-item[href="#2"]');
+
+       if (userPosition === "사원" || userPosition === "대리") {
+          membersVacationMenu.classList.add('disabled');
+           membersVacationMenu.removeAttribute('href');
+           membersVacationMenu.style.cursor = 'not-allowed';
+           
+       } else {
+          membersVacationMenu.classList.remove('disabled');
+           membersVacationMenu.addEventListener('click', showMembersVacation);
+       }
+   });
+
+   </script>
 
    <script>
       function showMyVacation() {
@@ -502,6 +538,26 @@ div#child2 {
          newWindow.moveTo(left, top);
          newWindow.focus();
       }
+   </script>
+
+   <script>
+   const upcomingVacations = [
+      { name: "${employee_name}", startDate: "2023-12-10", endDate: "2023-12-15", type: "연차", reason: "가족 여행" },
+      { name: "${employee_name}", startDate: "2023-12-20", endDate: "2023-12-25", type: "반차", reason: "개인 사정" },
+   ];
+
+   function populateUpcomingVacations() {
+   const tableBody = document.querySelector("#upcomingVacationTable tbody");
+
+   upcomingVacations.forEach(vacation => {
+      const row = tableBody.insertRow();
+      row.insertCell(0).textContent = vacation.name;
+      row.insertCell(1).textContent = `${vacation.startDate} ~ ${vacation.endDate}`;
+      row.insertCell(2).textContent = vacation.type;
+      row.insertCell(3).textContent = vacation.reason;
+      });
+   }
+   populateUpcomingVacations();
    </script>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

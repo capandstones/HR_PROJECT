@@ -35,7 +35,7 @@
 }
 
 .content {
-	padding: 50px 0px 0px 70px;
+	padding: 20px 0px 0px 70px;
 }
 
 .card:hover {
@@ -188,101 +188,93 @@ div#attachArea {
 	border-radius: 0.4rem;
 }
 
-.filebox input[type="file"] {
-	position: absolute;
-	width: 0;
-	height: 0;
-	padding: 0;
-	overflow: hidden;
-	border: 0;
-}
 </style>
-
 
 
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
-
 		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
-
 		<div id="layoutSidenav_content"
 			style="padding-top: 0x; height: auto; background-color: #fff; justify-content: unset;">
 			<c:import url="/WEB-INF/views/workflow/writeheader2.jsp" />
 			<main>
-				<div class="contai" style="overflow-x: hidden;">
-					<form name="wirteFrm" enctype="multipart/form-data">
+				<div class="contain" style="overflow-x: hidden;">
+					<form name="wirteFrm" action="${root}workflow/write_pro" method="post" enctype="multipart/form-data">
 						<div class="row" style="padding: 0px;">
-
 							<div class="col-7 content">
 								<img src="${root}image/paper.svg"> <span id="fontSubject">계약서
 									검토 신청</span>
 								<h5>작성 시 계약 서류를 첨부해주세요.</h5>
-
 								<div id="contents">
 									제목<br>
 									<div class="daterange" style="margin-top: 5px;">
-										<input type="text" class="startdate search" id="daterange"
-											name="D_day" placeholder="제목"
-											style="margin-top: 5px; padding-left: 10px;" />
+										<input type="text" class="startdate search" id="daterange" name="draft_subject" value="(계약서검토신청)" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
 									</div>
 								</div>
 								<div id="contents">
 									내용
 									<div style="margin-top: 5px;">
-										<textarea class="search" name="doc_contents" id="daterange"
-											placeholder="" style="margin-top: 5px; padding: 6px 10px;">
-계약서 검토 요청
-내 계약서 읽어 이시키야
-						
+										<textarea class="search" name="draft_text" id="daterange" style="margin-top: 5px; padding: 6px 10px;">
+1.계약서를 첨부해주세요
+
+
+2.검토 내용			
 						</textarea>
 									</div>
 								</div>
 								<div id="contents">
 									희망마감날짜<br>
 									<div class="daterange" style="margin-top: 5px;">
-										<input type="text" class="startdate search" id="daterange"
-											name="D_day" placeholder="날짜 선택"
-											style="margin-top: 5px; padding-left: 10px;" />
-
+										<input type="date" class="startdate search" id="daterange" name="draft_hope_date" placeholder="날짜 선택" style="margin-top: 5px; padding-left: 10px;" />
 									</div>
 								</div>
-
 								<div id="attachArea">
 									<div class="filebox">
-										<label for="file">파일 찾기</label> <input class="upload-name"
-											value="첨부파일" placeholder="첨부파일"> <input type="file"
-											id="file" multiple="multiple" name="attach">
+										<input type="file" id="file"  name="upload_file">
 									</div>
 								</div>
 							</div>
 							<!-- =================================================================== -->
 
 							<div class="col-5 "
-								style="margin-top: 50px; padding-left: 20px; width: 500px;">
-								<div style="float: left;">
+								style="margin-top: 20px; padding-left: 20px; width: 500px; margin-left: 80px;">
+								<div style="float: left; ">
+								<button type="submit" class="headerBtn" style="margin-left: 300px; margin-right:10px; margin-bottom:30px;  background-color: #496785">
+                              <i class="bi bi-send" style="margin-right: 10px;"></i> 보내기
+                           </button>
 									<table style="border-collapse: collapse; border-radius: 10px;"
 										id="mytable">
 										<thead>
 											<tr>
-												<th colspan="3" style="padding: 25px 10px 25px 25px;">승인
-													· 참조 대상</th>
+												<th colspan="3" style="padding: 25px 10px 25px 25px; border-bottom: 0.5px solid #ddd;">승인 대상</th>
+											</tr>
+											<tr >
+												<th colspan="3" id="draft_looker_id1" style="padding: 20px 10px 20px 20px; font-size: 13pt;">${list[1].employee_name} · ${list[1].department_name} · ${list[1].employee_position}</th>
+											</tr>
+											<tr >
+												<th colspan="3" id="draft_looker_id2" style="padding: 20px 10px 20px 20px; font-size: 13pt;">${list[2].employee_name} · ${list[2].department_name} · ${list[2].employee_position}</th>
+											</tr>
+											<tr >
+												<th colspan="3" id="draft_looker_id3" style="padding: 20px 10px 20px 20px; font-size: 13pt;">${list[0].employee_name} · ${list[0].department_name} · ${list[0].employee_position}</th>
 											</tr>
 										</thead>
 									</table>
+									<input type="hidden" name="draft_looker_id1" value="${list[0].employee_id}">
+									<input type="hidden" name="draft_looker_id2" value="${list[1].employee_id}">
+									<input type="hidden" name="draft_looker_id3" value="${list[2].employee_id}">
+									<input type="hidden" name="draft_info_id" value="0">
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
-
 			</main>
-
 		</div>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="${root }js/scripts.js"></script>
+		crossorigin="anonymous"></script>	<script src="${root }js/scripts.js"></script>
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 		crossorigin="anonymous"></script>

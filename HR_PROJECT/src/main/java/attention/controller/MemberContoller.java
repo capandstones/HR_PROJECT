@@ -18,32 +18,32 @@ import attention.service.EmployeesService;
 @RequestMapping("/member")
 public class MemberContoller {
 
-	@Autowired
-	EmployeesService employeesService;
-	
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+   @Autowired
+   EmployeesService employeesService;
+   
+   private final Logger logger = LoggerFactory.getLogger(getClass());
 
-	@GetMapping("/member")
-	public String member(@ModelAttribute("employeesBean") EmployeesBean employeesBean) {
-		return "member/member";
+   @GetMapping("/member")
+   public String member(@ModelAttribute("employeesBean") EmployeesBean employeesBean) {
+      return "member/member";
 
-	}
+   }
 
-	@GetMapping("/chart")
-	public String chart(@ModelAttribute("employeesBean") EmployeesBean employeesBean) {
-		System.out.println("[ MemberController >>> /chart ]");
-		logger.info("[ MemberController >>> /chart ]");
-		
-		ArrayList<EmployeesBean> employeeList = employeesService.getEmpInfo();
-		System.out.println("Get employeeList: " + employeeList.toString());
-		logger.info("Get employeeList: {}", employeeList);
-		
-		return "member/chart";
-	}
+   @GetMapping("/chart")
+   public String chart(@ModelAttribute("employeesBean") EmployeesBean employeesBean) {
+      System.out.println("[ MemberController >>> /chart ]");
+      logger.info("[ MemberController >>> /chart ]");
+      
+      ArrayList<EmployeesBean> employeeList = employeesService.getEmpInfo();
+      System.out.println("Get employeeList: " + employeeList.toString());
+      logger.info("Get employeeList: {}", employeeList);
+      
+      return "member/chart";
+   }
 
-	@GetMapping("/member_info")
-	public String memberInfo() {
-		return "member/member_info";
+   @GetMapping("/member_info")
+   public String memberInfo() {
+      return "member/member_info";
 
-	}
+   }
 }

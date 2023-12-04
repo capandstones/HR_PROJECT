@@ -10,12 +10,12 @@ import attention.dao.EmployeesDao;
 
 @Service
 public class EmployeesService {
-	
-	@Autowired
-	private EmployeesDao employeesDao;
-	
-	public ArrayList<EmployeesBean> getEmpInfo() {
-		return employeesDao.getEmpInfo();
-	}
-	
+   
+   @Autowired
+   private EmployeesDao employeesDao;
+   
+   public ArrayList<EmployeesBean> getEmpInfo() {
+      return employeesDao.getEmpInfo();
+   }
+   
 }

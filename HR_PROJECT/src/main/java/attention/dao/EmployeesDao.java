@@ -11,10 +11,10 @@ import attention.mapper.EmployeesMapper;
 @Repository
 public class EmployeesDao {
 
-	@Autowired
-	private EmployeesMapper employeesMapper;
-	
-	public ArrayList<EmployeesBean> getEmpInfo() {
-		return employeesMapper.getEmpInfo();
-	}
+   @Autowired
+   private EmployeesMapper employeesMapper;
+   
+   public ArrayList<EmployeesBean> getEmpInfo() {
+      return employeesMapper.getEmpInfo();
+   }
 }

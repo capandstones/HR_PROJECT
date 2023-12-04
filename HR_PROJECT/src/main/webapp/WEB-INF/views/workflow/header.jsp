@@ -33,9 +33,8 @@ a:active {text-decoration: none; color: #cccccc;}
 </head>
 <body>
 <div style=" padding-top: 20px; padding-left: 40px; padding-bottom: 0px; display: flex; ">
-	 <span><a class="mylink" href="javascript:location.href='${root}workflow/document'"style="color: black; font-size: 20pt; font-weight: bold; padding-right: 20px;">내 문서함</a></span>
-	 <span><a class="link" href="javascript:location.href='${root}workflow/cpDocument'" style=" font-size: 20pt; font-weight: bold; padding-left: 20px;">회사 문서함</a></span>
-	<button type="button" class="headerBtn" onclick="javascript:location.href='${root}workflow/selectWrite'">
+	<div style="color: #404040; font-size: 23pt; font-weight: bold; padding-right: 20px; font-family: sans-serif;">문서함</div>
+	<button type="button" class="headerBtn" onclick="javascript:location.href='${root}workflow/selectWrite'" style="margin-left: 1100px;">
 	<div style="text-align: center; padding-bottom: 7px; padding-right: 3px;">
 		<i class="bi bi-pencil-fill"></i>
 		 작성하기

@@ -25,6 +25,9 @@ public class UserService {
 		if(tempLoginUserBean2 !=null) {
 			loginUserBean.setEmployee_id(tempLoginUserBean2.getEmployee_id());
 			loginUserBean.setEmployee_name(tempLoginUserBean2.getEmployee_name());
+			loginUserBean.setDepartment_name(tempLoginUserBean2.getDepartment_name());
+			loginUserBean.setLine_name(tempLoginUserBean2.getLine_name());
+			loginUserBean.setEmployee_position(tempLoginUserBean2.getEmployee_position());
 			loginUserBean.setUserLogin(true);
 		}
 		

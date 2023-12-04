@@ -25,6 +25,8 @@ import attention.beans.UserBean;
 import attention.interceptor.CheckLoginInterceptor;
 import attention.mapper.EmployeesMapper;
 import attention.mapper.UserMapper;
+import attention.mapper.VacationMapper;
+import attention.mapper.WorkFlowMapper;
 
 @Configuration
 @EnableWebMvc // controller
@@ -104,12 +106,27 @@ public class ServletAppContext implements WebMvcConfigurer {
 	}
 
 	@Bean
+	public MapperFactoryBean<WorkFlowMapper> getWorkFlowMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<WorkFlowMapper> factoryBean = new MapperFactoryBean<WorkFlowMapper>(WorkFlowMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
+	@Bean
+	public MapperFactoryBean<VacationMapper> getVacationMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<VacationMapper> factoryBean = new MapperFactoryBean<VacationMapper>(VacationMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
+	@Bean
 	public MapperFactoryBean<EmployeesMapper> getEmployeesMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<EmployeesMapper> factoryBean = new MapperFactoryBean<EmployeesMapper>(EmployeesMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
-	
+
+	// ======================================================================
 	@Bean
 	public ReloadableResourceBundleMessageSource messageSource() {
 		ReloadableResourceBundleMessageSource res = new ReloadableResourceBundleMessageSource();
