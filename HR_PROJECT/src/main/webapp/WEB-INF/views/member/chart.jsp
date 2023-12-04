@@ -151,8 +151,8 @@
          html += '         <div class="employeePosition">' + item.employee_position + '</div>';
          html += '         <div class="employee-wrap-btn">';
          html += '            <div class="employee-inner-status-wrap">';
-         html += '               <div class="employee-inner-status-icon status-active"></div>';
-         html += '               <span>' + item.employee_status + '</span>';
+         html += '               <div id="divCircle" class="employee-inner-status-icon status-active"></div>';
+         html += '               <span class="data-employee-status">' + item.employee_status + '</span>';
          html += '            </div>';
          html += '         </div>';
          html += '      </div>';
@@ -169,6 +169,11 @@
          
          employeeLi.forEach((item, index) => {
             const departmentName = item.dataset.departmentName;
+//             const employeeStatus = document.querySelector('.data-employee-status');
+//             const employeeStatus = document.querySelector('.data-employee-status').innerText;
+            
+//            	console.log(employeeStatus);
+            
             
             if (deptNum === 'dept1' && departmentName === '개발부') {
                item.classList.toggle('hidden');
@@ -194,6 +199,12 @@
             if (deptNum === 'dept6' && departmentName === '테스트부') {
                item.classList.toggle('hidden');
             }
+            
+//             if(employeeStatus === '휴직중') {
+//                 document.querySelector('#divCircle').classList.replace('status-active', 'status-inactive');
+                
+//             }
+            
          });
          
          if (subButtons) {
@@ -275,7 +286,8 @@
          <main>
             <!-- top 시작 -->
             <div>
-               <h2 class="head" style="text-align: center;">구성원 / 조직도</h2>
+               <h2 class="head">조직도</h2>
+
             </div>
             <hr />
             <!-- top 끝 -->
