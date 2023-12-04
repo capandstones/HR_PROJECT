@@ -19,25 +19,12 @@
 	<c:import url="/WEB-INF/views/member/memberInfoModal.jsp" />
 	<script>
 		
+		// 모달 스타일링
+		// 사장, 부사장 따로 빼기
 		
 		// render함수 실행
 		$(document).ready(() => {
-			renderEmployeeList();
-			
-			const modal = document.querySelector('.modalWindow');
-			
-// 			function closeModal() {
-// 				modal.classList.add('hidden');
-// 			}
-			
-// 			window.onclick = function(event) {
-// 				console.log(modal);
-// 				console.log(event.target);
-// 			    if (event.target) {
-			    	
-// 			        closeModal();
-// 			    }
-// 			};	
+			renderEmployeeList();		
 			
 		});
 		
@@ -169,6 +156,19 @@
 			return html;
 		}
 
+// 		const removeDisplayAttention = () => {
+// 			const employeeLi = document.querySelectorAll('.employee-li');
+			
+// 			employeeLi.forEach((item, index) => {
+// 				const departmentName = item.dataset.departmentName;
+				
+// 				if(departmentName === 'attention'){
+//  					item.classList.remove('hidden');
+//  				}
+// 			}
+// 		}
+		
+		
 		// 부서 버튼 클릭 시 세부 부서 버튼 열기
 		const openDeptBtn = (deptNum) => {
 			const subButtons = document.getElementById(deptNum+ "-subbuttons");
@@ -177,18 +177,12 @@
 			employeeLi.forEach((item, index) => {
 				const departmentName = item.dataset.departmentName;
 				
-// 				if(departmentName === 'attention'){
-						
-// 				}
-				
 				if (deptNum === 'dept1' && departmentName === '개발부') {
 					item.classList.toggle('hidden');
-					
 				}
 				
 				if (deptNum === 'dept2' && departmentName === '영업부') {
 					item.classList.toggle('hidden');
-					
 				}
 				
 				if (deptNum === 'dept3' && departmentName === '인사부') {
@@ -215,6 +209,67 @@
 		        console.error("Element not found");
 		    }
 		};
+		
+		const showDetailInfoBtn = (deptNumDetail) => {
+
+			const employeeLi = document.querySelectorAll('.employee-li');
+			
+			employeeLi.forEach((item, index) => {
+				const departmentName = item.dataset.departmentName;
+				
+				if (deptNumDetail === 'dept1_1' && departmentName === '개발1팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept1_2' && departmentName === '개발2팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept2_1' && departmentName === '영업1팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept2_2' && departmentName === '영업2팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept3_1' && departmentName === '인사1팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept3_2' && departmentName === '인사2팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept4_1' && departmentName === '기획1팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept4_2' && departmentName === '기획2팀') {
+					item.classList.toggle('hidden');
+				}
+
+				if (deptNumDetail === 'dept5_1' && departmentName === '디자인1팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept5_2' && departmentName === '디자인2팀') {
+					item.classList.toggle('hidden');
+				}
+
+				if (deptNumDetail === 'dept6_1' && departmentName === '테스트1팀') {
+					item.classList.toggle('hidden');
+				}
+				
+				if (deptNumDetail === 'dept6_2' && departmentName === '테스트2팀') {
+					item.classList.toggle('hidden');
+				}
+			});
+		};
+			
+				
+			
+		
 
 	</script>
 	
@@ -244,43 +299,43 @@
 								<li>
 									<button class="depth1" onclick="openDeptBtn('dept1')">개발부</button>
 									<ul id="dept1-subbuttons" class="hidden">
-										<li><button id="developTeam1" class="depth2">개발 1팀</button></li>
-										<li><button id="developTeam2" class="depth2">개발 2팀</button></li>
+										<li><button id="developTeam1" class="depth2" onclick="showDetailInfoBtn('dept1_1')">개발 1팀</button></li>
+										<li><button id="developTeam2" class="depth2" onclick="showDetailInfoBtn('dept1_2')">개발 2팀</button></li>
 									</ul>
 								</li>
 								<li>
 									<button class="depth1" onclick="openDeptBtn('dept2')">영업부</button>
 									<ul id="dept2-subbuttons" class="hidden">
-										<li><button id="salesTeam1" class="depth2">영업 1팀</button></li>
-										<li><button id="salesTeam2" class="depth2">영업 2팀</button></li>
+										<li><button id="salesTeam1" class="depth2" onclick="showDetailInfoBtn('dept2_1')">영업 1팀</button></li>
+										<li><button id="salesTeam2" class="depth2" onclick="showDetailInfoBtn('dept2_2')">영업 2팀</button></li>
 									</ul>
 								</li>
 								<li>
 									<button class="depth1" onclick="openDeptBtn('dept3')">인사부</button>
 									<ul id="dept3-subbuttons" class="hidden">
-										<li><button id="personnelTeam1" class="depth2">인사 1팀</button></li>
-										<li><button id="personnelTeam2" class="depth2">인사 2팀</button></li>
+										<li><button id="personnelTeam1" class="depth2" onclick="showDetailInfoBtn('dept3_1')">인사 1팀</button></li>
+										<li><button id="personnelTeam2" class="depth2" onclick="showDetailInfoBtn('dept3_2')">인사 2팀</button></li>
 									</ul>
 								</li>
 								<li>
 									<button class="depth1" onclick="openDeptBtn('dept4')">기획부</button>
 									<ul id="dept4-subbuttons" class="hidden">
-										<li><button id="planningTeam1" class="depth2">기획 1팀</button></li>
-										<li><button id="planningTeam2" class="depth2">기획 2팀</button></li>
+										<li><button id="planningTeam1" class="depth2" onclick="showDetailInfoBtn('dept4_1')">기획 1팀</button></li>
+										<li><button id="planningTeam2" class="depth2" onclick="showDetailInfoBtn('dept4_2')">기획 2팀</button></li>
 									</ul>
 								</li>
 								<li>
 									<button class="depth1" onclick="openDeptBtn('dept5')">디자인부</button>
 									<ul id="dept5-subbuttons" class="hidden">
-										<li><button id="designTeam1" class="depth2">디자인 1팀</button></li>
-										<li><button id="designTeam2" class="depth2">디자인 2팀</button></li>
+										<li><button id="designTeam1" class="depth2" onclick="showDetailInfoBtn('dept5_1')">디자인 1팀</button></li>
+										<li><button id="designTeam2" class="depth2" onclick="showDetailInfoBtn('dept5_2')">디자인 2팀</button></li>
 									</ul>
 								</li>
 								<li>
 									<button class="depth1" onclick="openDeptBtn('dept6')">테스트부</button>
 									<ul id="dept6-subbuttons" class="hidden">
-										<li><button id="testTeam1" class="depth2">테스트 1팀</button></li>
-										<li><button id="testTeam2" class="depth2">테스트 2팀</button></li>
+										<li><button id="testTeam1" class="depth2" onclick="showDetailInfoBtn('dept6_1')">테스트 1팀</button></li>
+										<li><button id="testTeam2" class="depth2" onclick="showDetailInfoBtn('dept6_1')">테스트 2팀</button></li>
 									</ul>
 								</li>
 							</ul>
