@@ -79,9 +79,20 @@ public class WorkFlowService {
 		return workFlowDao.getDraftInfoName(draft_info_idx);
 	}
 	
-	public List<DraftBean> getContentList(int draft_info_idx) {
+	public List<DraftBean> getContentList(int draft_info_idx,String employee_id) {
 		
-		return workFlowDao.getContentList(draft_info_idx);
+		return workFlowDao.getContentList(draft_info_idx,employee_id);
+	}
+	
+	public DraftBean getContentInfo(int draft_idx) {
+		return workFlowDao.getContentInfo(draft_idx);
+	}
+	
+	public void changeOpinion(int draft_info_idx,String employee_id, int opinion) {
+		
+		employee_id=loginUserBean.getEmployee_id();
+		
+		workFlowDao.changeOpinion(draft_info_idx,employee_id, opinion);
 	}
 
 }

@@ -442,68 +442,191 @@ button#delete:hover {
 }
 </style>
 <script type="text/javascript">
-$(document).ready(function () {
+$(document).ready(function() {
     var draft_info_idx = 0;
     var isCompleteView = false;
+    var employee_id =${employee_id};
 
     function loadDocumentList() {
         $.ajax({
             url: "${root}document/golist/" + draft_info_idx,
             type: "GET",
             dataType: "json",
-            success: function (result) {
+            success: function(result) {
                 console.log(result);
-                var output = ''; 
+                var output = '';
                 for (var i = 0; i < result.length; i++) {
-                    output += "<div style='padding-top: 15px;' id='contents'>" +
-                        "<div style='margin-left: 35px; margin-right: 25px;' class='border-bottom'>" +
-                        "<span id='getdocno' >" +
-                        "<label for='label-a' id='sub'>" + result[i].draft_subject + "</label>" +
-                        "<br>" +
-                        "<span style='padding:10px; font-size: 12pt; margin-left:0px; margin-bottom:15px;  display:inline-block; width:330px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;'>" + result[i].draft_text + "</span>" +
-                        "<span style='font-size: 11pt; float:right; margin: 5px 8px; color:#737373;'>" + result[i].draft_date.substring(5, 7) + "월 " + result[i].draft_date.substring(8, 10) + "일</span>" +
-                        "<br>" +
-                        "</span>" +
-                        "</div>" +
-                        "</div>";
+                    output += "<div style='padding-top: 15px;' id='contents' class='document-item' data-doc-idx='" + result[i].draft_idx + "'>"
+                        + "<div style='margin-left: 35px; margin-right: 25px;' class='border-bottom'>"
+                        + "<span id='getdocno' >"
+                        + "<label for='label-a' id='sub'>" + result[i].draft_subject
+                        + "</label>"
+                        + "<br>"
+                        + "<span style='padding:10px; font-size: 12pt; margin-left:0px; margin-bottom:15px;  display:inline-block; width:330px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;'>"
+                        + result[i].draft_text
+                        + "</span>"
+                        + "<span style='font-size: 11pt; float:right; margin: 5px 8px; color:#737373;'>"
+                        + result[i].draft_date.substring(5, 7) + "월 " + result[i].draft_date.substring(8, 10)
+                        + "일</span>"
+                        + "<br>"
+                        + "</span>"
+                        + "</div>"
+                        + "</div>";
                 }
                 $('#draftList').html(output);
+
+                // 문서 항목에 대한 클릭 이벤트 핸들러 추가
+                $('.document-item').click(function() {
+                    var draft_idx = $(this).data('doc-idx');
+                    console.log("문서 인덱스가 " + draft_idx + "인 문서를 클릭했습니다.");
+                    console.log("아이디 " + employee_id + "입니다.");
+
+                    // Ajax를 사용하여 세부 정보를 가져오기
+                    $.ajax({
+                        url: "${root}document/getContentInfo/" + draft_idx,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(details) {
+                        	
+                        	console.log(details);
+
+                        	 var output2 = "<div id='parent'>" +
+                             "<div id='child' style='margin: 17px 0px 10px 10px; font-size: 25pt; font-weight: bold;'>"+details.draft_subject+"</div>" +
+                             "<div id='icon' style='margin-top: 22px; float: right;'>" +
+                             "</div>" +
+                             "</div>" +
+                             "<div style='padding: 10px; padding-bottom: 20px;' class='border-bottom'>" +
+                             "<span id='sizebold'>"+details.draft_writer_name+" ·</span> <span style='font-size: 12pt;'>"+details.department_name+" · </span>" +"<span style='font-size: 12pt;'>"+details.employee_position+"</span>" +
+                             "<span style='font-size: 12pt; float: right; color: gray;'>" +
+                             "<i class='bi bi-table'></i> &nbsp;&nbsp;" +details.draft_date+
+                             "</span>" +
+                             "</div>" +
+                             "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
+                             "<span><i class='bi bi-chat-left-text'></i></span> " +
+                             "<span class='font'>&nbsp;&nbsp;요청 내용 </span>" +
+                             "<div style='font-size: 12pt; margin-top: 5px;'>" + details.draft_text + "</div>" +
+                             "<div style='margin-top: 20px;'>" +
+                             "<span><i class='bi bi-calendar4-event'></i></span> " +
+                             "<span class='font' style='margin-right: 10px;'>&nbsp;&nbsp;희망기한</span> " +
+                             "<span style='font-size: 11pt; color: #262626;'>" + details.draft_hope_date + "</span>" +
+                             "</div>";
+                             if(((employee_id==details.draft_looker_id1)||(employee_id==details.draft_looker_id2)||(employee_id==details.draft_looker_id3))&&(draft_info_idx!=2)){
+                             output2 += "<button type='button' id='denial' class='bhover' onclick='goApproval(2," + details.doc_no + "," + details.levelno + ");'>반려</button>" +
+                             "&nbsp;" +
+                             "<button type='button' id='accept' class='bhover' onclick='goApproval(detail.draft_info_idx, 1);'>✓승인</button>" ;
+                             }
+                             output2 += "</div>" +
+                             "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
+                             "<p class='p' data-bs-toggle='collapse' role='button' aria-expanded='false' aria-controls='collapseExample'>" +
+                             "<div><i class='bi bi-paperclip'></i></span>&nbsp; <span class='font'> 첨부파일 </span> <span class='font' style='float: right;'> </div>" +
+                             
+                             "</p>" +
+                             "<img src=\"${root}upload/"+details.draft_file+"\" width=\"60%\"/>	"+
+                             "</div>" +
+                             "</div>";
+                            
+                            
+                            $('#rightFirst').html(output2);
+                            
+                            function goApproval(draft_info_idx, opinion) {
+                                // approvalStatus: 1 (승인), 2 (반려)
+                                // docNo: 문서 번호
+                                // levelNo: 문서 레벨
+
+                                // Ajax 요청을 보내서 서버에서 업데이트를 처리
+                                $.ajax({
+                                    url: "${root}document/approval",
+                                    type: "POST",
+                                    data: {
+                                    	draft_info_idx: draft_info_idx,
+                                        opinion: opinion
+                                    },
+                                    dataType: "json",
+                                    success: function(response) {
+                                        if (response.success) {
+                                            // 성공적으로 업데이트되었을 때 처리
+                                            alert("업데이트가 성공적으로 처리되었습니다.");
+                                            
+                                            // 성공 후 필요한 추가 작업 수행 가능
+                                            // 예: 문서 목록 다시 로드 등
+                                            loadDocumentList();
+                                        } else {
+                                            // 업데이트 실패 시 처리
+                                            alert("업데이트가 실패하였습니다. 에러 메시지: " + response.errorMessage);
+                                        }
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        // Ajax 요청 실패 시 처리
+                                        console.error("Ajax 요청 실패:", textStatus, errorThrown);
+                                    }
+                                });
+                            }
+                            
+                            
+                        }
+                    });
+                });
+
             }
         });
     }
 
-    $("#complete").click(function () {
-        isCompleteView = !isCompleteView;
-        draft_info_idx = isCompleteView ? 1 : 0; // 완료 버튼 클릭 시 draft_info_idx 변경
-        updateButtonStyles();
-        loadDocumentList();
+    // "진행중", "완료", "반려" 버튼 클릭 이벤트를 처리하는 함수
+    function handleButtonClick(buttonId) {
+        // 모든 버튼의 스타일 초기화
+        $("#mine").css("border-bottom", "none").find("span#subject").css("color", "gray");
+        $("#complete").css("border-bottom", "none").find("span#subject").css("color", "gray");
+        $("#reject").css("border-bottom", "none").find("span#subject").css("color", "gray");
+
+        // 클릭된 버튼에 대한 스타일 적용
+        $("#" + buttonId).css("border-bottom", "4px solid #00cc00").find("span#subject").css("color", "black");
+    }
+
+    // "진행중" 버튼 클릭 이벤트
+    $("#mine").click(function() {
+        
+            draft_info_idx = 0;
+            updateButtonStyles();
+            loadDocumentList();
+            handleButtonClick("mine");
+        
     });
 
-    $("#mine").click(function () {
-        isCompleteView = false;
-        draft_info_idx = 0; // 진행중 버튼 클릭 시 draft_info_idx 변경
-        updateButtonStyles();
-        loadDocumentList();
+    // "완료" 버튼 클릭 이벤트
+    $("#complete").click(function() {
+        
+            draft_info_idx = 1;
+            updateButtonStyles();
+            loadDocumentList();
+            handleButtonClick("complete");
+        
     });
 
-    updateButtonStyles();
-    loadDocumentList();
+    // "반려" 버튼 클릭 이벤트
+    $("#reject").click(function() {
+        draft_info_idx = 2; // 반려 버튼의 경우 특정 값으로 설정 (원하는 값으로 변경 가능)
+        updateButtonStyles();
+        loadDocumentList();
+        handleButtonClick("reject");
+    });
 
+    // 버튼 스타일 업데이트 함수
     function updateButtonStyles() {
         if (isCompleteView) {
-            $("#complete").css("border-bottom", "4px solid #00cc00");
-            $("#mine").css("border-bottom", "none");
-            $("#complete span#subject").css("color", "black");
-            $("#mine span#subject").css("color", "gray");
+            $("#complete").css("border-bottom", "4px solid #00cc00").find("span#subject").css("color", "black");
+            $("#mine").css("border-bottom", "none").find("span#subject").css("color", "gray");
         } else {
-            $("#mine").css("border-bottom", "4px solid #00cc00");
-            $("#complete").css("border-bottom", "none");
-            $("#mine span#subject").css("color", "black");
-            $("#complete span#subject").css("color", "gray");
+            $("#mine").css("border-bottom", "4px solid #00cc00").find("span#subject").css("color", "black");
+            $("#complete").css("border-bottom", "none").find("span#subject").css("color", "gray");
         }
+        $("#reject").css("border-bottom", "none").find("span#subject").css("color", "gray");
     }
+    
+    loadDocumentList();
+    updateButtonStyles();
+    
+    
 });
-
 </script>
 
 
@@ -542,8 +665,12 @@ $(document).ready(function () {
 								<button class="bottom-line" id="complete"
 									onclick="completeDm(1);">
 									<span id=subject class="doc3" style="color: gray;">완료</span> <span
-										id="number" class="num3">
-									</span>
+										id="number" class="num3"> </span>
+								</button>
+								<button class="bottom-line" id="reject"
+									onclick="completeDm(2);">
+									<span id=subject class="doc3" style="color: gray;">반려</span> <span
+										id="number" class="num3"> </span>
 								</button>
 							</div>
 							<div id="documentContent" class="border-top">
@@ -553,25 +680,71 @@ $(document).ready(function () {
 							</div>
 						</div>
 
+
+						<!-- read 시작 -->
+
+
 						<div id="rightFirst" class="col-8 rightFirst border-left"
-							style="text-align: left; padding: 20px 20px;"></div>
-					</div>
-					<div class="modal fade" id="exampleModal" tabindex="-1"
-						aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<div class="modal-title fs-2" id="exampleModalLabel"
-										style="font-weight: bold; font-size: 15pt;">승인 · 참조 현황</div>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
+							style="text-align: left; padding: 20px 20px;">
+							<!--
+							<div id='parent'>
+								<div id='child'
+									style='margin: 17px 0px 10px 10px; font-size: 25pt; font-weight: bold;'>제목</div>
+								<div id='icon' style='margin-top: 22px; float: right;'>
+									<div id='iconhover' onclick='goModify();'>
+										<i class='bi bi-pencil-fill' style='font-size: 13pt;'></i>
+										&nbsp;<span style='font-size: 13pt;'>수정</span>
+									</div>
 								</div>
-								<div class="modal-body" id="modal-body"></div>
 							</div>
+							<div style='padding: 10px; padding-bottom: 20px;'
+								class='border-bottom'>
+								<span id='sizebold'>작성자 ·</span> <span style='font-size: 13pt;'>직위</span>
+								<span style='font-size: 12pt; float: right; color: gray;'>
+									<i class='bi bi-table'></i> &nbsp;&nbsp; 작성일
+								</span>
+							</div>
+							<div
+								style='padding: 10px; padding-bottom: 40px; margin-top: 20px;'
+								class='border-bottom'>
+								<span><i class='bi bi-chat-left-text'></i></span> 
+								<span class='font'>&nbsp;&nbsp;요청 내용 </span>
+								<div style='font-size: 12pt; margin-top: 5px;'>dratf_text자리</div>
+
+								<div style='margin-top: 20px;'>
+									<span><i class='bi bi-calendar4-event'></i></span> 
+									<span class='font' style='margin-right: 10px;'>&nbsp;&nbsp;희망기한</span> 
+									<span style='font-size: 11pt; color: #262626;'>희망기한자리</span>
+								</div>
+								<button type='button' id='denial' class='bhover' onclick='goApproval(2,"+doc_no+","+json.levelno+");'>반려</button>
+								&nbsp;
+								<button type='button' id='accept' class='bhover' onclick='goApproval(1,"+doc_no+","+json.levelno+");'>✓승인</button>
+							</div>
+
+							<div
+								style='padding: 10px; padding-bottom: 40px; margin-top: 20px;'
+								class='border-bottom'>
+								<p class='p' data-bs-toggle='collapse' role='button'
+									aria-expanded='false' aria-controls='collapseExample'>
+									<span><i class='bi bi-paperclip'></i></span>&nbsp; <span
+										class='font'> 첨부파일 </span> <span class='font'
+										style='float: right;'> > </span>
+								</p>
+								<div class='collapse' id='collapseExample'>
+									<div class='' style='margin-left: 10px;'>
+										<a href=ownload.yolo?doc_no="+json.doc_no+"'>"+json.orgfilename+"</a>
+										<br> <img src='/files/workflow/"+json.filename+"'
+											style=''>
+									</div>
+								</div>
+							</div>
+
+
 						</div>
-					</div>
-				</div>
-				<!-- 모달창 끝 -->
+-->
+							<!-- read 끝 -->
+
+						</div>
 			</main>
 		</div>
 	</div>

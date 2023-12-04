@@ -22,8 +22,16 @@ public class WorkFlowDao{
 		return workFlowMapper.getDraftInfoName(draft_info_idx);
 	}
 
-	public List<DraftBean> getContentList(int draft_info_idx) {
-		return workFlowMapper.getContentList(draft_info_idx);
+	public List<DraftBean> getContentList(int draft_info_idx,String employee_id) {
+		return workFlowMapper.getContentList(draft_info_idx, employee_id);
+	}
+	
+	public DraftBean getContentInfo(int draft_idx) {
+		return workFlowMapper.getContentInfo(draft_idx);
+	}
+	
+	public void changeOpinion(int draft_info_idx,String employee_id, int opinion) {
+		workFlowMapper.changeOpinion(draft_info_idx,employee_id, opinion);
 	}
 	
 }

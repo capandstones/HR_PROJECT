@@ -29,5 +29,10 @@ public class DraftBean {
 	private String draft_looker_id3;
 	private int draft_info_idx;
 	private String draft_writer_name;
+	private int looker1_opinion;
+	private int looker2_opinion;
+	private int looker3_opinion;
+	private String department_name;
+	private String employee_position;
 
 }
