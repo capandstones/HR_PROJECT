@@ -18,14 +18,13 @@
             </a>
             <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="${root}notice/all">전체 공지사항</a>
-                  <a class="nav-link" href="${root}notice/department">부서 공지사항</a>
-                  <a class="nav-link" href="${root}notice/favorites">즐겨찾기</a>
+                  <a class="nav-link" href="${root}notice/noticeAll">전체 공지사항</a>
+                  <a class="nav-link" href="${root}notice/noticeSub">부서 공지사항</a>
                </nav>
             </div>
            
             <a class="nav-link" href="${root}member/chart"> 구성원 </a>
-            <a class="nav-link" href="${root}calendar/main"> 계정신청 </a>
+            <a class="nav-link" href="${root}admin/admin_join"> 계정신청 </a>
             <a class="nav-link" href="${root}commute/main"> 인사발령기록 </a>
             <a class="nav-link" href="${root}workflow/document"> 메뉴1 </a>
             <a class="nav-link" href="${root}vacation/main"> 메뉴2 </a>

@@ -30,7 +30,17 @@
             </div>
             <a class="nav-link" href="news.html"> 새로운 소식 </a>
             <div class="sb-sidenav-menu-heading">메뉴</div>
-            
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseNotice" aria-expanded="false"   aria-controls="collapseNotice"> 공지사항
+               <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+               </div>
+            </a>
+            <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
+               <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="${root}notice/noticeAll">전체 공지사항</a>
+                  <a class="nav-link" href="${root}notice/noticeSub">부서 공지사항</a>
+               </nav>
+            </div>
             <a class="nav-link" href="${root}member/chart"> 구성원 </a>
             <a class="nav-link" href="${root}calendar/main"> 캘린더 </a>
             <a class="nav-link" href="${root}commute/main"> 출퇴근 </a>

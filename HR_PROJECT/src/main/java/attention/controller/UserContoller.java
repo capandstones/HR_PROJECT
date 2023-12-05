@@ -48,18 +48,20 @@ public class UserContoller {
 
 		userService.getLoginUserInfo(tempLoginUserBean);
 
-		if (loginUserBean.getEmployee_position().equals("대기중")) {
-
-			return "user/login_waiting";
-		}
-
-		if (loginUserBean.getEmployee_position().equals("관리자")) {
-
-			return "admin/main";
-		}
+		
 
 		if (loginUserBean.isUserLogin() == true) {
 
+			if (loginUserBean.getEmployee_position().equals("대기중")) {
+
+				return "user/login_waiting";
+			}
+
+			if (loginUserBean.getEmployee_position().equals("관리자")) {
+
+				return "admin/main";
+			}
+			
 			return "user/login_success";
 
 		} else {

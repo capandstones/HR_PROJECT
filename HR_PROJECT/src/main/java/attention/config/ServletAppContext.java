@@ -23,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import attention.beans.UserBean;
 import attention.interceptor.CheckLoginInterceptor;
+import attention.mapper.AdminMapper;
 import attention.mapper.EmployeesMapper;
 import attention.mapper.UserMapper;
 import attention.mapper.VacationMapper;
@@ -122,6 +123,13 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<EmployeesMapper> getEmployeesMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<EmployeesMapper> factoryBean = new MapperFactoryBean<EmployeesMapper>(EmployeesMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<AdminMapper> getAdminMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<AdminMapper> factoryBean = new MapperFactoryBean<AdminMapper>(AdminMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}

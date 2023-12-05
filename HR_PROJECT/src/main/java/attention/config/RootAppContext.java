@@ -17,6 +17,7 @@ public class RootAppContext {
 		
 		return new UserBean();
 	}
+
 	
 
 	@Bean("draftContentBean")

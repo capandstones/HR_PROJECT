@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,8 +29,9 @@ public class WorkFlowController {
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
 	
-	@Autowired
-	private UserBean joinBean;
+	/*
+	 * @Resource(name = "joinBean") private UserBean joinBean;
+	 */
 
 	// service 주입
 	@Autowired
@@ -147,7 +149,8 @@ public class WorkFlowController {
 						   @RequestParam("employee_password") String employee_password,
 						   @RequestParam("employee_phone") String employee_phone,
 						   @RequestParam("employee_last_name") String employee_last_name,
-						   @RequestParam("employee_first_name") String employee_first_name) {
+						   @RequestParam("employee_first_name") String employee_first_name,
+						   @ModelAttribute("joinBean") UserBean joinBean) {
 		
 		
 		System.out.println("여기야~");
