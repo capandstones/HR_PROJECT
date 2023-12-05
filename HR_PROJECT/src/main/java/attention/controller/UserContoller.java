@@ -39,26 +39,34 @@ public class UserContoller {
 	}
 
 	@GetMapping("/login_pro")
-   public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
-         BindingResult result,
-         Model  model) {
+	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
+			BindingResult result, Model model) {
 
-      if (result.hasErrors()) {
-         return "user/login";
-      }
+		if (result.hasErrors()) {
+			return "user/login";
+		}
 
-      userService.getLoginUserInfo(tempLoginUserBean);
+		userService.getLoginUserInfo(tempLoginUserBean);
 
-      if (loginUserBean.isUserLogin() == true) {
+		if (loginUserBean.getEmployee_position().equals("대기중")) {
 
-    	  
-         return "user/login_success";
+			return "user/login_waiting";
+		}
 
-      } else {
+		if (loginUserBean.getEmployee_position().equals("관리자")) {
 
-         return "user/login_fail";
-      }
-   }
+			return "admin/main";
+		}
+
+		if (loginUserBean.isUserLogin() == true) {
+
+			return "user/login_success";
+
+		} else {
+
+			return "user/login_fail";
+		}
+	}
 
 	@GetMapping("/modify")
 	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {

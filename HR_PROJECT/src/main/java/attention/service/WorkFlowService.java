@@ -32,6 +32,9 @@ public class WorkFlowService {
 
 	@Resource(name = "draftContentBean")
 	private DraftBean draftContentBean;
+	
+	
+
 
 	@Autowired
 	private UserDao userDao;
@@ -88,11 +91,18 @@ public class WorkFlowService {
 		return workFlowDao.getContentInfo(draft_idx);
 	}
 	
-	public void changeOpinion(int draft_info_idx,String employee_id, int opinion) {
+	public void changeOpinion(int draft_idx,String employee_id, int opinion) {
 		
 		employee_id=loginUserBean.getEmployee_id();
 		
-		workFlowDao.changeOpinion(draft_info_idx,employee_id, opinion);
+		workFlowDao.changeOpinion(draft_idx,employee_id, opinion);
 	}
-
+	
+	public void checkOpinion(int draft_idx) {
+		workFlowDao.checkOpinion(draft_idx);
+	}
+	
+	public void addEmployee(UserBean joinBean) {
+		workFlowDao.addEmployee(joinBean);
+	}
 }

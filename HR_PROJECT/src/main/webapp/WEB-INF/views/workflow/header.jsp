@@ -17,7 +17,7 @@ a:active {text-decoration: none; color: #cccccc;}
 	button.headerBtn {
 		border-radius: 0.5rem;
 		border: 1px solid gray;
-		background: #6C98C4;
+		background: #89B2EA;
 		margin-left:65%;
 		width: 170px;
 		height: 45px;

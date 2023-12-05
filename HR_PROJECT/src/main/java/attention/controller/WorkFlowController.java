@@ -20,18 +20,21 @@ import attention.service.WorkFlowService;
 
 @Controller
 @RequestMapping("/workflow")
-public class WorkFlowContoller {
+public class WorkFlowController {
 	
 	@Resource(name = "draftContentBean")
 	private DraftBean draftContentBean;
 	
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
+	
+	@Autowired
+	private UserBean joinBean;
 
 	// service 주입
 	@Autowired
 	private WorkFlowService workFlowService;
-
+	
 	@GetMapping("/selectWrite")
 	public String selectWrite() {
 		return "workflow/selectWrite";
@@ -74,6 +77,38 @@ public class WorkFlowContoller {
 		return "workflow/write2";
 	}
 	
+	// 글 작성하기 폼페이지 요청
+		@GetMapping("/write3")
+		public String write3(Model model) {
+			
+			System.out.println(loginUserBean.getDepartment_name());
+			System.out.println(loginUserBean.getEmployee_id());
+			System.out.println(loginUserBean.getEmployee_name());
+			workFlowService.getLookerList(loginUserBean);
+			List<UserBean> list = workFlowService.getLookerList(loginUserBean);
+			model.addAttribute("list", list);
+			
+			
+
+			return "workflow/write3";
+		}
+
+		// 글 작성하기 폼페이지 요청
+		@GetMapping("/write4")
+		public String write4(Model model) {
+			
+			System.out.println(loginUserBean.getDepartment_name());
+			System.out.println(loginUserBean.getEmployee_id());
+			System.out.println(loginUserBean.getEmployee_name());
+			workFlowService.getLookerList(loginUserBean);
+			List<UserBean> list = workFlowService.getLookerList(loginUserBean);
+			model.addAttribute("list", list);
+			
+			
+
+			return "workflow/write4";
+		}
+	
 	@PostMapping("/write_pro")
 	public String write_pro(@RequestParam("draft_subject") String draft_subject,
 							@RequestParam("draft_text") String draft_text,
@@ -103,20 +138,34 @@ public class WorkFlowContoller {
 		return "workflow/write_success";
 	}
 	
+	@GetMapping("/join_pro")
+	public String join_pro(@RequestParam("employee_name") String employee_name,
+						   @RequestParam("employee_id") String employee_id,
+						   @RequestParam("department_name") String department_name,
+						   @RequestParam("employee_position") String employee_position,
+						   @RequestParam("employee_email") String employee_email,
+						   @RequestParam("employee_password") String employee_password,
+						   @RequestParam("employee_phone") String employee_phone,
+						   @RequestParam("employee_last_name") String employee_last_name,
+						   @RequestParam("employee_first_name") String employee_first_name) {
+		
+		
+		System.out.println("여기야~");
+		joinBean.setEmployee_name(employee_name);
+		joinBean.setEmployee_id(employee_id);
+		joinBean.setDepartment_name(department_name);
+		joinBean.setEmployee_position(employee_position);
+		joinBean.setEmployee_email(employee_email);
+		joinBean.setEmployee_password(employee_password);
+		joinBean.setEmployee_phone(employee_phone);
+		joinBean.setEmployee_last_name(employee_last_name);
+		joinBean.setEmployee_first_name(employee_first_name);
+		
+		workFlowService.addEmployee(joinBean);
+		
+		return "workflow/join_success";
+	};
+
 	
-
-	// 글 작성하기 폼페이지 요청
-	@GetMapping("/write3")
-	public String write3(HttpServletRequest request) {
-
-		return "workflow/write3";
-	}
-
-	// 글 작성하기 폼페이지 요청
-	@GetMapping("/write4")
-	public String write4(HttpServletRequest request) {
-
-		return "workflow/write4";
-	}
 
 }

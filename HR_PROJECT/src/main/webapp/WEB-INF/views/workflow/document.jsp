@@ -353,9 +353,9 @@ button#denial {
 button#accept {
 	width: 75px;
 	height: 35px;
-	border: 1px solid #39ac39;
+	border: 1px solid #89B2EA;
 	border-radius: 17.5px;
-	background: #53c653;
+	background: #89B2EA;
 	margin-top: 30px;
 	font-size: 12pt;
 	padding: 4px 5px;
@@ -442,47 +442,42 @@ button#delete:hover {
 }
 </style>
 <script type="text/javascript">
+
+
+function goApproval(draft_idx, opinion) {
+    // Ajax 요청을 보내서 서버에서 업데이트를 처리
+    $.ajax({
+        url: "${root}document/approval/"+draft_idx+"/"+opinion,
+        type: "GET",
+        dataType: "text",
+        success: function(response) {
+        	
+        	if(opinion==1){
+        		
+        		alert("승인되었습니다.");
+        		
+        		
+        	} else if(opinion==2){
+        		
+        		alert("반려되었습니다.");
+        		
+        	}
+        	
+        	location.reload();
+        	     
+        }
+        
+    });
+};
+
+
 $(document).ready(function() {
     var draft_info_idx = 0;
     var isCompleteView = false;
     var employee_id =${employee_id};
 
-    const goApproval1 = () => {
-   		
-        function goApproval(draft_info_idx, opinion) {
-            // approvalStatus: 1 (승인), 2 (반려)
-            // docNo: 문서 번호
-            // levelNo: 문서 레벨
-
-            // Ajax 요청을 보내서 서버에서 업데이트를 처리
-            $.ajax({
-                url: "${root}document/approval",
-                type: "POST",
-                data: {
-                	draft_info_idx: draft_info_idx,
-                    opinion: opinion
-                },
-                dataType: "json",
-                success: function(response) {
-                    if (response.success) {
-                        // 성공적으로 업데이트되었을 때 처리
-                        alert("업데이트가 성공적으로 처리되었습니다.");
-                        
-                        // 성공 후 필요한 추가 작업 수행 가능
-                        // 예: 문서 목록 다시 로드 등
-                        loadDocumentList();
-                    } else {
-                        // 업데이트 실패 시 처리
-                        alert("업데이트가 실패하였습니다. 에러 메시지: " + response.errorMessage);
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    // Ajax 요청 실패 시 처리
-                    console.error("Ajax 요청 실패:", textStatus, errorThrown);
-                }
-            });
-        }
-   	}
+       
+   	
     
     function loadDocumentList() {
         $.ajax({
@@ -548,9 +543,9 @@ $(document).ready(function() {
                              "<span style='font-size: 11pt; color: #262626;'>" + details.draft_hope_date + "</span>" +
                              "</div>";
                              if(((employee_id==details.draft_looker_id1)||(employee_id==details.draft_looker_id2)||(employee_id==details.draft_looker_id3))&&(draft_info_idx!=2)){
-                             output2 += "<button type='button' id='denial' class='bhover' onclick='goApproval(2," + details.doc_no + "," + details.levelno + ");'>반려</button>" +
-                             "&nbsp;" +
-                             "<button type='button' id='accept' class='bhover' onclick='goApproval(detail.draft_info_idx, 1);'>✓승인</button>" ;
+                            	 output2 += "<button type='button' id='denial' class='bhover' onclick='goApproval("+details.draft_idx+", 2)'>반려</button>" +
+                            	    "&nbsp;" +
+                            	    "<button type='button' id='accept' class='bhover' onclick='goApproval("+details.draft_idx+", 1)'>✓승인</button>";
                              }
                              output2 += "</div>" +
                              "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
@@ -563,12 +558,8 @@ $(document).ready(function() {
                              "</div>";
                             
                             $('#rightFirst').html(output2);
-                            
-                            
-                            goApproval1();
-                           	
-                            
-                            
+                                         	
+                                                        
                         }
                     });
                 });
@@ -585,7 +576,7 @@ $(document).ready(function() {
         $("#reject").css("border-bottom", "none").find("span#subject").css("color", "gray");
 
         // 클릭된 버튼에 대한 스타일 적용
-        $("#" + buttonId).css("border-bottom", "4px solid #00cc00").find("span#subject").css("color", "black");
+        $("#" + buttonId).css("border-bottom", "4px solid #89B2EA").find("span#subject").css("color", "black");
     }
 
     // "진행중" 버튼 클릭 이벤트
@@ -619,10 +610,10 @@ $(document).ready(function() {
     // 버튼 스타일 업데이트 함수
     function updateButtonStyles() {
         if (isCompleteView) {
-            $("#complete").css("border-bottom", "4px solid #00cc00").find("span#subject").css("color", "black");
+            $("#complete").css("border-bottom", "4px solid #89B2EA").find("span#subject").css("color", "black");
             $("#mine").css("border-bottom", "none").find("span#subject").css("color", "gray");
         } else {
-            $("#mine").css("border-bottom", "4px solid #00cc00").find("span#subject").css("color", "black");
+            $("#mine").css("border-bottom", "4px solid #89B2EA").find("span#subject").css("color", "black");
             $("#complete").css("border-bottom", "none").find("span#subject").css("color", "gray");
         }
         $("#reject").css("border-bottom", "none").find("span#subject").css("color", "gray");
@@ -654,6 +645,7 @@ $(document).ready(function() {
 				<div class="">
 					<div class="row">
 
+
 						<div id="leftFirst" class="col-4">
 
 							<div style="padding: 15px 10px 0px 35px;">
@@ -664,7 +656,7 @@ $(document).ready(function() {
 									</span><span id="number" class="num1"> </span>
 								</button>-->
 								<button class="bottom-line" id="mine" onclick="myDocument(1); "
-									style="border-bottom: 4px solid #00cc00;">
+									style="border-bottom: 4px solid #89B2EA;">
 									<span id=subject class="doc2" style="color: balck;">진행중</span><span
 										id="number" class="num2"> </span>
 								</button>

@@ -3,6 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }/"/>
 <script>
-	alert('정보가 일치하지 않습니다.')
+	alert('승인대기중인 계정입니다.')
 	location.href="${root}user/login?fail=true";
 </script>
