@@ -165,14 +165,17 @@
       // 부서 버튼 클릭 시 세부 부서 버튼 열기
       const openDeptBtn = (deptNum) => {
          const subButtons = document.getElementById(deptNum+ "-subbuttons");
+         
          const employeeLi = document.querySelectorAll('.employee-li');
+         
+           
          
          employeeLi.forEach((item, index) => {
             const departmentName = item.dataset.departmentName;
-//             const employeeStatus = document.querySelector('.data-employee-status');
-//             const employeeStatus = document.querySelector('.data-employee-status').innerText;
-            
-//            	console.log(employeeStatus);
+//             const employeeStatus = item.querySelector('.data-employee-status').innerText;
+//             if(employeeStatus === '휴직중') {
+//                 document.querySelector('#divCircle').classList.replace('status-active', 'status-inactive');
+//             }
             
             
             if (deptNum === 'dept1' && departmentName === '개발부') {
@@ -199,11 +202,6 @@
             if (deptNum === 'dept6' && departmentName === '테스트부') {
                item.classList.toggle('hidden');
             }
-            
-//             if(employeeStatus === '휴직중') {
-//                 document.querySelector('#divCircle').classList.replace('status-active', 'status-inactive');
-                
-//             }
             
          });
          
@@ -351,7 +349,7 @@
                   <div id="divLeader" class="divLeader"></div>
                </div>
                <!--  동적 HTML 저장할 div container 종료  -->
-
+				<span ></span>
             </div>
             <!-- main_container 종료 -->
          </main>

@@ -13,6 +13,15 @@
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 	<link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<style>
+.head {
+  margin-left: 5%;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px lightgray;
+}
+</style>
+
+
 </head>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <body class="sb-nav-fixed">
@@ -27,10 +36,11 @@
 				<hr />
 				<!-- top 끝 -->
 				<!-- 게시글 리스트 -->
+				
 				<div class="container" style="margin-top: 100px">
 					<div class="card shadow">
 						<div class="card-body">
-							<h4 class="card-title">${boardInfoName}</h4>
+							<h4 class="card-title">전체 공지사항</h4>
 							<table class="table table-hover" id='board_list'>
 								<thead>
 									<tr>
@@ -45,7 +55,7 @@
 										<tr>
 											<td class="text-center d-none d-md-table-cell">${obj.content_idx}</td>
 											<td>
-												<a href="${root}board/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}">${obj.content_subject}</a>
+												<a href="${root}notice/read?board_info_idx=${obj.content_board_idx}&content_idx=${obj.content_idx}">${obj.content_subject}</a>
 											</td>
 											<td class="text-center d-none d-md-table-cell">${obj.content_writer_name}</td>
 											<td class="text-center d-none d-md-table-cell">${obj.content_date}</td>
@@ -95,7 +105,7 @@
 							</div>
 			
 							<div class="text-right">
-								<a href="${root }board/write?board_info_idx=${board_info_idx }" class="btn btn-primary">글쓰기</a>
+								<a href="${root }notice/write?board_info_idx=${noticeList[0].board_info_idx }" class="btn btn-primary">글쓰기</a>
 							</div>
 			
 						</div>

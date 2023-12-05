@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserBean {
-
+	
 	@Size(min = 1, max = 10)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String employee_id;

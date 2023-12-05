@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,10 +24,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import attention.beans.UserBean;
 import attention.interceptor.CheckLoginInterceptor;
+import attention.interceptor.CheckWriterInterceptor;
 import attention.mapper.EmployeesMapper;
+import attention.mapper.NoticeMapper;
 import attention.mapper.UserMapper;
 import attention.mapper.VacationMapper;
 import attention.mapper.WorkFlowMapper;
+import attention.service.NoticeService;
 
 @Configuration
 @EnableWebMvc // controller
@@ -50,6 +54,9 @@ public class ServletAppContext implements WebMvcConfigurer {
 
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
+	
+	@Autowired
+	private NoticeService noticeService;
 
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
@@ -61,9 +68,10 @@ public class ServletAppContext implements WebMvcConfigurer {
 	// 정적 파일의 경로를 매핑
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		// TODO Auto-generated method stub
+		
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 		registry.addResourceHandler("/**").addResourceLocations("/resources/");
+		
 	}
 
 	@Override
@@ -71,11 +79,18 @@ public class ServletAppContext implements WebMvcConfigurer {
 		WebMvcConfigurer.super.addInterceptors(registry);
 
 		CheckLoginInterceptor checkLoginInterceptor = new CheckLoginInterceptor(loginUserBean);
-
+		CheckWriterInterceptor checkWriterInterceptor = new CheckWriterInterceptor(loginUserBean, noticeService);
+		
 		InterceptorRegistration reg1 = registry.addInterceptor(checkLoginInterceptor);
+		
 		reg1.addPathPatterns("/main/*", "/calendar/*", "/commute/*", "/member/*", "/notice/*", "/user/logout",
 				"/user/modify", "/vacation/*", "/workflow/*");
 		reg1.excludePathPatterns("/user/login");
+		
+		InterceptorRegistration reg3 = registry.addInterceptor(checkWriterInterceptor);
+		
+		reg3.addPathPatterns("/board/modify", "/board/delete");
+	
 	}
 
 	@Bean
@@ -122,6 +137,13 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<EmployeesMapper> getEmployeesMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<EmployeesMapper> factoryBean = new MapperFactoryBean<EmployeesMapper>(EmployeesMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<NoticeMapper> getNoticeMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<NoticeMapper> factoryBean = new MapperFactoryBean<NoticeMapper>(NoticeMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
