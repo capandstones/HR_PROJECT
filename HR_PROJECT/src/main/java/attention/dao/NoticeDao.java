@@ -21,6 +21,10 @@ public class NoticeDao {
 		return noticeMapper.getNoticeMenuList();
 	}
 	
+	public List<NoticeBoardInfoBean> getNoticeSubMenuList() {
+		return noticeMapper.getNoticeSubMenuList();
+	}
+	
 	public void addContentInfo(NoticeContentBean writeContentBean) {
 		noticeMapper.addContentInfo(writeContentBean);
 	}
@@ -29,8 +33,12 @@ public class NoticeDao {
 		return noticeMapper.getBoardInfoName(board_info_idx);
 	}
 
-	public List<NoticeContentBean> getContentList() {
-		return noticeMapper.getContentList();
+	public List<NoticeContentBean> getContentAllList() {
+		return noticeMapper.getContentAllList();
+	}
+	
+	public List<NoticeContentBean> getContentSubList(int board_info_idx) {
+		return noticeMapper.getContentSubList(board_info_idx);
 	}
 
 	public NoticeContentBean getContentInfo(int content_idx) {

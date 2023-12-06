@@ -40,7 +40,7 @@
 				<div class="container" style="margin-top: 100px">
 					<div class="card shadow">
 						<div class="card-body">
-							<h4 class="card-title">전체 공지사항</h4>
+							<h4 class="card-title">Attention</h4>
 							<table class="table table-hover" id='board_list'>
 								<thead>
 									<tr>
@@ -55,7 +55,7 @@
 										<tr>
 											<td class="text-center d-none d-md-table-cell">${obj.content_idx}</td>
 											<td>
-												<a href="${root}notice/read?board_info_idx=${obj.content_board_idx}&content_idx=${obj.content_idx}">${obj.content_subject}</a>
+												<a href="${root}notice/all/read?board_info_idx=${obj.content_board_idx}&content_idx=${obj.content_idx}">${obj.content_subject}</a>
 											</td>
 											<td class="text-center d-none d-md-table-cell">${obj.content_writer_name}</td>
 											<td class="text-center d-none d-md-table-cell">${obj.content_date}</td>
@@ -71,7 +71,7 @@
 											<li class="page-item disabled"><a href="#" class="page-link">이전</a></li>
 										</c:when>
 										<c:otherwise>
-											<li href="${root }board/main?board_info_idx=${board_info_idx}&page=${pageBean.prevPage}" class="page-item disabled"><a href="#" class="page-link">이전</a></li>
+											<li href="${root }notice/all/noticeAll?board_info_idx=${board_info_idx}&page=${pageBean.prevPage}" class="page-item disabled"><a href="#" class="page-link">이전</a></li>
 										</c:otherwise>
 									</c:choose>
 			
@@ -81,7 +81,7 @@
 												<li class="page-item active"><a href="#" class="page-link">${idx }</a></li>
 											</c:when>
 											<c:otherwise>
-												<li class="page-item"><a href="${root }board/main?board_info_idx=${board_info_idx}&page=${idx}" class="page-link">${idx }</a></li>
+												<li class="page-item"><a href="${root }notice/all/noticeAll?board_info_idx=${board_info_idx}&page=${idx}" class="page-link">${idx }</a></li>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -91,7 +91,7 @@
 											<li class="page-item disabled"><a href="#" class="page-link">다음</a></li>
 										</c:when>
 										<c:otherwise>
-											<li class="page-item"><a href="${root }board/main?board_info_idx=${board_info_idx}&page=${pageBean.nextPage}" class="page-link">다음</a></li>
+											<li class="page-item"><a href="${root }notice/all/noticeAll?board_info_idx=${board_info_idx}&page=${pageBean.nextPage}" class="page-link">다음</a></li>
 										</c:otherwise>
 									</c:choose>
 								</ul>
@@ -105,7 +105,7 @@
 							</div>
 			
 							<div class="text-right">
-								<a href="${root }notice/write?board_info_idx=${noticeList[0].board_info_idx }" class="btn btn-primary">글쓰기</a>
+								<a href="${root }notice/all/write?board_info_idx=${noticeList[0].board_info_idx }" class="btn btn-primary">글쓰기</a>
 							</div>
 			
 						</div>

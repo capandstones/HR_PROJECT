@@ -4,5 +4,5 @@
 <c:set var='root' value='${pageContext.request.contextPath}/'/>
 <script>
    alert('수정되었습니다')
-   location.href = '${root}notice/read?board_info_idx=${modifyContentBean.content_board_idx}&content_idx=${modifyContentBean.content_idx}'
+   location.href = '${root}notice/all/read?board_info_idx=${modifyContentBean.content_board_idx}&content_idx=${modifyContentBean.content_idx}'
 </script>

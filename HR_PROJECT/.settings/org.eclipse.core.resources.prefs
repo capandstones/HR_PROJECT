@@ -5,4 +5,4 @@ encoding//src/main/java/attention/config/ServletAppContext.java=UTF-8
 encoding//src/main/java/attention/config/SpringConfigClass.java=UTF-8
 encoding//src/main/java/attention/controller/UserContoller.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/memberInfoModal.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/notice/write_success.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/notice/all/write_success.jsp=UTF-8

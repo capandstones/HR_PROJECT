@@ -42,9 +42,13 @@ public class NoticeService {
 	private UserBean loginUserBean;
 
 	public List<NoticeBoardInfoBean> getNoticeMenuList() {
-		return noticeMapper.getNoticeMenuList();
+		return noticeDao.getNoticeMenuList();
 	}
 	
+	public List<NoticeBoardInfoBean> getNoticeSubMenuList() {
+		return noticeDao.getNoticeSubMenuList();
+	}
+		
 	private String saveUploadFile(MultipartFile upload_file) {
 		String file_name = System.currentTimeMillis() + "_"
 				+ FilenameUtils.getBaseName(upload_file.getOriginalFilename()) + "."
@@ -81,11 +85,14 @@ public class NoticeService {
 		return noticeDao.getBoardInfoName(board_info_idx);
 	}
 
-	public List<NoticeContentBean> getContentList() {
-
+	public List<NoticeContentBean> getContentAllList() {
 //		int start = (page - 1) * page_listcnt;
 //		RowBounds rowBounds = new RowBounds(start, page_listcnt);
-		return noticeDao.getContentList();
+		return noticeDao.getContentAllList();
+	}
+	
+	public List<NoticeContentBean> getContentSubList(int board_info_idx) {
+		return noticeDao.getContentSubList(board_info_idx);
 	}
 
 	public NoticeContentBean getContentInfo(int content_idx) {

@@ -4,6 +4,6 @@
 
 <script>
 alert("삭제되었습니다.")
-location.href='${root}notice/noticeAll?board_info_idx=${board_info_idx}'
+location.href='${root}notice/all/noticeAll?board_info_idx=${board_info_idx}'
 
 </script>
