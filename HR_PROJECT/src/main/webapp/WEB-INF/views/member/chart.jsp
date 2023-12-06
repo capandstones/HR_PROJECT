@@ -14,19 +14,17 @@
    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
    <link href="${root}css/styles.css" rel="stylesheet" />
    <link rel="stylesheet" href="${root}css/member/chart.css" />
-   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <script src="https://kit.fontawesome.com/f07bfb696a.js" crossorigin="anonymous"></script>
    <c:import url="/WEB-INF/views/member/memberInfoModal.jsp" />
    <script>
       
-      // 모달 스타일링
-      // 사장, 부사장 따로 빼기
-      
       // render함수 실행
       $(document).ready(() => {
-         renderEmployeeList();      
-         
+         renderEmployeeList();
+          
       });
+      
       
       const showEmployeeInfoModal = (employeeInfoKey) => {
          const employeeInfo = getEmployeeInfo(employeeInfoKey);
@@ -41,10 +39,20 @@
             const employeeDepartment = document.querySelector('.employee-span-department');
             const employeePosition = document.querySelector('.employee-span-position');
             const employeeStatus = document.querySelector('.employee-span-status');
-            
+                        
             employeeName.innerText = employeeInfo.employee_name + ' (' + employeeInfo.employee_first_name + ' ' +  employeeInfo.employee_last_name + ')';
             employeeDepartment.innerText = employeeInfo.department_name;
             employeePosition.innerText = employeeInfo.employee_position;
+            employeeStatus.innerText = employeeInfo.employee_status;
+            
+            const employeePDepartment = document.querySelector('.employee-p-department');
+            const employeePPhone = document.querySelector('.employee-p-phone');
+            const employeePStartDate = document.querySelector('.employee-p-start-date');
+            const employeePStatus = document.querySelector('.employee-p-status');
+            
+            employeePDepartment.innerText = employeeInfo.department_name;
+            employeePPhone.innerText = employeeInfo.employee_phone;
+            employeePStartDate.innerText = employeeInfo.employee_start_date;
             employeeStatus.innerText = employeeInfo.employee_status;
             
             if (employeeInfo.employee_status === '재직중') {
@@ -135,18 +143,16 @@
          html += '<li class="employee-li hidden" data-employee-key=' + item.employee_id + ' data-department-name=' + item.department_name + '>';
          html += '   <div class="employee-profile-wrap">';
          html += '      <div class="employee-profile-inner-img">';
-         html += '         <img src=""/>';
+         html += '         <img class="employee-list-profile" src=${root}upload/' + item.employee_profile_picture + '/>';
          html += '      </div>';
          html += '      <div class="employee-info-wrap">';
-         html += '         <p class="employee-name">' + item.employee_name + '</p>';
-         html += '         <span class="departmentName">' + item.department_name + ' ' + item.employee_position + '</span>';
+         html += '         <p class="employee-name">' + item.employee_name + '  (' + item.employee_first_name + ' ' + item.employee_last_name + ')</p>';
+         html += '         <div class="departmentName">' + item.department_name + '</div>';
+         html += '         <div class="employeePosition">' + item.employee_position + '</div>';
          html += '         <div class="employee-wrap-btn">';
-         html += '            <button class="employee-inner-btn" data-employee-key='+ item.employee_id + '>Call</button>';
-         html += '            <button class="employee-inner-btn" data-employee-key='+ item.employee_id + '>Mail</button>';
-         html += '            <button class="employee-inner-btn" data-employee-key='+ item.employee_id + '>Message</button>';
          html += '            <div class="employee-inner-status-wrap">';
-         html += '               <div class="employee-inner-status-icon status-active"></div>';
-         html += '               <span>' + item.employee_status + '</span>';
+         html += '               <div id="divCircle" class="employee-inner-status-icon status-active"></div>';
+         html += '               <span class="data-employee-status">' + item.employee_status + '</span>';
          html += '            </div>';
          html += '         </div>';
          html += '      </div>';
@@ -155,27 +161,22 @@
          
          return html;
       }
-
-//       const removeDisplayAttention = () => {
-//          const employeeLi = document.querySelectorAll('.employee-li');
-         
-//          employeeLi.forEach((item, index) => {
-//             const departmentName = item.dataset.departmentName;
-            
-//             if(departmentName === 'attention'){
-//                 item.classList.remove('hidden');
-//              }
-//          }
-//       }
-      
       
       // 부서 버튼 클릭 시 세부 부서 버튼 열기
       const openDeptBtn = (deptNum) => {
          const subButtons = document.getElementById(deptNum+ "-subbuttons");
+         
          const employeeLi = document.querySelectorAll('.employee-li');
+         
+           
          
          employeeLi.forEach((item, index) => {
             const departmentName = item.dataset.departmentName;
+//             const employeeStatus = item.querySelector('.data-employee-status').innerText;
+//             if(employeeStatus === '휴직중') {
+//                 document.querySelector('#divCircle').classList.replace('status-active', 'status-inactive');
+//             }
+            
             
             if (deptNum === 'dept1' && departmentName === '개발부') {
                item.classList.toggle('hidden');
@@ -201,6 +202,7 @@
             if (deptNum === 'dept6' && departmentName === '테스트부') {
                item.classList.toggle('hidden');
             }
+            
          });
          
          if (subButtons) {
@@ -267,11 +269,11 @@
          });
       };
          
-            
-         
-      
+    
 
    </script>
+   
+   
    
 </head>
 
@@ -284,7 +286,8 @@
          <main>
             <!-- top 시작 -->
             <div>
-               <h2 class="head">구성원 / 조직도</h2>
+               <h2 class="head">조직도</h2>
+
             </div>
             <hr />
             <!-- top 끝 -->
@@ -348,12 +351,14 @@
                   <div id="divLeader" class="divLeader"></div>
                </div>
                <!--  동적 HTML 저장할 div container 종료  -->
-
+            <span ></span>
             </div>
             <!-- main_container 종료 -->
          </main>
 
-
+            <!-- main_container 시작 -->
+            <div class="main_container">
+      </div>
       </div>
    </div>
 

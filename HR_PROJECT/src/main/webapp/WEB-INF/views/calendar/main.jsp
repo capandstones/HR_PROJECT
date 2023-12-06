@@ -19,6 +19,10 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.9/index.global.min.js'></script>
 
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+
+
 <style>
 body {
    margin: 5px 5px;
@@ -108,7 +112,8 @@ padding: 0;
          },
 
          googleCalendarApiKey : 'AIzaSyCznPneMB5rfwZDwhFLstuTbxI1ZuqfQsg',
-
+         
+         
          // KO Holidays
          eventSources : [ 
             {
@@ -118,92 +123,99 @@ padding: 0;
                textColor : 'red'
             } 
          ],
-
-         eventClick : function(arg) {
-
-            // prevents current tab from navigating
-            arg.jsEvent.preventDefault();
-
+         
+         events: function(info, successCallback, failureCallback) {
+            
+            $.ajax({
+               type: "POST",
+               url: "",
+               dataType: "json",
+               data: {
+                  cal_start_date: $("#cal_start_date").val(), // 시작일
+                    cal_end_date: $("#cal_end_date").val(),     // 종료일
+                    cal_title: $("#cal_title").val(),           // 제목
+                    cal_category: $("#cal_category").val(),     // 분류
+                    line_name: $("#line_name").val(),           // 공개범위
+                    cal_content: $("#cal_content").val(),       // 내용
+               },
+               success: function(data) {
+                  
+                  var events=[];   
+                  data.forEach(function(event) {
+                     events.push({
+                        title: event.cal_title,
+                        start: event.cal_start_date,
+                        end: event.cal_end_date
+                     });
+                  });
+                  
+                  successCallback(events);
+               },
+               error: function() {
+                  failureCallback();
+               }
+            });
          },
-
+         
          dateClick : function(info) {
             //alert('clicked ' + info.dateStr);
             document.getElementById('modalContent').innerText = 'Clicked '+info.dateStr;
-            document.getElementById('scheduleModal').style.display = 'block';
+            //document.getElementById('scheduleModal').style.display = 'block';
+            /* var eventTitle = document.getElementById('eventTitle');
+            eventTitle.innerText = '이벤트 제목:' + info.dateStr; */   
             $('#scheduleModal').modal('show');
-            //$("span#startdate").text(info.dateStr)
-            //$("span#enddate").text(info.dateStr)
-            $("input[name='cal_start_date']").val(info.dateStr+" 09:00")
-            $("input[name='cal_end_date']").val(info.dateStr+" 18:00")
-            
-            $('input#daterange').daterangepicker({
-               timePicker: true,
-               timePicker24Hour: true,
-               startDate: info.dateStr+"09:00",
-               endDate: info.dateStr+"18:00",
-               local: {
-                  "format": 'YYYY-MM-DD HH:mm',
-                  "separator": " ~ ",
-                  "applyLabel": "확인",
-                  "cancelLabel": "취소",
-                  "fromLabel": "From",
-                  "toLabel": "To",
-                  "customRangeLabel": "Custom",
-                  "weekLabel": "W",
-                  "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
-                  "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-                  
-               }
-            },function(start, end, lael) {
-               $("input[name='cal_start_date']").val(start.format('YYYY-MM-DD HH:mm'))
-               $("input[name='cal_end_date']").val(end.format('YYYY-MM-DD HH:mm'))
-            });
             
          },
-         select: function(info) {
-            $('#scheduleModal').modal('show');
-            //$("span#startdate").text(info.dateStr)
-            //$("span#enddate").text(info.dateStr)
-            $("input[name='cal_start_date']").val(info.startStr+" 09:00")
-            $("input[name='cal_end_date']").val(info.endStr+" 18:00")
-            $('input#daterange').daterangepicker({
-               timePicker: true,
-               timePicker24Hour: true,
-               starDate: info.startStr+"09:00",
-               endDate: info.endStr+"18:00",
-               local: {
-                  "format": 'YYYY-MM-DD HH:mm',
-                  "separator": " ~ ",
-                  "applyLabel": "확인",
-                  "cancelLabel": "취소",
-                  "fromLabel": "From",
-                  "toLabel": "To",
-                  "customRangeLabel": "Custom",
-                  "weekLabel": "W",
-                  "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
-                  "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-               },
-            },function(start, end, label) {
-               $("input[name='cal_start_date']").val(start.format('YYYY-MM-DD HH:mm'))
-               $("input[name='cal_end_date']").val(end.format('YYYY-MM-DD HH:mm'))
-            });
-            
-            alert('selected ' + info.startStr + ' to ' + info.endStr);
-            
-         },
-         /* initialDate: new Date(),
-         events:function(info, successaCallback, failureCallback) {
-            
-            //$.ajax({
-               //url:
-               //dateType:
-               //success:
-            //})
-         } */
          
          navLinks : true,
-         dayMaxEvent : true
-
+         selectable: true,
+         droppable: true,
+         //editable: true,
+         dayMaxEvent : true,
+         
+         /* events: [
+            {
+               url: '/calendar/events',
+               method: 'GET'
+               failure: function() {
+                  alert('오류')
+               }
+            }
+            
+         ], */
+         
+         events: [
+            {
+               title: 'Meeting',
+                 start: '2023-12-20T14:30:00'
+            },
+            {
+                   title: 'Conference',
+                   start: '2023-12-11T10:30:00',
+                   end: '2023-12-12T12:30:00'
+              },
+      
+         ],
+         
+         /* $('#schedule_register').on('click', function(e){
+            e.preventDefault();
+            
+            var formData=$('#schedule_register_form').serialize();
+            $.ajax({
+               type: 'POST',
+               url: '${root}calendar/submit_pro',
+               data: formData,
+               success: function(){
+                  
+                  $('#scheduleModal').modal('hide');
+               },
+               error: function() {
+                  alert('일정 등록에 실패했습니다');
+               }
+            });
+         }); */
+         
+         
       });
       calendar.render();
       
@@ -226,10 +238,16 @@ padding: 0;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root }css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+<!-- Datepicker -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 </head>
 
@@ -243,7 +261,36 @@ padding: 0;
       <div id="layoutSidenav_content" style="padding-top: 20px; height: auto; background-color: #fff;">
 
          <main>
+         
+         <div style="width: 80%; margin : 0 15% 0 15%;">
+               <nav class="top-nav border-bottom mb-1" style="width: 70%">
+                  <span class="text-muted h4 font-weight-bold">캘린더</span>
+               </nav>
+               
+               <div class="mb-4 d-flex" style="width: 70%;">
+                  <select id="kind-calendar" class="custom-select custom-select-sm" style="width: 125px;">
+                     <option value="0">전체 조직</option>
+                     <option value="1">내가 속한 조직</option>
+                  </select>
+                  <div style="margin-left: auto; margin-top: 1px">
+                     <div class="d-flex">
+                        <div class="kind-color mr-1" style="background: #ffd699;"></div>
+                        <span class="kind-name mr-3">미팅</span>
+                        <div class="kind-color mr-1" style="background: #bfbfbf;"></div>
+                        <span class="kind-name mr-3">출장</span>
+                        <div class="kind-color mr-1" style="background: #6666ff;"></div>
+                        <span class="kind-name mr-3">회의</span>
+                        <div class="kind-color mr-1" style="background: #b380ff;"></div>
+                        <span class="kind-name">휴가</span>
+                     </div>
+                  </div>
+               </div>
+               
+               
+            </div>
+         
             <div id='calendar'></div>
+
 
             <!-- register Modal -->
             <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -259,18 +306,28 @@ padding: 0;
                      <span class="close" onclick="closeModal()">&times;</span>
                   </div>
                   
-                  <form name="schedule_register" id="schedule_register">
+                  <%-- <form name="schedule_register" id="schedule_register"> --%>
+                  <form action="${root }calendar/submit_pro" id="schedule_register" method="post" enctype="multipart/form-data">
                      <div class="modal-body">
                         <div class="form-group" id="daterange-group">
-                           <label for="email">기간<span style="color: red;">*</span></label><br />
+                           <!-- <label for="email">기간<span style="color: red;">*</span></label><br />
                            <input type="text" id="daterange" class="form-control text-center"/>
                            <input type="hidden" name="cal_start_date" class="form-control text-center" />
-                           <input type="hidden" name="cal_end_date" class="form-control text-center" />
+                           <input type="hidden" name="cal_end_date" class="form-control text-center" /> -->
+                           
+                              <label for="scheduleDate">기간<span style="color: red;">*</span></label>
+                              <input type="date" id="cal_start_date" name="cal_start_date" class="form-control" required>
+                              <input type="date" id="cal_end_date" name="cal_end_date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group" id="daterange-group">
+                           <label for="subject">제목<span style="color: red;">*</span></label><br />
+                           <input type="text" id="cal_title" name="cal_title" class="form-control btn-custom" required/>
                         </div>
                         
                         <div class="form-group">
                            <label for="category">분류<span style="color: red;">*</span></label>
-                           <select name="category" id="category" name="category" class="custom-select">
+                           <select name="cal_category" id="cal_category" name="cal_category" class="custom-select">
                               <option>출장</option>
                               <option>회의</option>
                               <option>미팅</option>
@@ -278,38 +335,53 @@ padding: 0;
                         </div>
                         
                         <div class="form-group">
-                           <label for="category">공유자:</label>
-                           <input type="text" class="form-control" id="joinuser" placeholder="일정을 공유할 회원명을 입력하세요" />
+                           <label for="category">공개범위<span style="color: red;">*</span></label>
+                           <select name="line_name" id="line_name" name="line_name" class="custom-select">
+                              <option>전체</option>
+                              <option>내팀</option>
+                           </select>
+                           
+                           <!-- <input type="text" class="form-control" id="joinuser" placeholder="일정을 공유할 회원명을 입력하세요" />
                            <div class="displayUserList mt-1"></div>
                            <input type="hidden" name="joinuser" />
-                           <input type="hidden" name="joinuser_empno" />
+                           <input type="hidden" name="joinuser_empno" /> -->
                         </div>
                         
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                            <label for="category">장소<span style="color : red;">*</span></label>
                            <input type="text" name="place" class="form-control" />
-                        </div>
+                        </div> -->
                         
                         <div class="form-group">
                            <label for="content">내용<span style="color: red;">*</span></label>
-                           <textarea name="content" class="form-control" rows="5"></textarea>
+                           <textarea name="cal_content" id="cal_content" class="form-control" rows="5"></textarea>
                         </div>
                         
                         <div class="form-group">
-                           <input type="hidden" name="employee_id" value="${sessionScope.loginuser.employee_id }"/><!-- 여기에 작성자 아이디 -->
-                           <input type="hidden" name="writer_dept_num" value="${sessionScope.loginuser.writer_dept_num }"/><!-- 여기에 작성자 부서번호 -->
+                           <%-- <input type="hidden" name="employee_id" value="${sessionScope.loginuser.employee_id }"/><!-- 여기에 작성자 아이디 --> --%>
+                           <input type="hidden" name="line_name" value="${sessionScope.loginuser.line_name }"/><!-- 여기에 작성자 부서이름 -->
                         </div>
+                        
+                        <!-- <div id="eventInfo">
+                           <p id="eventTitle"></p>
+                        </div> -->
+                        
+                     </div>
+                     
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.href='${root}calendar/main'">닫기</button>
+                        <button type="submit" class="btn btn-primary" id="schedule_register" >등록</button>
                      </div>
                   </form>
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                     <button type="button" class="btn btn-primary" id="schedule_register">등록</button>
-                  </div>
+                  
 
                   <p id="modalContent"></p>
                </div>
             </div>
          </div>
+         
+         
+         
          <!-- Modify,Delete Modal -->
             <div class="modal fade" id="modify_scheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
@@ -325,13 +397,13 @@ padding: 0;
                            <div class="form-group" id="daterange-group">
                               <label for="daterange">기간<span style="color: red;">*</span></label><br />
                               <input type="text" id="daterange" class="form-control text-center"/>
-                              <input type="hidden" name="cal_start_date" class="form-control text-center"/>
-                              <input type="hidden" name="cal_end_date" class="form-control text-center"/>
+                              <input type="text" name="cal_start_date" class="form-control text-center"/>
+                              <input type="text" name="cal_end_date" class="form-control text-center"/>
                            </div>
                            
                            <div class="form-group" id="daterange-group">
                               <label for="subject">제목<span style="color: red;">*</span></label><br />
-                              <input type="text" name="subject" class="form-control" id="modify_subject"/>
+                              <input type="text" name="title" class="form-control" id="modify_title"/>
                            </div>
                            
                            <div class="form-group">
@@ -344,17 +416,22 @@ padding: 0;
                            </div>
                            
                            <div class="form-group">
-                              <label for="category">공유자:</label>
-                              <input type="text" class="form-control" id="joinuser" placeholder="일정을 공유할 회원명을 입력하세요"/>
+                              <label for="category">공유부서<span style="color: red;">*</span></label>
+                              <select name="share" id="share" name="share" class="custom-select">
+                                 <option>전체</option>
+                                 <option>내팀</option>
+                              </select>
+                              
+                              <!-- <input type="text" class="form-control" id="joinuser" placeholder="일정을 공유할 회원명을 입력하세요"/>
                               <div class="displayUserList mt-1"></div>
                               <input type="hidden" name="joinuser" />
-                              <input type="hidden" name="joinuser_empno"/>
+                              <input type="hidden" name="joinuser_empno"/> -->
                            </div>
                            
-                           <div class="form-group">
+                           <!-- <div class="form-group">
                               <label for="category">장소<span style="color: red;">*</span></label>
                               <input type="text" name="place" class="form-control" id="modify_place"/>
-                           </div>
+                           </div> -->
                            
                            <div class="form-group">
                               <label for="content">내용<span style="color: red;">*</span></label>

@@ -33,7 +33,7 @@
 		<div id="layoutSidenav_content"
 			style="padding-top: 20px; height: auto; background-color: rgb(224, 224, 224);">
 			<main>
-				<h1>공지사항/전체 메인입니다</h1>
+				<h1>관리자 메인입니다</h1>
 
 
 			</main>

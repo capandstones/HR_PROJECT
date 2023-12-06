@@ -67,7 +67,28 @@
                   <div class="col-xl-3 col-md-3">
                      <div class="card text-black mb-4" style="height: 240px; color: #fff;">
                         <div class="card-header">일일 나의 근태</div>
-                        <div class="card-body"></div>
+                        <div class="card-body">
+                           <%
+                           java.util.Date currentDate = new java.util.Date();
+                           java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("MM.dd(E)");
+                           String formattedDate = dateFormat.format(currentDate);
+                           %>
+
+                           <table class="table table-bordered">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">날짜</th>
+                                    <th scope="col">근무</th>                                    
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td><%= formattedDate %></td>
+                                    <td>-</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
                      </div>
                   </div>
                   <div class="col-xl-3 col-md-3">

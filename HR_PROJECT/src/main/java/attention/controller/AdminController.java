@@ -22,6 +22,14 @@ public class AdminController {
 	
 	@Autowired
 	private UserBean addEmployeeBean;
+	
+	@GetMapping("/main")
+	public String main() {
+
+
+		return "admin/main";
+	}
+	
 
 	@GetMapping("/admin_join")
 	public String admin_join(Model model) {
