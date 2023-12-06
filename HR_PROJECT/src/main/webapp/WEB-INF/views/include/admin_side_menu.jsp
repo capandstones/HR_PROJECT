@@ -22,10 +22,19 @@
                   <a class="nav-link" href="${root}notice/noticeSub">부서 공지사항</a>
                </nav>
             </div>
-           
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMove" aria-expanded="false"   aria-controls="collapseNotice"> 인사발령
+               <div class="sb-sidenav-collapse-arrow">
+                  <i class="fas fa-angle-down"></i>
+               </div>
+            </a>
+            <div class="collapse" id="collapseMove" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
+               <nav class="sb-sidenav-menu-nested nav">
+                  <a class="nav-link" href="${root}transfer/move">인사발령</a>
+                  <a class="nav-link" href="${root}transfer/recode">인사발령기록</a>
+               </nav>
+            </div>
             <a class="nav-link" href="${root}member/chart"> 구성원 </a>
             <a class="nav-link" href="${root}admin/admin_join"> 계정신청 </a>
-            <a class="nav-link" href="${root}commute/main"> 인사발령기록 </a>
             <a class="nav-link" href="${root}workflow/document"> 메뉴1 </a>
             <a class="nav-link" href="${root}vacation/main"> 메뉴2 </a>
          </div>
