@@ -37,7 +37,7 @@
 
 .content {
 
-	padding: 50px 0px 0px 70px;
+	padding: 10px 0px 0px 70px;
 
 }
 
@@ -74,10 +74,10 @@ img#icon{
 
 div#contents {
 	
-	font-size: 15pt;
+	font-size: 13pt;
 	color: #4d4d4d;
 	font-weight: bold;
-	margin: 25px 5px;
+	margin: 15px 5px;
 
 }
 
@@ -118,8 +118,7 @@ div#contents {
    
 
    /*  border-style: hidden; */
-    
-    
+
    /*  box-shadow: 1 1 1 1px #ccced0; */
     width: 400px;
    /*  height : 500px;   */
@@ -233,41 +232,8 @@ textarea:focus {
 		
 
 		
-        // === 전체 datepicker 옵션 일괄 설정하기 ===  
-		 //     한번의 설정으로 $("input#fromDate"), $('input#toDate')의 옵션을 모두 설정할 수 있다.
-        
-           
-        	 $("input#daterange").daterangepicker({
- 				singleDatePicker: true,
- 				timePicker: true,
- 				timePicker24Hour: true,
- 				//startDate: new Date(),
- 				locale: {
- 				"format": 'YYYY-MM-DD',
- 				"applyLabel": "확인",
- 				"cancelLabel": "취소",
- 				"fromLabel": "From",
- 				"toLabel": "To",
- 				"customRangeLabel": "Custom",
- 				"weekLabel": "W",
- 				"daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
- 				"monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
- 				
- 				}
- 				},function(start, end, label) {
- 				
- 				});
-        
-        	 //input을 datepicker로 선언
-        
-        
-
-    	//textarea 높이 조절    	
-    	/* var textEle = $('textarea');
-    	textEle.on('keyup', function() {
-    	  adjustHeight(); // 함수를 실행하면 자동으로 textarea의 높이 조절
-    	}); */
-        
+ 
+       
         
 	}); // end of $(document).ready (function()
 	
@@ -297,34 +263,62 @@ textarea:focus {
 			<c:import url="/WEB-INF/views/workflow/writeheader2.jsp" />
 			<main>
 				<div class="contai" style="overflow-x: hidden;">
-	<form name="wirteFrm" enctype="multipart/form-data">
-		<div class="row" style="padding: 0px; justify-content: center;">
-				<div class="col-7 content">
+	<form name="wirteFrm" action="${root}workflow/join_pro" method="get" enctype="multipart/form-data">
+		<div class="row" style="padding: 0px; justify-content: center; ">
+				<div class="col-5 content">
 					<img id="icon" src="${root}image/key.svg">
 					<span id="fontSubject">계정 신청</span>	
 					<div id="contents">
-						제목<br>
-						<div class="daterange" style="margin-top: 5px;">
-						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
+						이름<br>
+						<div class="daterange" >
+						<input type="text"  class="startdate search" id="daterange" name="employee_name" placeholder="홍길동" style="margin-top:5px; padding-left: 10px; width: 500px; height: 40px; font-size: 13pt;"/>
 						</div>
 					</div>
 					<div id="contents">
-						제목<br>
-						<div class="daterange" style="margin-top: 5px;">
-						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
+						사번(아이디)<br>
+						<div class="daterange" >
+						<input type="text"   class="startdate search" id="daterange" name="employee_id" style="margin-top:5px; padding-left: 10px; width: 500px; height: 40px; font-size: 13pt;"/>
+						</div>
+					</div>
+					<input type="hidden" name="department_name" value="${department_name}"/>
+					<input type="hidden" name="employee_position" value="대기중"/>
+					<div id="contents">
+						이메일<br>
+						<div class="daterange" >
+						<input type="text" class="startdate search" id="daterange" name="employee_email" placeholder="example@example.com" style="margin-top:5px; padding-left: 10px; width: 500px; height: 40px; font-size: 13pt;"/>
 						</div>
 					</div>
 					<div id="contents">
-						제목<br>
-						<div class="daterange" style="margin-top: 5px;">
-						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
+						주민번호 앞 6자리(초기비밀번호)<br>
+						<div class="daterange" >
+						<input type="text" maxlength='6' class="startdate search" id="daterange" name="employee_password" placeholder="YYMMDD" style="margin-top:5px; padding-left: 10px; width: 500px; height: 40px; font-size: 13pt;"/>
 						</div>
 					</div>
 					<div id="contents">
-						제목<br>
-						<div class="daterange" style="margin-top: 5px;">
-						<input type="text" class="startdate search" id="daterange" name="D_day" placeholder="제목" style="margin-top: 5px; padding-left: 10px;"/>
+						전화번호<br>
+						<div class="daterange" >
+						<input type="text" class="startdate search" id="daterange" name="employee_phone"  style="margin-top:5px; padding-left: 10px; width: 500px; height: 40px; font-size: 13pt;"/>
 						</div>
+					</div>
+					<div id="contents">
+						영문이름(성)<br>
+						<div class="daterange" >
+						<input type="text" class="startdate search" id="daterange" name="employee_last_name" placeholder="Hong" style="margin-top:5px; padding-left: 10px; width: 500px; height: 40px; font-size: 13pt;"/>
+						</div>
+					</div>
+					<div id="contents">
+						영문이름(이름)<br>
+						<div class="daterange" >
+						<input type="text" class="startdate search" id="daterange" name="employee_first_name" placeholder="Gildong" style="margin-top:5px; padding-left: 10px; width: 500px; height: 40px; font-size: 13pt;"/>
+						</div>
+					</div>
+					<div id="contents" >
+						<button type="submit" class="headerBtn"  style="margin-left:160px; background: #89B2EA; margin-top: 10px; ">
+						<div style="text-align: center; padding-bottom: 7px; padding-right: 3px; padding-top: 3px;">
+						<i class="bi bi-pencil-fill"></i>
+					 	신청하기
+					 	</div>
+						</button>
 					</div>
 				</div>		
 			

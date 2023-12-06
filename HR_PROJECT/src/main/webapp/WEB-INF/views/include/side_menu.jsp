@@ -37,21 +37,11 @@
             </a>
             <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="${root}notice/all/noticeAll">전체 공지사항</a>
-                  <a class="nav-link" href="${root}notice/sub/noticeSub">부서 공지사항</a>
+                  <a class="nav-link" href="${root}notice/noticeAll">전체 공지사항</a>
+                  <a class="nav-link" href="${root}notice/noticeSub">부서 공지사항</a>
                </nav>
             </div>
-            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMember" aria-expanded="false" aria-controls="collapseMember"> 구성원
-               <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-               </div>
-            </a>
-            <div class="collapse" id="collapseMember" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
-               <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="${root}member/member">구성원</a>
-                  <a class="nav-link" href="${root}member/chart">조직도</a>
-               </nav>
-            </div>
+            <a class="nav-link" href="${root}member/chart"> 구성원 </a>
             <a class="nav-link" href="${root}calendar/main"> 캘린더 </a>
             <a class="nav-link" href="${root}commute/main"> 출퇴근 </a>
             <a class="nav-link" href="${root}workflow/document"> 워크플로우 </a>

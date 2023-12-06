@@ -47,11 +47,15 @@ public class RestApiController {
 		return readDraftBean;
 	}
 	
-	@GetMapping("document/approval")
-	public void changeOpinion(@PathVariable int draft_info_idx,String employee_id,@PathVariable int opinion) {
-		
+	@GetMapping("document/approval/{draft_idx}/{opinion}")
+	public void changeOpinion(@PathVariable int draft_idx,String employee_id,@PathVariable int opinion) {	
+		System.out.println("들어왔니?");
+		System.out.println(draft_idx);
+		System.out.println(opinion);
 		employee_id = loginUserBean.getEmployee_id();
-		
+		workFlowService.changeOpinion(draft_idx, employee_id, opinion);
+		workFlowService.checkOpinion(draft_idx);
+				
 	}
 	
 }

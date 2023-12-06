@@ -4,30 +4,30 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
 
 <script type="text/javascript">
-	const closeModal = () => {
-		const modal = document.querySelector('.modalWindow')
-		console.log(modal);
-		modal.style.display = ('none');
-	}
-	
-//	const goToMassenger = () => {
-//	$.ajax({
-//		url: '${root}member/memberInfoModal',
-//		method: 'GET',
-//		success: function(response) {
-//			window.location.href = '${root}messenger/write.jsp';
-//		}
-//	});
+   const closeModal = () => {
+      const modal = document.querySelector('.modalWindow')
+      console.log(modal);
+      modal.style.display = ('none');
+   }
+   
+//   const goToMassenger = () => {
+//   $.ajax({
+//      url: '${root}member/memberInfoModal',
+//      method: 'GET',
+//      success: function(response) {
+//         window.location.href = '${root}messenger/write.jsp';
+//      }
+//   });
 //}
 
-// 	const goToCalender = () => {
-// 		const getdepartment = document.querySelector(".employee-span-department");
-// 		const department = getdepartment.textContent;
-// 		if(department === '개발부') {
-			
-// 		}		
-// 	}
-	
+//    const goToCalender = () => {
+//       const getdepartment = document.querySelector(".employee-span-department");
+//       const department = getdepartment.textContent;
+//       if(department === '개발부') {
+         
+//       }      
+//    }
+   
 </script>
 <style>
   .employee-div {
@@ -57,8 +57,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     padding: 5px 8px;
   }
   .closeBtn {
-  	background-color: #FCFCFC;
-  	border: none;
+     background-color: #FCFCFC;
+     border: none;
   }
 </style>
 
@@ -84,31 +84,31 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <span class="employee-span-status">재직중</span>
       </div>
       <div class="employee-inner-button-wrap">
-	    <div class="employee-inner-button-message" onclick="goToMassenger()">
-	    	<span><i class="fa-solid fa-at"></i></span>
-	    	<span>메신저</span>
-	    </div>
-	    <div class="employee-inner-button-calender" onclick="goToCalender()">
-	    	<span><i class="fa-solid fa-calendar-days"></i></span>
-	    	<span>캘린더</span>
-	    </div>
+       <div class="employee-inner-button-message" onclick="goToMassenger()">
+          <span><i class="fa-solid fa-at"></i></span>
+          <span>메신저</span>
+       </div>
+       <div class="employee-inner-button-calender" onclick="goToCalender()">
+          <span><i class="fa-solid fa-calendar-days"></i></span>
+          <span>캘린더</span>
+       </div>
       </div>
     </div>
-  	<div class="employee-info-detail-wrap">
-  		<div>
-  			<p class="employee-info-detail-txt empInfoDetailTxt">회사명</p>
-  			<p class="employee-info-detail-txt empInfoDetailTxt">부서</p>
-			<p class="employee-info-detail-txt empInfoDetailTxt">휴대전화</p>  		
-  			<p class="employee-info-detail-txt empInfoDetailTxt">입사일</p>
-  		</div>
-  		<div>
-  			<p class="employee-info-detail-txt">(주)Attention</p>
-  			<p class="employee-info-detail-txt employee-p-department">디자인부</p>
-			<p class="employee-info-detail-txt employee-p-phone">010-0000-0000</p>
-  			<p class="employee-info-detail-txt employee-p-start-date">20-05-10</p>
-	  		
-  		</div>
-  	</div>
+     <div class="employee-info-detail-wrap">
+        <div>
+           <p class="employee-info-detail-txt empInfoDetailTxt">회사명</p>
+           <p class="employee-info-detail-txt empInfoDetailTxt">부서</p>
+         <p class="employee-info-detail-txt empInfoDetailTxt">휴대전화</p>        
+           <p class="employee-info-detail-txt empInfoDetailTxt">입사일</p>
+        </div>
+        <div>
+           <p class="employee-info-detail-txt">(주)Attention</p>
+           <p class="employee-info-detail-txt employee-p-department">디자인부</p>
+         <p class="employee-info-detail-txt employee-p-phone">010-0000-0000</p>
+           <p class="employee-info-detail-txt employee-p-start-date">20-05-10</p>
+           
+        </div>
+     </div>
   </div>
   <div>
   

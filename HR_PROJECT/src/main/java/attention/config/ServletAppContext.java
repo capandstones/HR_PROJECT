@@ -24,7 +24,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import attention.beans.UserBean;
 import attention.interceptor.CheckLoginInterceptor;
-import attention.interceptor.CheckWriterInterceptor;
+import attention.mapper.AdminMapper;
+import attention.mapper.CalendarMapper;
 import attention.mapper.EmployeesMapper;
 import attention.mapper.NoticeMapper;
 import attention.mapper.UserMapper;
@@ -141,6 +142,27 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factoryBean;
 	}
 	
+	@Bean
+	public MapperFactoryBean<NoticeMapper> getNoticeMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<NoticeMapper> factoryBean = new MapperFactoryBean<NoticeMapper>(NoticeMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
+	@Bean
+	public MapperFactoryBean<AdminMapper> getAdminMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<AdminMapper> factoryBean = new MapperFactoryBean<AdminMapper>(AdminMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
+	@Bean
+	public MapperFactoryBean<CalendarMapper> getCalendarMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<CalendarMapper> factoryBean = new MapperFactoryBean<CalendarMapper>(CalendarMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
 	@Bean
 	public MapperFactoryBean<NoticeMapper> getNoticeMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<NoticeMapper> factoryBean = new MapperFactoryBean<NoticeMapper>(NoticeMapper.class);

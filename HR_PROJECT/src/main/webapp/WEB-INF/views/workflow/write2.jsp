@@ -218,7 +218,11 @@ div#attachArea {
 1.계약서를 첨부해주세요
 
 
-2.검토 내용			
+2.검토 내용
+
+
+
+
 						</textarea>
 									</div>
 								</div>
@@ -239,8 +243,8 @@ div#attachArea {
 							<div class="col-5 "
 								style="margin-top: 20px; padding-left: 20px; width: 500px; margin-left: 80px;">
 								<div style="float: left; ">
-								<button type="submit" class="headerBtn" style="margin-left: 300px; margin-right:10px; margin-bottom:30px;  background-color: #496785">
-                              <i class="bi bi-send" style="margin-right: 10px;"></i> 보내기
+								<button type="submit" class="headerBtn" style="margin-left: 300px; margin-right:10px; margin-bottom:30px;  background-color: #89B2EA">
+                              <i class="bi bi-send" style="margin-right: 10px; "></i> 보내기
                            </button>
 									<table style="border-collapse: collapse; border-radius: 10px;"
 										id="mytable">

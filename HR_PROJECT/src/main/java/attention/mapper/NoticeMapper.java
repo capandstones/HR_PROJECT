@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
-import org.apache.ibatis.session.RowBounds;
 
 import attention.beans.NoticeBoardInfoBean;
 import attention.beans.NoticeContentBean;
@@ -33,11 +32,11 @@ public interface NoticeMapper {
 			+ "#{content_writer_id}, #{content_board_idx}, sysdate)")
 	void addContentInfo(NoticeContentBean writeContentBean);
 
-	// Ä«Å×°í¸® ½Äº°
+	// Ä«ï¿½×°ï¿½ ï¿½Äºï¿½
 	@Select("select board_info_name " + "from HRPROJECT.notice_board_Info " + "where board_info_idx=#{board_info_idx}")
 	String getBoardInfoName(int board_info_idx);
 
-	// ±Û¸ñ·Ï º¸±â
+	// ï¿½Û¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Select("select a1.content_idx, a1.content_subject, a2.employee_name as content_writer_name, "
 			+ "to_char(a1.content_date, 'YYYY-MM-DD') as content_date " + "from HRPROJECT.notice_content a1, HRPROJECT.employees a2 "
 			+ "where a1.content_writer_id = a2.employee_id " + "and a1.content_board_idx = #{board_info_idx} "
@@ -49,7 +48,7 @@ public interface NoticeMapper {
 	
 	
 
-	// »ó¼¼ÆäÀÌÁö
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Select("select a2.employee_name as content_writer_name, "
 			+ "to_char(a1.content_date, 'YYYY-MM-DD') as content_date, "
 			+ "a1.content_subject, a1.content_text, a1.content_file, a1.content_writer_id "

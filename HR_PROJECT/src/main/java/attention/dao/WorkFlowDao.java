@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import attention.beans.DraftBean;
+import attention.beans.UserBean;
 import attention.mapper.WorkFlowMapper;
 
 @Repository
@@ -30,8 +31,20 @@ public class WorkFlowDao{
 		return workFlowMapper.getContentInfo(draft_idx);
 	}
 	
-	public void changeOpinion(int draft_info_idx,String employee_id, int opinion) {
-		workFlowMapper.changeOpinion(draft_info_idx,employee_id, opinion);
+	public void changeOpinion(int draft_idx,String employee_id, int opinion) {
+		
+		System.out.println("여기는 dao" +employee_id);
+		workFlowMapper.changeOpinion(draft_idx,employee_id, opinion);
+	}
+	
+	public void checkOpinion(int draft_idx) {
+		
+		
+		workFlowMapper.checkOpinion(draft_idx);
+	}
+	
+	public void addEmployee(UserBean joinBean) {
+		workFlowMapper.addEmployee(joinBean);
 	}
 	
 }

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import attention.beans.NoticeBoardInfoBean;
 import attention.beans.NoticeContentBean;
-import attention.beans.PageBean;
 import attention.beans.UserBean;
 import attention.service.NoticeService;
 
@@ -32,7 +31,7 @@ public class NoticeController {
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
 
-// ÀüÃ¼ °øÁö»çÇ× --------------------------------------------------------------------------------------
+// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ --------------------------------------------------------------------------------------
 	@GetMapping("/all/noticeAll")
 	public String noticeAll(Model model) {
 		List<NoticeBoardInfoBean> noticeList = noticeService.getNoticeMenuList();
@@ -103,8 +102,8 @@ public class NoticeController {
 		modifyContentBean.setContent_text(tempContentBean.getContent_text());
 		modifyContentBean.setContent_file(tempContentBean.getContent_file());
 		modifyContentBean.setContent_writer_id(tempContentBean.getContent_writer_id());
-		modifyContentBean.setContent_board_idx(board_info_idx); // param°ª ±×´ë·Î ÀúÀå
-		modifyContentBean.setContent_idx(content_idx); // param°ª ±×´ë·Î ÀúÀå
+		modifyContentBean.setContent_board_idx(board_info_idx); // paramï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		modifyContentBean.setContent_idx(content_idx); // paramï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		return "notice/all/modify";
 	}
@@ -136,7 +135,7 @@ public class NoticeController {
 	}
 
 	
-// ºÎ¼­º° °øÁö»çÇ× -------------------------------------------------------------------------------------
+// ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -------------------------------------------------------------------------------------
 	
 	@GetMapping("/sub/noticeSub")
 	public String noticeSub(Model model) {

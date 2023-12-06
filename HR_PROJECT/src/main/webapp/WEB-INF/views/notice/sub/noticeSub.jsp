@@ -23,10 +23,10 @@
 
 
 </head>
-<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
-		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
+		<c:import url="/WEB-INF/views/include/admin_side_menu.jsp" />
 		<div id="layoutSidenav_content" style="padding-top: 20px; height: auto;">
 			<main>
 				<!-- top 시작 -->

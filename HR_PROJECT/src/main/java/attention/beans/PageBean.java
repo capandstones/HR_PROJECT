@@ -6,53 +6,60 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PageBean {
-
-	// ÃÖ¼Ò ÆäÀÌÁö ¹øÈ£
-	private int min;
-	// ÃÖ´ë ÆäÀÌÁö ¹øÈ£
-	private int max;
-	// ÀÌÀü ¹öÆ°ÀÇ ÆäÀÌÁö ¹øÈ£
-	private int prevPage;
-	// ´ÙÀ½ ¹öÆ°ÀÇ ÆäÀÌÁö ¹øÈ£
-	private int nextPage;
-	// ÀüÃ¼ ÆäÀÌÁö °³¼ö
-	private int pageCnt;
-	// ÇöÀç ÆäÀÌÁö ¹øÈ£
-	private int currentPage;
-
-	// contentCnt:ÀüÃ¼±Û °¹¼ö (¿À¶óÅ¬ table), currntPage:ÇöÀç±Û¹øÈ£(param),contentPageCnt:ÆäÀÌÁö´ç ±ÛÀÇ
-	// °¹¼ö(property),paginationCnt:ÆäÀÌÁö ¹öÆ°ÀÇ °¹¼ö(property)
-	public PageBean(int contentCnt, int currentPage, int contentPageCnt, int paginationCnt) {
-
-		// ÇöÀç ÆäÀÌÁö ¹øÈ£
-		this.currentPage = currentPage;
-
-		// ÀüÃ¼ ÆäÀÌÁö °¹¼ö
-		pageCnt = contentCnt / contentPageCnt;// 533/10=53ÀÌ¹Ç·Î ÇÏ³ª´õ ÇÊ¿ä
-		if (contentCnt % contentPageCnt > 0) {
-			pageCnt++;
-		}
-		/*
-		 * 1~10 : 1(ÃÖ¼Ò), 10(ÃÖ´ë) 11~20: 11(ÃÖ¼Ò), 20(ÃÖ´ë) 21~30: 21(ÃÖ¼Ò), 30(ÃÖ´ë) //ÃÖ´ë
-		 * 10,20,30 ÀÌ¹Ç·Î °á±¹ ÃÖ¼Ò¿¡ 9¸¦ ´õÇÑ°Í°ú °°À½ 0~9: 1 Ã¹È­¸é 10~19: 11 µÎ¹øÂ° 20~29: 21 »õ¹øÂ°
-		 * 
-		 * //ÆäÀÌÁö´ç ±ÛÀÇ °¹¼ö 0: 1/10*10 =>0 +1 =>1 1: 11/10*10 =>10 +1 =>2 2: 21/10*10 =>20
-		 * +1 =>3
-		 */
-		min = ((currentPage - 1) / contentPageCnt) * contentPageCnt + 1;
-		max = min + paginationCnt - 1;
-
-		if (max > pageCnt) {
-			max = pageCnt;
-		}
-
-		prevPage = min - 1;
-		nextPage = max + 1;
-
-		if (nextPage > pageCnt) {
-			nextPage = pageCnt;
-		}
-
+	
+	// ìµœì†Œ íŽ˜ì´ì§€ ë²ˆí˜¸
+	   private int min;
+	   // ìµœëŒ€ íŽ˜ì´ì§€ ë²ˆí˜¸
+	   private int max;
+	   // ì´ì „ ë²„íŠ¼ì˜ íŽ˜ì´ì§€ ë²ˆí˜¸
+	   private int prevPage;
+	   // ë‹¤ìŒ ë²„íŠ¼ì˜ íŽ˜ì´ì§€ ë²ˆí˜¸
+	   private int nextPage;
+	   // ì „ì²´ íŽ˜ì´ì§€ ê°œìˆ˜
+	   private int pageCnt;
+	   // í˜„ìž¬ íŽ˜ì´ì§€ ë²ˆí˜¸
+	   private int currentPage;
+	   
+	   //contentCnt:ì „ì²´ê¸€ ê°¯ìˆ˜ (ì˜¤ë¼í´ table), currntPage:í˜„ìž¬ê¸€ë²ˆí˜¸(param),contentPageCnt:íŽ˜ì´ì§€ë‹¹ ê¸€ì˜ ê°¯ìˆ˜(property),paginationCnt:íŽ˜ì´ì§€ ë²„íŠ¼ì˜ ê°¯ìˆ˜(property)
+	   public PageBean(int contentCnt,int currentPage,int contentPageCnt,int paginationCnt) {
+		
+		   //í˜„ìž¬ íŽ˜ì´ì§€ ë²ˆí˜¸
+		   this.currentPage=currentPage;
+		   
+		   //ì „ì²´ íŽ˜ì´ì§€ ê°¯ìˆ˜
+		   pageCnt=contentCnt/contentPageCnt;//533/10=53ì´ë¯€ë¡œ í•˜ë‚˜ë” í•„ìš”
+		   if(contentCnt%contentPageCnt>0) {
+			   pageCnt++;
+		   }
+		   /*
+		   1~10 :  1(ìµœì†Œ), 10(ìµœëŒ€)
+		   11~20: 11(ìµœì†Œ), 20(ìµœëŒ€)
+		   21~30: 21(ìµœì†Œ), 30(ìµœëŒ€)
+		   //ìµœëŒ€ 10,20,30 ì´ë¯€ë¡œ ê²°êµ­ ìµœì†Œì— 9ë¥¼ ë”í•œê²ƒê³¼ ê°™ìŒ
+		   0~9:   1  ì²«í™”ë©´
+		   10~19: 11 ë‘ë²ˆì§¸ 
+		   20~29: 21 ìƒˆë²ˆì§¸
+		   
+		   //íŽ˜ì´ì§€ë‹¹ ê¸€ì˜ ê°¯ìˆ˜
+		    * 0:  1/10*10 =>0  +1 =>1
+		    * 1: 11/10*10 =>10 +1 =>2
+		    * 2: 21/10*10 =>20 +1 =>3
+		   */
+		   min = ((currentPage - 1) / contentPageCnt) * contentPageCnt + 1;
+		   max = min + paginationCnt - 1;
+		   
+		   if(max>pageCnt) {
+			   max=pageCnt;
+		   }
+		   
+		   prevPage=min-1;
+		   nextPage=max+1;
+		   
+		   if(nextPage>pageCnt) {
+			   nextPage=pageCnt;
+		   }
+		   
+		   
 	}
 
 }

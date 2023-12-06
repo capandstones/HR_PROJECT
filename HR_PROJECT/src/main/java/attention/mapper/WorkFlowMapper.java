@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import attention.beans.DraftBean;
+import attention.beans.UserBean;
 
 public interface WorkFlowMapper {
 
@@ -47,24 +48,29 @@ public interface WorkFlowMapper {
 	
 	
 	@Update("UPDATE HRPROJECT.draft_table "
-			+ "SET looker1_opinion = CASE WHEN employee_id = draft_looker_id1 THEN #{opinion} ELSE looker1_opinion END, "
-			+ "    looker2_opinion = CASE WHEN employee_id = draft_looker_id2 THEN #{opinion} ELSE looker2_opinion END, "
-			+ "    looker3_opinion = CASE WHEN employee_id = draft_looker_id3 THEN #{opinion} ELSE looker3_opinion END, "
-			+ " WHERE draft_info_idx = #{draft_info_idx};")
-	void changeOpinion(@Param("draft_info_idx") int draft_info_idx,
+			+ "SET looker1_opinion = CASE WHEN #{employee_id} = draft_looker_id1 THEN #{opinion} ELSE looker1_opinion END, "
+			+ "    looker2_opinion = CASE WHEN #{employee_id} = draft_looker_id2 THEN #{opinion} ELSE looker2_opinion END, "
+			+ "    looker3_opinion = CASE WHEN #{employee_id} = draft_looker_id3 THEN #{opinion} ELSE looker3_opinion END "
+			+ " WHERE draft_idx = #{draft_idx}")
+	void changeOpinion(@Param("draft_idx") int draft_idx,
 					   @Param("employee_id") String employee_id,
 					   @Param("opinion") int opinion);
 	
 	
-	/*
-	 * // 상세페이지
-	@Select("select a2.user_name as content_writer_name, "
-			+ "       to_char(a1.content_date, 'YYYY-MM-DD') as content_date, "
-			+ "       a1.content_subject, a1.content_text, a1.content_file, a1.content_writer_idx "
-			+ "from content_table a1, user_table a2 " + "where a1.content_writer_idx = a2.user_idx "
-			+ "      and content_idx = #{content_idx}")
-	ContentBean getContentInfo(int content_idx);
-	 */
+	@Update("UPDATE HRPROJECT.draft_table "
+			+ "SET draft_info_idx =  "
+			+ "    CASE  "
+			+ "        WHEN looker1_opinion = 1 AND looker2_opinion = 1 AND looker3_opinion = 1 THEN 1 "
+			+ "        WHEN looker1_opinion = 2 OR looker2_opinion = 2 OR looker3_opinion = 2 THEN 2 "
+			+ "        ELSE draft_info_idx  "
+			+ "    END "
+			+ "WHERE draft_idx = #{draft_idx}")
+	void checkOpinion(@Param("draft_idx") int draft_idx);
 	
-
+	@Insert("insert into HRPROJECT.employees(employee_name,employee_id,department_name,employee_position,employee_email,"
+			+ " employee_password,employee_phone,employee_last_name,employee_first_name,employee_start_date) "
+			+ " values (#{employee_name},#{employee_id},#{department_name},#{employee_position},#{employee_email},#{employee_password}, "
+			+ "#{employee_phone},#{employee_last_name},#{employee_first_name},sysdate)")
+	void addEmployee(UserBean joinBean);
+	
 }

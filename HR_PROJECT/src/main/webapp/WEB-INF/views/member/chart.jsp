@@ -273,6 +273,8 @@
 
    </script>
    
+   
+   
 </head>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -349,14 +351,14 @@
                   <div id="divLeader" class="divLeader"></div>
                </div>
                <!--  동적 HTML 저장할 div container 종료  -->
-				<span ></span>
+            <span ></span>
             </div>
             <!-- main_container 종료 -->
          </main>
 
-				<!-- main_container 시작 -->
-				<div class="main_container">
-		</div>
+            <!-- main_container 시작 -->
+            <div class="main_container">
+      </div>
       </div>
    </div>
 

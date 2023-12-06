@@ -3,6 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }/"/>
 <script>
-	alert('돌아가거라.')
+	alert('정보가 일치하지 않습니다.')
 	location.href="${root}user/login?fail=true";
 </script>
