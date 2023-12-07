@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import attention.beans.DraftBean;
 import attention.beans.UserBean;
+import attention.dao.WorkFlowDao;
 import attention.service.WorkFlowService;
 
 @Controller
@@ -67,17 +68,20 @@ public class WorkFlowController {
 	@GetMapping("/write2")
 	public String write2(Model model) {
 		
-		System.out.println(loginUserBean.getDepartment_name());
-		System.out.println(loginUserBean.getEmployee_id());
-		System.out.println(loginUserBean.getEmployee_name());
+
 		workFlowService.getLookerList(loginUserBean);
 		List<UserBean> list = workFlowService.getLookerList(loginUserBean);
+		
+		
 		model.addAttribute("list", list);
 		
 		
 
 		return "workflow/write2";
 	}
+	
+
+	
 	
 	// 글 작성하기 폼페이지 요청
 		@GetMapping("/write3")
@@ -94,6 +98,22 @@ public class WorkFlowController {
 
 			return "workflow/write3";
 		}
+		/*
+		@GetMapping("/write3_1")
+		public String write3_1(Model model) {
+			
+			System.out.println(loginUserBean.getDepartment_name());
+			System.out.println(loginUserBean.getEmployee_id());
+			System.out.println(loginUserBean.getEmployee_name());
+			workFlowService.getLookerList(loginUserBean);
+			List<UserBean> list = workFlowService.getLookerList(loginUserBean);
+			model.addAttribute("list", list);
+			
+			
+
+			return "workflow/write3";
+		}
+		*/
 
 		// 글 작성하기 폼페이지 요청
 		@GetMapping("/write4")
@@ -119,10 +139,9 @@ public class WorkFlowController {
 							@RequestParam("draft_looker_id1") String draft_looker_id1,
 							@RequestParam("draft_looker_id2") String draft_looker_id2,
 							@RequestParam("draft_looker_id3") String draft_looker_id3) {
-		
-		
+
 		draftContentBean.setDraft_subject(draft_subject);
-		draftContentBean.setDraft_text(draft_text);
+		draftContentBean.setDraft_text(draft_text.replace("\r\n","<br>"));
 		draftContentBean.setDraft_hope_date(draft_hope_date);
 		draftContentBean.setUpload_file(upload_file);
 		draftContentBean.setDraft_looker_id1(draft_looker_id1);
@@ -162,7 +181,7 @@ public class WorkFlowController {
 		joinBean.setEmployee_password(employee_password);
 		joinBean.setEmployee_phone(employee_phone);
 		joinBean.setEmployee_last_name(employee_last_name);
-		joinBean.setEmployee_first_name(employee_first_name);
+		joinBean.setEmployee_first_name(employee_first_name); 
 		
 		workFlowService.addEmployee(joinBean);
 		

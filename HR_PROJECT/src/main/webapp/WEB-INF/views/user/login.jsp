@@ -19,27 +19,26 @@ body {
 }
 
 .wrapper {
-	
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: #ebecf0;
-	overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #2C3E50 50%, #fff 50%);
+    overflow: hidden;
 }
 
-.container { 
-	border-radius: 10px;
-	box-shadow: -5px -5px 10px #fff, 5px 5px 10px #babebc;
-	position: absolute;
-	width: 500px;
-	min-height: 480px;
-	overflow: hidden;
+.container {
+    border-radius: 10px;
+    border: 2px solid #2C3E50;
+    position: absolute;
+    width: 500px;
+    min-height: 480px;
+    overflow: hidden;
 }
 
 form {
-	background: #ebecf0;
+	background: #fff;
 	display: flex;
 	flex-direction: column;
 	padding: 0 50px;
@@ -49,15 +48,16 @@ form {
 }
 
 form input {
-	background: #eee;
+	background: #E8E9EC;
 	padding: 16px;
 	margin: 8px 0;
 	width: 85%;
 	border: 0;
 	outline: none;
 	border-radius: 20px;
-	box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff;
 }
+
+input:focus {outline: 2px solid #2C3E50;} /* outline 테두리 속성 수정 */
 
 button {
 	border-radius: 20px;
@@ -74,7 +74,8 @@ button {
 }
 
 .form_btn {
-	box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+	background-color: #2C3E50;
+    color: #fff;
 }
 
 .form_btn:active {
@@ -131,7 +132,7 @@ span {
 					<form:errors path="employee_id" style="color:red"/>
 					<span>초기 비밀번호는 주민번호 앞 6자리입니다</span>
 					<br>
-					<form:button class="form_btn" >로그인</form:button>
+					<form:button class="form_btn"  >로그인</form:button>
 				</form:form>
 			</div>
 		</div>

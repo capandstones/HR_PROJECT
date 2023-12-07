@@ -27,6 +27,7 @@ import attention.mapper.AdminMapper;
 import attention.mapper.CalendarMapper;
 import attention.mapper.EmployeesMapper;
 import attention.mapper.NoticeMapper;
+import attention.mapper.TransferMapper;
 import attention.mapper.UserMapper;
 import attention.mapper.VacationMapper;
 import attention.mapper.WorkFlowMapper;
@@ -149,6 +150,14 @@ public class ServletAppContext implements WebMvcConfigurer {
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
+	
+	@Bean
+	public MapperFactoryBean<TransferMapper> getTransferMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<TransferMapper> factoryBean = new MapperFactoryBean<TransferMapper>(TransferMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
 
 	// ======================================================================
 	@Bean

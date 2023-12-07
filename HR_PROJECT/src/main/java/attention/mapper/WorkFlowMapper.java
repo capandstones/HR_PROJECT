@@ -73,4 +73,9 @@ public interface WorkFlowMapper {
 			+ "#{employee_phone},#{employee_last_name},#{employee_first_name},sysdate)")
 	void addEmployee(UserBean joinBean);
 	
+	@Select("select department_name,employee_position, employee_name, employee_id from HRPROJECT.employees  where line_name=#{department} "
+			+ " order by department_name desc " )
+	public List<UserBean> getAllList(String department);
+
+	
 }

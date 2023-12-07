@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}/"/>  
+<c:set var="root" value="${pageContext.request.contextPath}/" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,73 +21,136 @@
 <style type="text/css">
 /* 전체 테이블 스타일 */
 table {
-  width: 70%;
-  margin: auto; /* 뷰포트 중앙에 위치 */
-  border-collapse: collapse;
-  text-align: center; /* 텍스트 중앙 정렬 */
+	width: 70%;
+	margin: auto; /* 뷰포트 중앙에 위치 */
+	border-collapse: collapse;
+	text-align: center; /* 텍스트 중앙 정렬 */
 }
 
 /* 테이블 헤더 스타일 */
 thead {
-  background-color: gray; /* 회색 처리 */
-  color: white;
+	background-color: gray; /* 회색 처리 */
+	color: white;
 }
 
 /* 검색박스 스타일 */
 #search-box {
-  padding: 0.5rem;
-  margin-top: 1.5rem;
-  margin-right: 1.5rem;
-  margin-bottom: 1.5rem;
+	padding: 0.5rem;
+	margin-top: 1.5rem;
+	margin-right: 1.5rem;
+	margin-bottom: 1.5rem;
 }
 
-label{
-  margin-left:15%
+label {
+	margin-left: 15%
 }
 
 /* 테이블 셀(열) 스타일 */
 td, th {
-  padding: 0.5rem;
-  border: 1px solid black;
+	padding: 0.5rem;
+	border: 1px solid black;
 }
 
+/* 모달 스타일링 */
+#myModal {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	width: 500px; /* 가로 크기 */
+	height: 600px; /* 세로 크기 */
+	overflow-y: auto; /* 세로 스크롤이 필요한 경우 스크롤 표시 */
+}
 
+/* 닫기 버튼 스타일링 */
+#closeBtn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
 </style>
 
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    // 검색창 element를 id값으로 가져오기
-    const payrollSearch = document.querySelector('#search-box');
-    // 테이블의 tbody element를 id값으로 가져오기
-    const payrollTable = document.querySelector('#table tbody');
+	document.addEventListener('DOMContentLoaded', function() {
+		// 검색창 element를 id값으로 가져오기
+		const payrollSearch = document.querySelector('#search-box');
+		// 테이블의 tbody element를 id값으로 가져오기
+		const payrollTable = document.querySelector('#table tbody');
 
-    // 검색창 element에 keyup 이벤트 설정. 글자 입력 시마다 발생.
-    payrollSearch.addEventListener('keyup', function() {
-        // 사용자가 입력한 검색어의 value값을 가져와 소문자로 변경하여 filterValue에 저장
-        const filterValue = payrollSearch.value.toLowerCase();
-        // 현재 tbody 안에 있는 모든 tr element를 가져와 rows에 저장
-        const rows = payrollTable.querySelectorAll('tr');
+		// 검색창 element에 keyup 이벤트 설정. 글자 입력 시마다 발생.
+		payrollSearch.addEventListener('keyup', function() {
+			// 사용자가 입력한 검색어의 value값을 가져와 소문자로 변경하여 filterValue에 저장
+			const filterValue = payrollSearch.value.toLowerCase();
+			// 현재 tbody 안에 있는 모든 tr element를 가져와 rows에 저장
+			const rows = payrollTable.querySelectorAll('tr');
 
-        // tr들을 for문으로 순회
-        for (var i = 0; i < rows.length; i++) {
-            // 현재 순회 중인 tr의 textContent를 소문자로 변경하여 rowText에 저장
-            var rowText = rows[i].textContent.toLowerCase();
-            // rowText가 filterValue를 포함하면 해당 tr은 보여지게 하고, 그렇지 않으면 숨김
-            if (rowText.includes(filterValue)) {
-                rows[i].style.display = '';
-            } else {
-                rows[i].style.display = 'none';
-            }
-        }
-    });
-});
+			// tr들을 for문으로 순회
+			for (var i = 0; i < rows.length; i++) {
+				// 현재 순회 중인 tr의 textContent를 소문자로 변경하여 rowText에 저장
+				var rowText = rows[i].textContent.toLowerCase();
+				// rowText가 filterValue를 포함하면 해당 tr은 보여지게 하고, 그렇지 않으면 숨김
+				if (rowText.includes(filterValue)) {
+					rows[i].style.display = '';
+				} else {
+					rows[i].style.display = 'none';
+				}
+			}
+		});
+	});
+
+	// 모달 열기
+	function openModal(employee_id) {
+		// 모달 엘리먼트 가져오기
+		var modal = document.getElementById('myModal');
+
+		// 리스트 엘리먼트 가져오기
+		var list = document.getElementById('myList');
+
+		// 리스트 초기화
+		list.innerHTML = '';
+
+		// 모달 열기
+		modal.style.display = 'block';
+
+		
+// 		$.ajax({
+// 		    url: '${root}transfer/getinfo/'+employee_id,
+// 		    method: 'GET',
+// 		    dataType: "json",
+// 		    success: function(response) {
+// 		    	var print='';
+// 		    	for (var i = 0; i < response.length; i++) {
+// 		    		print+= "<div  id='list' style='display:flex;'>"
+// 		    		+ "<div>"+response[i].department_name+" · "+response[i].employee_position+" · "+response[i].employee_name+"</div>"
+// 		    		+ "<button id='list' value='" + response[i].employee_id + "' style='position: absolute; right: 80px;' onclick='selectEmployee(\"" + response[i].employee_name + "\", \"" + response[i].department_name + "\", \"" + response[i].employee_position + "\", \"" + response[i].employee_id+ "\")'>선택</button>"
+// 		    		+ "</div>";
+// 		    	}
+// 		    	$('#myList').html(print);
+		    	
+// 		      }
+		
+// 		  });
+		
+		
+		
+		
+	}
+
+	// 모달 닫기
+	function closeModal() {
+		var modal = document.getElementById('myModal');
+		modal.style.display = 'none';
+	}
 </script>
 
 </head>
 
 <c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
-
-
 
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
@@ -98,99 +161,65 @@ document.addEventListener('DOMContentLoaded', function() {
 			style="padding-top: 20px; height: auto; background-color: #fff;">
 			<main>
 				<h1>&nbsp; 인사발령</h1>
-				
-				<label for="search-box">
-  <strong>검색</strong>    
-</label>
-<input type="search" id="search-box">
-<table id="table">
-  <thead>
-    <tr>
-      <th>이름</th>
-      <th>사번</th>
-      <th>부서</th>
-      <th>팀명</th>
-      <th>직위</th>
-      <th>수정</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>안나</td>
-      <td>독일</td>
-      <td>B반</td>
-      <td>B+</td>
-      <td>윤OO</td>
-    </tr>
-    <tr>
-      <td>다케시</td>
-      <td>일본</td>
-      <td>B반</td>
-      <td>B-</td>
-      <td>윤OO</td> 
-    </tr>
-    <tr>
-      <td>셰인</td>
-      <td>아일랜드</td>
-      <td>A반</td>
-      <td>A+</td>
-      <td>김OO</td>
-    </tr>  
-    <tr>
-      <td>강샤오</td>
-      <td>중국</td>
-      <td>C반</td>
-      <td>A-</td>
-      <td>박OO</td> 
-    </tr>
-    <tr>
-      <td>애슐리</td>
-      <td>미국</td>
-      <td>B반</td>
-      <td>B+</td>
-      <td>김OO</td>
-    </tr>   
-    <tr>
-      <td>쳔동</td>
-      <td>대만</td>
-      <td>C반</td>
-      <td>C+</td>
-    <td>박OO</td>
-    <tr>
-      <td>다케시</td>
-      <td>일본</td>
-      <td>C반</td>
-      <td>A-</td>
-      <td>한OO</td>
-    </tr>      
-    <tr>
-      <td>유코</td>
-      <td>일본</td>
-      <td>D반</td>
-      <td>C+</td>
-      <td>한OO</td>
-    </tr>
-  </tbody>
-</table>
 
-
+				<label for="search-box"> <strong>검색</strong>
+				</label> <input type="search" id="search-box">
+				<table id="table">
+					<thead>
+						<tr>
+							<th>이름</th>
+							<th>사번</th>
+							<th>팀명</th>
+							<th>직위</th>
+							<th>수정</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${list}" var='obj'>
+							<tr>
+								<td class="text-center d-none d-md-table-cell">${obj.employee_name}</td>
+								<td class="text-center d-none d-md-table-cell">${obj.employee_id}</td>
+								<td class="text-center d-none d-md-table-cell">${obj.department_name}</td>
+								<td class="text-center d-none d-md-table-cell">${obj.employee_position}</td>
+								<td class="text-center d-none d-md-table-cell">
+								<button id="modal" type="button" onclick="openModal('${obj.employee_id}')">변경</button> 
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</main>
 
 		</div>
 	</div>
+	
+	
+	<!-- 모달1 -->
+<div id="myModal">
+  <!-- 닫기 버튼 -->
+  <div id="closeBtn" onclick="closeModal()">X</div>
+  
+  <!-- 부서 리스트 -->
+
+
+  <div id="myList" style="width: 300px; margin-left: 20px; margin-top: 7px;">
+    <!-- 여기에 동적으로 리스트 아이템이 추가될 것입니다. -->
+  </div>
+</div>
+
 	<script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"></script>
-   <script src="${root }js/scripts.js"></script>
-   <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-      crossorigin="anonymous"></script>
-   <script src="${root }assets/demo/chart-area-demo.js"></script>
-   <script src="${root }assets/demo/chart-bar-demo.js"></script>
-   <script
-      src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-      crossorigin="anonymous"></script>
-   <script src="${root }js/datatables-simple-demo.js"></script>
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="${root }js/scripts.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+		crossorigin="anonymous"></script>
+	<script src="${root }assets/demo/chart-area-demo.js"></script>
+	<script src="${root }assets/demo/chart-bar-demo.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script src="${root }js/datatables-simple-demo.js"></script>
 
 </body>
 </html>

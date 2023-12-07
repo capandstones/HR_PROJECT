@@ -58,4 +58,21 @@ public class RestApiController {
 				
 	}
 	
+	
+	@GetMapping("workflow/getlist/{department}")
+	public List<UserBean> getAllList(@PathVariable String department) {	
+
+
+		
+		System.out.println("사원목록입니다");
+		List<UserBean> emplist = workFlowDao.getAllList(department);
+		
+		System.out.println(emplist.toString());
+		
+		return emplist;
+	}
+	
+	
+	
+	
 }

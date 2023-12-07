@@ -47,4 +47,9 @@ public class WorkFlowDao{
 		workFlowMapper.addEmployee(joinBean);
 	}
 	
+	public List<UserBean> getAllList(String department) {
+		return workFlowMapper.getAllList(department);
+	}
+	
+	
 }
