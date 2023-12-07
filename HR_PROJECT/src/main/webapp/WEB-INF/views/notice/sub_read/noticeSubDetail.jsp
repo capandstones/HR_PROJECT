@@ -103,9 +103,6 @@
 					</ul>
 				</div>
 
-<!-- 				<div class="text-right"> -->
-<%-- 					<a href="${root }notice/sub/write?board_info_idx=${board_info_idx }" class="btn btn-primary">글쓰기</a> --%>
-<!-- 				</div> -->
 
 			</div>
 		</div>

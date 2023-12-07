@@ -96,10 +96,7 @@
 									</c:choose>
 								</ul>
 							</div>
-			
-<!-- 							<div class="text-right"> -->
-<%-- 								<a href="${root }notice/all/write?board_info_idx=${noticeList[0].board_info_idx }" class="btn btn-primary">글쓰기</a> --%>
-<!-- 							</div> -->
+
 			
 						</div>
 					</div>

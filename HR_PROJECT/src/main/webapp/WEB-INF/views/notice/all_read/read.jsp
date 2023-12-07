@@ -13,6 +13,13 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<style>
+.head {
+  margin-left: 5%;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px lightgray;
+}
+</style>
 </head>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <body class="sb-nav-fixed">
@@ -48,7 +55,7 @@
 									</div>
 
 									<c:if test="${readContentBean.content_file != null }">
-
+s
 										<div class="form-group">
 											<label for="board_file">첨부 이미지</label> <img src="${root}upload/${readContentBean.content_file}" width="100%" />
 										</div>
@@ -58,8 +65,7 @@
 									<div class="form-group">
 										<div class="text-right">
 											<a href="${root }notice/all_read/noticeAll?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">목록보기</a>
-<%-- 											<a href="${root }notice/all/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">수정하기</a> --%>
-<%-- 											<a href="${root }notice/all/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-danger">삭제하기</a> --%>
+
 										</div>
 									</div>
 								</div>

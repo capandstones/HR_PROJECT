@@ -37,8 +37,8 @@
             </a>
             <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="${root}notice/noticeAll">전체 공지사항</a>
-                  <a class="nav-link" href="${root}notice/noticeSub">부서 공지사항</a>
+                  <a class="nav-link" href="${root}notice/all_read/noticeAll?board_info_idx=1">전체 공지사항</a>
+                  <a class="nav-link" href="${root}notice/sub_read/noticeSub">부서 공지사항</a>
                </nav>
             </div>
             <a class="nav-link" href="${root}member/chart"> 구성원 </a>
