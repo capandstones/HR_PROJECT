@@ -15,10 +15,10 @@
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
+<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
-		<c:import url="/WEB-INF/views/include/admin_side_menu.jsp" />
+		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
 		<div id="layoutSidenav_content" style="padding-top: 20px; height: auto;">
 			<main>
 				<!-- top 시작 -->
@@ -34,7 +34,7 @@
 						<div class="col-sm-6">
 							<div class="card shadow">
 								<div class="card-body">
-									<form:form action="${root}notice/all/write_pro " method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
+									<form:form action="${root}notice/all_read/write_pro " method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
 										<form:hidden path="content_board_idx" />
 										<form:hidden path="content_writer_id" />
 										<div class="form-group">

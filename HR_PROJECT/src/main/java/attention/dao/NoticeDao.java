@@ -2,6 +2,7 @@ package attention.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -32,12 +33,12 @@ public class NoticeDao {
 		return noticeMapper.getBoardInfoName(board_info_idx);
 	}
 
-	public List<NoticeContentBean> getContentAllList() {
-		return noticeMapper.getContentAllList();
+	public List<NoticeContentBean> getContentAllList(RowBounds rowBounds) {
+		return noticeMapper.getContentAllList(rowBounds);
 	}
 	
-	public List<NoticeContentBean> getContentSubList(int board_info_idx) {
-		return noticeMapper.getContentSubList(board_info_idx);
+	public List<NoticeContentBean> getContentSubList(int board_info_idx, RowBounds rowBounds) {
+		return noticeMapper.getContentSubList(board_info_idx, rowBounds);
 	}
 
 	public NoticeContentBean getContentInfo(int content_idx) {

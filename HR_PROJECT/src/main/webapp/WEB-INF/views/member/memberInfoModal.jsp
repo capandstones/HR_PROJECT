@@ -63,7 +63,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 </style>
 
 <div class="modalWindow hidden" id="modalWindow">
- <button class="closeBtn" onclick="closeModal()" style="float:right;"><i class="fa-solid fa-xmark"></i></button>
+ <button class="closeBtn" onclick="closeModal()" style="float:right;"><i class="fa-solid fa-xmark" ></i></button>
   <div class="mainContainer">
     <div class="employee-div employee-info-profile-wrap">
       <div>

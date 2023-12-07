@@ -56,7 +56,7 @@
 												<c:forEach var="obj" items="${sub_list }">
 													<tr>
 														<td class="text-center">${obj.content_idx }</td>
-														<th><a href='${root }notice/sub/read?board_info_idx=${noticeMenuList[idx.index].board_info_idx}&content_idx=${obj.content_idx}'>${obj.content_subject }</a></th>
+														<th><a href='${root }notice/sub/read?board_info_idx=${noticeMenuList[idx.index].board_info_idx}&content_idx=${obj.content_idx}&page1'>${obj.content_subject }</a></th>
 														<td class="text-center d-none d-xl-table-cell">${obj.content_date }</td>
 													</tr>
 												</c:forEach>

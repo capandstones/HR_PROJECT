@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>공지사항 전체부서</title>
+<title>부서별 공지사항</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
 			<main>
 				<!-- top 시작 -->
 				<div>
-					<h2 class="head">전체 공지사항</h2>
+					<h2 class="head">부서별 공지사항</h2>
 				</div>
 				<hr />
 				<!-- top 끝 -->
@@ -34,9 +34,8 @@
 						<div class="col-sm-6">
 							<div class="card shadow">
 								<div class="card-body">
-									<form:form action="${root}notice/all/write_pro " method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
+									<form:form action="${root}notice/sub_read/write_pro " method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
 										<form:hidden path="content_board_idx" />
-										<form:hidden path="content_writer_id" />
 										<div class="form-group">
 											<form:label path="content_subject">제목</form:label>
 											<form:input path="content_subject" class="form-control" />

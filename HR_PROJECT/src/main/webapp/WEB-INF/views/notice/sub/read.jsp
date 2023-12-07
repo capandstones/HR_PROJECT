@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>공지사항 전체부서</title>
+<title>부서별 공지사항</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -23,7 +22,7 @@
 			<main>
 				<!-- top 시작 -->
 				<div>
-					<h2 class="head">전체 공지사항</h2>
+					<h2 class="head">부서별 공지사항</h2>
 				</div>
 				<hr />
 				<!-- top 끝 -->
@@ -34,36 +33,41 @@
 						<div class="col-sm-6">
 							<div class="card shadow">
 								<div class="card-body">
-									<form:form action="${root}notice/all/write_pro " method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
-										<form:hidden path="content_board_idx" />
-										<form:hidden path="content_writer_id" />
+									<div class="form-group">
+										<label for="board_writer_name">작성자</label> <input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="${readContentBean.content_writer_name}" disabled="disabled" />
+									</div>
+									<div class="form-group">
+										<label for="board_date">작성날짜</label> <input type="text" id="board_date" name="board_date" class="form-control" value="${readContentBean.content_date }" disabled="disabled" />
+									</div>
+									<div class="form-group">
+										<label for="board_subject">제목</label> <input type="text" id="board_subject" name="board_subject" class="form-control" value="${readContentBean.content_subject }" disabled="disabled" />
+									</div>
+									<div class="form-group">
+										<label for="board_content">내용</label>
+										<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize: none" disabled="disabled">${readContentBean.content_text }</textarea>
+									</div>
+
+									<c:if test="${readContentBean.content_file != null }">
+
 										<div class="form-group">
-											<form:label path="content_subject">제목</form:label>
-											<form:input path="content_subject" class="form-control" />
-											<form:errors path='content_subject' style='color:red;' />
+											<label for="board_file">첨부 이미지</label> <img src="${root}upload/${readContentBean.content_file}" width="100%" />
 										</div>
-										<div class="form-group">
-											<form:label path="content_text">내용</form:label>
-											<form:textarea path="content_text" class="form-control" rows="10" style="resize:none" />
-											<form:errors path='content_text' style='color:red' />
+
+									</c:if>
+
+									<div class="form-group">
+										<div class="text-right">
+											<a href="${root }notice/sub/noticeSub?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">목록보기</a>
+											<a href="${root }notice/sub/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">수정하기</a>
+											<a href="${root }notice/sub/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-danger">삭제하기</a>
 										</div>
-										<div class="form-group">
-											<form:label path="content_file">첨부 이미지</form:label>
-											<form:input type='file' path='upload_file' class="form-control" accept="image/*" />
-										</div>
-										<div class="form-group">
-											<div class="text-right">
-												<form:button type="submit" class="btn btn-primary">작성하기</form:button>
-											</div>
-										</div>
-									</form:form>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
 				</div>
-
 			</main>
 		</div>
 	</div>

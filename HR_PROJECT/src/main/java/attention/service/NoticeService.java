@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -40,7 +41,7 @@ public class NoticeService {
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
 
-	public List<NoticeBoardInfoBean> getNoticeMenuList() {
+	public List<NoticeBoardInfoBean> getNoticeMenuList( ) {
 		return noticeDao.getNoticeMenuList();
 	}
 	
@@ -84,14 +85,21 @@ public class NoticeService {
 		return noticeDao.getBoardInfoName(board_info_idx);
 	}
 
-	public List<NoticeContentBean> getContentAllList() {
-//		int start = (page - 1) * page_listcnt;
-//		RowBounds rowBounds = new RowBounds(start, page_listcnt);
-		return noticeDao.getContentAllList();
+	public List<NoticeContentBean> getContentAllList(int page) {
+		int start = (page - 1) * page_listcnt;
+		RowBounds rowBounds = new RowBounds(start, page_listcnt);
+		return noticeDao.getContentAllList(rowBounds);
+	}
+	
+	public List<NoticeContentBean> getContentSubList(int board_info_idx, int page) {
+		int start = (page - 1) * page_listcnt;
+		RowBounds rowBounds = new RowBounds(start, page_listcnt);
+		return noticeDao.getContentSubList(board_info_idx, rowBounds);
 	}
 	
 	public List<NoticeContentBean> getContentSubList(int board_info_idx) {
-		return noticeDao.getContentSubList(board_info_idx);
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return noticeDao.getContentSubList(board_info_idx, rowBounds);
 	}
 
 	public NoticeContentBean getContentInfo(int content_idx) {

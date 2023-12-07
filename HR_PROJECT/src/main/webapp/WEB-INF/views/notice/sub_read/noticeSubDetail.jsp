@@ -23,10 +23,10 @@
 
 
 </head>
-<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
+<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
-		<c:import url="/WEB-INF/views/include/admin_side_menu.jsp" />
+		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
 		<div id="layoutSidenav_content" style="padding-top: 20px; height: auto;">
 			<main>
 				<!-- top 시작 -->
@@ -54,7 +54,7 @@
 							<tr>
 								<td class="text-center d-none d-md-table-cell">${obj.content_idx}</td>
 								<td>
-									<a href="${root}notice/sub/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}">${obj.content_subject}</a>
+									<a href="${root}notice/sub_read/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}">${obj.content_subject}</a>
 								</td>
 								<td class="text-center d-none d-md-table-cell">${obj.content_writer_name}</td>
 								<td class="text-center d-none d-md-table-cell">${obj.content_date}</td>
@@ -70,7 +70,7 @@
 								<li class="page-item disabled"><a href="#" class="page-link">이전</a></li>
 							</c:when>
 							<c:otherwise>
-								<li href="${root }notice/sub/noticeSubDetail?board_info_idx=${board_info_idx}&page=${pageBean.prevPage}" class="page-item disabled"><a href="#" class="page-link">이전</a></li>
+								<li href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${pageBean.prevPage}" class="page-item disabled"><a href="#" class="page-link">이전</a></li>
 							</c:otherwise>
 						</c:choose>
 
@@ -80,7 +80,7 @@
 									<li class="page-item active"><a href="#" class="page-link">${idx }</a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a href="${root }notice/sub/noticeSubDetail?board_info_idx=${board_info_idx}&page=${idx}" class="page-link">${idx }</a></li>
+									<li class="page-item"><a href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${idx}" class="page-link">${idx }</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -90,7 +90,7 @@
 								<li class="page-item disabled"><a href="#" class="page-link">다음</a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item"><a href="${root }notice/sub/noticeSubDetail?board_info_idx=${board_info_idx}&page=${pageBean.nextPage}" class="page-link">다음</a></li>
+								<li class="page-item"><a href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${pageBean.nextPage}" class="page-link">다음</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>
@@ -103,9 +103,9 @@
 					</ul>
 				</div>
 
-				<div class="text-right">
-					<a href="${root }notice/sub/write?board_info_idx=${board_info_idx }" class="btn btn-primary">글쓰기</a>
-				</div>
+<!-- 				<div class="text-right"> -->
+<%-- 					<a href="${root }notice/sub/write?board_info_idx=${board_info_idx }" class="btn btn-primary">글쓰기</a> --%>
+<!-- 				</div> -->
 
 			</div>
 		</div>

@@ -18,7 +18,7 @@
             </a>
             <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="${root}notice/all/noticeAll">전체 공지사항</a>
+                  <a class="nav-link" href="${root}notice/all/noticeAll?board_info_idx=1">전체 공지사항</a>
                   <a class="nav-link" href="${root}notice/sub/noticeSub">부서 공지사항</a>
                </nav>
             </div>
