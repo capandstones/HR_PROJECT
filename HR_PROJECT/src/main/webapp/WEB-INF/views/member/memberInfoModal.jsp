@@ -2,6 +2,7 @@
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
+<script src="https://kit.fontawesome.com/f07bfb696a.js" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
    const closeModal = () => {
@@ -59,11 +60,12 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   .closeBtn {
      background-color: #FCFCFC;
      border: none;
+     float: right;
   }
 </style>
 
 <div class="modalWindow hidden" id="modalWindow">
- <button class="closeBtn" onclick="closeModal()" style="float:right;"><i class="fa-solid fa-xmark" ></i></button>
+ <button class="closeBtn" onclick="closeModal()"><i class="fa-solid fa-xmark" ></i></button>
   <div class="mainContainer">
     <div class="employee-div employee-info-profile-wrap">
       <div>

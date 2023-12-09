@@ -40,6 +40,10 @@ public class UserService {
 		   
 		   modifyUserBean.setEmployee_id(tempModifyUserBean.getEmployee_id());
 		   modifyUserBean.setEmployee_name(tempModifyUserBean.getEmployee_name());
+		   modifyUserBean.setEmployee_email(tempModifyUserBean.getEmployee_email());
+		   modifyUserBean.setEmployee_phone(tempModifyUserBean.getEmployee_phone());
+		   modifyUserBean.setEmployee_address(tempModifyUserBean.getEmployee_address());
+		   
 		   modifyUserBean.setEmployee_id(loginUserBean.getEmployee_id());
 		
 		   

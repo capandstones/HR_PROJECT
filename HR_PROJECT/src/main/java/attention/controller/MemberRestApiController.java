@@ -1,9 +1,11 @@
 package attention.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,9 +27,17 @@ public class MemberRestApiController {
 	
 	@PostMapping("/getEmpInfoDetail")
 	EmployeesBean getEmpInfoDetail(@RequestBody String employeeInfoKey) {
-		System.out.println("[ /HR_Project/getEmpInfoDetail ]");
-		System.out.println("employeeInfoKey: " + employeeInfoKey);
-		
 		return employeesMapper.getEmpInfoDetail(employeeInfoKey);
 	}
+	
+	@GetMapping("/getDeptLineNameList")
+	public List<String> getDeptLineNameList() {
+		return employeesMapper.getDeptLineNameList();
+	}
+	
+	@GetMapping("/getDeptNameList/{deptLineName}")
+	public List<String> getDeptNameList(@PathVariable String deptLineName) {
+		return employeesMapper.getDeptNameList(deptLineName);
+	}
+	
 }

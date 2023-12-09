@@ -46,6 +46,18 @@
                   <form:label path="employee_id">아이디</form:label>
                   <form:input path="employee_id" class="form-control" readonly="true" style="background: #D1D1D1;"/>
                </div>
+                <div class="form-group">
+                  <form:label path="employee_email">이메일</form:label>
+                  <form:input path="employee_email" class="form-control"/>
+               </div>
+                <div class="form-group">
+                  <form:label path="employee_phone">전화번호</form:label>
+                  <form:input path="employee_phone" class="form-control"/>
+               </div>
+                <div class="form-group">
+                  <form:label path="employee_address">주소</form:label>
+                  <form:input path="employee_address" class="form-control"/>
+               </div>
                <div class="form-group">
                   <form:label path="employee_password">비밀번호</form:label>
                   <form:password path="employee_password" class="form-control"/>

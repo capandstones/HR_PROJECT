@@ -64,7 +64,11 @@
 
 									<div class="form-group">
 										<div class="text-right">
-											<a href="${root }notice/sub_read/noticeSub?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">목록보기</a>
+											<a href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">목록보기</a>
+                                    <c:if test="${canCRUD }">
+											<a href="${root }notice/sub_read/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">수정하기</a>
+											<a href="${root }notice/sub_read/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-danger">삭제하기</a>
+                                    </c:if>
 										</div>
 									</div>
 								</div>

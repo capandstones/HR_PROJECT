@@ -19,7 +19,7 @@ public interface UserMapper {
             "where employee_id=#{employee_id}")
     UserBean getModifyUserInfo(String employee_id);
     
-    @Update("update HRPROJECT.employees set employee_password=#{employee_password} where employee_id=#{employee_id}")
+    @Update("update HRPROJECT.employees set employee_password=#{employee_password}, employee_email=#{employee_email}, employee_phone=#{employee_phone}, employee_address=#{employee_address} where employee_id=#{employee_id}")
     void modifyUserInfo(UserBean modifyUserBean);
     
     @Select("select employee_id, employee_name, department_name, employee_position from HRPROJECT.employees "
