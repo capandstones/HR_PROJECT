@@ -97,13 +97,6 @@
 								</ul>
 							</div>
 			
-							<div class="d-block d-md-none">
-								<ul class="pagination justify-content-center">
-									<li class="page-item"><a href="#" class="page-link">이전</a></li>
-									<li class="page-item"><a href="#" class="page-link">다음</a></li>
-								</ul>
-							</div>
-			
 							<div class="text-right">
 								<a href="${root }notice/all/write?board_info_idx=${noticeList[0].board_info_idx }" class="btn btn-primary">글쓰기</a>
 							</div>

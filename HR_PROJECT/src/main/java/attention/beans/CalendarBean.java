@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class CalendarBean {
    
+   private int cal_idx;
    private String line_name;
    private String cal_start_date;
    private String cal_end_date;
@@ -14,5 +15,16 @@ public class CalendarBean {
    private String cal_color;
    private String cal_content;
    private String cal_category; 
+   
+   public CalendarBean() {
+      // TODO Auto-generated constructor stub
+   }
+   
+   /*
+    * public static String formatLocalDateTime(LocalDateTime dateTime) {
+    * DateTimeFormatter formatter =
+    * DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"); return
+    * dateTime.format(formatter); }
+    */
    
 }

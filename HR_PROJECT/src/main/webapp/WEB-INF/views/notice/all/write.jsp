@@ -14,6 +14,13 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<style>
+.head {
+  margin-left: 5%;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px lightgray;
+}
+</style>
 </head>
 <c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 <body class="sb-nav-fixed">
@@ -36,6 +43,7 @@
 								<div class="card-body">
 									<form:form action="${root}notice/all/write_pro " method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
 										<form:hidden path="content_board_idx" />
+										<form:hidden path="content_writer_id" />
 										<div class="form-group">
 											<form:label path="content_subject">제목</form:label>
 											<form:input path="content_subject" class="form-control" />

@@ -1,12 +1,185 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var="root" value="${pageContext.request.contextPath}/" />
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>결혼</title>
+
+<!-- External Libraries -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css">
+<link rel="stylesheet" href="${root}css/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+   <div id="layoutSidenav_content" style="padding: 20px; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+      <div class="card shadow" style="width: 400px;">
+         <div class="card-body">
+            <form action="${root}vacation/submit_pro" method="post" enctype="multipart/form-data">
+               <input type="hidden" id="employee_id" name="employee_id" value="${employee_id }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
+               <input type="hidden" id="line_name" name="line_name" value="${line_name }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
+               <div class="mb-3">
+                  <label for="vacationType" class="form-label">휴가종류:</label>
+                  <input type="text" id="vacation_name" name="vacation_name" value="결혼" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
+               </div>
+               <div class="mb-3">
+                  <label for="employeeName" class="form-label">이름:</label>
+                  <input type="text" id="employee_name" name="employee_name" value="${username }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
+               </div>
+               <div class="mb-3">
+                  <label for="approver" class="form-label">결재자:</label>
+                  <input type="text" id="employee_id_approver" name="employee_id_approver" class="form-control" required>
+               </div>
+               <div class="mb-3">
+                  <label for="reference" class="form-label">참조:</label>
+                  <input type="text" id="employee_id_referrer" name="employee_id_referrer" class="form-control" required>
+               </div>
+               <div class="mb-3">
+                  <label for="vacationDate" class="form-label">휴가일자:</label>
+                  <div class="row">
+                     <div class="col">
+                        <input type="date" id="vacation_start_date" name="vacation_start_date" class="form-control" required>
+                     </div>
+                     <div class="col">
+                        <input type="date" id="vacation_end_date" name="vacation_end_date" class="form-control" readonly="readonly" required>
+                     </div>
+                  </div>
+               </div>
+               <div class="mb-3">
+                  <label for="vacationDays" class="form-label">휴가일수:</label>
+                  <input type="number" id="vacation_days" name="vacation_days" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
+               </div>
+               <div class="mb-3">
+                  <label for="vacationReason" class="form-label">휴가내용:</label>
+                  <textarea id="vacation_reason" name="vacation_reason" rows="4" class="form-control" required></textarea>
+               </div>
+               <div class="mb-3">
+                  <label for="attachment" class="form-label">첨부파일:</label>
+                  <input type="file" id="attachment" name="attachment" class="form-control" required>
+               </div>
+               <div class="mb-3">
+               <input type="submit" value="휴가 신청">
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      $(document).ready(
+            function() {
+               $("#vacation_start_date").change(
+                     function() {
+                        var startDate = new Date($(this).val());
+
+                        var endDate = calculateEndDate(startDate, 5);
+
+                        $("#vacation_end_date")
+                              .val(formatDate(endDate));
+
+                        var totalDays = getWeekdaysBetweenDates(
+                              startDate, endDate);
+                        $("#vacation_days").val(totalDays);
+                     });
+
+               function calculateEndDate(startDate, daysToAdd) {
+                  var currentDate = new Date(startDate);
+                  var addedDays = 0;
+
+
+                  while (addedDays < daysToAdd) {
+                     currentDate.setDate(currentDate.getDate() + 1);
+
+                     if (currentDate.getDay() !== 0
+                           && currentDate.getDay() !== 5) {
+                        addedDays++;
+                     }
+                  }
+
+                  return currentDate;
+               }
+
+               function getWeekdaysBetweenDates(startDate, endDate) {
+                  var daysDiff = Math.round((endDate - startDate)
+                        / (1000 * 60 * 60 * 24)) + 1;
+                  var weekdays = 0;
+
+                  for (var i = 0; i < daysDiff; i++) {
+                     var currentDate = new Date(startDate);
+                     currentDate.setDate(startDate.getDate() + i);
+
+                     if (currentDate.getDay() !== 0
+                           && currentDate.getDay() !== 5) {
+                        weekdays++;
+                     }
+                  }
+
+                  return weekdays;
+               }
+
+               function formatDate(date) {
+                  var dd = date.getDate();
+                  var mm = date.getMonth() + 1;
+                  var yyyy = date.getFullYear();
+
+                  if (dd < 10) {
+                     dd = '0' + dd;
+                  }
+
+                  if (mm < 10) {
+                     mm = '0' + mm;
+                  }
+
+                  return yyyy + '-' + mm + '-' + dd;
+               }
+            });
+   </script>
+
+   <script>
+    $(document).ready(function () {
+        $("form").submit(function (event) {
+           event.preventDefault();
+            var formData = new FormData();
+            formData.append("employee_id", $("#employee_id").val());
+            formData.append("line_name", $("#line_name").val());
+            formData.append("vacation_name", $("#vacation_name").val());
+            formData.append("employee_name", $("#employee_name").val());
+            formData.append("employee_id_approver", $("#employee_id_approver").val());
+            formData.append("employee_id_referrer", $("#employee_id_referrer").val());
+            formData.append("vacation_start_date", $("#vacation_start_date").val());
+            formData.append("vacation_end_date", $("#vacation_end_date").val());
+            formData.append("vacation_days", $("#vacation_days").val());
+            formData.append("vacation_reason", $("#vacation_reason").val());
+            formData.append("vacation_attachment", $("#vacation_attachment").val());
+            console.log("FormData:", formData);
+
+            $.ajax({
+                type: "POST",
+                url: "submit_pro",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert('신청이 완료되었습니다.');
+                    window.close();
+                },
+                error: function (error) {
+                    alert('신청이 완료되었습니다');
+                    console.error(error);
+                    window.close();
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
