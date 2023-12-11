@@ -26,12 +26,8 @@ public class EmployeesBean {
    private String employee_first_name;
    private String employee_profile_picture;
 
-   
-
    public EmployeesBean() {
       
    }
 
-
-   
 }

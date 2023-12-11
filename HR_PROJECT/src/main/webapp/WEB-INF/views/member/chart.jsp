@@ -116,13 +116,13 @@
 	     deptLineNameList.forEach((lineName) => {
 	    	
 	        html += '<li class="department-container">';
-	        html += '  <button class="depth1 department-line-name" onclick="filterShowEmployeeCard(\''+ lineName + '\')">' + lineName + '</button>';
+	        html += '  <button class="depth1 department-line-name" onclick="filterShowEmployeeCard(\''+ lineName + '\')"><i class="fa-solid fa-user-group"></i> ' + lineName + '</button>';
 	        html += '  <ul class="department-name-container">';
 	
 	        const deptNameList = getDeptNameList(lineName);
 	    	
 	        deptNameList.forEach((deptName) => {
-	            html += '<li class="department-name-li"><button class="depth2 department-name">' + deptName + '</button></li>';
+	            html += '<li class="department-name-li depth2 department-name"> - ' + deptName + '</li>';
 	        });
 
 	        html += '  </ul>';
@@ -202,16 +202,15 @@
          html += '      </div>';
          html += '      <div class="employee-info-wrap">';
          html += '         <p class="employee-name">' + item.employee_name + '  (' + item.employee_first_name + ' ' + item.employee_last_name + ')</p>';
-         html += '         <div class="departmentName">' + item.department_name + '</div>';
-         html += '         <div class="employeePosition">' + item.employee_position + '</div>';
+         html += '         <div class="departmentName"><i class="fa-solid fa-user-group"></i> 부서 : ' + item.department_name + '</div>';
+         html += '         <div class="employeePosition"><i class="fa-solid fa-building-user"></i> 직책 : ' + item.employee_position + '</div>';
          html += '         <div class="employee-wrap-btn">';
-         html += '            <div class="employee-inner-status-wrap">';
+         html += '            <div class="employee-inner-status-wrap"><i class="fa-solid fa-briefcase"></i>&nbsp&nbsp ';
+         html += '               <span class="data-employee-status">' + item.employee_status + '&nbsp;</span>';
          if(item.employee_status === '재직중') {
-         	html += '         <div id="divCircle" class="employee-inner-status-icon status-active"></div>';
-         } else {
-        	html += '         <div id="divCircle" class="employee-inner-status-icon status-inactive"></div>';
-         }
-         html += '               <span class="data-employee-status">' + item.employee_status + '</span>';
+         	html += '         <div id="divCircle" class="employee-inner-status-icon status-active"></div>';}
+         else {
+        	html += '         <div id="divCircle" class="employee-inner-status-icon status-inactive"></div>';}
          html += '            </div>';
          html += '         </div>';
          html += '      </div>';
@@ -222,7 +221,6 @@
       }
       
       
-    
       // 모달 띄우기
       const showEmployeeInfoModal = (employeeInfoKey) => {
     	  
@@ -251,7 +249,11 @@
             const employeePStartDate = document.querySelector('.employee-p-start-date');
             const employeePStatus = document.querySelector('.employee-p-status');
             
-            employeePDepartment.innerText = employeeInfo.department_name;
+            if (employeeInfo.line_name !== employeeInfo.department_name){
+            	employeePDepartment.innerText = employeeInfo.line_name + ' > ' + employeeInfo.department_name;
+            } else {
+            	employeePDepartment.innerText = employeeInfo.department_name;
+            }
             employeePPhone.innerText = employeeInfo.employee_phone;
             employeePStartDate.innerText = employeeInfo.employee_start_date;
             employeeStatus.innerText = employeeInfo.employee_status;

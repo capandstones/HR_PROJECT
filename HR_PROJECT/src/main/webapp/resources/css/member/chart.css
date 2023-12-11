@@ -59,39 +59,35 @@ ul {
   margin-left: 0px;
 }
 .depth1 {
-  width: 100px;
-  height: 40px;
+/*   text-align:left; */
+  width: 120px;
+  height: 35px;
   margin-top: 15px;
-  color: black;
-  background: white;
-  border: 1px solid black;
-  font-weight: bold;
-  font-size: 19px;
-/*   box-shadow: 3px 3px 3px 3px lightgray; */
-  text-shadow: 2px 2px 2px lightgray;
-}
-.depth2 {
-  width: 100px;
-  height: 30px;
-  margin-left: 15px;
-  background: white;
-  color : #415971;
-/*   border: 1px solid black; */
+  color: #3C5087;
+  background: #D2E1FF;
+  border: none;
   font-weight: bold;
   font-size: 17px;
-/*   box-shadow: 2px 2px 2px 2px lightgray; */
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 2px lightgray;
+}
+.depth2 {
+  width: 120px;
+  height: 30px;
+  margin-left: 15px;
+  color : #3C5087;
+  background: white;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
   text-shadow: 1px 1px 1px lightgray;
   margin-top: 10px;
+  cursor: context-menu;
 }
-.depth1,
-.depth2 {
-  cursor: pointer;
-}
+
+
 .depth1:hover {
-  background: azure;
-}
-.depth2:hover {
-  background: azure;
+  background: #96C7ED;
 }
 
 /* 버튼을 안누른 기본 레이아웃은 숨겨짐 */
@@ -158,15 +154,15 @@ ul {
   transform: translate(-50%, -50%);
   padding: 10px;
   background-color: #fcfcfc;
-  box-shadow: 3px 3px 3px 3px lightgray;
-  text-shadow: 2px 2px 2px lightgray;
+  box-shadow: 2px 2px 2px 2px lightgray;
+/*   text-shadow: 2px 2px 2px lightgray; */
   width: 650px;
   height: 400px;
   transform: translate(-50%, -50%);
   z-index: 1;
   display: flex;
   display: none;
-  border: 1px solid black;
+  border: 1px solid lightgray;
 }
 .modal_userImage {
   width: 150px;
@@ -214,7 +210,7 @@ ul {
 }
 .employee-info-detail-wrap {
   display: flex;
-  background-color: #f2f2f2;
+  background-color: #D2E1FF;
   width: 400px;
   margin: 0px;
   margin-top: 16px;
@@ -223,7 +219,13 @@ ul {
 .employee-info-detail-txt {
   margin: 20px;
   display: flex;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.employee-info-detail-txt2 {
+  margin: 20px;
+  display: flex;
+  font-weight: 520;
 }
 
 .employee-inner-button-wrap {
@@ -240,9 +242,47 @@ ul {
 }
 
 .empInfoDetailTxt {
-  color: #848484;
-  font-weight: 600;
+  color: black;
+  font-weight: 500;
 }
+
+.employee-div {
+    margin: 10px 0px;
+  }
+  .employee-div p {
+    margin: 0px;
+  }
+  .employee-info-profile-wrap {
+    width: 200px;
+  }
+  .employee-info-profile-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+  }
+  .employee-span-name {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .employee-span-status{
+  	color: #3C5087;
+  	font-weight: 700;
+  }
+  
+  .employee-info-txt {
+    color: #3C5A91;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .employee-info-table td {
+    padding: 5px 8px;
+  }
+  .closeBtn {
+     background-color: #FCFCFC;
+     border: none;
+     float: right;
+  }
+
 /* ---------------- 모달 내부 스타일링 끝 ------------------*/
 
 .empTeam1 {
@@ -257,7 +297,7 @@ ul {
 
 .employee-ul {
   list-style-type: none;
-  margin-left: 100px;
+  margin-left: 60px;
   margin-bottom: 20px;
   padding: 0;
   display: grid;
@@ -267,15 +307,14 @@ ul {
   margin: 10px;
   margin-right: 30px;
   cursor: pointer;
-  background-color: #fcfcfc;
-/*   box-shadow: 3px 3px 3px 3px lightgray; */
-  text-shadow: 2px 2px 2px lightgray;
-  border: 1px solid black;
+  background-color: #EBFBFF;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 2px 2px lightgray;
 }
 .employee-profile-wrap {
   display: flex;
   justify-content: space-between;
-  width: 380px;
+  width: 350px;
   margin: 8px;
 }
 .employee-profile-inner-img {
@@ -285,12 +324,15 @@ ul {
 .employee-list-profile {
   width: 115px;
   height: 130px;
+  border: 1px solid lightgray;
+  border-radius: 10%;
 }
 .employee-info-wrap {
   float: left;
   position: relative;
-  width: 230px;
+  width: 220px;
   top: 7px;
+  margin-left: 10px;
 }
 .employee-name {
   margin-bottom: 10px;
@@ -307,6 +349,7 @@ ul {
 .employee-inner-status-wrap {
   display: flex;
   align-items: center;
+  font-size: 14px;
 }
 
 .employee-inner-status-wrap-modal {
@@ -321,10 +364,16 @@ ul {
 }
 .departmentName {
   margin-bottom: 5px;
+  font-size: 14px;
 }
+
+.employeePosition {
+	font-size: 14px;
+}
+
 .status-active {
-  border: 2px solid green;
+  border: 3px solid #64CD3C;
 }
 .status-inactive {
-  border: 2px solid red;
+  border: 3px solid red;
 }

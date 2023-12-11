@@ -30,39 +30,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 //    }
    
 </script>
-<style>
-  .employee-div {
-    margin: 10px 0px;
-  }
-  .employee-div p {
-    margin: 0px;
-  }
-  .employee-info-profile-wrap {
-    width: 200px;
-  }
-  .employee-info-profile-img {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-  }
-  .employee-span-name {
-    font-size: 20px;
-    font-weight: 800;
-  }
-  .employee-info-txt {
-    color: #888;
-    font-size: 14px;
-    font-weight: 800;
-  }
-  .employee-info-table td {
-    padding: 5px 8px;
-  }
-  .closeBtn {
-     background-color: #FCFCFC;
-     border: none;
-     float: right;
-  }
-</style>
 
 <div class="modalWindow hidden" id="modalWindow">
  <button class="closeBtn" onclick="closeModal()"><i class="fa-solid fa-xmark" ></i></button>
@@ -104,11 +71,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
            <p class="employee-info-detail-txt empInfoDetailTxt">입사일</p>
         </div>
         <div>
-           <p class="employee-info-detail-txt">(주)Attention</p>
-           <p class="employee-info-detail-txt employee-p-department">디자인부</p>
-         <p class="employee-info-detail-txt employee-p-phone">010-0000-0000</p>
-           <p class="employee-info-detail-txt employee-p-start-date">20-05-10</p>
-           
+           <p class="employee-info-detail-txt2">(주)Attention</p>
+           <p class="employee-info-detail-txt2 employee-p-department">디자인부</p>
+         <p class="employee-info-detail-txt2 employee-p-phone">010-0000-0000</p>
+           <p class="employee-info-detail-txt2 employee-p-start-date">20-05-10</p>  
         </div>
      </div>
   </div>
