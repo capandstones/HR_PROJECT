@@ -37,7 +37,8 @@ public interface WorkFlowMapper {
 			@Param("employee_id") String employee_id);
 
 	// read
-	@Select("select a1.draft_idx, a1.draft_subject,a1.draft_text,a1.draft_file, a1.looker1_opinion,a1.looker2_opinion,a1.looker3_opinion,"
+	@Select("select a1.draft_idx, a1.draft_subject,a1.draft_text,a1.draft_file,a1.draft_writer_id, a1.looker1_opinion,a1.looker2_opinion,a1.looker3_opinion, "
+			+ " a1.looker1_name, a1.looker2_name, a1.looker3_name, a1.looker1_comment, a1.looker2_comment, a1.looker3_comment, "
 			+ " a1.draft_looker_id1, a1.draft_looker_id2, a1.draft_looker_id3, a2.employee_position, "
 			+ " a2.employee_name as draft_writer_name, a2.department_name, "
 			+ "       to_char(a1.draft_date, 'YYYY-MM-DD') as draft_date, "
@@ -47,14 +48,24 @@ public interface WorkFlowMapper {
 	DraftBean getContentInfo(int draft_idx);
 	
 	
-	@Update("UPDATE HRPROJECT.draft_table "
-			+ "SET looker1_opinion = CASE WHEN #{employee_id} = draft_looker_id1 THEN #{opinion} ELSE looker1_opinion END, "
+	@Update("UPDATE  HRPROJECT.draft_table "
+			+ "SET "
+			+ "    looker1_opinion = CASE WHEN #{employee_id} = draft_looker_id1 THEN #{opinion} ELSE looker1_opinion END, "
+			+ "    looker1_name = CASE WHEN #{employee_id} = draft_looker_id1 THEN #{employee_name} ELSE looker1_name END, "
+			+ "    looker1_comment = CASE WHEN #{employee_id} = draft_looker_id1 THEN #{comment} ELSE looker1_comment END, "
 			+ "    looker2_opinion = CASE WHEN #{employee_id} = draft_looker_id2 THEN #{opinion} ELSE looker2_opinion END, "
-			+ "    looker3_opinion = CASE WHEN #{employee_id} = draft_looker_id3 THEN #{opinion} ELSE looker3_opinion END "
-			+ " WHERE draft_idx = #{draft_idx}")
+			+ "    looker2_name = CASE WHEN #{employee_id} = draft_looker_id2 THEN #{employee_name} ELSE looker2_name END, "
+			+ "    looker2_comment = CASE WHEN #{employee_id} = draft_looker_id2 THEN #{comment} ELSE looker2_comment END, "
+			+ "    looker3_opinion = CASE WHEN #{employee_id} = draft_looker_id3 THEN #{opinion} ELSE looker3_opinion END, "
+			+ "    looker3_name = CASE WHEN #{employee_id} = draft_looker_id3 THEN #{employee_name} ELSE looker3_name END, "
+			+ "    looker3_comment = CASE WHEN #{employee_id} = draft_looker_id3 THEN #{comment} ELSE looker3_comment END "
+			+ "WHERE "
+			+ "    draft_idx = #{draft_idx}")
 	void changeOpinion(@Param("draft_idx") int draft_idx,
 					   @Param("employee_id") String employee_id,
-					   @Param("opinion") int opinion);
+					   @Param("opinion") int opinion,
+					   @Param("employee_name") String employee_name,
+					   @Param("comment") String comment);
 	
 	
 	@Update("UPDATE HRPROJECT.draft_table "

@@ -445,9 +445,11 @@ button#delete:hover {
 
 
 function goApproval(draft_idx, opinion) {
+	
+	 var comment = $("#commentInput").val();
     // Ajax 요청을 보내서 서버에서 업데이트를 처리
     $.ajax({
-        url: "${root}document/approval/"+draft_idx+"/"+opinion,
+        url: "${root}document/approval/"+draft_idx+"/"+opinion+"/"+comment,
         type: "GET",
         dataType: "text",
         success: function(response) {
@@ -541,14 +543,84 @@ $(document).ready(function() {
                              "<span><i class='bi bi-calendar4-event'></i></span> " +
                              "<span class='font' style='margin-right: 10px;'>&nbsp;&nbsp;희망기한</span> " +
                              "<span style='font-size: 11pt; color: #262626;'>" + details.draft_hope_date + "</span>" +
-                             "</div>";
+                             "</div>"+
+                             "</p>" +
+                             "<span><i class='bi bi-chat-left-text'></i></span> " +
+                             "<span class='font' >&nbsp;&nbsp;히스토리</span>" +
+							 "<div style='margin-top:15px;'>";	
+                             if(details.looker1_opinion==1){
+                            	 output2 += "<div style='display:flex; '>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker1_name+"</div><div>님이 승인하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker1_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker1_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                   	 
+                             }
+                             if(details.looker1_opinion==2){
+                            	 output2 += "<div style='display:flex;'>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker1_name+"</div><div>님이 반려하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker1_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker1_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                      	 
+                             }
+                             if(details.looker2_opinion==1){
+                            	 output2 += "<div style='display:flex; '>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker2_name+"</div><div>님이 승인하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker2_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker2_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                         	 
+                             }
+                             if(details.looker2_opinion==2){
+                            	 output2 += "<div style='display:flex;'>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker2_name+"</div><div>님이 반려하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker2_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker2_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                        	 
+                             }
+                             if(details.looker3_opinion==1){
+                            	 output2 += "<div style='display:flex; '>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker3_name+"</div><div>님이 승인하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker3_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker3_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                         	 
+                             }
+                             if(details.looker3_opinion==2){
+                            	 output2 += "<div style='display:flex;'>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker3_name+"</div><div>님이 반려하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker3_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker3_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                        	 
+                             }
+                             output2 += "</div>";
                              if(((employee_id==details.draft_looker_id1)||(employee_id==details.draft_looker_id2)||(employee_id==details.draft_looker_id3))&&(draft_info_idx!=2)){
-                            	 output2 += "<button type='button' id='denial' class='bhover' onclick='goApproval("+details.draft_idx+", 2)'>반려</button>" +
+                            	 output2 += "<div>"+
+                            	    "<label for='commentInput' style='font-weight:bold;'>코멘트 :&nbsp;&nbsp</label>"+
+                            	   	"<input type='text' id='commentInput' placeholder='코멘트를 입력하세요' style='width:500px; outline:none'>"+
+                            		"</div>"+
+                            		"<button type='button' id='denial' class='bhover' onclick='goApproval("+details.draft_idx+", 2)'>반려</button>" +
                             	    "&nbsp;" +
                             	    "<button type='button' id='accept' class='bhover' onclick='goApproval("+details.draft_idx+", 1)'>✓승인</button>";
                              }
-                             output2 += "</div>" +
-                             "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
+                             output2 += "</div>";
+                             if(details.draft_file!=null){
+                            	 output2 += "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
                              "<p class='p' data-bs-toggle='collapse' role='button' aria-expanded='false' aria-controls='collapseExample'>" +
                              "<div><i class='bi bi-paperclip'></i></span>&nbsp; <span class='font'> 첨부파일 </span> <span class='font' style='float: right;'> </div>" +
                              
@@ -556,6 +628,7 @@ $(document).ready(function() {
                              "<img src=\"${root}upload/"+details.draft_file+"\" width=\"60%\"/>	"+
                              "</div>" +
                              "</div>";
+                             }
                             
                             $('#rightFirst').html(output2);
                                          	

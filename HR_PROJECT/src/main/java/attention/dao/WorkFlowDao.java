@@ -31,10 +31,10 @@ public class WorkFlowDao{
 		return workFlowMapper.getContentInfo(draft_idx);
 	}
 	
-	public void changeOpinion(int draft_idx,String employee_id, int opinion) {
+	public void changeOpinion(int draft_idx,String employee_id, int opinion,String employee_name,String comment) {
 		
 		System.out.println("여기는 dao" +employee_id);
-		workFlowMapper.changeOpinion(draft_idx,employee_id, opinion);
+		workFlowMapper.changeOpinion(draft_idx,employee_id, opinion,employee_name,comment);
 	}
 	
 	public void checkOpinion(int draft_idx) {

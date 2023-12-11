@@ -120,7 +120,7 @@ span {
 </head>
 <body>
 	<div class="wrapper">
-		<img src="${root}image/어텐션-로고.svg" style="position:absolute; top: 70px; width: 350px; height: auto ">
+		<img src="${root}image/attention_white.png" style="position:absolute; top: 70px; width: 350px; height: auto ">
 		<div class="container" style="">	
 			<div class="sign-in-container">
 				<form:form action="${root}user/login_pro" method="get" modelAttribute="tempLoginUserBean">

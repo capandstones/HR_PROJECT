@@ -1,5 +1,7 @@
 package attention.beans;
 
+import java.sql.Date;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -40,6 +42,7 @@ public class UserBean {
 	private String employee_last_name;
 	private String employee_first_name;
 	private String employee_profile_picture;
+	private Date record_date;
 
 	private boolean userLogin;
 

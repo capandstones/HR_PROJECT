@@ -32,6 +32,12 @@ public class DraftBean {
 	private int looker1_opinion;
 	private int looker2_opinion;
 	private int looker3_opinion;
+	private String looker1_name;
+	private String looker2_name;
+	private String looker3_name;
+	private String looker1_comment;
+	private String looker2_comment;
+	private String looker3_comment;
 	private String department_name;
 	private String employee_position;
 

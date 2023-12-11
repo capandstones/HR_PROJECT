@@ -18,7 +18,27 @@
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
+
+input:focus {
+   outline: 1px solid #415971;
+}
+
+::-webkit-scrollbar {
+   width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #d9d9d9;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: #f2f2f2;
+   border-radius: 10px;
+}
 /* 전체 테이블 스타일 */
 table {
 	width: 70%;
@@ -29,12 +49,13 @@ table {
 
 /* 테이블 헤더 스타일 */
 thead {
-	background-color: gray; /* 회색 처리 */
+	background-color: #415971; /* 회색 처리 */
 	color: white;
 }
 
 /* 검색박스 스타일 */
 #search-box {
+	height:40px;
 	padding: 0.5rem;
 	margin-top: 1.5rem;
 	margin-right: 1.5rem;
@@ -61,9 +82,10 @@ td, th {
 	padding: 20px;
 	background-color: #fff;
 	border: 1px solid #ccc;
-	width: 500px; /* 가로 크기 */
-	height: 600px; /* 세로 크기 */
+	width: 400px; /* 가로 크기 */
+	height: 500px; /* 세로 크기 */
 	overflow-y: auto; /* 세로 스크롤이 필요한 경우 스크롤 표시 */
+	border-radius: 5%;
 }
 
 /* 닫기 버튼 스타일링 */
@@ -116,6 +138,63 @@ td, th {
 
 		// 모달 열기
 		modal.style.display = 'block';
+		
+		$.ajax({
+		    url: '${root}transfer/getinfo/'+employee_id,
+		    method: 'GET',
+		    dataType: "json",
+		    success: function(response) {
+		    	var print='';
+		    	
+		    		print+= 
+		    			 '<div style="margin-left:35px; margin-top:30px;">' +
+		    			 '<div id="contents" style="margin-top:20px;">' +
+		                 '이름<br>' +
+		                 '<div class="daterange">' +
+		                 '<input type="text" class="startdate search"  id="daterange" name="employee_name" readonly="readonly" value="'+response[0].employee_name+'" style="background: #E8E9EC; border:none; margin-top:5px; padding-left: 10px; width: 280px; height: 30px; font-size: 12pt;"/>' +
+		                 '</div>' +
+		                 '</div>' +
+		                 '<div id="contents" style="margin-top:7px;">' +
+		                 '사번<br>' +
+		                 '<div class="daterange">' +
+		                 '<input type="text" class="startdate search" id="daterange" readonly="readonly" name="employee_id" value="'+response[0].employee_id+'" style="background: #E8E9EC; border:none; margin-top:5px; padding-left: 10px; width: 280px; height: 30px; font-size: 12pt;"/>' +
+		                 '</div>' +
+		                 '</div>' +
+		                 '<div id="contents" style="margin-top:7px;">' +
+		                 '직급<br>' +
+		                 '<div class="daterange">' +
+		                 '<input type="text" class="startdate search" id="daterange" name="employee_position" value="'+response[0].employee_position+'" style="margin-top:5px; padding-left: 10px; width: 280px; height: 30px; font-size: 12pt;"/>' +
+		                 '</div>' +
+		                 '</div>' +
+		                 '<div id="contents" style="margin-top:7px;">' +
+		                 '부서명<br>' +
+		                 '<div class="daterange">' +
+		                 '<input type="text" class="startdate search" id="daterange" name="line_name" value="'+response[0].line_name+'" style="margin-top:5px; padding-left: 10px; width: 280px; height: 30px; font-size: 12pt;"/>' +
+		                 '</div>' +
+		                 '</div>' +
+		                 '<div id="contents" style="margin-top:7px;">' +
+		                 '팀명<br>' +
+		                 '<div class="daterange">' +
+		                 '<input type="text" class="startdate search" id="daterange" name="department_name" value="'+response[0].department_name+'" style="margin-top:5px; padding-left: 10px; width: 280px; height: 30px; font-size: 12pt;"/>' +
+		                 '</div>' +
+		                 '</div>' +
+		                 '<div id="contents" style="margin-top:10px;">' +
+		                 '<button type="submit" style="margin-left:180px; border:none; background: #688FB5; color:#fff; margin-top: 10px; border-radius: 0.5rem; width:100px;">' +
+		                 '<div style="text-align: center; padding-bottom: 7px; padding-right: 3px; padding-top: 5px; ">' +
+		                 '<i class="bi bi-pencil-fill"></i>' +
+		                 '변경하기' +
+		                 '</div>' +
+		                 '</button>' +
+		                 '</div>'+
+		                 '</div>';
+		                 
+		               
+
+		    	$('#myList').html(print);
+		    	
+		      }
+		
+		  });
 
 		
 // 		$.ajax({
@@ -182,7 +261,7 @@ td, th {
 								<td class="text-center d-none d-md-table-cell">${obj.department_name}</td>
 								<td class="text-center d-none d-md-table-cell">${obj.employee_position}</td>
 								<td class="text-center d-none d-md-table-cell">
-								<button id="modal" type="button" onclick="openModal('${obj.employee_id}')">변경</button> 
+								<button id="modal" type="button" onclick="openModal('${obj.employee_id}')" style="background-color:#688FB5;border-radius: 0.5rem; color: #fff; border: none; " >수정</button> 
 								</td>
 							</tr>
 						</c:forEach>
@@ -197,14 +276,14 @@ td, th {
 	<!-- 모달1 -->
 <div id="myModal">
   <!-- 닫기 버튼 -->
-  <div id="closeBtn" onclick="closeModal()">X</div>
+  <div id="closeBtn" onclick="closeModal()" style="font-size: 15pt; margin-right: 10px;">x</div>
   
   <!-- 부서 리스트 -->
-
-
-  <div id="myList" style="width: 300px; margin-left: 20px; margin-top: 7px;">
+<form name="writeFrm" action="${root}transfer/move_pro" method="get" enctype="form-data">
+  <div id="myList" style="width: 300px; margin-left: 0px; margin-top: 7px; ">
     <!-- 여기에 동적으로 리스트 아이템이 추가될 것입니다. -->
   </div>
+</form>
 </div>
 
 	<script

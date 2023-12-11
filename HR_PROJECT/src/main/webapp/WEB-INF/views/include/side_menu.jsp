@@ -44,7 +44,7 @@
             <a class="nav-link" href="${root}member/chart"> 구성원 </a>
             <a class="nav-link" href="${root}calendar/main"> 캘린더 </a>
             <a class="nav-link" href="${root}commute/main"> 출퇴근 </a>
-            <a class="nav-link" href="${root}workflow/document"> 워크플로우 </a>
+            <a class="nav-link" href="${root}workflow/document"> 전자결재 </a>
             <a class="nav-link" href="${root}vacation/main"> 휴가 </a>
          </div>
       </div>

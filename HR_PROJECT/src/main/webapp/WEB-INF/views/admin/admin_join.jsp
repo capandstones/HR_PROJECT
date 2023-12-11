@@ -273,8 +273,7 @@ button.headerBtn {
 									</table>
 								</div>
 								<div>
-									<form name="wirteFrm" action="${root}admin/admin_join_success"
-										method="get" enctype="multipart/form-data">
+									<form name="wirteFrm" action="${root}admin/admin_join_success" method="get" enctype="multipart/form-data">
 										<div id="contents">
 											이름<br>
 											<div class="daterange">
@@ -344,14 +343,14 @@ button.headerBtn {
 										<div id="contents" style="display: flex;">
 											<button type="button" class="headerBtn"
 												onclick="redirectToFailPage()"
-												style="margin-left: 70px; background: #89B2EA; margin-top: 10px;">
+												style="margin-left: 70px; background: #415971; margin-top: 10px;">
 												<div
 													style="text-align: center; padding-bottom: 7px; padding-right: 3px; padding-top: 3px;">
 													<i class="bi bi-pencil-fill"></i> 반려
 												</div>
 											</button>
 											<button type="submit" class="headerBtn"
-												style="margin-left: 60px; background: #89B2EA; margin-top: 10px;">
+												style="margin-left: 60px; background: #415971; margin-top: 10px;">
 												<div
 													style="text-align: center; padding-bottom: 7px; padding-right: 3px; padding-top: 3px;">
 													<i class="bi bi-pencil-fill"></i> 승인
@@ -363,11 +362,8 @@ button.headerBtn {
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 			</main>
-
 		</div>
 	</div>
 	<script

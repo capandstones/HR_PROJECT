@@ -87,11 +87,12 @@ public class WorkFlowService {
 		return workFlowDao.getContentInfo(draft_idx);
 	}
 
-	public void changeOpinion(int draft_idx, String employee_id, int opinion) {
+	public void changeOpinion(int draft_idx, String employee_id, int opinion,String employee_name,String comment) {
 
 		employee_id = loginUserBean.getEmployee_id();
+		employee_name = loginUserBean.getEmployee_name();
 
-		workFlowDao.changeOpinion(draft_idx, employee_id, opinion);
+		workFlowDao.changeOpinion(draft_idx, employee_id, opinion,employee_name,comment);
 	}
 
 	public void checkOpinion(int draft_idx) {

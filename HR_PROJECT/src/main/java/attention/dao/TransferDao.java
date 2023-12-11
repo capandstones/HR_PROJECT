@@ -18,5 +18,10 @@ public class TransferDao{
 		return transferMapper.allemplist();
 	}
 	
+	public List<UserBean> getOneList(String employee_id){
+				
+		return transferMapper.getOneList(employee_id);
+	}
+	
 	
 }

@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import attention.beans.DraftBean;
 import attention.beans.UserBean;
-import attention.dao.WorkFlowDao;
 import attention.service.WorkFlowService;
 
 @Controller
@@ -149,10 +148,7 @@ public class WorkFlowController {
 		draftContentBean.setDraft_looker_id3(draft_looker_id3);
 		draftContentBean.setUpload_file(upload_file);
 		draftContentBean.setUpload_file(upload_file);
-		System.out.println(draftContentBean.getDraft_subject());
-		System.out.println(draftContentBean.getDraft_text());
-		System.out.println(draftContentBean.getDraft_hope_date());
-		System.out.println((String)draftContentBean.getDraft_file());
+	
 		
 		workFlowService.addContentInfo(draftContentBean);
 		

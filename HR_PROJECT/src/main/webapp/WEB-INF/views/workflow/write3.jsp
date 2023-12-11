@@ -212,6 +212,21 @@ function submitForm() {
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <style type="text/css">
+::-webkit-scrollbar {
+   width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #d9d9d9;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: #f2f2f2;
+   border-radius: 10px;
+}
+
+
 .container {
 	/* text-align: center;  */
 	/* 	margin-left: 30%; */
@@ -361,11 +376,11 @@ hr {
 }
 
 input:focus {
-	outline: 2px solid #66cc66;
+	outline: 1px solid #415971;
 }
 
 textarea:focus {
-	outline: 2px solid #66cc66;
+	outline: 1px solid #415971;
 }
 
 textarea::placeholder {
@@ -486,7 +501,7 @@ div#attachArea {
 					<form name="wirteFrm" action="${root}workflow/write_pro" method="post" enctype="multipart/form-data">
 						<div class="row" style="padding: 0px;">
 							<div class="col-7 content">
-								<img src="${root}image/clip.svg" style="width: 40px; height: auto;"> <span id="fontSubject" style="font-size: 20pt;">휴직 신청</span>
+								<img src="${root}image/board.svg" style="width: 40px; height: auto;"> <span id="fontSubject" style="font-size: 20pt;">휴직 신청</span>
 								<h5>아래 양식을 맞춰 작성하세요.</h5>
 								<div id="contents">
 									제목<br>
@@ -542,16 +557,16 @@ div#attachArea {
 							<div class="col-5 "
                         style="margin-top: 20px; padding-left: 20px; width: 500px; margin-left: 80px;">
                         <div style="float: left; ">
-                        <button type="button" class="headerBtn" onclick="submitForm()" style="margin-left: 300px; margin-right:10px; margin-bottom:30px;  background-color: #89B2EA">
+                        <button type="button" class="headerBtn" onclick="submitForm()" style="margin-left: 300px; margin-right:10px; margin-bottom:30px;  background-color: #415971">
                                     <i class="bi bi-send" style="margin-right: 10px;"></i> 보내기
                                 </button>
                            <div style="border: 1px solid #ccced0; width: 400px; margin-top: 20px; border-radius: 10px;">
                               <div style="padding: 25px 10px 25px 25px; border-bottom: 0.5px solid #ddd; font-size: 15pt; font-weight: bold;">승인 대상</div>
-                              <button id="modal" type="button" onclick="openModal()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px;'>변경</button> 
+                              <button id="modal" type="button" onclick="openModal()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px; background-color: #415971;'>변경</button> 
                               <div id="selectedEmployeeName" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[1].employee_name} · ${list[1].department_name} · ${list[1].employee_position} </div>
-							  <button id="modal" type="button" onclick="openModal2()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px;'>변경</button>                              
+							  <button id="modal" type="button" onclick="openModal2()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px; background-color: #415971;'>변경</button>                              
                               <div id="selectedEmployeeName2" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[2].employee_name} · ${list[2].department_name} · ${list[2].employee_position} </div>
-                              <button id="modal" type="button" onclick="openModal3()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px;'>변경</button> 
+                              <button id="modal" type="button" onclick="openModal3()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px; background-color: #415971;'>변경</button> 
                               <div id="selectedEmployeeName3" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[0].employee_name} · ${list[0].department_name} · ${list[0].employee_position}</div>
                            </div>
                         </div>
