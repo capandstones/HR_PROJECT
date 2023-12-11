@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value='${pageContext.request.contextPath }/' />
-<c:set var='width' value='800' />
-<c:set var='height' value='600' />
+<c:set var='width' value='500' />
+<c:set var='height' value='850' />
 <!DOCTYPE html>
 <html>
 <head>
@@ -197,7 +197,7 @@ div#child2 {
                               <input type="hidden" name="icon" value="sick.svg" readonly />
                            </div>
                            <div id="fontSubject">병가</div>
-                           <div id="fontpurpose">남은일수</div>
+                           <div id="fontpurpose">신청시지급</div>
                         </div>
                      </form>
                   </div>
@@ -221,7 +221,7 @@ div#child2 {
                               <input type="hidden" name="icon" value="marriage.svg" readonly />
                            </div>
                            <div id="fontSubject">결혼</div>
-                           <div id="fontpurpose">신청시 지급</div>
+                           <div id="fontpurpose">신청일 기준 5일 지급</div>
                         </div>
                      </form>
 
@@ -263,19 +263,7 @@ div#child2 {
                         </div>
                      </div>
 
-                     <table id="upcomingVacationTable" class="table">
-                        <thead>
-                           <tr>
-                              <th>이름</th>
-                              <th>휴가일자</th>
-                              <th>휴가종류</th>
-                              <th>휴가내용</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <!-- 예정된 휴가 정보가 여기에 동적으로 추가됩니다 -->
-                        </tbody>
-                     </table>
+                     <tbody id="upcomingVacationTableBody"></tbody>
 
                   </div>
 
@@ -312,28 +300,25 @@ div#child2 {
          </main>
       </div>
    </div>
-   
-   <script>
 
+   <script>
    document.addEventListener("DOMContentLoaded", function () {
 
        var userPosition = "${employee_position}";
 
        var membersVacationMenu = document.querySelector('.menu-item[href="#2"]');
-
+       var membersVacationContent = document.getElementById('membersVacation');
+       
        if (userPosition === "사원" || userPosition === "대리") {
-          membersVacationMenu.classList.add('disabled');
-           membersVacationMenu.removeAttribute('href');
-           membersVacationMenu.style.cursor = 'not-allowed';
-           
+           membersVacationMenu.style.display = 'none';
+           membersVacationContent.style.display = 'none';
        } else {
-          membersVacationMenu.classList.remove('disabled');
+           membersVacationMenu.style.display = 'block';
+           membersVacationContent.style.display = 'none';
            membersVacationMenu.addEventListener('click', showMembersVacation);
        }
    });
-
    </script>
-
    <script>
       function showMyVacation() {
          var myVacationContent = document.getElementById('myVacation');
@@ -542,16 +527,16 @@ div#child2 {
 
    <script>
    const upcomingVacations = [
-      { name: "${employee_name}", startDate: "2023-12-10", endDate: "2023-12-15", type: "연차", reason: "가족 여행" },
-      { name: "${employee_name}", startDate: "2023-12-20", endDate: "2023-12-25", type: "반차", reason: "개인 사정" },
+      { name: '${user_name}', startDate: "2023-12-10", endDate: "2023-12-15", type: "연차", reason: "가족 여행" },
+      { name: '${user_name}', startDate: "2023-12-20", endDate: "2023-12-25", type: "반차", reason: "개인 사정" },
    ];
 
    function populateUpcomingVacations() {
    const tableBody = document.querySelector("#upcomingVacationTable tbody");
 
    upcomingVacations.forEach(vacation => {
-      const row = tableBody.insertRow();
-      row.insertCell(0).textContent = vacation.name;
+      const row = tableBody.insertRow();    
+      row.insertCell(0).textContent = user_name;
       row.insertCell(1).textContent = `${vacation.startDate} ~ ${vacation.endDate}`;
       row.insertCell(2).textContent = vacation.type;
       row.insertCell(3).textContent = vacation.reason;

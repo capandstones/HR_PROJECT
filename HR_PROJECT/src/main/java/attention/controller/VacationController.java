@@ -67,18 +67,21 @@ public class VacationController {
 
    @PostMapping("/submit_pro")
    public String submit_pro(
+         @RequestParam("employee_id") String employee_id,
+         @RequestParam("line_name") String line_name,
          @RequestParam("vacation_name") String vacation_name,
-           @RequestParam("employee_name") String employee_name,
-           @RequestParam("employee_id_ch") String employee_id_ch,
-           @RequestParam("employee_id_ch2") String employee_id_ch2,
-           @RequestParam("vacation_start_date") String vacation_start_date,
-           @RequestParam("vacation_end_date") String vacation_end_date,
-           @RequestParam("vacation_days") int vacation_days,
-           @RequestParam("vacation_reason") String vacation_reason) {
+         @RequestParam("employee_name") String employee_name,
+         @RequestParam("employee_id_approver") String employee_id_approver,
+         @RequestParam("employee_id_referrer") String employee_id_referrer,
+         @RequestParam("vacation_start_date") String vacation_start_date,
+         @RequestParam("vacation_end_date") String vacation_end_date,
+         @RequestParam("vacation_days") int vacation_days,
+         @RequestParam("vacation_reason") String vacation_reason,
+         @RequestParam("vacation_attachment") String vacation_attachment) {
 
-       vacationService.saveVacation(vacation_name, employee_name, employee_id_ch, employee_id_ch2, vacation_start_date,
-             vacation_end_date, vacation_days, vacation_reason);
+      vacationService.saveVacation(
+            employee_id, line_name, vacation_name, employee_name, employee_id_approver, employee_id_referrer, vacation_start_date, vacation_end_date, vacation_days, vacation_reason, vacation_attachment);
 
-       return "vacation/success";
+      return "vacation/success";
    }
 }

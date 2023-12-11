@@ -353,9 +353,9 @@ button#denial {
 button#accept {
 	width: 75px;
 	height: 35px;
-	border: 1px solid #89B2EA;
+	border: 1px solid #415971;
 	border-radius: 17.5px;
-	background: #89B2EA;
+	background: #415971;
 	margin-top: 30px;
 	font-size: 12pt;
 	padding: 4px 5px;
@@ -445,9 +445,11 @@ button#delete:hover {
 
 
 function goApproval(draft_idx, opinion) {
+	
+	 var comment = $("#commentInput").val();
     // Ajax 요청을 보내서 서버에서 업데이트를 처리
     $.ajax({
-        url: "${root}document/approval/"+draft_idx+"/"+opinion,
+        url: "${root}document/approval/"+draft_idx+"/"+opinion+"/"+comment,
         type: "GET",
         dataType: "text",
         success: function(response) {
@@ -494,7 +496,7 @@ $(document).ready(function() {
                         + "<label for='label-a' id='sub'>" + result[i].draft_subject
                         + "</label>"
                         + "<br>"
-                        + "<span style='padding:10px; font-size: 12pt; margin-left:0px; margin-bottom:15px;  display:inline-block; width:330px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;'>"
+                        + "<span style='padding:10px; font-size: 12pt; margin-left:0px; margin-bottom:15px;  display:-webkit-box; -webkit-box-orient: vertical; max-height: 2.0em;  width:330px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;'>"
                         + result[i].draft_text
                         + "</span>"
                         + "<span style='font-size: 11pt; float:right; margin: 5px 8px; color:#737373;'>"
@@ -536,19 +538,89 @@ $(document).ready(function() {
                              "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
                              "<span><i class='bi bi-chat-left-text'></i></span> " +
                              "<span class='font'>&nbsp;&nbsp;요청 내용 </span>" +
-                             "<div style='font-size: 12pt; margin-top: 5px;'>" + details.draft_text + "</div>" +
+                             "<div style='font-size: 12pt; margin-top: 5px; '>" + details.draft_text + "</div>" +
                              "<div style='margin-top: 20px;'>" +
                              "<span><i class='bi bi-calendar4-event'></i></span> " +
                              "<span class='font' style='margin-right: 10px;'>&nbsp;&nbsp;희망기한</span> " +
                              "<span style='font-size: 11pt; color: #262626;'>" + details.draft_hope_date + "</span>" +
-                             "</div>";
+                             "</div>"+
+                             "</p>" +
+                             "<span><i class='bi bi-chat-left-text'></i></span> " +
+                             "<span class='font' >&nbsp;&nbsp;히스토리</span>" +
+							 "<div style='margin-top:15px;'>";	
+                             if(details.looker1_opinion==1){
+                            	 output2 += "<div style='display:flex; '>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker1_name+"</div><div>님이 승인하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker1_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker1_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                   	 
+                             }
+                             if(details.looker1_opinion==2){
+                            	 output2 += "<div style='display:flex;'>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker1_name+"</div><div>님이 반려하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker1_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker1_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                      	 
+                             }
+                             if(details.looker2_opinion==1){
+                            	 output2 += "<div style='display:flex; '>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker2_name+"</div><div>님이 승인하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker2_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker2_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                         	 
+                             }
+                             if(details.looker2_opinion==2){
+                            	 output2 += "<div style='display:flex;'>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker2_name+"</div><div>님이 반려하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker2_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker2_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                        	 
+                             }
+                             if(details.looker3_opinion==1){
+                            	 output2 += "<div style='display:flex; '>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker3_name+"</div><div>님이 승인하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker3_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker3_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                         	 
+                             }
+                             if(details.looker3_opinion==2){
+                            	 output2 += "<div style='display:flex;'>"+
+                            	 "<div style='font-weight:bold;'>"+details.looker3_name+"</div><div>님이 반려하였습니다.</div>"+
+                            	 "</div>";
+                            	 if(details.looker3_cooment!=null){
+                            		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
+                            	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker3_comment+"</div>"+
+                            	 "</div>";   
+                            	 }                        	 
+                             }
+                             output2 += "</div>";
                              if(((employee_id==details.draft_looker_id1)||(employee_id==details.draft_looker_id2)||(employee_id==details.draft_looker_id3))&&(draft_info_idx!=2)){
-                            	 output2 += "<button type='button' id='denial' class='bhover' onclick='goApproval("+details.draft_idx+", 2)'>반려</button>" +
+                            	 output2 += "<div>"+
+                            	    "<label for='commentInput' style='font-weight:bold;'>코멘트 :&nbsp;&nbsp</label>"+
+                            	   	"<input type='text' id='commentInput' placeholder='코멘트를 입력하세요' style='width:500px; outline:none'>"+
+                            		"</div>"+
+                            		"<button type='button' id='denial' class='bhover' onclick='goApproval("+details.draft_idx+", 2)'>반려</button>" +
                             	    "&nbsp;" +
                             	    "<button type='button' id='accept' class='bhover' onclick='goApproval("+details.draft_idx+", 1)'>✓승인</button>";
                              }
-                             output2 += "</div>" +
-                             "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
+                             output2 += "</div>";
+                             if(details.draft_file!=null){
+                            	 output2 += "<div style='padding: 10px; padding-bottom: 40px; margin-top: 20px;' class='border-bottom'>" +
                              "<p class='p' data-bs-toggle='collapse' role='button' aria-expanded='false' aria-controls='collapseExample'>" +
                              "<div><i class='bi bi-paperclip'></i></span>&nbsp; <span class='font'> 첨부파일 </span> <span class='font' style='float: right;'> </div>" +
                              
@@ -556,16 +628,18 @@ $(document).ready(function() {
                              "<img src=\"${root}upload/"+details.draft_file+"\" width=\"60%\"/>	"+
                              "</div>" +
                              "</div>";
+                             }
                             
                             $('#rightFirst').html(output2);
                                          	
-                                                        
+                                                    
                         }
                     });
                 });
-
+                $('.document-item:first').click();
             }
         });
+       
     }
 
     // "진행중", "완료", "반려" 버튼 클릭 이벤트를 처리하는 함수
@@ -576,7 +650,7 @@ $(document).ready(function() {
         $("#reject").css("border-bottom", "none").find("span#subject").css("color", "gray");
 
         // 클릭된 버튼에 대한 스타일 적용
-        $("#" + buttonId).css("border-bottom", "4px solid #89B2EA").find("span#subject").css("color", "black");
+        $("#" + buttonId).css("border-bottom", "4px solid #415971").find("span#subject").css("color", "black");
     }
 
     // "진행중" 버튼 클릭 이벤트
@@ -610,10 +684,10 @@ $(document).ready(function() {
     // 버튼 스타일 업데이트 함수
     function updateButtonStyles() {
         if (isCompleteView) {
-            $("#complete").css("border-bottom", "4px solid #89B2EA").find("span#subject").css("color", "black");
+            $("#complete").css("border-bottom", "4px solid #415971").find("span#subject").css("color", "black");
             $("#mine").css("border-bottom", "none").find("span#subject").css("color", "gray");
         } else {
-            $("#mine").css("border-bottom", "4px solid #89B2EA").find("span#subject").css("color", "black");
+            $("#mine").css("border-bottom", "4px solid #415971").find("span#subject").css("color", "black");
             $("#complete").css("border-bottom", "none").find("span#subject").css("color", "gray");
         }
         $("#reject").css("border-bottom", "none").find("span#subject").css("color", "gray");
@@ -656,7 +730,7 @@ $(document).ready(function() {
 									</span><span id="number" class="num1"> </span>
 								</button>-->
 								<button class="bottom-line" id="mine" onclick="myDocument(1); "
-									style="border-bottom: 4px solid #89B2EA;">
+									style="border-bottom: 4px solid #415971;">
 									<span id=subject class="doc2" style="color: balck;">진행중</span><span
 										id="number" class="num2"> </span>
 								</button>

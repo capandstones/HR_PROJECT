@@ -1,19 +1,18 @@
 package attention.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import attention.beans.CalendarBean;
 import attention.service.CalendarService;
 
 /*@RestController*/
+@CrossOrigin
 @Controller
 @RequestMapping("/calendar")
 public class CalendarController {
@@ -42,16 +41,8 @@ public class CalendarController {
       return "redirect:/calendar/main";
    }
    
-   /*
-    * @ResponseBody public List<CalendarBean> showCalendar(Model model) {
-    * List<CalendarBean> events = calendarService.getCalendarEvents();
-    * //model.addAttribute("calendarEvents", events); return events; }
-    */
    
-   @GetMapping("/events")
-   @ResponseBody
-   public List<CalendarBean> getCalendarEvents() {
-      return calendarService.getCalendarEvents();
-   }
    
+   
+       
 }

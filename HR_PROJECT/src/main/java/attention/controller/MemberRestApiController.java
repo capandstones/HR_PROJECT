@@ -16,28 +16,28 @@ import attention.mapper.EmployeesMapper;
 
 @RestController
 public class MemberRestApiController {
-	
-	@Autowired
-	private EmployeesMapper employeesMapper;
+   
+   @Autowired
+   private EmployeesMapper employeesMapper;
 
-	@GetMapping("/getEmpInfo")
-	public @ResponseBody ArrayList<EmployeesBean> getEmpInfo() {		
-		return employeesMapper.getEmpInfo();
-	}
-	
-	@PostMapping("/getEmpInfoDetail")
-	EmployeesBean getEmpInfoDetail(@RequestBody String employeeInfoKey) {
-		return employeesMapper.getEmpInfoDetail(employeeInfoKey);
-	}
-	
-	@GetMapping("/getDeptLineNameList")
-	public List<String> getDeptLineNameList() {
-		return employeesMapper.getDeptLineNameList();
-	}
-	
-	@GetMapping("/getDeptNameList/{deptLineName}")
-	public List<String> getDeptNameList(@PathVariable String deptLineName) {
-		return employeesMapper.getDeptNameList(deptLineName);
-	}
-	
+   @GetMapping("/getEmpInfo")
+   public @ResponseBody ArrayList<EmployeesBean> getEmpInfo() {      
+      return employeesMapper.getEmpInfo();
+   }
+   
+   @PostMapping("/getEmpInfoDetail")
+   EmployeesBean getEmpInfoDetail(@RequestBody String employeeInfoKey) {
+      return employeesMapper.getEmpInfoDetail(employeeInfoKey);
+   }
+   
+   @GetMapping("/getDeptLineNameList")
+   public List<String> getDeptLineNameList() {
+      return employeesMapper.getDeptLineNameList();
+   }
+   
+   @GetMapping("/getDeptNameList/{deptLineName}")
+   public List<String> getDeptNameList(@PathVariable String deptLineName) {
+      return employeesMapper.getDeptNameList(deptLineName);
+   }
+   
 }

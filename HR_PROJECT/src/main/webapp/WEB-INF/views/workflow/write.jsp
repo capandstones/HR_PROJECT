@@ -313,7 +313,7 @@ textarea:focus {
 						</div>
 					</div>
 					<div id="contents" >
-						<button type="submit" class="headerBtn"  style="margin-left:160px; background: #89B2EA; margin-top: 10px; ">
+						<button type="submit" class="headerBtn"  style="margin-left:160px; background: #415971; margin-top: 10px; ">
 						<div style="text-align: center; padding-bottom: 7px; padding-right: 3px; padding-top: 3px;">
 						<i class="bi bi-pencil-fill"></i>
 					 	신청하기
@@ -321,8 +321,6 @@ textarea:focus {
 						</button>
 					</div>
 				</div>		
-			
-			
 		</div>
 	</form>
 </div>

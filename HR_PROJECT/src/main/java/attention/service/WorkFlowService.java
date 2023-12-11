@@ -32,13 +32,9 @@ public class WorkFlowService {
 
 	@Resource(name = "draftContentBean")
 	private DraftBean draftContentBean;
-	
-	
-
 
 	@Autowired
 	private UserDao userDao;
-	
 
 	public List<UserBean> getLookerList(UserBean loginUserBean) {
 
@@ -76,33 +72,40 @@ public class WorkFlowService {
 
 		workFlowDao.addContentInfo(draftContentBean);
 	}
-	
+
 	public String getDraftInfoName(int draft_info_idx) {
-		
+
 		return workFlowDao.getDraftInfoName(draft_info_idx);
 	}
-	
-	public List<DraftBean> getContentList(int draft_info_idx,String employee_id) {
-		
-		return workFlowDao.getContentList(draft_info_idx,employee_id);
+
+	public List<DraftBean> getContentList(int draft_info_idx, String employee_id) {
+
+		return workFlowDao.getContentList(draft_info_idx, employee_id);
 	}
-	
+
 	public DraftBean getContentInfo(int draft_idx) {
 		return workFlowDao.getContentInfo(draft_idx);
 	}
-	
-	public void changeOpinion(int draft_idx,String employee_id, int opinion) {
-		
-		employee_id=loginUserBean.getEmployee_id();
-		
-		workFlowDao.changeOpinion(draft_idx,employee_id, opinion);
+
+	public void changeOpinion(int draft_idx, String employee_id, int opinion,String employee_name,String comment) {
+
+		employee_id = loginUserBean.getEmployee_id();
+		employee_name = loginUserBean.getEmployee_name();
+
+		workFlowDao.changeOpinion(draft_idx, employee_id, opinion,employee_name,comment);
 	}
-	
+
 	public void checkOpinion(int draft_idx) {
 		workFlowDao.checkOpinion(draft_idx);
 	}
-	
+
 	public void addEmployee(UserBean joinBean) {
 		workFlowDao.addEmployee(joinBean);
 	}
+
+	public List<UserBean> getAllList(String department) {
+
+		return workFlowDao.getAllList(department);
+	}
+
 }

@@ -23,8 +23,8 @@ public interface UserMapper {
     void modifyUserInfo(UserBean modifyUserBean);
     
     @Select("select employee_id, employee_name, department_name, employee_position from HRPROJECT.employees "
-    		+ " where (department_name =#{department_name} and employee_position='팀장') "
-    		+ " or (line_name=#{line_name} and employee_position='차장') "
-    		+ " or (line_name=#{line_name} and employee_position='부장') ")
+          + " where (department_name =#{department_name} and employee_position='팀장') "
+          + " or (line_name=#{line_name} and employee_position='차장') "
+          + " or (line_name=#{line_name} and employee_position='부장') ")
     List<UserBean> getLookerList(UserBean loginUserBean);
 }

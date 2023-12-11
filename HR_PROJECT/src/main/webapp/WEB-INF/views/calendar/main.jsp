@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>   
 <c:set var='root' value='${pageContext.request.contextPath }/' />
-<%String ctxPath = request.getContextPath();%>
 
 <!DOCTYPE html>
 <html>
@@ -19,7 +18,6 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.9/index.global.min.js'></script>
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/main.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
 
 
@@ -95,16 +93,51 @@ padding: 0;
 
 <script>
    document.addEventListener('DOMContentLoaded',function() {
+
+      $.ajax({
+         url:'/HR_Project/main/events',
+         type: 'POST',
+         success: function(result) {
+            console.log(result);
+            
+            var events = result.map(function(event){
+               return {
+                  id: event.cal_idx,
+                  title: event.cal_title,
+                  start: event.cal_start_date,
+                  end: event.cal_end_date,
+                  content: event.cal_content,
+                  category: event.cal_category,
+                  /* color:"#FF0000" */
+                  extendedProps: {
+                     cal_idx: event.cal_idx,
+                  }
+               };
+            });
+            
+
+      
+                
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
 
-            height : 900,
+      
+         height : 900,
+         //contentHeight: 'auto',
 
          headerToolbar : {
-            start : 'dayGridMonth,timeGridWeek,timeGridDay today',
+            start : 'dayGridMonth,timeGridWeek,timeGridDay today addEventButton',
             center : 'title',
             end : 'prevYear,prev,next,nextYear'
+         }, customButtons: {
+            addEventButton: {
+               text : "일정추가",
+               click : function(){
+                  $('#scheduleModal').modal('show');
+               }
+            }
          },
+         
          footerToolbar : {
             start : '',
             center : '',
@@ -124,108 +157,163 @@ padding: 0;
             } 
          ],
          
-         events: function(info, successCallback, failureCallback) {
-            
-            $.ajax({
-               type: "POST",
-               url: "",
-               dataType: "json",
-               data: {
-                  cal_start_date: $("#cal_start_date").val(), // 시작일
-                    cal_end_date: $("#cal_end_date").val(),     // 종료일
-                    cal_title: $("#cal_title").val(),           // 제목
-                    cal_category: $("#cal_category").val(),     // 분류
-                    line_name: $("#line_name").val(),           // 공개범위
-                    cal_content: $("#cal_content").val(),       // 내용
-               },
-               success: function(data) {
-                  
-                  var events=[];   
-                  data.forEach(function(event) {
-                     events.push({
-                        title: event.cal_title,
-                        start: event.cal_start_date,
-                        end: event.cal_end_date
-                     });
-                  });
-                  
-                  successCallback(events);
-               },
-               error: function() {
-                  failureCallback();
-               }
-            });
-         },
+         events: events,
+         
+         
          
          dateClick : function(info) {
             //alert('clicked ' + info.dateStr);
             document.getElementById('modalContent').innerText = 'Clicked '+info.dateStr;
             //document.getElementById('scheduleModal').style.display = 'block';
-            /* var eventTitle = document.getElementById('eventTitle');
-            eventTitle.innerText = '이벤트 제목:' + info.dateStr; */   
+  
             $('#scheduleModal').modal('show');
             
          },
          
+         eventClick : function(info) {
+            
+            var event = info.event;
+             var startDate = event.startStr; 
+             var endDate = event.endStr ? event.endStr : '';
+
+             console.log(event);
+             
+             var cal_idx = event.extendedProps.cal_idx;
+             
+             document.getElementById('eventIdx').innerText = cal_idx;
+             document.getElementById('eventDate').innerText = startDate + (endDate ? ' - ' + endDate : '');
+             document.getElementById('eventTitle').innerText = event.title;
+             document.getElementById('eventCategory').innerText = event.extendedProps.category;
+             document.getElementById('eventLineName').innerText = event.extendedProps.line_name;
+             document.getElementById('eventContent').innerText = event.extendedProps.content;
+             
+             
+            $('#view_schedule_modal').modal('show');
+            
+            $('#view_modify').on('click', function() {
+        
+                $('#view_schedule_modal').modal('hide');
+                
+                $('#modify_scheduleModal').modal('show');
+            });
+                
+            function updateCalendarEvent(event) {
+                // FullCalendar에서 이벤트를 업데이트합니다.
+                calendar.getEventById(event.cal_idx).setProp('start', event.cal_start_date);
+                calendar.getEventById(event.cal_idx).setProp('end', event.cal_end_date);
+                calendar.getEventById(event.cal_idx).setProp('title', event.cal_title);
+                // 나머지 필요한 프로퍼티들에 대해서도 필요에 따라 추가
+
+                // FullCalendar에서 업데이트된 이벤트를 리렌더링합니다.
+                calendar.rerenderEvents();
+            }
+            
+                $('#schedule_modify').on('click', function(){
+                   
+
+                    var modifiedEventDetails = {
+                          cal_idx: $('#cal_idx').val(),
+                          cal_start_date:  $('#cal_start_date').val(),
+                          cal_end_date: $('#cal_end_date').val(),
+                            cal_title: $('#cal_title').val(),
+                    };
+                    
+                    $.ajax({
+                       type: 'POST',
+                       url: '/updateEvent',
+                       data: modifiedEventDetails,
+                       success: function(response) {
+                          console.log('업데이트 성공');
+                          $('#modify_scheduleModal').modal('hide');
+                          updateCalendarEvent(modifiedEventDetails);
+                       },
+                       error: function(error) {
+                          console.error('오류발생', error);
+                       }
+                    });
+                    
+                    /* $('#modify_scheduleModal').modal('hide'); */
+                    $('#schedule_modify').submit();
+                });
+                
+              //삭제
+                $('#view_delete').on('click', function() {
+    var eventIdx = $('#eventIdx').text(); // 이벤트 인덱스를 숨겨진 필드나 다른 저장 공간에서 가져옵니다.
+
+    $.ajax({
+        type: 'GET',
+        url: '${root}deleteEvent/'+eventIdx, // 실제 이벤트 삭제를 위한 URL로 교체
+        dataType: "text",
+        success: function(response) {
+            console.log('삭제 성공', response);
+            // 옵션으로 이곳에서 캘린더에서 이벤트를 제거할 수 있습니다.
+            calendar.getEventById(eventIdx).remove();
+            $('#view_schedule_modal').modal('hide');
+        },
+        error: function(error) {
+            console.error('오류 발생', error);
+        }
+    });
+});
+                
+            
+            
+            
+            //일정 등록 닫기 버튼
+            $('#schedule_close').on('click', function() {
+               $('#scheduleModal').modal('hide');
+            });
+            
+            //일정 상세 정보 닫기 버튼
+            $('#view_close').on('click', function() {
+               $('#view_schedule_modal').modal('hide');
+            });
+            
+            //일정 수정 닫기 버튼
+            $('#modify_close').on('click', function() {
+               $('#modify_scheduleModal').modal('hide');
+            });
+            
+            
+         },
+         
+         
+         
+
+         
          navLinks : true,
          selectable: true,
          droppable: true,
-         //editable: true,
-         dayMaxEvent : true,
+         editable: false,
+         dayMaxEvents : true,
          
-         /* events: [
-            {
-               url: '/calendar/events',
-               method: 'GET'
-               failure: function() {
-                  alert('오류')
-               }
-            }
-            
-         ], */
-         
-         events: [
-            {
-               title: 'Meeting',
-                 start: '2023-12-20T14:30:00'
-            },
-            {
-                   title: 'Conference',
-                   start: '2023-12-11T10:30:00',
-                   end: '2023-12-12T12:30:00'
-              },
-      
-         ],
-         
-         /* $('#schedule_register').on('click', function(e){
-            e.preventDefault();
-            
-            var formData=$('#schedule_register_form').serialize();
-            $.ajax({
-               type: 'POST',
-               url: '${root}calendar/submit_pro',
-               data: formData,
-               success: function(){
-                  
-                  $('#scheduleModal').modal('hide');
-               },
-               error: function() {
-                  alert('일정 등록에 실패했습니다');
-               }
-            });
-         }); */
+    
          
          
       });
       calendar.render();
       
+         },
+         erro: function(error) {
+            console.error('Error:', error);
+         }
+         
+         
+      });
+      
+            
+
+            
+      //일정등록 x버튼
       function closeModal() {
-         document.getElementById('scheduleModal').style.display = 'none';
+         /* document.getElementById('scheduleModal').style.display = 'none'; */
          $('.modal').modal('hide');
       }
       
       document.querySelector('.modal .close').addEventListener('click',closeModal);
+      
 
+      
    });
    
 
@@ -280,8 +368,6 @@ padding: 0;
                         <span class="kind-name mr-3">출장</span>
                         <div class="kind-color mr-1" style="background: #6666ff;"></div>
                         <span class="kind-name mr-3">회의</span>
-                        <div class="kind-color mr-1" style="background: #b380ff;"></div>
-                        <span class="kind-name">휴가</span>
                      </div>
                   </div>
                </div>
@@ -299,21 +385,15 @@ padding: 0;
                <div class="modal-content">
                   <div class="modal-header">
                      <h5 class="modal-title" id="modalTitle">일정등록</h5>
-                     <!-- <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                     </button> -->
+                 
                      <span class="close" onclick="closeModal()">&times;</span>
                   </div>
                   
                   <%-- <form name="schedule_register" id="schedule_register"> --%>
-                  <form action="${root }calendar/submit_pro" id="schedule_register" method="post" enctype="multipart/form-data">
+                  <form action="${root }calendar/submit_pro" id="register_Modal" method="post" enctype="multipart/form-data">
                      <div class="modal-body">
                         <div class="form-group" id="daterange-group">
-                           <!-- <label for="email">기간<span style="color: red;">*</span></label><br />
-                           <input type="text" id="daterange" class="form-control text-center"/>
-                           <input type="hidden" name="cal_start_date" class="form-control text-center" />
-                           <input type="hidden" name="cal_end_date" class="form-control text-center" /> -->
+           
                            
                               <label for="scheduleDate">기간<span style="color: red;">*</span></label>
                               <input type="date" id="cal_start_date" name="cal_start_date" class="form-control" required>
@@ -341,16 +421,10 @@ padding: 0;
                               <option>내팀</option>
                            </select>
                            
-                           <!-- <input type="text" class="form-control" id="joinuser" placeholder="일정을 공유할 회원명을 입력하세요" />
-                           <div class="displayUserList mt-1"></div>
-                           <input type="hidden" name="joinuser" />
-                           <input type="hidden" name="joinuser_empno" /> -->
+                   
                         </div>
                         
-                        <!-- <div class="form-group">
-                           <label for="category">장소<span style="color : red;">*</span></label>
-                           <input type="text" name="place" class="form-control" />
-                        </div> -->
+       
                         
                         <div class="form-group">
                            <label for="content">내용<span style="color: red;">*</span></label>
@@ -362,14 +436,12 @@ padding: 0;
                            <input type="hidden" name="line_name" value="${sessionScope.loginuser.line_name }"/><!-- 여기에 작성자 부서이름 -->
                         </div>
                         
-                        <!-- <div id="eventInfo">
-                           <p id="eventTitle"></p>
-                        </div> -->
+        
                         
                      </div>
                      
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.href='${root}calendar/main'">닫기</button>
+                        <button type="button" class="btn btn-secondary" id="schedule_close" >닫기</button>
                         <button type="submit" class="btn btn-primary" id="schedule_register" >등록</button>
                      </div>
                   </form>
@@ -382,33 +454,37 @@ padding: 0;
          
          
          
-         <!-- Modify,Delete Modal -->
+         <!-- Modify Modal -->
             <div class="modal fade" id="modify_scheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
+               
                   <div class="modal-content">
+                  
                      <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">일정</h5>
-                        <button type="button" class="close" date-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                        </button>
+                   
+                        <span class="close" onclick="closeModal()">&times;</span>
                      </div>
-                     <form name="schedule_modify_delete" id="schedule_modify_delete">
+                     
+                     <form action="${root }calendar/modifyEvent" id="Modify_Modal" method="post" enctype="multipart/form-data">
+                     <%-- <form name="schedule_modify_delete" id="schedule_modify_delete"> --%>
                         <div class="modal-body">
                            <div class="form-group" id="daterange-group">
-                              <label for="daterange">기간<span style="color: red;">*</span></label><br />
-                              <input type="text" id="daterange" class="form-control text-center"/>
-                              <input type="text" name="cal_start_date" class="form-control text-center"/>
-                              <input type="text" name="cal_end_date" class="form-control text-center"/>
+ 
+                              
+                              <label for="scheduleDate">기간<span style="color: red;">*</span></label>
+                                    <input type="date" id="cal_start_date" name="cal_start_date" class="form-control" required>
+                                    <input type="date" id="cal_end_date" name="cal_end_date" class="form-control" required>
                            </div>
                            
                            <div class="form-group" id="daterange-group">
                               <label for="subject">제목<span style="color: red;">*</span></label><br />
-                              <input type="text" name="title" class="form-control" id="modify_title"/>
+                              <input type="text" name="cal_title" class="form-control" id="cal_title"/>
                            </div>
                            
                            <div class="form-group">
                               <label for="category">분류<span style="color: red;">*</span></label>
-                              <select name="category"  name="category" class="custom-select" id="modify_category">
+                              <select name="cal_category"  name="cal_category" class="custom-select" id="cal_category">
                                  <option>출장</option>
                                  <option>회의</option>
                                  <option>미팅</option>
@@ -416,48 +492,76 @@ padding: 0;
                            </div>
                            
                            <div class="form-group">
-                              <label for="category">공유부서<span style="color: red;">*</span></label>
-                              <select name="share" id="share" name="share" class="custom-select">
+                              <label for="category">공개범위<span style="color: red;">*</span></label>
+                              <select name="line_name" id="line_name" name="line_name" class="custom-select">
                                  <option>전체</option>
                                  <option>내팀</option>
                               </select>
-                              
-                              <!-- <input type="text" class="form-control" id="joinuser" placeholder="일정을 공유할 회원명을 입력하세요"/>
-                              <div class="displayUserList mt-1"></div>
-                              <input type="hidden" name="joinuser" />
-                              <input type="hidden" name="joinuser_empno"/> -->
+                
                            </div>
                            
-                           <!-- <div class="form-group">
-                              <label for="category">장소<span style="color: red;">*</span></label>
-                              <input type="text" name="place" class="form-control" id="modify_place"/>
-                           </div> -->
+         
                            
                            <div class="form-group">
                               <label for="content">내용<span style="color: red;">*</span></label>
-                              <textarea name="content" id="modify_content" class="form-control" rows="5"></textarea>
+                              <textarea name="cal_content" id="cal_content" class="form-control" rows="5"></textarea>
                            </div>
                            
-                           <div class="form-group">
-                              <input type="hidden" name="schedule_no" id="modify_schedule_no"/> <!-- 여기에 작성자 유저아디디 -->
-                           </div>
+                       
+                        </div>
+                        
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" id="modify_close" >닫기</button>
+                           <button type="submit" class="btn btn-primary" id="schedule_modify">수정완료</button>
+                           <button type="button" class="btn btn-danger" id="schedule_cancel">취소</button>
                         </div>
                      </form>
+                     
+                  </div>
+               </div>
+            </div>
+            
+            <!-- view Modal -->
+            <div class="modal fade" id="view_schedule_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                  
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">일정 상세 정보</h5>
+                        <span class="close" data-dismiss="modal">&times;</span>
+                     </div>
+                     
+                     <%-- <form action=""></form> --%>
+                     
+                     <div class="modal-body">
+                        <div id="eventInfo">
+                           <p><strong>기간: </strong><span id="eventDate"></span></p>
+                           <p><strong>제목: </strong><span id="eventTitle"></span></p>
+                           <p><strong>분류: </strong><span id="eventCategory"></span></p>
+                           <p><strong>공개 범위: </strong><span id="eventLineName"></span></p>
+                           <p><strong>내용: </strong><span id="eventContent"></span></p>
+                           <p><strong>IDX: </strong><span id="eventIdx"></span></p>
+                        </div>
+                     </div>
+                     
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                        <button type="button" class="btn btn-primary" id="schedule_modify">수정</button>
-                        <button type="button" class="btn btn-danger" id="schedule_delete">삭제</button>
+                        <button type="button" class="btn btn-secondary" id="view_close" >닫기</button>
+                        <button type="button" class="btn btn-primary" id="view_modify">수정</button>
+                        <button type="button" class="btn btn-danger" id="view_delete">삭제</button>
+                        <%-- <a href="${root }calendar/delete?cal_idx=${cal_idx}" class="btn btn-danger">삭제</a> --%>
                      </div>
                      
                   </div>
                </div>
             </div>
+            
+            
 
          </main>
       </div>
    </div>
 
-   <script src="script.js"></script>
+   
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
    <script src="${root }js/scripts.js"></script>

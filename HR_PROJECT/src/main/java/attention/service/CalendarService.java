@@ -39,9 +39,14 @@ public class CalendarService {
     * return calendarList; }
     */
    
-   public List<CalendarBean> getCalendarEvents() {
-      return calendarMapper.getCalendarEvents();
+   
+    public List<CalendarBean> getCalendarEvents() { 
+       return calendarMapper.getCalendarEvents(); 
+    }
+    
+    public void modifyCalendarInfo(CalendarBean modifyCalendarBean) {
+      calendarMapper.modifyCalendarInfo(modifyCalendarBean);
    }
-   
-   
+    
+
 }

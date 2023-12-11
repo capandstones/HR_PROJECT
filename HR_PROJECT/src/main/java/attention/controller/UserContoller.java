@@ -23,93 +23,93 @@ import attention.vaildator.UserValidator;
 @RequestMapping("/user")
 public class UserContoller {
 
-	@Autowired
-	private UserService userService;
+   @Autowired
+   private UserService userService;
 
-	@Resource(name = "loginUserBean")
-	private UserBean loginUserBean;
+   @Resource(name = "loginUserBean")
+   private UserBean loginUserBean;
 
-	@GetMapping("/login")
-	public String login(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
-			@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
+   @GetMapping("/login")
+   public String login(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
+         @RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
 
-		model.addAttribute("fail", fail);// 처음은 무조건 fail=false 이후 실패시 fail=true
+      model.addAttribute("fail", fail);// 처음은 무조건 fail=false 이후 실패시 fail=true
 
-		return "user/login";
-	}
+      return "user/login";
+   }
 
-	@GetMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
-			BindingResult result, Model model) {
+   @GetMapping("/login_pro")
+   public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
+         BindingResult result, Model model) {
 
-		if (result.hasErrors()) {
-			return "user/login";
-		}
+      if (result.hasErrors()) {
+         return "user/login";
+      }
 
-		userService.getLoginUserInfo(tempLoginUserBean);
+      userService.getLoginUserInfo(tempLoginUserBean);
 
-		
+      
 
-		if (loginUserBean.isUserLogin() == true) {
+      if (loginUserBean.isUserLogin() == true) {
 
-			if (loginUserBean.getEmployee_position().equals("대기중")) {
+         if (loginUserBean.getEmployee_position().equals("대기중")) {
 
-				return "user/login_waiting";
-			}
+            return "user/login_waiting";
+         }
 
-			if (loginUserBean.getEmployee_position().equals("관리자")) {
+         if (loginUserBean.getEmployee_position().equals("관리자")) {
 
-				return "admin/main";
-			}
-			
-			return "user/login_success";
+            return "admin/main";
+         }
+         
+         return "user/login_success";
 
-		} else {
+      } else {
 
-			return "user/login_fail";
-		}
-	}
+         return "user/login_fail";
+      }
+   }
 
-	@GetMapping("/modify")
-	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
+   @GetMapping("/modify")
+   public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
 
-		userService.getModifyUserInfo(modifyUserBean);
+      userService.getModifyUserInfo(modifyUserBean);
 
-		return "user/modify";
-	}
+      return "user/modify";
+   }
 
-	@PostMapping("/modify_pro")
-	public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
+   @PostMapping("/modify_pro")
+   public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
 
-		if (result.hasErrors()) {
-			return "user/modify";
-		}
+      if (result.hasErrors()) {
+         return "user/modify";
+      }
 
-		userService.modifyUserInfo(modifyUserBean);
+      userService.modifyUserInfo(modifyUserBean);
 
-		return "user/modify_success";
-	}
+      return "user/modify_success";
+   }
 
-	@GetMapping("/logout")
-	public String logout() {
+   @GetMapping("/logout")
+   public String logout() {
 
-		loginUserBean.setUserLogin(false);
+      loginUserBean.setUserLogin(false);
 
-		return "user/logout";
-	}
+      return "user/logout";
+   }
 
-	@GetMapping("/not_login")
-	public String not_login() {
+   @GetMapping("/not_login")
+   public String not_login() {
 
-		loginUserBean.setUserLogin(false);
+      loginUserBean.setUserLogin(false);
 
-		return "user/not_login";
-	}
+      return "user/not_login";
+   }
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		UserValidator validator1 = new UserValidator();
-		binder.addValidators(validator1);
-	}
+   @InitBinder
+   public void initBinder(WebDataBinder binder) {
+      UserValidator validator1 = new UserValidator();
+      binder.addValidators(validator1);
+   }
 
 }

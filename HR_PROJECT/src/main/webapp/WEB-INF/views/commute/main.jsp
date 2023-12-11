@@ -14,6 +14,7 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
 .date-container {
    display: flex;
@@ -84,7 +85,7 @@
 }
 
 .week-details {
-   max-height: 0;
+   max-height: none;;
    overflow: hidden;
    transition: max-height 0.3s;
    width: 100%;
@@ -131,11 +132,16 @@
                   <td>이번달 연장</td>
                </tr>
                <tr>
-                  <td>00h 00m 00s</td>
-                  <td>00h 00m 00s</td>
-                  <td>00h 00m 00s</td>
-                  <td>00h 00m 00s</td>
-                  <td>00h 00m 00s</td>
+                  <%-- <td><%= thisWeekTotalTime %></td>
+                  <td>0:00:00</td>
+                  <td><%= thisWeekRemainingTime %></td>
+                  <td><%= thisMonthTotalTime %></td>
+                  <td><%= thisMonthExceedTime %></td> --%>
+                  <td>28h 0m 0s</td>
+                  <td>0h 00m 00s</td>
+                  <td>7h 0m 0s</td>
+                  <td>28h 0m 0s</td>
+                  <td>112h 0m 0s</td>
                </tr>
             </table>
 
@@ -149,6 +155,21 @@
       </div>
    </div>
 
+   <%@ page import="attention.beans.CommuteBean"%>
+   <%@ page import="attention.service.CommuteService"%>
+   <%@ page import="org.springframework.beans.factory.annotation.Autowired"%>
+
+<%--    <%
+    @Autowired
+    CommuteService commuteService;
+
+    CommuteBean commuteBean = commuteService.getWeeklyWorkTime("${employee_id}", "2023-12-07");
+
+    String thisWeekTotalTime = commuteBean.getWeek_work_hour();
+    String thisWeekRemainingTime = commuteBean.getWeek_remaining_time();
+    String thisMonthTotalTime = commuteBean.getMonth_work_hour();
+    String thisMonthExceedTime = commuteBean.getMonth_remaining_time();
+   %> --%>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
    <script src="${root}js/scripts.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -222,7 +243,7 @@
             };
 
             var weekNumber = index + 1;
-            weekTable.innerHTML = '<tr><th>' + weekNumber + '주차</th></tr><tr class="no-style"><th style="text-align: center; font-weight: 200;">누적 근무시간 00h 00m 00s </br> 초과 근무 시간 0h 0m 0s</th></tr>';
+            weekTable.innerHTML = '<tr><th>' + weekNumber + '주차</th></tr><tr class="no-style"><th style="text-align: center; font-weight: 200;">누적 근무시간 00h 00m 00s <br/> (초과 근무 시간 0h 0m 0s)</th></tr>';
 
             weekTableContainer.appendChild(weekTable);
             weekTableContainer.appendChild(document.createElement('div'));
@@ -281,6 +302,15 @@
 
       generateWeekTables();
       updateDate();
+      
+      var today = new Date();
+      var weeksInMonth = getWeeksInMonth(today.getFullYear(), today.getMonth() + 1);
+      var todayWeekNumber = weeksInMonth.findIndex(function(week) {
+         return today >= week.start && today <= week.end;
+      }) + 1;
+
+      toggleWeekDetails(todayWeekNumber);
+      
    </script>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import attention.beans.DraftBean;
 import attention.beans.UserBean;
+import attention.dao.TransferDao;
 import attention.dao.WorkFlowDao;
 import attention.service.WorkFlowService;
 
@@ -22,6 +23,10 @@ public class RestApiController {
 	
 	@Autowired
 	private WorkFlowService workFlowService;
+	
+	@Autowired
+	private TransferDao transferDao;
+	
 	
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
@@ -47,15 +52,42 @@ public class RestApiController {
 		return readDraftBean;
 	}
 	
-	@GetMapping("document/approval/{draft_idx}/{opinion}")
-	public void changeOpinion(@PathVariable int draft_idx,String employee_id,@PathVariable int opinion) {	
+	@GetMapping("document/approval/{draft_idx}/{opinion}/{comment}")
+	public void changeOpinion(@PathVariable int draft_idx,String employee_id,@PathVariable int opinion,String employee_name,@PathVariable String comment) {	
 		System.out.println("들어왔니?");
 		System.out.println(draft_idx);
 		System.out.println(opinion);
 		employee_id = loginUserBean.getEmployee_id();
-		workFlowService.changeOpinion(draft_idx, employee_id, opinion);
+		employee_name = loginUserBean.getEmployee_name();
+		workFlowService.changeOpinion(draft_idx, employee_id, opinion,employee_name,comment);
 		workFlowService.checkOpinion(draft_idx);
 				
 	}
+	
+	
+	@GetMapping("workflow/getlist/{department}")
+	public List<UserBean> getAllList(@PathVariable String department) {	
+
+
+		
+		System.out.println("사원목록입니다");
+		List<UserBean> emplist = workFlowDao.getAllList(department);
+		
+		System.out.println(emplist.toString());
+		
+		return emplist;
+	}
+	
+	@GetMapping("transfer/getinfo/{employee_id}")
+	public List<UserBean> getinfo(@PathVariable String employee_id) {	
+
+
+		List<UserBean> emplist = transferDao.getOneList(employee_id);
+		
+		
+		
+		return emplist;
+	}
+	
 	
 }

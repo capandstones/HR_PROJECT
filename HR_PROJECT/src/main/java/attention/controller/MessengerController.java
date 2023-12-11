@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/messenger")
 public class MessengerController {
-	
-	@GetMapping("/main")
-	public String main() {
-		
-		return "messenger/main";
-	}
+   
+   @GetMapping("/main")
+   public String main() {
+      
+      return "messenger/main";
+   }
 }

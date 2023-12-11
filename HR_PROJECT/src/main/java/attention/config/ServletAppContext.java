@@ -27,8 +27,10 @@ import attention.interceptor.CheckLoginInterceptor;
 import attention.interceptor.CheckWriterInterceptor;
 import attention.mapper.AdminMapper;
 import attention.mapper.CalendarMapper;
+import attention.mapper.CommuteMapper;
 import attention.mapper.EmployeesMapper;
 import attention.mapper.NoticeMapper;
+import attention.mapper.TransferMapper;
 import attention.mapper.UserMapper;
 import attention.mapper.VacationMapper;
 import attention.mapper.WorkFlowMapper;
@@ -164,6 +166,20 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factoryBean;
 	}
 
+
+	@Bean
+	public MapperFactoryBean<TransferMapper> getTransferMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<TransferMapper> factoryBean = new MapperFactoryBean<TransferMapper>(TransferMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
+	@Bean
+	public MapperFactoryBean<CommuteMapper> getCommuteMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<CommuteMapper> factoryBean = new MapperFactoryBean<CommuteMapper>(CommuteMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
 
 	// ======================================================================
 	@Bean

@@ -9,8 +9,7 @@
    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
       <div class="sb-sidenav-menu">
          
-         <div class="nav">
-            
+         <div class="nav">     
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseNotice" aria-expanded="false"   aria-controls="collapseNotice"> 공지사항
                <div class="sb-sidenav-collapse-arrow">
                   <i class="fas fa-angle-down"></i>
@@ -35,8 +34,6 @@
             </div>
             <a class="nav-link" href="${root}member/chart"> 구성원 </a>
             <a class="nav-link" href="${root}admin/admin_join"> 계정신청 </a>
-            <a class="nav-link" href="${root}workflow/document"> 메뉴1 </a>
-            <a class="nav-link" href="${root}vacation/main"> 메뉴2 </a>
          </div>
       </div>
    </nav>
