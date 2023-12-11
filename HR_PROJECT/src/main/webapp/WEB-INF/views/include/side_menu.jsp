@@ -16,17 +16,8 @@
       <div class="nav">
         <button id="attendanceButton" style="margin-top: 10px; height: 40px; border-radius: 20px; border-style: solid; border-color: rgb(190, 190, 190);" onclick="toggleAttendance()">출근하기</button>
         <div class="sb-sidenav-menu-heading">알림</div>
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMessenger" aria-expanded="false" aria-controls="collapseMessenger"> 메신저
-          <div class="sb-sidenav-collapse-arrow">
-            <i class="fas fa-angle-down"></i>
-          </div>
-        </a>
-        <div class="collapse" id="collapseMessenger" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion" style="background-color: #415971">
-          <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="Messenger-received.html">받은 메신저</a> <a class="nav-link" href="Messenger-send.html">보낸 메신저</a>
-          </nav>
-        </div>
-        <a class="nav-link" href="news.html"> 새로운 소식 </a>
+        <a class="nav-link" href="${root}messenger/main"> 메신저 </a>
+        <a class="nav-link" href="news.jsp"> 새로운 소식 </a>
         <div class="sb-sidenav-menu-heading">메뉴</div>
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseNotice" aria-expanded="false" aria-controls="collapseNotice"> 공지사항
           <div class="sb-sidenav-collapse-arrow">
