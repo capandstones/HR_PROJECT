@@ -32,7 +32,7 @@
                   <a class="nav-link" href="${root}transfer/record">인사발령기록</a>
                </nav>
             </div>
-            <a class="nav-link" href="${root}member/chart"> 구성원 </a>
+            <a class="nav-link" href="${root}member/admin_chart"> 구성원 </a>
             <a class="nav-link" href="${root}admin/admin_join"> 계정신청 </a>
          </div>
       </div>
