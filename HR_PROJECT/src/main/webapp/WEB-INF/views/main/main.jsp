@@ -140,7 +140,7 @@
                             <i class="fa-solid fa-building-user"></i> 직책 : ${employeeInfo.employee_position}
                           </div>
                           <div class="employee-email">
-                            <i class="fa-regular fa-envelope"></i>&nbsp; 이메일 : ${employeeInfo.employee_email} 
+                            <i class="fa-solid fa-envelope"></i>&nbsp; 이메일 : ${employeeInfo.employee_email} 
                           </div>
                           <div class="employee-phone">
                             <i class="fa-solid fa-phone"></i>&nbsp; 전화번호 : ${employeeInfo.employee_phone}
@@ -153,15 +153,37 @@
               </div>
             </div>
             <div class="col-xl-4 col-md-4">
-              <div class="card text-black mb-4 " style="height: 220px; color: #fff;">
+              <div class="card text-black mb-4" style="height: 220px; color: #fff;">
                 <div class="card-header">공지사항</div>
-                <div class="card-body"></div>
+                <div class="card-body">
+                  <table class="table table-hover table-sm text-center align-middle" id='board_list' style="margin-top: -9px">
+                      <tbody>
+                        <c:forEach var="obj" items="${list1 }">
+                          <tr>
+                            <th width="60%"><a href='${root }notice/all_read/read?board_info_idx=1&content_idx=${obj.content_idx}&page1'>${obj.content_subject }</a></th>                                              
+                            <td class="text-right d-none d-xl-table-cell">${obj.content_date }</td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                </div>
               </div>
             </div>
             <div class="col-xl-4 col-md-4">
               <div class="card text-black mb-4 " style="height: 220px; color: #fff;">
-                <div class="card-header">메뉴 바로가기</div>
-                <div class="card-body"></div>
+                <div class="card-header">부서 공지사항</div>
+                <div class="card-body">
+                  <table class="table table-hover table-sm text-center align-middle" id='board_list' style="margin-top: -9px">
+                      <tbody>
+                        <c:forEach var="obj" items="${list2 }">
+                          <tr>
+                            <th width="60%"><a href='${root }notice/sub_read/read?board_info_idx=${obj.content_board_idx}&content_idx=${obj.content_idx}&page1'>${obj.content_subject }</a></th>
+                            <td class="text-center d-none d-xl-table-cell">${obj.content_date }</td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                </div>
               </div>
             </div>
             <div class="col-xl-9 col-md-9">
