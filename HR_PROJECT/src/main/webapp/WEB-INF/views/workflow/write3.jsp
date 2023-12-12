@@ -212,21 +212,20 @@ function submitForm() {
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <style type="text/css">
+
 ::-webkit-scrollbar {
-   width: 10px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-   background-color: #d9d9d9;
-   border-radius: 10px;
+	background-color: #d9d9d9;
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-   background-color: #f2f2f2;
-   border-radius: 10px;
+	background-color: #f2f2f2;
+	border-radius: 10px;
 }
-
-
 .container {
 	/* text-align: center;  */
 	/* 	margin-left: 30%; */
@@ -259,11 +258,12 @@ div#information {
 
 div#list{
 	margin-bottom: 5px;
-	height: 30px;
+	height: 35px;
 	font-size: 14pt;
 	font-family: sans-serif;
 	padding-top: 6px;
 }
+
 
 button#list{
 	height: 28px;
@@ -277,10 +277,11 @@ button#list{
 }
 
 button#cate{
+	height:35px;
 	margin-bottom: 15px;
 	border-radius: 0.5rem;
 	border: 1px solid gray;
-	background: #6C98C4;
+	background: #415971;
 	border: none;
 	color: white;
 }
@@ -438,6 +439,7 @@ div#attachArea {
     width: 500px; /* 가로 크기 */
     height: 600px; /* 세로 크기 */
     overflow-y: auto; /* 세로 스크롤이 필요한 경우 스크롤 표시 */
+    
   }
   
   #myModal2 {
@@ -468,16 +470,7 @@ div#attachArea {
     overflow-y: auto; /* 세로 스크롤이 필요한 경우 스크롤 표시 */
   }
 
-    /* 리스트 스타일링 */
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
 
-    li {
-      padding: 8px;
-      cursor: pointer;
-    }
 
 
  /* 닫기 버튼 스타일링 */

@@ -212,20 +212,20 @@ function submitForm() {
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <style type="text/css">
+
 ::-webkit-scrollbar {
-   width: 10px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-   background-color: #d9d9d9;
-   border-radius: 10px;
+	background-color: #d9d9d9;
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-   background-color: #f2f2f2;
-   border-radius: 10px;
+	background-color: #f2f2f2;
+	border-radius: 10px;
 }
-
 .container {
 	/* text-align: center;  */
 	/* 	margin-left: 30%; */
@@ -258,11 +258,12 @@ div#information {
 
 div#list{
 	margin-bottom: 5px;
-	height: 30px;
+	height: 35px;
 	font-size: 14pt;
 	font-family: sans-serif;
 	padding-top: 6px;
 }
+
 
 button#list{
 	height: 28px;
@@ -276,10 +277,11 @@ button#list{
 }
 
 button#cate{
+	height:35px;
 	margin-bottom: 15px;
 	border-radius: 0.5rem;
 	border: 1px solid gray;
-	background: #6C98C4;
+	background: #415971;
 	border: none;
 	color: white;
 }
@@ -380,8 +382,7 @@ input:focus {
 
 textarea:focus {
 	outline: 1px solid #415971;
-}outline: 2px solid #66cc66;
-
+}
 
 textarea::placeholder {
 	color: #999999;
@@ -438,6 +439,7 @@ div#attachArea {
     width: 500px; /* 가로 크기 */
     height: 600px; /* 세로 크기 */
     overflow-y: auto; /* 세로 스크롤이 필요한 경우 스크롤 표시 */
+    
   }
   
   #myModal2 {
@@ -468,16 +470,7 @@ div#attachArea {
     overflow-y: auto; /* 세로 스크롤이 필요한 경우 스크롤 표시 */
   }
 
-    /* 리스트 스타일링 */
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
 
-    li {
-      padding: 8px;
-      cursor: pointer;
-    }
 
 
  /* 닫기 버튼 스타일링 */
@@ -515,8 +508,7 @@ div#attachArea {
 									<div style="margin-top: 5px;">
 										<textarea  class="search" rows="20" name="draft_text" id="daterange" style="margin-top: 5px; padding: 6px 10px;">
 1. 작성 안내
-원천징수에 대한 지출 결의서를 작성하시고,
-직인을 받은 계약서, 통장 사본, 신분증 사본을 파일로 첨부해주세요.
+직인을 받은 지출 결의서를 파일로 첨부해주세요.
 
 
 
@@ -527,13 +519,11 @@ div#attachArea {
 
 
 
-
-3. 승인·참조 설정
+3. 승인 설정
 1,000만원 이상
-1단계: 조직장(승인), 박부장(참조)
+해당 팀 총무담당자, 부장, 부사장
 1,000만원 이하
-1단계: 조직장(승인), 박부장(참조)
-2단계: 대표(승인)
+해당 팀 총무담당장, 팀장, 부장
 						</textarea>
 									</div>
 								</div>

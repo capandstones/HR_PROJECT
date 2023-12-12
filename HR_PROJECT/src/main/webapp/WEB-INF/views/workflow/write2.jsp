@@ -107,7 +107,7 @@ function fetchDepartmentInfo(department) {
 	    	var print='';
 	    	for (var i = 0; i < response.length; i++) {
 	    		print+= "<div  id='list' style='display:flex;'>"
-	    		+ "<div>"+response[i].department_name+" · "+response[i].employee_position+" · "+response[i].employee_name+"</div>"
+	    		+ "<div id='emplist'>"+response[i].department_name+" · "+response[i].employee_position+" · "+response[i].employee_name+"</div>"
 	    		+ "<button id='list' value='" + response[i].employee_id + "' style='position: absolute; right: 80px;' onclick='selectEmployee(\"" + response[i].employee_name + "\", \"" + response[i].department_name + "\", \"" + response[i].employee_position + "\", \"" + response[i].employee_id+ "\")'>선택</button>"
 	    		+ "</div>";
 	    	}
@@ -258,11 +258,12 @@ div#information {
 
 div#list{
 	margin-bottom: 5px;
-	height: 30px;
+	height: 35px;
 	font-size: 14pt;
 	font-family: sans-serif;
 	padding-top: 6px;
 }
+
 
 button#list{
 	height: 28px;
@@ -276,10 +277,11 @@ button#list{
 }
 
 button#cate{
+	height:35px;
 	margin-bottom: 15px;
 	border-radius: 0.5rem;
 	border: 1px solid gray;
-	background: #6C98C4;
+	background: #415971;
 	border: none;
 	color: white;
 }
@@ -437,6 +439,7 @@ div#attachArea {
     width: 500px; /* 가로 크기 */
     height: 600px; /* 세로 크기 */
     overflow-y: auto; /* 세로 스크롤이 필요한 경우 스크롤 표시 */
+    
   }
   
   #myModal2 {

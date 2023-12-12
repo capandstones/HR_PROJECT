@@ -103,6 +103,7 @@ padding: 0;
             var events = result.map(function(event){
                return {
                   id: event.cal_idx,
+                  line: event.line_name,
                   title: event.cal_title,
                   start: event.cal_start_date,
                   end: event.cal_end_date,
@@ -111,6 +112,7 @@ padding: 0;
                   /* color:"#FF0000" */
                   extendedProps: {
                      cal_idx: event.cal_idx,
+                     line_name: event.line_name,
                   }
                };
             });
@@ -172,93 +174,93 @@ padding: 0;
          
          eventClick : function(info) {
             
-            var event = info.event;
+             var event = info.event;
              var startDate = event.startStr; 
              var endDate = event.endStr ? event.endStr : '';
 
              console.log(event);
              
              var cal_idx = event.extendedProps.cal_idx;
+             var line_name = event.extendedProps.line_name;
              
              document.getElementById('eventIdx').innerText = cal_idx;
+             document.getElementById('eventLineName').innerText = line_name;
              document.getElementById('eventDate').innerText = startDate + (endDate ? ' - ' + endDate : '');
              document.getElementById('eventTitle').innerText = event.title;
              document.getElementById('eventCategory').innerText = event.extendedProps.category;
-             document.getElementById('eventLineName').innerText = event.extendedProps.line_name;
+             /* document.getElementById('eventLineName').innerText = event.extendedProps.line_name; */
              document.getElementById('eventContent').innerText = event.extendedProps.content;
-             
              
             $('#view_schedule_modal').modal('show');
             
+            //수정
             $('#view_modify').on('click', function() {
         
                 $('#view_schedule_modal').modal('hide');
                 
+                $('#modify_scheduleModal').find('#cal_title').val(event.title);
+                $('#modify_scheduleModal').find('#cal_category').val(event.extendedProps.category);
+                /* $('#modify_scheduleModal').find('#line_name').val(event.extendedProps.line); */
+                $('#modify_scheduleModal').find('#cal_content').val(event.extendedProps.content);
+                
+                $('#modify_scheduleModal').find('#eventIdx').text(event.extendedProps.cal_idx);
+                $('#modify_scheduleModal').find('#eventLineName').text(event.extendedProps.line_name);
+                $('#modify_scheduleModal').find('#eventDate').text(event.startStr + (event.endStr ? ' - ' + event.endStr : ''));
+                $('#modify_scheduleModal').find('#cal_idx').val(cal_idx);
+                
                 $('#modify_scheduleModal').modal('show');
+
+               });
+            
+            $('#schedule_modify').on('click', function() {
+               var eventIdx = $('#eventIdx').text();
+               
+               /* $.ajax({
+                  type: 'POST',
+                  url: ,
+                  data: ,
+                  success: function(response) {
+                     console.log('수정 성공', response);
+                     
+                     
+                     calendar.getEventById(eventIdx).setTitle(event.title);
+                     $('#modify_scheduleModal').modal('hide');
+                  },
+                  error: function(error) {
+                    console.error('오류 발생', error);
+                }
+                  
+               }); */
+            });
+            
+            //취소버튼
+            $('#schedule_cancel').on('click', function() {
+               
+               $('#modify_scheduleModal').modal('hide');
+               
+               $('#view_schedule_modal').modal('show');
+            });
+
+                //삭제
+                $('#view_delete').on('click', function() {
+               var eventIdx = $('#eventIdx').text(); // 이벤트 인덱스를 숨겨진 필드나 다른 저장 공간에서 가져옵니다.
+
+                $.ajax({
+                    type: 'GET',
+                    url: '${root}deleteEvent/'+eventIdx, // 실제 이벤트 삭제를 위한 URL로 교체
+                    dataType: "text",
+                    success: function(response) {
+                     console.log('삭제 성공', response);
+                     // 옵션으로 이곳에서 캘린더에서 이벤트를 제거할 수 있습니다.
+                     calendar.getEventById(eventIdx).remove();
+                     $('#view_schedule_modal').modal('hide');
+                    },
+                    error: function(error) {
+                        console.error('오류 발생', error);
+                    }
+                });
             });
                 
-            function updateCalendarEvent(event) {
-                // FullCalendar에서 이벤트를 업데이트합니다.
-                calendar.getEventById(event.cal_idx).setProp('start', event.cal_start_date);
-                calendar.getEventById(event.cal_idx).setProp('end', event.cal_end_date);
-                calendar.getEventById(event.cal_idx).setProp('title', event.cal_title);
-                // 나머지 필요한 프로퍼티들에 대해서도 필요에 따라 추가
-
-                // FullCalendar에서 업데이트된 이벤트를 리렌더링합니다.
-                calendar.rerenderEvents();
-            }
-            
-                $('#schedule_modify').on('click', function(){
-                   
-
-                    var modifiedEventDetails = {
-                          cal_idx: $('#cal_idx').val(),
-                          cal_start_date:  $('#cal_start_date').val(),
-                          cal_end_date: $('#cal_end_date').val(),
-                            cal_title: $('#cal_title').val(),
-                    };
-                    
-                    $.ajax({
-                       type: 'POST',
-                       url: '/updateEvent',
-                       data: modifiedEventDetails,
-                       success: function(response) {
-                          console.log('업데이트 성공');
-                          $('#modify_scheduleModal').modal('hide');
-                          updateCalendarEvent(modifiedEventDetails);
-                       },
-                       error: function(error) {
-                          console.error('오류발생', error);
-                       }
-                    });
-                    
-                    /* $('#modify_scheduleModal').modal('hide'); */
-                    $('#schedule_modify').submit();
-                });
-                
-              //삭제
-                $('#view_delete').on('click', function() {
-    var eventIdx = $('#eventIdx').text(); // 이벤트 인덱스를 숨겨진 필드나 다른 저장 공간에서 가져옵니다.
-
-    $.ajax({
-        type: 'GET',
-        url: '${root}deleteEvent/'+eventIdx, // 실제 이벤트 삭제를 위한 URL로 교체
-        dataType: "text",
-        success: function(response) {
-            console.log('삭제 성공', response);
-            // 옵션으로 이곳에서 캘린더에서 이벤트를 제거할 수 있습니다.
-            calendar.getEventById(eventIdx).remove();
-            $('#view_schedule_modal').modal('hide');
-        },
-        error: function(error) {
-            console.error('오류 발생', error);
-        }
-    });
-});
-                
-            
-            
-            
             //일정 등록 닫기 버튼
             $('#schedule_close').on('click', function() {
                $('#scheduleModal').modal('hide');
@@ -273,22 +275,14 @@ padding: 0;
             $('#modify_close').on('click', function() {
                $('#modify_scheduleModal').modal('hide');
             });
-            
-            
+ 
          },
-         
-         
-         
-
          
          navLinks : true,
          selectable: true,
          droppable: true,
          editable: false,
          dayMaxEvents : true,
-         
-    
-         
          
       });
       calendar.render();
@@ -300,20 +294,29 @@ padding: 0;
          
          
       });
-      
-            
 
-            
       //일정등록 x버튼
-      function closeModal() {
+      function closeModalSchedule() {
          /* document.getElementById('scheduleModal').style.display = 'none'; */
-         $('.modal').modal('hide');
+         $('#scheduleModal').modal('hide');
       }
       
-      document.querySelector('.modal .close').addEventListener('click',closeModal);
+      document.querySelector('#scheduleModal .close').addEventListener('click',closeModalSchedule);
       
+      function closeModalModify() {
+          /* document.getElementById('scheduleModal').style.display = 'none'; */
+          $('#modify_scheduleModal').modal('hide');
+       }
+       
+       document.querySelector('#modify_scheduleModal .close').addEventListener('click',closeModalModify);
 
-      
+       function closeModalView() {
+          
+          $('#view_schedule_modal').modal('hide');
+       }
+       
+       document.querySelector('#view_schedule_modal .close').addEventListener('click',closeModalView);
+       
    });
    
 
@@ -386,10 +389,10 @@ padding: 0;
                   <div class="modal-header">
                      <h5 class="modal-title" id="modalTitle">일정등록</h5>
                  
-                     <span class="close" onclick="closeModal()">&times;</span>
+                     <span class="close" onclick="closeModalSchedule()">&times;</span>
                   </div>
                   
-                  <%-- <form name="schedule_register" id="schedule_register"> --%>
+                  <%-- <form name="schedule_register" id="schedule_register">============================= --%>
                   <form action="${root }calendar/submit_pro" id="register_Modal" method="post" enctype="multipart/form-data">
                      <div class="modal-body">
                         <div class="form-group" id="daterange-group">
@@ -436,7 +439,7 @@ padding: 0;
                            <input type="hidden" name="line_name" value="${sessionScope.loginuser.line_name }"/><!-- 여기에 작성자 부서이름 -->
                         </div>
                         
-        
+                    
                         
                      </div>
                      
@@ -455,6 +458,7 @@ padding: 0;
          
          
          <!-- Modify Modal -->
+         
             <div class="modal fade" id="modify_scheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
                
@@ -463,11 +467,10 @@ padding: 0;
                      <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">일정</h5>
                    
-                        <span class="close" onclick="closeModal()">&times;</span>
+                        <span class="close" onclick="closeModalModify()">&times;</span>
                      </div>
                      
-                     <form action="${root }calendar/modifyEvent" id="Modify_Modal" method="post" enctype="multipart/form-data">
-                     <%-- <form name="schedule_modify_delete" id="schedule_modify_delete"> --%>
+                     <form action="${root }calendar/modify_pro" id="Modify_Modal" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                            <div class="form-group" id="daterange-group">
  
@@ -507,6 +510,8 @@ padding: 0;
                               <textarea name="cal_content" id="cal_content" class="form-control" rows="5"></textarea>
                            </div>
                            
+                           <input type="hidden" id="cal_idx" name="cal_idx" value="">
+                           
                        
                         </div>
                         
@@ -528,7 +533,7 @@ padding: 0;
                   <div class="modal-content">
                      <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">일정 상세 정보</h5>
-                        <span class="close" data-dismiss="modal">&times;</span>
+                        <span class="close" onclick="closeModalView()">&times;</span>
                      </div>
                      
                      <%-- <form action=""></form> --%>

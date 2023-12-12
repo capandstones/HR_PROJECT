@@ -144,7 +144,7 @@ td, th {
 		<div id="layoutSidenav_content"
 			style="padding-top: 20px; height: auto; background-color: #fff;">
 			<main>
-				<h1>&nbsp; 인사발령</h1>
+				<h1>&nbsp; 인사발령기록</h1>
 
 				<label for="search-box"> <strong>검색</strong>
 				</label> <input type="search" id="search-box">
