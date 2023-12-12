@@ -85,30 +85,15 @@ ul {
   margin-top: 10px;
   cursor: context-menu;
 }
-
-
 .depth1:hover {
-  background: #D2E1FF;
-  
+  color: lightblue;
 }
 
 /* 버튼을 안누른 기본 레이아웃은 숨겨짐 */
 .hidden {
   display: none;
 }
-.member_card {
-  width: 280px;
-  height: 100px;
-  background-color: azure;
-  margin-left: 50px;
-  padding: 10px;
-  display: flex;
-  box-shadow: 2px 2px 2px 2px lightgray;
-  border: 1px solid lightgray;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
+
 .userImage {
   width: 80px;
   height: 80px;
@@ -213,8 +198,9 @@ ul {
 .employee-info-detail-wrap {
   display: flex;
   background-color: #f0f3fa;
-  width: 400px;
+  width: 350px;
   margin: 0px;
+  height: 250px;
   margin-top: 16px;
 }
 

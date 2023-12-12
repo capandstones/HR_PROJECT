@@ -389,109 +389,16 @@
                   </div>
                </div>
             </div>
-            <div class="col-xl-4 col-md-4">
-              <div class="card text-black mb-4" style="height: 220px; color: #fff;">
-                <div class="card-header">공지사항</div>
-                <div class="card-body">
-                  <table class="table table-hover table-sm text-center align-middle" id='board_list' style="margin-top: -9px">
-                      <tbody>
-                        <c:forEach var="obj" items="${list1 }">
-                          <tr>
-                            <th width="60%"><a href='${root }notice/all_read/read?board_info_idx=1&content_idx=${obj.content_idx}&page1'>${obj.content_subject }</a></th>                                              
-                            <td class="text-right d-none d-xl-table-cell">${obj.content_date }</td>
-                          </tr>
-                        </c:forEach>
-                      </tbody>
-                    </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-4">
-              <div class="card text-black mb-4 " style="height: 220px; color: #fff;">
-                <div class="card-header">부서 공지사항</div>
-                <div class="card-body">
-                  <table class="table table-hover table-sm text-center align-middle" id='board_list' style="margin-top: -9px">
-                      <tbody>
-                        <c:forEach var="obj" items="${list2 }">
-                          <tr>
-                            <th width="60%"><a href='${root }notice/sub_read/read?board_info_idx=${obj.content_board_idx}&content_idx=${obj.content_idx}&page1'>${obj.content_subject }</a></th>
-                            <td class="text-center d-none d-xl-table-cell">${obj.content_date }</td>
-                          </tr>
-                        </c:forEach>
-                      </tbody>
-                    </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-9 col-md-9">
-              <div class="card text-black mb-4" style="height: 240px; color: #fff;">
-                <div class="card-header">근로시간</div>
-                <div class="card-body">
-                  <div class="card text-black mb-4" style="height: 170px; width: 50%; color: #fff; float: right;">
-                    <div class="card-header">출퇴근 시간</div>
-                    <div class="card-body">
-
-                      <div id="attendanceTime" style="color: black; font-weight: bold;"></div>
-
-                      <!-- 점심시간 전일 근로 시간 -->
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-3">
-              <div class="card text-black mb-4" style="height: 240px; color: #fff;">
-                <div class="card-header">일일 나의 근태</div>
-                <div class="card-body">
-                  <%
-                  java.util.Date currentDate = new java.util.Date();
-                  java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("MM.dd(E)");
-                  String formattedDate = dateFormat.format(currentDate);
-                  %>
-
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">날짜</th>
-                        <th scope="col">근무</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><%=formattedDate%></td>
-                        <td>-</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-3">
-              <div class="card text-black mb-4" style="height: 300px; color: #fff;">
-                <div class="card-header">휴가 정보</div>
-                <div class="card-body"></div>
-              </div>
-            </div>
-            <div class="col-xl-9 col-md-9">
-              <div class="card text-black mb-4" style="height: 300px; color: #fff;">
-                <div class="card-header">부서원 근태</div>
-                <div class="card-body"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-  <script src="${root }js/scripts.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-  <script src="${root }assets/demo/chart-area-demo.js"></script>
-  <script src="${root }assets/demo/chart-bar-demo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-  <script src="${root }js/datatables-simple-demo.js"></script>
+         </main>
+      </div>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+   <script src="${root }js/scripts.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+   <script src="${root }assets/demo/chart-area-demo.js"></script>
+   <script src="${root }assets/demo/chart-bar-demo.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+   <script src="${root }js/datatables-simple-demo.js"></script>
 
 </body>
 </html>

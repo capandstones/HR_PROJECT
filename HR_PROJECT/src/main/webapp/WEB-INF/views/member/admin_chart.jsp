@@ -238,12 +238,14 @@
             const employeePosition = document.querySelector('.employee-span-position');
             const employeeStatus = document.querySelector('.employee-span-status');
             const employeeEmail = document.querySelector('.employee-span-email');
+			const employeeProfile = document.querySelector('.employee-info-profile-img');
             
             employeeName.innerText = employeeInfo.employee_name + ' (' + employeeInfo.employee_first_name + ' ' +  employeeInfo.employee_last_name + ')';
             employeeDepartment.innerText = employeeInfo.department_name;
             employeePosition.innerText = employeeInfo.employee_position;
             employeeStatus.innerText = employeeInfo.employee_status;
             employeeEmail.innerText = employeeInfo.employee_email;
+        	employeeProfile.setAttribute('src','${root}upload/' + employeeInfo.employee_profile_picture)
             
             const employeePDepartment = document.querySelector('.employee-p-department');
             const employeePPhone = document.querySelector('.employee-p-phone');
