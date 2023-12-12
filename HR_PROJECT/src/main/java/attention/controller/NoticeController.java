@@ -427,6 +427,8 @@ public class NoticeController {
 				board_info_idx = 6;
 			} else if (loginUserBean.getLine_name().equals("테스트부")) {
 				board_info_idx = 7;
+			} else if (loginUserBean.getLine_name().equals("attention")) {
+				board_info_idx = 1;
 			}
 		}
 		model.addAttribute("board_info_idx", board_info_idx);

@@ -70,6 +70,7 @@
 										<c:when test="${pageBean.prevPage <= 0 }">
 											<li class="page-item disabled"><a href="#" class="page-link">이전</a></li>
 										</c:when>
+                    
 										<c:otherwise>
 											<li href="${root }notice/all_read/noticeAll?board_info_idx=${board_info_idx}&page=${pageBean.prevPage}" class="page-item disabled"><a href="#" class="page-link">이전</a></li>
 										</c:otherwise>
