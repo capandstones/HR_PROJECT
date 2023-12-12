@@ -17,6 +17,7 @@
    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <script src="https://kit.fontawesome.com/f07bfb696a.js" crossorigin="anonymous"></script>
    <c:import url="/WEB-INF/views/member/memberInfoModal.jsp" />
+   
    <script>
       
       // render함수 실행
@@ -271,7 +272,7 @@
    </script>
 </head>
 
-<c:import url="/WEB-INF/views/include/admmin_top_menu.jsp" />
+<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
 <body class="sb-nav-fixed">
    <div id="layoutSidenav">
       <c:import url="/WEB-INF/views/include/admin_side_menu.jsp" />

@@ -63,8 +63,8 @@ ul {
   width: 120px;
   height: 35px;
   margin-top: 15px;
-  color: #3C5087;
-  background: #D2E1FF;
+  color: white;
+  background: #415971;
   border: none;
   font-weight: bold;
   font-size: 17px;
@@ -72,10 +72,11 @@ ul {
   box-shadow: 2px 2px 2px 2px lightgray;
 }
 .depth2 {
-  width: 120px;
+  text-align: left;
+  width: 100px;
   height: 30px;
   margin-left: 15px;
-  color : #3C5087;
+  color : #395886;
   background: white;
   font-weight: bold;
   font-size: 15px;
@@ -87,7 +88,8 @@ ul {
 
 
 .depth1:hover {
-  background: #96C7ED;
+  background: #D2E1FF;
+  
 }
 
 /* 버튼을 안누른 기본 레이아웃은 숨겨짐 */
@@ -156,8 +158,8 @@ ul {
   background-color: #fcfcfc;
   box-shadow: 2px 2px 2px 2px lightgray;
 /*   text-shadow: 2px 2px 2px lightgray; */
-  width: 650px;
-  height: 400px;
+  width: 600px;
+  height: 350px;
   transform: translate(-50%, -50%);
   z-index: 1;
   display: flex;
@@ -210,7 +212,7 @@ ul {
 }
 .employee-info-detail-wrap {
   display: flex;
-  background-color: #D2E1FF;
+  background-color: #f0f3fa;
   width: 400px;
   margin: 0px;
   margin-top: 16px;
@@ -219,13 +221,14 @@ ul {
 .employee-info-detail-txt {
   margin: 20px;
   display: flex;
-  font-weight: 600;
+  font-weight: 750;
+  color: #666666;
 }
 
 .employee-info-detail-txt2 {
   margin: 20px;
   display: flex;
-  font-weight: 520;
+  font-weight: 600;
 }
 
 .employee-inner-button-wrap {
@@ -239,11 +242,6 @@ ul {
 
 .employee-inner-button-message {
   margin-right: 20px;
-}
-
-.empInfoDetailTxt {
-  color: black;
-  font-weight: 500;
 }
 
 .employee-div {
@@ -265,13 +263,13 @@ ul {
     font-weight: 800;
   }
   .employee-span-status{
-  	color: #3C5087;
+  	color: #666666;
   	font-weight: 700;
   }
   
   .employee-info-txt {
-    color: #3C5A91;
-    font-size: 14px;
+    color: #666666;
+    font-size: 15px;
     font-weight: 800;
   }
   .employee-info-table td {
@@ -307,7 +305,7 @@ ul {
   margin: 10px;
   margin-right: 30px;
   cursor: pointer;
-  background-color: #EBFBFF;
+  background-color: white;
   border: 1px solid lightgray;
   box-shadow: 2px 2px 2px 2px lightgray;
 }

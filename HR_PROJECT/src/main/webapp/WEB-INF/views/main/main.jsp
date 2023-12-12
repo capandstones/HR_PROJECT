@@ -31,7 +31,42 @@
                   나의 정보
                   <button type="button" class="btn btn-outline-dark" style="float: right; font-size: 10px; font-weight: normal; text-align: center; line-height: 1.1em; border-style: solid; border-color: rgb(190, 190, 190);">관리</button>
                 </div>
-                <div class="card-body"></div>
+                <div class="card-body">
+                  <div class="mainContainer">
+                    <div class="employee-div employee-info-profile-wrap">
+                      <div>
+                        <img class="employee-info-profile-img" src="${root}upload/userImage1.png" style="width: 100px; height: 120px;"/>
+                      </div>
+                      <div class="employee-div">
+                        <span class="employee-span-name">강해린</span>
+                      </div>
+                      <div>
+                        <p class="employee-span-wrap">
+                          <span class="employee-info-txt employee-span-department">개발부</span> <span class="employee-info-txt employee-span-position">부장</span>
+                        </p>
+                        <p class="employee-info-txt employee-span-email">test@test.co.kr</p>
+                      </div>
+                      <div class="employee-div employee-inner-status-wrap" style="justify-content: center">
+                        <div class="employee-inner-status-icon"></div>
+                        <span class="employee-span-status">재직중</span>
+                      </div>
+                    </div>
+                    <div class="employee-info-detail-wrap">
+                      <div>
+                        <p class="employee-info-detail-txt empInfoDetailTxt">회사명</p>
+                        <p class="employee-info-detail-txt empInfoDetailTxt">부서</p>
+                        <p class="employee-info-detail-txt empInfoDetailTxt">휴대전화</p>
+                        <p class="employee-info-detail-txt empInfoDetailTxt">입사일</p>
+                      </div>
+                      <div>
+                        <p class="employee-info-detail-txt2">(주)Attention</p>
+                        <p class="employee-info-detail-txt2 employee-p-department">디자인부</p>
+                        <p class="employee-info-detail-txt2 employee-p-phone">010-0000-0000</p>
+                        <p class="employee-info-detail-txt2 employee-p-start-date">20-05-10</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-xl-4 col-md-4">
