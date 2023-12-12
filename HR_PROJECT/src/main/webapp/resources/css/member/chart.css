@@ -144,7 +144,7 @@ ul {
   box-shadow: 2px 2px 2px 2px lightgray;
 /*   text-shadow: 2px 2px 2px lightgray; */
   width: 600px;
-  height: 350px;
+  height: 390px;
   transform: translate(-50%, -50%);
   z-index: 1;
   display: flex;
@@ -200,7 +200,7 @@ ul {
   background-color: #f0f3fa;
   width: 350px;
   margin: 0px;
-  height: 250px;
+  height: 290px;
   margin-top: 16px;
 }
 
@@ -310,7 +310,7 @@ ul {
   width: 115px;
   height: 130px;
   border: 1px solid lightgray;
-  border-radius: 10%;
+  border-radius: 5%;
 }
 .employee-info-wrap {
   float: left;

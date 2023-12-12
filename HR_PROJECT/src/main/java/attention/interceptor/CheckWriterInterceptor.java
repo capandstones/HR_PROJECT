@@ -28,7 +28,7 @@ public class CheckWriterInterceptor implements HandlerInterceptor{
 
 		String str1 = request.getParameter("content_idx");
 		int content_idx = Integer.parseInt(str1);
-		// ÇöÀç °Ô½Ã±Û Á¤º¸ °¡Á®¿À±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		NoticeContentBean currentContentBean = noticeService.getContentInfo(content_idx);
 		
 		if(currentContentBean.getContent_writer_id() != loginUserBean.getEmployee_id()) {

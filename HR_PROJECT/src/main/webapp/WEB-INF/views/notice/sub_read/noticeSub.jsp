@@ -43,7 +43,7 @@
 							<div class="col-lg-6" style="margin-top: 20px">
 								<div class="card shadow">
 									<div class="card-body">
-										<h4 class="card-title">${noticeMenuList[idx.index].board_info_name }</h4>
+										<h4 class="card-title"><b>${noticeMenuList[idx.index].board_info_name }</b></h4>
 										<table class="table table-hover" id='board_list'>
 											<thead>
 												<tr>
