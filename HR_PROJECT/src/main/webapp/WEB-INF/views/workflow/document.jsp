@@ -552,7 +552,7 @@ $(document).ready(function() {
                             	 output2 += "<div style='display:flex; '>"+
                             	 "<div style='font-weight:bold;'>"+details.looker1_name+"</div><div>님이 승인하였습니다.</div>"+
                             	 "</div>";
-                            	 if(details.looker1_cooment!=null){
+                            	 if(details.looker1_comment!=null){
                             		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
                             	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker1_comment+"</div>"+
                             	 "</div>";   
@@ -562,7 +562,7 @@ $(document).ready(function() {
                             	 output2 += "<div style='display:flex;'>"+
                             	 "<div style='font-weight:bold;'>"+details.looker1_name+"</div><div>님이 반려하였습니다.</div>"+
                             	 "</div>";
-                            	 if(details.looker1_cooment!=null){
+                            	 if(details.looker1_comment!=null){
                             		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
                             	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker1_comment+"</div>"+
                             	 "</div>";   
@@ -572,7 +572,7 @@ $(document).ready(function() {
                             	 output2 += "<div style='display:flex; '>"+
                             	 "<div style='font-weight:bold;'>"+details.looker2_name+"</div><div>님이 승인하였습니다.</div>"+
                             	 "</div>";
-                            	 if(details.looker2_cooment!=null){
+                            	 if(details.looker2_comment!=null){
                             		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
                             	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker2_comment+"</div>"+
                             	 "</div>";   
@@ -582,7 +582,7 @@ $(document).ready(function() {
                             	 output2 += "<div style='display:flex;'>"+
                             	 "<div style='font-weight:bold;'>"+details.looker2_name+"</div><div>님이 반려하였습니다.</div>"+
                             	 "</div>";
-                            	 if(details.looker2_cooment!=null){
+                            	 if(details.looker2_comment!=null){
                             		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
                             	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker2_comment+"</div>"+
                             	 "</div>";   
@@ -592,7 +592,7 @@ $(document).ready(function() {
                             	 output2 += "<div style='display:flex; '>"+
                             	 "<div style='font-weight:bold;'>"+details.looker3_name+"</div><div>님이 승인하였습니다.</div>"+
                             	 "</div>";
-                            	 if(details.looker3_cooment!=null){
+                            	 if(details.looker3_comment!=null){
                             		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
                             	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker3_comment+"</div>"+
                             	 "</div>";   
@@ -602,7 +602,7 @@ $(document).ready(function() {
                             	 output2 += "<div style='display:flex;'>"+
                             	 "<div style='font-weight:bold;'>"+details.looker3_name+"</div><div>님이 반려하였습니다.</div>"+
                             	 "</div>";
-                            	 if(details.looker3_cooment!=null){
+                            	 if(details.looker3_comment!=null){
                             		 output2 += "<div style='display:flex; margin-bottom:10px;'>"+
                             	 "<div style='font-weight:bold;'>코멘트 : </div><div>"+details.looker3_comment+"</div>"+
                             	 "</div>";   
@@ -729,8 +729,7 @@ $(document).ready(function() {
 									<span id=subject class="doc1" style="color: balck;">진행 중
 									</span><span id="number" class="num1"> </span>
 								</button>-->
-								<button class="bottom-line" id="mine" onclick="myDocument(1); "
-									style="border-bottom: 4px solid #415971;">
+								<button class="bottom-line" id="mine" onclick="myDocument(1); " style="border-bottom: 4px solid #415971;">
 									<span id=subject class="doc2" style="color: balck;">진행중</span><span
 										id="number" class="num2"> </span>
 								</button>
@@ -739,8 +738,7 @@ $(document).ready(function() {
 									<span id=subject class="doc3" style="color: gray;">완료</span> <span
 										id="number" class="num3"> </span>
 								</button>
-								<button class="bottom-line" id="reject"
-									onclick="completeDm(2);">
+								<button class="bottom-line" id="reject" onclick="completeDm(2);">
 									<span id=subject class="doc3" style="color: gray;">반려</span> <span
 										id="number" class="num3"> </span>
 								</button>

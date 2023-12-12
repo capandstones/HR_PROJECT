@@ -45,9 +45,9 @@ public interface NoticeMapper {
    List<NoticeContentBean> getContentSubList(int board_info_idx, RowBounds rowBounds);
    
    @Select("select a1.content_idx, a1.content_subject, a2.employee_name as content_writer_name, "
-	         + "to_char(a1.content_date, 'YYYY-MM-DD') as content_date " + "from HRPROJECT.notice_content a1, HRPROJECT.employees a2 "
-	         + "where a1.content_writer_id = a2.employee_id " + "and a1.content_board_idx = 1 "
-	         + "order by a1.content_idx desc")
+            + "to_char(a1.content_date, 'YYYY-MM-DD') as content_date " + "from HRPROJECT.notice_content a1, HRPROJECT.employees a2 "
+            + "where a1.content_writer_id = a2.employee_id " + "and a1.content_board_idx = 1 "
+            + "order by a1.content_idx desc")
    List<NoticeContentBean> getContentAllList(RowBounds rowBounds);
    
    // 상세페이지

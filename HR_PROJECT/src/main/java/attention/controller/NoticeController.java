@@ -413,25 +413,25 @@ public class NoticeController {
 				|| loginUserBean.getEmployee_position().equals("차장");
 		model.addAttribute("canCRUD", canCRUD);
 
-		// board_info_idx가 제공되지 않았을 경우, 사용자의 직위에 따라 값을 설정
-		if (board_info_idx == null) {
-			if (loginUserBean.getLine_name().equals("개발부")) {
-				board_info_idx = 2;
-			} else if (loginUserBean.getLine_name().equals("영업부")) {
-				board_info_idx = 3;
-			} else if (loginUserBean.getLine_name().equals("인사부")) {
-				board_info_idx = 4;
-			} else if (loginUserBean.getLine_name().equals("기획부")) {
-				board_info_idx = 5;
-			} else if (loginUserBean.getLine_name().equals("디자인부")) {
-				board_info_idx = 6;
-			} else if (loginUserBean.getLine_name().equals("테스트부")) {
-				board_info_idx = 7;
-			} else if (loginUserBean.getLine_name().equals("attention")) {
-				board_info_idx = 1;
-			}
-		}
-		model.addAttribute("board_info_idx", board_info_idx);
+      // board_info_idx가 제공되지 않았을 경우, 사용자의 직위에 따라 값을 설정
+      if (board_info_idx == null) {
+         if (loginUserBean.getLine_name().equals("개발부")) {
+            board_info_idx = 2;
+         } else if (loginUserBean.getLine_name().equals("영업부")) {
+            board_info_idx = 3;
+         } else if (loginUserBean.getLine_name().equals("인사부")) {
+            board_info_idx = 4;
+         } else if (loginUserBean.getLine_name().equals("기획부")) {
+            board_info_idx = 5;
+         } else if (loginUserBean.getLine_name().equals("디자인부")) {
+            board_info_idx = 6;
+         } else if (loginUserBean.getLine_name().equals("테스트부")) {
+            board_info_idx = 7;
+         } else if (loginUserBean.getLine_name().equals("attention")) {
+            board_info_idx = 1;
+         }
+      }
+      model.addAttribute("board_info_idx", board_info_idx);
 
 		String boardInfoName = noticeService.getBoardInfoName(board_info_idx);
 		model.addAttribute("boardInfoName", boardInfoName);
