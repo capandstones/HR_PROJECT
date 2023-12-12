@@ -28,7 +28,7 @@ public class MainContoller {
 		String empId = loginUserBean.getEmployee_id();
 		
 		EmployeesBean employeeInfo = employeesMapper.getEmpInfoDetail(empId);
-		model.addAttribute(employeeInfo);
+		model.addAttribute("employeeInfo", employeeInfo);
 		
 		return"main/main";
 	}

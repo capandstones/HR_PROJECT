@@ -257,6 +257,7 @@ ul {
     width: 130px;
     height: 130px;
     border-radius: 50%;
+    border: 1px solid lightgray;
   }
   .employee-span-name {
     font-size: 20px;

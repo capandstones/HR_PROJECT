@@ -13,11 +13,19 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
+<style>
+.employee-main-li { display: flex; height: 160px; width: 400px; border: 1px solid lightgray;}
+.employee-list-profile { height: 140px; width: 120px; margin:10px;}
+.employee-profile-wrap { display: flex;}
+.status-active { border: 3px solid #64CD3C;}
+.status-inactive { border: 3px solid red;}
+.employee-info-wrap { margin-left: 20px; margin-top: 10px;}
+.employee-name { font-size: 16px; font-weight: 600; margin-top: 10px; margin-bottom:5px;}
+.employee-email{ display: flex; align-items: center;}
+.employee-info-wrap div { margin-top: 2px;}
+</style>
 </head>
-
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
-
 <body class="sb-nav-fixed">
   <div id="layoutSidenav">
     <c:import url="/WEB-INF/views/include/side_menu.jsp" />
@@ -32,40 +40,30 @@
                   <button type="button" class="btn btn-outline-dark" style="float: right; font-size: 10px; font-weight: normal; text-align: center; line-height: 1.1em; border-style: solid; border-color: rgb(190, 190, 190);">관리</button>
                 </div>
                 <div class="card-body">
-                  <div class="mainContainer">
-                    <div class="employee-div employee-info-profile-wrap">
-                      <div>
-                        <img class="employee-info-profile-img" src="${root}upload/userImage1.png" style="width: 100px; height: 120px;"/>
+                  <ul>
+                    <li class="employee-main-li">
+                      <div class="employee-profile-wrap">
+                        <div class="employee-profile-inner-img">
+                          <img class="employee-list-profile" src="${root}upload/${employeeInfo.employee_profile_picture}" />
+                        </div>
+                        <div class="employee-info-wrap">
+                          <div class="employee-name">${employeeInfo.employee_name} (${employeeInfo.employee_first_name} ${employeeInfo.employee_last_name})</div>
+                          <div class="departmentName">
+                            <i class="fa-solid fa-user-group"></i> 부서 : ${employeeInfo.department_name}
+                          </div>
+                          <div class="employee-position">
+                            <i class="fa-solid fa-building-user"></i> 직책 : ${employeeInfo.employee_position}
+                          </div>
+                          <div class="employee-email">
+                            <i class="fa-regular fa-envelope"></i>&nbsp; 이메일 : ${employeeInfo.employee_email} 
+                          </div>
+                          <div class="employee-phone">
+                            <i class="fa-solid fa-phone"></i>&nbsp; 전화번호 : ${employeeInfo.employee_phone}
+                          </div>
+                        </div>
                       </div>
-                      <div class="employee-div">
-                        <span class="employee-span-name">강해린</span>
-                      </div>
-                      <div>
-                        <p class="employee-span-wrap">
-                          <span class="employee-info-txt employee-span-department">개발부</span> <span class="employee-info-txt employee-span-position">부장</span>
-                        </p>
-                        <p class="employee-info-txt employee-span-email">test@test.co.kr</p>
-                      </div>
-                      <div class="employee-div employee-inner-status-wrap" style="justify-content: center">
-                        <div class="employee-inner-status-icon"></div>
-                        <span class="employee-span-status">재직중</span>
-                      </div>
-                    </div>
-                    <div class="employee-info-detail-wrap">
-                      <div>
-                        <p class="employee-info-detail-txt empInfoDetailTxt">회사명</p>
-                        <p class="employee-info-detail-txt empInfoDetailTxt">부서</p>
-                        <p class="employee-info-detail-txt empInfoDetailTxt">휴대전화</p>
-                        <p class="employee-info-detail-txt empInfoDetailTxt">입사일</p>
-                      </div>
-                      <div>
-                        <p class="employee-info-detail-txt2">(주)Attention</p>
-                        <p class="employee-info-detail-txt2 employee-p-department">디자인부</p>
-                        <p class="employee-info-detail-txt2 employee-p-phone">010-0000-0000</p>
-                        <p class="employee-info-detail-txt2 employee-p-start-date">20-05-10</p>
-                      </div>
-                    </div>
-                  </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
