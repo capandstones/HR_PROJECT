@@ -13,7 +13,7 @@
    <title>조직도</title>
    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
    <link href="${root}css/styles.css" rel="stylesheet" />
-   <link rel="stylesheet" href="${root}css/member/chart.css" />
+   <link rel="stylesheet" href="${root}css/chart.css" />
    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <script src="https://kit.fontawesome.com/f07bfb696a.js" crossorigin="anonymous"></script>
    <c:import url="/WEB-INF/views/member/memberInfoModal.jsp" />
