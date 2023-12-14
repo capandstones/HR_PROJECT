@@ -1,5 +1,7 @@
 package attention.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,8 @@ public class CommuteService {
    @Autowired
    private CommuteMapper commuteMapper;
 
-   public CommuteBean getWeeklyWorkTime(String employee_id, String today) {
-      return commuteMapper.getWeeklyWorkTime(employee_id, today);
+   public List<CommuteBean> getCommuteTotal(String employee_id, String today) {
+      return commuteMapper.getCommuteTotal(employee_id, today);
    }
 
 }

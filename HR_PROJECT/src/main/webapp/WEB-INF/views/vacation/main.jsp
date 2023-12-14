@@ -650,6 +650,62 @@ div#child2 {
    </script> -->
 
    <script>
+      function fetchMyVacations() {
+         var xhr = new XMLHttpRequest();
+         xhr.open('GET', '${root}vacation/getVacations?employee_id=${employee_id}', true);
+         xhr.onload = function() {
+            if (this.status === 200) {
+               var vacations = JSON.parse(this.responseText);
+               displayVacations(vacations);
+            } else {
+               console.error('서버로부터 데이터를 가져오는데 실패했습니다.');
+            }
+         };
+         xhr.send();
+      }
+      function displayVacations(vacations) {
+          var vacationsList = document.querySelector('#upcommingVacation tbody');
+          vacationsList.innerHTML = '';
+
+          vacations.forEach(function(vacation) {
+              var startDate = vacation.vacation_start_date.split(' ')[0];
+              var endDate = vacation.vacation_end_date.split(' ')[0];
+              var comment = vacation.vacation_comment ? vacation.vacation_comment : '';
+              var row = document.createElement('tr');
+              row.innerHTML = '<td>' + vacation.vacation_name + '</td>'
+                          + '<td>' + startDate + ' ~ ' + endDate + '</td>'
+                          + '<td>' + comment + '</td>'
+                          + '<td>' + vacation.vacation_state + '</td>'
+                          + '<td><button onclick="cancelVacation(' + vacation.VA_idx + ')">신청취소</button></td>';
+              vacationsList.appendChild(row);
+          });
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+         fetchMyVacations();
+      });   
+
+      function cancelVacation(VA_idx) {
+         var userConfirmation = confirm("신청취소하시겠습니까?");
+
+         if (userConfirmation) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '${root}vacation/cancelVacation', true);
+            xhr.setRequestHeader('Content-Type',
+                  'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+               if (this.status === 200) {
+                  alert("취소되었습니다.");
+                  fetchMyVacations();
+               } else {
+                  console.error('휴가 취소에 실패했습니다.');
+               }
+            };
+            xhr.send('VA_idx=' + VA_idx);
+         }
+      }
+   </script>
+
+   <script>
    function fetchMemberVacations() {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', '${root}vacation/getMemberVacations?employee_id=${employee_id}', true);

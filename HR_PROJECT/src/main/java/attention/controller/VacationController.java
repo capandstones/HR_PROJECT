@@ -75,6 +75,8 @@ public class VacationController {
    public String submit_pro(
          @RequestParam("employee_id") String employee_id,
          @RequestParam("line_name") String line_name,
+         @RequestParam("department_name") String department_name,
+         @RequestParam("employee_position") String employee_position,
          @RequestParam("vacation_name") String vacation_name,
          @RequestParam("employee_name") String employee_name,
          @RequestParam("employee_id_approver") String employee_id_approver,
@@ -83,10 +85,11 @@ public class VacationController {
          @RequestParam("vacation_end_date") String vacation_end_date,
          @RequestParam("vacation_days") int vacation_days,
          @RequestParam("vacation_reason") String vacation_reason,
-         @RequestParam("vacation_attachment") String vacation_attachment) {
+         @RequestParam("vacation_attachment") String vacation_attachment,
+         @RequestParam("vacation_state") String vacation_state) {
 
       vacationService.saveVacation(
-            employee_id, line_name, vacation_name, employee_name, employee_id_approver, employee_id_referrer, vacation_start_date, vacation_end_date, vacation_days, vacation_reason, vacation_attachment);
+            employee_id, line_name, department_name, employee_position, vacation_name, employee_name, employee_id_approver, employee_id_referrer, vacation_start_date, vacation_end_date, vacation_days, vacation_reason, vacation_attachment, vacation_state);
 
       return "vacation/success";
    }
@@ -106,13 +109,8 @@ public class VacationController {
    @PostMapping("/cancelVacation")
    @ResponseBody
    public String cancelVacation(@RequestParam("VA_idx") int VA_idx) {
-       try {
-           vacationService.cancelVacation(VA_idx);
-           return "{\"status\":\"success\"}";
-       } catch (Exception e) {
-           e.printStackTrace();
-           return "{\"status\":\"error\"}";
-       }
+       vacationService.cancelVacation(VA_idx);
+       return "취소되었습니다";
    }
 
 }

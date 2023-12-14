@@ -153,24 +153,26 @@ body {
             
             //수정
             $('#view_modify').on('click', function() {
-            	
-            	if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
-                    console.log("부장 또는 차장입니다.");
-                    $('#modify_scheduleModal').modal('show');
-                 }else {
-                    alert("권한이 없습니다.");
-                 }
+               
+               if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
+                   console.log("부장 또는 차장입니다.");
+                   $('#modify_scheduleModal').modal('show');
+
+                    $('#modify_scheduleModal').find('#cal_title').val(event.title);
+                    $('#modify_scheduleModal').find('#cal_category').val(event.extendedProps.category);
+                    $('#modify_scheduleModal').find('#cal_content').val(event.extendedProps.content);
+                    
+                    $('#modify_scheduleModal').find('#eventIdx').text(event.extendedProps.cal_idx);
+                    /* $('#modify_scheduleModal').find('#eventLineName').text(event.extendedProps.line_name); */
+                    $('#modify_scheduleModal').find('#eventDate').text(event.startStr + (event.endStr ? ' - ' + event.endStr : ''));
+                    $('#modify_scheduleModal').find('#cal_idx').val(cal_idx);
+                    
+                    $('#view_schedule_modal').modal('hide');
+
+                }else {
+                   alert("권한이 없습니다.");
+                }
         
-                $('#view_schedule_modal').modal('hide');
-                
-                $('#modify_scheduleModal').find('#cal_title').val(event.title);
-                $('#modify_scheduleModal').find('#cal_category').val(event.extendedProps.category);
-                $('#modify_scheduleModal').find('#cal_content').val(event.extendedProps.content);
-                
-                $('#modify_scheduleModal').find('#eventIdx').text(event.extendedProps.cal_idx);
-                /* $('#modify_scheduleModal').find('#eventLineName').text(event.extendedProps.line_name); */
-                $('#modify_scheduleModal').find('#eventDate').text(event.startStr + (event.endStr ? ' - ' + event.endStr : ''));
-                $('#modify_scheduleModal').find('#cal_idx').val(cal_idx);
                 
 
                });
@@ -185,7 +187,8 @@ body {
             });
 
                 //삭제
-                $('#view_delete').on('click', function() {
+                $('#view_delete').on('click', function(event) {
+                   event.preventDefault();
                    
                    if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
                       
@@ -206,7 +209,6 @@ body {
                         }
                     });
 
-                      
                        console.log("부장 또는 차장입니다.");
                     }else {
                        alert("권한이 없습니다.");

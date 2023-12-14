@@ -9,7 +9,7 @@ import attention.beans.UserBean;
 
 public interface UserMapper {
 
-    @Select("select employee_id, employee_name, department_name, line_name, employee_position " +
+    @Select("select employee_id, employee_name, department_name, line_name, employee_position, employee_annual_leave " +
             "from HRPROJECT.employees " +
             "where employee_id=#{employee_id} and employee_password=#{employee_password}")
     UserBean getLoginUserInfo(UserBean tempLoginUserBean);

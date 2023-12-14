@@ -133,7 +133,7 @@ main {
             <table class="new-table">
                <tr>
                   <td>이번주 누적</td>
-                  <!-- <td>이번주 초과</td> -->
+                  <td>이번주 초과</td>
                   <td>이번주 잔여</td>
                   <td>이번달 누적</td>
                   <td>이번달 잔여</td>
@@ -159,30 +159,45 @@ main {
    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
    <script src="${root}js/datatables-simple-demo.js"></script>
    <script>
-      $(document).ready(
-            function() {
-               $.ajax({
-                  url : '${root }commute/workTimeData',
-                  type : 'GET',
-                  datatype : 'json',
-                  data : {
-                     employee_id : '2',
-                     today : '2023-12-11'
-                  },
-                  success: function(data) {
-                        console.log(data);
-                        var weekWorkHour = data.week_work_hour;
-                        var weekRemainingTime = data.week_remaining_time;
-                        var monthWorkHour = data.month_work_hour;
-                        var monthRemainingTime = data.month_remaining_time;
-                        
-                        $('.new-table').append('<tr><td>' + weekWorkHour + '</td><td>' + weekRemainingTime + '</td><td>' + monthWorkHour + '</td><td>' + monthRemainingTime + '</td></tr>');
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-               });
-            });
+      var employee_id = "${employee_id}"
+      function fetchMyCommute() {
+         var xhr = new XMLHttpRequest();
+         var today = new Date();
+         var dd = String(today.getDate()).padStart(2, '0');
+         var mm = String(today.getMonth() + 1).padStart(2, '0');
+         var yyyy = today.getFullYear();
+         var formattedToday = yyyy + '-' + mm + '-' + dd;
+         var url = '${root}commute/getCommuteTotal?employee_id=' + encodeURIComponent(employee_id) + '&today=' + formattedToday;
+          xhr.open('GET', url, true);
+          xhr.onreadystatechange = function() {
+              if (this.readyState === 4 && this.status === 200) {
+                  var commutetotal = JSON.parse(this.responseText);
+                  displayCommuteTotal(commutetotal);
+              } else if (this.readyState === 4) {
+                  console.error('서버로부터 데이터를 가져오는데 실패했습니다.');
+              }
+          };
+         xhr.send();
+      }
+      function displayCommuteTotal(commutetotal) {
+         var commutetotalList = document.querySelector('#new-table tbody');
+         commutetotalList.innerHTML = '';
+
+         commutetotal.forEach(function(commutetotal1) {
+
+            var row = document.createElement('tr');
+            row.innerHTML = '<td>' + commutetotal1.week_work_hour + '</td>'
+                  + '<td>' + '0h 0m 0s' + '</td>'
+                  + '<td>' + commutetotal1.week_remaining_time + '</td>'
+                  + '<td>' + commutetotal1.month_work_hour + '</td>'
+                  + '<td>' + commutetotal1.month_remaining_time + '</td>'
+                  
+            commutetotalList.appendChild(row);
+         });
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+         fetchMyCommute();
+      });
    </script>
    <script>
       var currentDate = new Date();
@@ -236,45 +251,71 @@ main {
          return weeks;
       }
 
-      function generateWeekTables() {
-         var weekTableContainer = document.querySelector('.week-table-container');
-         weekTableContainer.innerHTML = '';
-
-         var weeksInMonth = getWeeksInMonth(currentDate.getFullYear(), currentDate.getMonth() + 1);
-
-         weeksInMonth.forEach(function (week, index) {
-            var weekTable = document.createElement('table');
-            weekTable.classList.add('week-table');
-            weekTable.onclick = function () {
-               toggleWeekDetails(index + 1);
-            };
-
-            var weekNumber = index + 1;
-            weekTable.innerHTML = '<tr><th>' + weekNumber + '주차</th></tr><tr class="no-style"><th style="text-align: center; font-weight: 200;">누적 근무시간 00h 00m <br/> 초과 근무 시간 0h 0m </th></tr>';
-
-            weekTableContainer.appendChild(weekTable);
-            weekTableContainer.appendChild(document.createElement('div'));
-         });
+      function calculateWorkDaysInWeek(startOfWeek, endOfWeek) {
+          var workDays = 0;
+          for (var day = new Date(startOfWeek); day <= endOfWeek; day.setDate(day.getDate() + 1)) {
+              // 월요일(1)부터 금요일(5)까지의 일수를 계산
+              if (day.getDay() >= 1 && day.getDay() <= 5) {
+                  workDays++;
+              }
+          }
+          return workDays;
       }
+
+      function generateWeekTables() {
+          var weekTableContainer = document.querySelector('.week-table-container');
+          weekTableContainer.innerHTML = '';
+
+          var weeksInMonth = getWeeksInMonth(currentDate.getFullYear(), currentDate.getMonth() + 1);
+
+          weeksInMonth.forEach(function (week, index) {
+              var workDays = calculateWorkDaysInWeek(week.start, week.end);
+              var totalWorkHours = workDays * 7;
+
+              var weekTable = document.createElement('table');
+              weekTable.classList.add('week-table');
+              weekTable.onclick = function () {
+                  toggleWeekDetails(index + 1);
+              };
+
+              var weekNumber = index + 1;
+              weekTable.innerHTML = '<tr><th>' + weekNumber + '주차</th></tr><tr class="no-style"><th style="text-align: center; font-weight: 200;">주차 근무시간 ' + totalWorkHours + 'h <br/> 초과 근무 시간 0h 0m </th></tr>';
+
+              weekTableContainer.appendChild(weekTable);
+              weekTableContainer.appendChild(document.createElement('div'));
+          });
+      }
+
 
       function generateWeekDetails(weekNumber) {
-         var weekDetailsTable = document.getElementById('weekDetailsTable');
-         weekDetailsTable.innerHTML = '<tr><td>일자</td><td>출근시간</td><td>퇴근시간</td><td>근무시간</td><td>근무시간 상세</td></tr>';
+          var weekDetailsTable = document.getElementById('weekDetailsTable');
+          weekDetailsTable.innerHTML = '<tr><td>일자</td><td>출근시간</td><td>퇴근시간</td><td>근무시간</td><td>근무시간 상세</td></tr>';
 
-         var week = getWeeksInMonth(currentDate.getFullYear(), currentDate.getMonth() + 1)[weekNumber - 1];
-         var startOfWeek = week.start;
-         var endOfWeek = week.end;
+          var week = getWeeksInMonth(currentDate.getFullYear(), currentDate.getMonth() + 1)[weekNumber - 1];
+          var startOfWeek = week.start;
+          var endOfWeek = week.end;
+          var today = new Date();
+          today.setHours(0, 0, 0, 0);
 
-         for (var currentDay = new Date(startOfWeek); currentDay <= endOfWeek; currentDay.setDate(currentDay.getDate() + 1)) {
-            var dayOfWeek = currentDay.toLocaleDateString('kr-KR', { weekday: 'long' });
-            var isCurrentMonth = currentDay.getMonth() === (currentDate.getMonth() + 1);
-            var style = isCurrentMonth ? '' : 'color: gray;';
-            var rowData = "<tr style='" + style + "'><td>" + currentDay.getDate() + "일 " + dayOfWeek + "</td><td>09:00:00</td><td>17:30:00</td><td>7h0m0s</td><td>기본7h0m0s 연장0h0m0s</td></tr>";
-            weekDetailsTable.innerHTML += rowData;
-         }
+          for (var currentDay = new Date(startOfWeek); currentDay <= endOfWeek; currentDay.setDate(currentDay.getDate() + 1)) {
+              var dayOfWeek = currentDay.toLocaleDateString('kr-KR', { weekday: 'long' });
+              var isCurrentMonth = currentDay.getMonth() === currentDate.getMonth();
+              var isWeekend = currentDay.getDay() === 0 || currentDay.getDay() === 6; // 일요일이 0, 토요일이 6
+              var style = isCurrentMonth ? '' : 'color: gray;';
 
-         document.querySelector('.week-details').style.maxHeight = weekDetailsTable.scrollHeight + 'px';
+              var rowData;
+              if (isWeekend || currentDay >= today) {
+                  rowData = "<tr style='" + style + "'><td>" + currentDay.getDate() + "일 " + dayOfWeek + "</td><td></td><td></td><td></td><td></td></tr>";
+              } else {
+                  rowData = "<tr style='" + style + "'><td>" + currentDay.getDate() + "일 " + dayOfWeek + "</td><td>09:00:00</td><td>17:30:00</td><td>7h0m0s</td><td>기본7h0m0s 연장0h0m0s</td></tr>";
+              }
+              
+              weekDetailsTable.innerHTML += rowData;
+          }
+
+          document.querySelector('.week-details').style.maxHeight = weekDetailsTable.scrollHeight + 'px';
       }
+
 
       function toggleWeekDetails(weekNumber) {
          var weekTableContainer = document.querySelector('.week-table-container');

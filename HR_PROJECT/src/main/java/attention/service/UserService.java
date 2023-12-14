@@ -28,6 +28,7 @@ public class UserService {
 			loginUserBean.setDepartment_name(tempLoginUserBean2.getDepartment_name());
 			loginUserBean.setLine_name(tempLoginUserBean2.getLine_name());
 			loginUserBean.setEmployee_position(tempLoginUserBean2.getEmployee_position());
+			loginUserBean.setEmployee_annual_leave(tempLoginUserBean2.getEmployee_annual_leave());
 			loginUserBean.setUserLogin(true);
 		}
 		
