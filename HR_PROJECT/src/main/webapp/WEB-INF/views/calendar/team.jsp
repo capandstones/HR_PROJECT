@@ -46,20 +46,20 @@ body {
             console.log(result);
             
             var events = result.map(function(event){
-               return {
-                  id: event.cal_idx,
-                  line: event.line_name,
-                  title: event.cal_title,
-                  start: event.cal_start_date,
-                  end: event.cal_end_date,
-                  content: event.cal_content,
-                  category: event.cal_category,
-                  /* color:"#FF0000" */
-                  extendedProps: {
-                     cal_idx: event.cal_idx,
-                     line_name: event.line_name
-                  }
-               };
+            	return {
+                    id: event.cal_idx,
+                    line: event.line_name,
+                    title: event.cal_title,
+                    start: event.cal_start_date,
+                    end: event.cal_end_date,
+                    content: event.cal_content,
+                    category: event.cal_category,
+                    color: getCategoryColor(event.cal_category),
+                    extendedProps: {
+                       cal_idx: event.cal_idx,
+                       line_name: event.line_name
+                    }
+                 };
             });
         
       var calendarEl = document.getElementById('calendar');
@@ -119,6 +119,9 @@ body {
              var event = info.event;
              var startDate = event.startStr; 
              var endDate = event.endStr ? event.endStr : '';
+             
+             var formattedStartDate = new Date(startDate).toLocaleDateString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit' });
+             var formattedEndDate = endDate ? new Date(endDate).toLocaleDateString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit' }) : '';
 
              console.log(event);
              
@@ -216,6 +219,12 @@ body {
          
          
       });
+      
+      function getCategoryColor(category) {
+          // 선택한 옵션을 가져 오고 데이터 색상 속성에서 색상을 검색합니다.
+          var selectedOption = $('#cal_category option:contains(' + category + ')');
+          return selectedOption.data('color');
+       }
 
       //일정등록 x버튼
       function closeModalSchedule() {
@@ -223,8 +232,10 @@ body {
          $('#scheduleModal').modal('hide');
       }
       
+      document.querySelector('#schedule_close').addEventListener('click', closeModalSchedule);
       document.querySelector('#scheduleModal .close').addEventListener('click',closeModalSchedule);
       
+      //수정 x버튼
       function closeModalModify() {
           /* document.getElementById('scheduleModal').style.display = 'none'; */
           $('#modify_scheduleModal').modal('hide');
@@ -232,6 +243,7 @@ body {
        
        document.querySelector('#modify_scheduleModal .close').addEventListener('click',closeModalModify);
 
+       //상세정보 x버튼
        function closeModalView() {
           
           $('#view_schedule_modal').modal('hide');
@@ -325,9 +337,9 @@ body {
                         <div class="form-group">
                            <label for="category">분류<span style="color: red;">*</span></label>
                            <select name="cal_category" id="cal_category" name="cal_category" class="custom-select">
-                              <option>출장</option>
-                              <option>회의</option>
-                              <option>미팅</option>
+                              <option data-color="#CBB2DD">출장</option>
+                              <option data-color="#314AD9">회의</option>
+                              <option data-color="#F782D6">미팅</option>
                            </select>
                         </div>
                         

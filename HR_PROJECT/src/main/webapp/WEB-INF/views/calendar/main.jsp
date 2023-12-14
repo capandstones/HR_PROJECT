@@ -34,60 +34,6 @@ body {
    margin: 0 auto;
 }
 
-/* modal style */
-/*
-.modal {
-display: none;
-position: fixed;
-z-index: 1;
-overflow: hidden;
-background-color: rgba(0,0,0,0.4);
-
-}
-
-.modal-content{
-background-color: #fefefe;
-margin: 15%;
-padding: 20px;
-border:1px solid #888;
-
-}
-
-.close {
-color: #aaa;
-float: right;
-font-size: 28px;
-font-weight: bold;
-width: 30px;
-top: 0;
-}
-
-.close:hover,
-.close:focus {
-   color: black;
-   text-decoration: none;
-   cursor: pointer;
-}
-
-.modal-content p {
-margin-top: 30px;
-}
-
-div.modal-content{
-width: 600px;
-height: 90%;
-transform: translate(70%, -30%);
-}
-
-div#myModal.modal{
-width: 100%;
-height: 100%;
-padding: 0;
-
-}
-*/
-
-
 
 </style>
 
@@ -101,23 +47,23 @@ padding: 0;
             console.log(result);
             
             var events = result.map(function(event){
-               return {
-                  id: event.cal_idx,
-                  title: event.cal_title,
-                  start: event.cal_start_date,
-                  end: event.cal_end_date,
-                  content: event.cal_content,
-                  category: event.cal_category,
-                  /* color:"#FF0000" */
-                  extendedProps: {
-                     cal_idx: event.cal_idx,
-                  }
+            	return {
+                    id: event.cal_idx,
+                    title: event.cal_title,
+                    start: event.cal_start_date,
+                    end: event.cal_end_date,
+                    content: event.cal_content,
+                    category: event.cal_category,
+                    color: getCategoryColor(event.cal_category),
+                    extendedProps: {
+                       cal_idx: event.cal_idx,
+                    }
                };
             });
             
 
       
-                
+      var employeePosition = "${employee_position}";          
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
 
@@ -133,7 +79,14 @@ padding: 0;
             addEventButton: {
                text : "일정추가",
                click : function(){
-                  $('#scheduleModal').modal('show');
+                  
+            	   if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
+                       console.log("부장 또는 차장입니다.");
+                       $('#scheduleModal').modal('show');
+                    }else {
+                       alert("권한이 없습니다.");
+                    }
+            	   
                }
             }
          },
@@ -163,10 +116,15 @@ padding: 0;
          
          dateClick : function(info) {
             //alert('clicked ' + info.dateStr);
-            document.getElementById('modalContent').innerText = 'Clicked '+info.dateStr;
+            //document.getElementById('modalContent').innerText = 'Clicked '+info.dateStr;
             //document.getElementById('scheduleModal').style.display = 'block';
   
-            $('#scheduleModal').modal('show');
+            if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
+               console.log("부장 또는 차장입니다.");
+               $('#scheduleModal').modal('show');
+            }else {
+               alert("권한이 없습니다.");
+            }
             
          },
          
@@ -175,6 +133,9 @@ padding: 0;
              var event = info.event;
              var startDate = event.startStr; 
              var endDate = event.endStr ? event.endStr : '';
+             
+             var formattedStartDate = new Date(startDate).toLocaleDateString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit' });
+             var formattedEndDate = endDate ? new Date(endDate).toLocaleDateString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit' }) : '';
 
              console.log(event);
              
@@ -192,6 +153,13 @@ padding: 0;
             
             //수정
             $('#view_modify').on('click', function() {
+            	
+            	if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
+                    console.log("부장 또는 차장입니다.");
+                    $('#modify_scheduleModal').modal('show');
+                 }else {
+                    alert("권한이 없습니다.");
+                 }
         
                 $('#view_schedule_modal').modal('hide');
                 
@@ -204,7 +172,6 @@ padding: 0;
                 $('#modify_scheduleModal').find('#eventDate').text(event.startStr + (event.endStr ? ' - ' + event.endStr : ''));
                 $('#modify_scheduleModal').find('#cal_idx').val(cal_idx);
                 
-                $('#modify_scheduleModal').modal('show');
 
                });
             
@@ -219,23 +186,33 @@ padding: 0;
 
                 //삭제
                 $('#view_delete').on('click', function() {
-               var eventIdx = $('#eventIdx').text(); // 이벤트 인덱스를 숨겨진 필드나 다른 저장 공간에서 가져옵니다.
+                   
+                   if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
+                      
+                      var eventIdx = $('#eventIdx').text(); // 이벤트 인덱스를 숨겨진 필드나 다른 저장 공간에서 가져옵니다.
 
-                $.ajax({
-                    type: 'GET',
-                    url: '${root}deleteEvent/'+eventIdx, // 실제 이벤트 삭제를 위한 URL로 교체
-                    dataType: "text",
-                    success: function(response) {
-                     console.log('삭제 성공', response);
-                     // 옵션으로 이곳에서 캘린더에서 이벤트를 제거할 수 있습니다.
-                     calendar.getEventById(eventIdx).remove();
-                     $('#view_schedule_modal').modal('hide');
-                    },
-                    error: function(error) {
-                        console.error('오류 발생', error);
+                    $.ajax({
+                        type: 'GET',
+                        url: '${root}deleteEvent/'+eventIdx, // 실제 이벤트 삭제를 위한 URL로 교체
+                        dataType: "text",
+                        success: function(response) {
+                         console.log('삭제 성공', response);
+                         // 옵션으로 이곳에서 캘린더에서 이벤트를 제거할 수 있습니다.
+                         calendar.getEventById(eventIdx).remove();
+                         $('#view_schedule_modal').modal('hide');
+                        },
+                        error: function(error) {
+                            console.error('오류 발생', error);
+                        }
+                    });
+
+                      
+                       console.log("부장 또는 차장입니다.");
+                    }else {
+                       alert("권한이 없습니다.");
                     }
-                });
-            });
+                   
+               });
                 
             //일정 등록 닫기 버튼
             $('#schedule_close').on('click', function() {
@@ -270,6 +247,12 @@ padding: 0;
          
          
       });
+      
+      function getCategoryColor(category) {
+          // 선택한 옵션을 가져 오고 데이터 색상 속성에서 색상을 검색합니다.
+          var selectedOption = $('#cal_category option:contains(' + category + ')');
+          return selectedOption.data('color');
+       }
 
       //일정등록 x버튼
       function closeModalSchedule() {
@@ -277,6 +260,7 @@ padding: 0;
          $('#scheduleModal').modal('hide');
       }
       
+      document.querySelector('#schedule_close').addEventListener('click', closeModalSchedule);
       document.querySelector('#scheduleModal .close').addEventListener('click',closeModalSchedule);
       
       //수정 x버튼
@@ -381,9 +365,9 @@ padding: 0;
                         <div class="form-group">
                            <label for="category">분류<span style="color: red;">*</span></label>
                            <select name="cal_category" id="cal_category" name="cal_category" class="custom-select">
-                              <option>출장</option>
-                              <option>회의</option>
-                              <option>미팅</option>
+                              <option data-color="#CBB2DD">출장</option>
+                              <option data-color="#314AD9">회의</option>
+                              <option data-color="#F782D6">미팅</option>
                            </select>
                         </div>
 
