@@ -9,52 +9,54 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import attention.mapper.CalendarMapper;
-import attention.service.CalendarService;
+import attention.mapper.TeamCalendarMapper;
+import attention.service.TeamCalendarService;
 
 /*@RestController*/
 @CrossOrigin
 @Controller
 @RequestMapping("/calendar")
-public class CalendarController {
+public class TeamCalendarController {
    
    @Autowired
-   private CalendarService calendarService;
+   private TeamCalendarService teamCalendarService;
    
    @Autowired
-   private CalendarMapper calendarMapper;
+   private TeamCalendarMapper teamCalendarMapper;
    
-   @GetMapping("/main")
+   @GetMapping("/team")
    public String main() {
-      return "calendar/main";
+      return "calendar/team";
       
    }
    
-   @PostMapping("/submit_pro")
-   public String submit_pro(
+   @PostMapping("/teamsubmit_pro")
+   public String teamsubmit_pro(
          @RequestParam("cal_start_date") String cal_start_date,
          @RequestParam("cal_end_date") String cal_end_date,
          @RequestParam("cal_title") String cal_title,
+         @RequestParam("line_name") String line_name,
          @RequestParam("cal_category") String cal_category,
          @RequestParam("cal_content") String cal_content) {
       
-      calendarService.saveCalendar(cal_start_date, cal_end_date, cal_title, cal_category, cal_content);
+      teamCalendarService.teamsaveCalendar(cal_start_date, cal_end_date, cal_title, line_name, cal_category, cal_content);
       
-      return "redirect:/calendar/main";
+      return "redirect:/calendar/team";
    }
    
-   @PostMapping("/modify_pro")
-   public String modify_pro(
+   @PostMapping("/teammodify_pro")
+   public String teammodify_pro(
          @RequestParam("cal_start_date") String cal_start_date,
             @RequestParam("cal_end_date") String cal_end_date,
             @RequestParam("cal_title") String cal_title,
+            @RequestParam("line_name") String line_name,
             @RequestParam("cal_category") String cal_category,
             @RequestParam("cal_content") String cal_content,
             @RequestParam("cal_idx") int cal_idx
             ) {
       
-      calendarMapper.updateCalendar(cal_start_date, cal_end_date, cal_title, cal_category, cal_content,cal_idx);
-      return "redirect:/calendar/main";
+      teamCalendarMapper.teamupdateCalendar(cal_start_date, cal_end_date, cal_title, line_name, cal_category, cal_content,cal_idx);
+      return "redirect:/calendar/team";
    }
    
        

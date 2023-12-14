@@ -34,68 +34,13 @@ body {
    margin: 0 auto;
 }
 
-/* modal style */
-/*
-.modal {
-display: none;
-position: fixed;
-z-index: 1;
-overflow: hidden;
-background-color: rgba(0,0,0,0.4);
-
-}
-
-.modal-content{
-background-color: #fefefe;
-margin: 15%;
-padding: 20px;
-border:1px solid #888;
-
-}
-
-.close {
-color: #aaa;
-float: right;
-font-size: 28px;
-font-weight: bold;
-width: 30px;
-top: 0;
-}
-
-.close:hover,
-.close:focus {
-   color: black;
-   text-decoration: none;
-   cursor: pointer;
-}
-
-.modal-content p {
-margin-top: 30px;
-}
-
-div.modal-content{
-width: 600px;
-height: 90%;
-transform: translate(70%, -30%);
-}
-
-div#myModal.modal{
-width: 100%;
-height: 100%;
-padding: 0;
-
-}
-*/
-
-
-
 </style>
 
 <script>
    document.addEventListener('DOMContentLoaded',function() {
 
       $.ajax({
-         url:'/HR_Project/main/events',
+         url:'/HR_Project/team/events',
          type: 'POST',
          success: function(result) {
             console.log(result);
@@ -103,6 +48,7 @@ padding: 0;
             var events = result.map(function(event){
                return {
                   id: event.cal_idx,
+                  line: event.line_name,
                   title: event.cal_title,
                   start: event.cal_start_date,
                   end: event.cal_end_date,
@@ -111,13 +57,11 @@ padding: 0;
                   /* color:"#FF0000" */
                   extendedProps: {
                      cal_idx: event.cal_idx,
+                     line_name: event.line_name
                   }
                };
             });
-            
-
-      
-                
+        
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
 
@@ -179,13 +123,15 @@ padding: 0;
              console.log(event);
              
              var cal_idx = event.extendedProps.cal_idx;
-             /* var line_name = event.extendedProps.line_name; */
+             var line_name = event.extendedProps.line_name;
+
              
              document.getElementById('eventIdx').innerText = cal_idx;
-             /* document.getElementById('eventLineName').innerText = line_name; */
+             document.getElementById('eventLineName').innerText = line_name;
              document.getElementById('eventDate').innerText = startDate + (endDate ? ' - ' + endDate : '');
              document.getElementById('eventTitle').innerText = event.title;
              document.getElementById('eventCategory').innerText = event.extendedProps.category;
+             /* document.getElementById('eventLineName').innerText = event.extendedProps.line_name; */
              document.getElementById('eventContent').innerText = event.extendedProps.content;
              
             $('#view_schedule_modal').modal('show');
@@ -197,17 +143,17 @@ padding: 0;
                 
                 $('#modify_scheduleModal').find('#cal_title').val(event.title);
                 $('#modify_scheduleModal').find('#cal_category').val(event.extendedProps.category);
+                $('#modify_scheduleModal').find('#line_name').val(event.extendedProps.line);
                 $('#modify_scheduleModal').find('#cal_content').val(event.extendedProps.content);
                 
                 $('#modify_scheduleModal').find('#eventIdx').text(event.extendedProps.cal_idx);
-                /* $('#modify_scheduleModal').find('#eventLineName').text(event.extendedProps.line_name); */
+                $('#modify_scheduleModal').find('#eventLineName').text(event.extendedProps.line_name);
                 $('#modify_scheduleModal').find('#eventDate').text(event.startStr + (event.endStr ? ' - ' + event.endStr : ''));
                 $('#modify_scheduleModal').find('#cal_idx').val(cal_idx);
                 
                 $('#modify_scheduleModal').modal('show');
 
                });
-            
             
             //취소버튼
             $('#schedule_cancel').on('click', function() {
@@ -223,7 +169,7 @@ padding: 0;
 
                 $.ajax({
                     type: 'GET',
-                    url: '${root}deleteEvent/'+eventIdx, // 실제 이벤트 삭제를 위한 URL로 교체
+                    url: '${root}teamdeleteEvent/'+eventIdx, // 실제 이벤트 삭제를 위한 URL로 교체
                     dataType: "text",
                     success: function(response) {
                      console.log('삭제 성공', response);
@@ -279,7 +225,6 @@ padding: 0;
       
       document.querySelector('#scheduleModal .close').addEventListener('click',closeModalSchedule);
       
-      //수정 x버튼
       function closeModalModify() {
           /* document.getElementById('scheduleModal').style.display = 'none'; */
           $('#modify_scheduleModal').modal('hide');
@@ -287,7 +232,6 @@ padding: 0;
        
        document.querySelector('#modify_scheduleModal .close').addEventListener('click',closeModalModify);
 
-       //상세정보 x버튼
        function closeModalView() {
           
           $('#view_schedule_modal').modal('hide');
@@ -326,7 +270,7 @@ padding: 0;
 
       <c:import url="/WEB-INF/views/include/side_menu.jsp" />
 
-      <div id="layoutSidenav_content" style="padding-top: 20px; height: auto; background-color: #fff;">
+     <div id="layoutSidenav_content" style="padding-top: 20px; height: auto; background-color: #fff;">
 
          <main>
          
@@ -363,7 +307,7 @@ padding: 0;
                   </div>
                   
                   <%-- <form name="schedule_register" id="schedule_register">============================= --%>
-                  <form action="${root }calendar/submit_pro" id="register_Modal" method="post" enctype="multipart/form-data">
+                  <form action="${root }calendar/teamsubmit_pro" id="register_Modal" method="post" enctype="multipart/form-data">
                      <div class="modal-body">
                         <div class="form-group" id="daterange-group">
            
@@ -386,19 +330,19 @@ padding: 0;
                               <option>미팅</option>
                            </select>
                         </div>
-
+                        
+                        <input type="hidden" id="line_name" name="line_name" value="${line_name }"/>
+        
                         <div class="form-group">
                            <label for="content">내용<span style="color: red;">*</span></label>
                            <textarea name="cal_content" id="cal_content" class="form-control" rows="5"></textarea>
                         </div>
 
-                  <input type="hidden" id="cal_idx" name="cal_idx" value="">
-
                      </div>
                      
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="schedule_close" >닫기</button>
-                        <button type="submit" class="btn btn-primary" id="schedule_register" >등록</button>
+                        <button type="button" class="btn btn-secondary" id="schedule_close">닫기</button>
+                        <button type="submit" class="btn btn-primary custom-btn" id="schedule_register" >등록</button>
                      </div>
                   </form>
                   
@@ -418,12 +362,12 @@ padding: 0;
                   <div class="modal-content">
                   
                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">일정 수정</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">일정</h5>
                    
                         <span class="close" onclick="closeModalModify()">&times;</span>
                      </div>
                      
-                     <form action="${root }calendar/modify_pro" id="Modify_Modal" method="post" enctype="multipart/form-data">
+                     <form action="${root }calendar/teammodify_pro" id="Modify_Modal" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                            <div class="form-group" id="daterange-group">
  
@@ -455,6 +399,8 @@ padding: 0;
                               </select>
                 
                            </div> -->
+                           
+                           <input type="hidden" id="line_name" name="line_name" value="${line_name }"/>
 
                            <div class="form-group">
                               <label for="content">내용<span style="color: red;">*</span></label>
@@ -494,7 +440,7 @@ padding: 0;
                            <p><strong>기간: </strong><span id="eventDate"></span></p>
                            <p><strong>제목: </strong><span id="eventTitle"></span></p>
                            <p><strong>분류: </strong><span id="eventCategory"></span></p>
-                           <!-- <p><strong>공개 범위: </strong><span id="eventLineName"></span></p> -->
+                           <p><strong>공개 범위: </strong><span id="eventLineName"></span></p>
                            <p><strong>내용: </strong><span id="eventContent"></span></p>
                            <input type="hidden" id="eventIdx"/>
                         </div>

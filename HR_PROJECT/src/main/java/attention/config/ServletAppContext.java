@@ -30,6 +30,7 @@ import attention.mapper.CalendarMapper;
 import attention.mapper.CommuteMapper;
 import attention.mapper.EmployeesMapper;
 import attention.mapper.NoticeMapper;
+import attention.mapper.TeamCalendarMapper;
 import attention.mapper.TransferMapper;
 import attention.mapper.UserMapper;
 import attention.mapper.VacationMapper;
@@ -162,6 +163,13 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<CalendarMapper> getCalendarMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<CalendarMapper> factoryBean = new MapperFactoryBean<CalendarMapper>(CalendarMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<TeamCalendarMapper> getTeamCalendarMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<TeamCalendarMapper> factoryBean = new MapperFactoryBean<TeamCalendarMapper>(TeamCalendarMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}

@@ -29,9 +29,7 @@ public class WorkFlowController {
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
 	
-	/*
-	 * @Resource(name = "joinBean") private UserBean joinBean;
-	 */
+
 
 	// service 주입
 	@Autowired
@@ -86,9 +84,7 @@ public class WorkFlowController {
 		@GetMapping("/write3")
 		public String write3(Model model) {
 			
-			System.out.println(loginUserBean.getDepartment_name());
-			System.out.println(loginUserBean.getEmployee_id());
-			System.out.println(loginUserBean.getEmployee_name());
+
 			workFlowService.getLookerList(loginUserBean);
 			List<UserBean> list = workFlowService.getLookerList(loginUserBean);
 			model.addAttribute("list", list);
@@ -97,30 +93,12 @@ public class WorkFlowController {
 
 			return "workflow/write3";
 		}
-		/*
-		@GetMapping("/write3_1")
-		public String write3_1(Model model) {
-			
-			System.out.println(loginUserBean.getDepartment_name());
-			System.out.println(loginUserBean.getEmployee_id());
-			System.out.println(loginUserBean.getEmployee_name());
-			workFlowService.getLookerList(loginUserBean);
-			List<UserBean> list = workFlowService.getLookerList(loginUserBean);
-			model.addAttribute("list", list);
-			
-			
 
-			return "workflow/write3";
-		}
-		*/
 
 		// 글 작성하기 폼페이지 요청
 		@GetMapping("/write4")
 		public String write4(Model model) {
 			
-			System.out.println(loginUserBean.getDepartment_name());
-			System.out.println(loginUserBean.getEmployee_id());
-			System.out.println(loginUserBean.getEmployee_name());
 			workFlowService.getLookerList(loginUserBean);
 			List<UserBean> list = workFlowService.getLookerList(loginUserBean);
 			model.addAttribute("list", list);
@@ -168,7 +146,6 @@ public class WorkFlowController {
 						   @ModelAttribute("joinBean") UserBean joinBean) {
 		
 		
-		System.out.println("여기야~");
 		joinBean.setEmployee_name(employee_name);
 		joinBean.setEmployee_id(employee_id);
 		joinBean.setDepartment_name(department_name);

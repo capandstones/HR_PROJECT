@@ -1,15 +1,21 @@
 package attention.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import attention.beans.VacationBean;
 import attention.service.VacationService;
 
 @Controller
@@ -84,4 +90,29 @@ public class VacationController {
 
       return "vacation/success";
    }
+   
+   @GetMapping("/getVacations")
+   @ResponseBody
+   public List<VacationBean> getVacations(@RequestParam("employee_id") String employee_id) {
+      return vacationService.getUpcomingVacations(employee_id);
+   }
+   
+   @GetMapping("/getMemberVacations")
+   @ResponseBody
+   public List<VacationBean> getMemberVacations(@RequestParam("employee_id") String employee_id) {
+      return vacationService.getMemberVacations(employee_id);
+   }
+
+   @PostMapping("/cancelVacation")
+   @ResponseBody
+   public String cancelVacation(@RequestParam("VA_idx") int VA_idx) {
+       try {
+           vacationService.cancelVacation(VA_idx);
+           return "{\"status\":\"success\"}";
+       } catch (Exception e) {
+           e.printStackTrace();
+           return "{\"status\":\"error\"}";
+       }
+   }
+
 }

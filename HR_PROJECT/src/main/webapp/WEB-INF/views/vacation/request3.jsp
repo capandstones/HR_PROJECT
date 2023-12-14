@@ -17,6 +17,22 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<style type="text/css">
+::-webkit-scrollbar {
+   width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #d9d9d9;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: #f2f2f2;
+   border-radius: 10px;
+}
+
+</style>
 </head>
 <body>
 

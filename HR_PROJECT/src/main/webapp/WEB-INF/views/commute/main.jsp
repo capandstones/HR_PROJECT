@@ -42,7 +42,9 @@ main {
 }
 
 .new-table tr, .new-table td {
-   border: 2px solid #ccc;
+   color:#fff;
+   background-color:#415971 ;
+   border: 1px solid #ccc;
    width: 4em;
    height: 3em;
    text-align: center;
@@ -123,9 +125,9 @@ main {
          <main>
             <div class="date-container">
                <div class="prev-month" onclick="changeMonth(-1)">&#60;</div>
-               <div id="current-date"></div>
+               <div id="current-date" style="font-size: 22pt;"></div>
                <div class="next-month" onclick="changeMonth(1)">&#62;</div>
-               <div class="today" onclick="goToToday()">Today</div>
+               <div class="today" onclick="goToToday()" style="font-size: 25pt;">Today</div>
             </div>
 
             <table class="new-table">

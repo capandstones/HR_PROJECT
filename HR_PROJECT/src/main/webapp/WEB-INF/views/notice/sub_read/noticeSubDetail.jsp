@@ -15,9 +15,9 @@
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <style>
 .head {
-	margin-left: 5%;
-	font-weight: bold;
-	text-shadow: 3px 3px 3px lightgray;
+   margin-left: 5%;
+   font-weight: bold;
+   text-shadow: 3px 3px 3px lightgray;
 }
 </style>
 

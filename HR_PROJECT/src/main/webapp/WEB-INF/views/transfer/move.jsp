@@ -21,6 +21,12 @@
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
 
 input:focus {
    outline: 1px solid #415971;
@@ -239,7 +245,7 @@ td, th {
 		<div id="layoutSidenav_content"
 			style="padding-top: 20px; height: auto; background-color: #fff;">
 			<main>
-				<h1>&nbsp; 인사발령</h1>
+				<h1 style="font-family:GmarketSansMedium;">&nbsp; 인사발령</h1>
 
 				<label for="search-box"> <strong>검색</strong>
 				</label> <input type="search" id="search-box">

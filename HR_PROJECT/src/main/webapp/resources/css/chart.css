@@ -16,28 +16,34 @@
       format('opentype');
 }
 ::-webkit-scrollbar {
-   width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-   background-color: #d9d9d9;
-   border-radius: 10px;
+  background-color: #d9d9d9;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-   background-color: #f2f2f2;
-   border-radius: 10px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
 }
 input:focus {
-   outline: 1px solid #415971;
+  outline: 1px solid #415971;
 }
 
 textarea:focus {
-   outline: 1px solid #415971;
+  outline: 1px solid #415971;
 }
 
-.department-container, .department-line-name {list-style-type: none; margin-left: 20px;}
-.department-container::marker {display: none;}
+.department-container,
+.department-line-name {
+  list-style-type: none;
+  margin-left: 20px;
+}
+.department-container::marker {
+  display: none;
+}
 
 ul {
   list-style-type: none;
@@ -59,7 +65,7 @@ ul {
   margin-left: 0px;
 }
 .depth1 {
-/*   text-align:left; */
+  /*   text-align:left; */
   width: 120px;
   height: 35px;
   margin-top: 15px;
@@ -76,7 +82,7 @@ ul {
   width: 100px;
   height: 30px;
   margin-left: 15px;
-  color : #395886;
+  color: #395886;
   background: white;
   font-weight: bold;
   font-size: 15px;
@@ -142,7 +148,7 @@ ul {
   padding: 10px;
   background-color: #fcfcfc;
   box-shadow: 2px 2px 2px 2px lightgray;
-/*   text-shadow: 2px 2px 2px lightgray; */
+  /*   text-shadow: 2px 2px 2px lightgray; */
   width: 600px;
   height: 390px;
   transform: translate(-50%, -50%);
@@ -231,42 +237,42 @@ ul {
 }
 
 .employee-div {
-    margin: 10px 0px;
-  }
-  .employee-div p {
-    margin: 0px;
-  }
-  .employee-info-profile-wrap {
-    width: 200px;
-  }
-  .employee-info-profile-img {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    border: 1px solid lightgray;
-  }
-  .employee-span-name {
-    font-size: 20px;
-    font-weight: 800;
-  }
-  .employee-span-status{
-  	color: #666666;
-  	font-weight: 700;
-  }
-  
-  .employee-info-txt {
-    color: #666666;
-    font-size: 15px;
-    font-weight: 800;
-  }
-  .employee-info-table td {
-    padding: 5px 8px;
-  }
-  .closeBtn {
-     background-color: #FCFCFC;
-     border: none;
-     float: right;
-  }
+  margin: 10px 0px;
+}
+.employee-div p {
+  margin: 0px;
+}
+.employee-info-profile-wrap {
+  width: 200px;
+}
+.employee-info-profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+}
+.employee-span-name {
+  font-size: 20px;
+  font-weight: 800;
+}
+.employee-span-status {
+  color: #666666;
+  font-weight: 700;
+}
+
+.employee-info-txt {
+  color: #666666;
+  font-size: 15px;
+  font-weight: 800;
+}
+.employee-info-table td {
+  padding: 5px 8px;
+}
+.closeBtn {
+  background-color: #fcfcfc;
+  border: none;
+  float: right;
+}
 
 /* ---------------- 모달 내부 스타일링 끝 ------------------*/
 
@@ -353,11 +359,11 @@ ul {
 }
 
 .employeePosition {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 .status-active {
-  border: 3px solid #64CD3C;
+  border: 3px solid #64cd3c;
 }
 .status-inactive {
   border: 3px solid red;
