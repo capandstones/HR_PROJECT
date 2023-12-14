@@ -123,7 +123,7 @@ body {
                console.log("부장 또는 차장입니다.");
                $('#scheduleModal').modal('show');
             }else {
-               alert("권한이 없습니다.");
+               
             }
             
          },
@@ -150,6 +150,14 @@ body {
              document.getElementById('eventContent').innerText = event.extendedProps.content;
              
             $('#view_schedule_modal').modal('show');
+            
+            if (employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
+                $('#view_modify').show();
+                $('#view_delete').show();
+            } else {
+                $('#view_modify').hide();
+                $('#view_delete').hide();
+            }
             
             //수정
             $('#view_modify').on('click', function() {
@@ -326,7 +334,7 @@ body {
                
                   <div style="margin-top: 20px;">
                   <button type="button" class="btn btn-secondary" id="whole" onclick="location.href='${root}calendar/main'"  style="margin-left: 180px;">전체</button>
-                  <button type="button" class="btn btn-primary" id="team" onclick="location.href='${root}calendar/team'">내팀</button>
+                  <button type="button" class="btn btn-primary" id="team" onclick="location.href='${root}calendar/team'">부서</button>
                 </div>   
 
                </div>

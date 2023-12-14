@@ -296,7 +296,7 @@ body {
                
                   <div style="margin-top: 20px;">
                   <button type="button" class="btn btn-secondary" id="whole" onclick="location.href='${root}calendar/main'"  style="margin-left: 180px;">전체</button>
-                  <button type="button" class="btn btn-primary" id="team" onclick="location.href='${root}calendar/team'">내팀</button>
+                  <button type="button" class="btn btn-primary" id="team" onclick="location.href='${root}calendar/team'">부서</button>
                 </div>   
 
                </div>
