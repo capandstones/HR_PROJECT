@@ -19,7 +19,7 @@
 .employee-profile-wrap { display: flex; margin-bottom: 10px;}
 .status-active { border: 3px solid #64CD3C;}
 .status-inactive { border: 3px solid red;}
-.employee-info-wrap { margin-left: 20px; margin-top: 5px;}
+.employee-info-wrap {width:300px; margin-left: 20px; margin-top: 5px;}
 .employee-name1 { font-size: 16px; font-weight: 600; margin-top: 10px; margin-bottom:5px;}
 .employee-email{ display: flex; align-items: center;}
 .employee-info-wrap div { margin-top: 2px;}

@@ -8,7 +8,6 @@ import lombok.Setter;
 public class CalendarBean {
    
    private int cal_idx;
-   private String line_name;
    private String cal_start_date;
    private String cal_end_date;
    private String cal_title;

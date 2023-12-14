@@ -7,11 +7,12 @@ import lombok.Setter;
 @Setter
 public class VacationBean {
    
-   private String VA_idx;
+   private int VA_idx;
    private String employee_id;
    private String line_name;
    private String employee_name;
    private String vacation_name;
+   private String employee_position;
    private String employee_id_approver;
    private String employee_id_referrer;
    private String vacation_start_date;
@@ -19,9 +20,9 @@ public class VacationBean {
    private int vacation_days;
    private String vacation_reason;
    private String vacation_attachment;
+   private String vacation_comment;
+   private String vacation_state;
    
    public VacationBean() {
-
    }
-
 }

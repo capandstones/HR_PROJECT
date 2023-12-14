@@ -42,7 +42,7 @@ public class UserBean {
 	private String employee_last_name;
 	private String employee_first_name;
 	private String employee_profile_picture;
-	private Date record_date;
+	private Date update_date;
 
 	private boolean userLogin;
 

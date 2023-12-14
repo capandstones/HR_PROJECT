@@ -103,7 +103,6 @@ padding: 0;
             var events = result.map(function(event){
                return {
                   id: event.cal_idx,
-                  line: event.line_name,
                   title: event.cal_title,
                   start: event.cal_start_date,
                   end: event.cal_end_date,
@@ -112,7 +111,6 @@ padding: 0;
                   /* color:"#FF0000" */
                   extendedProps: {
                      cal_idx: event.cal_idx,
-                     line_name: event.line_name,
                   }
                };
             });
@@ -181,14 +179,13 @@ padding: 0;
              console.log(event);
              
              var cal_idx = event.extendedProps.cal_idx;
-             var line_name = event.extendedProps.line_name;
+             /* var line_name = event.extendedProps.line_name; */
              
              document.getElementById('eventIdx').innerText = cal_idx;
-             document.getElementById('eventLineName').innerText = line_name;
+             /* document.getElementById('eventLineName').innerText = line_name; */
              document.getElementById('eventDate').innerText = startDate + (endDate ? ' - ' + endDate : '');
              document.getElementById('eventTitle').innerText = event.title;
              document.getElementById('eventCategory').innerText = event.extendedProps.category;
-             /* document.getElementById('eventLineName').innerText = event.extendedProps.line_name; */
              document.getElementById('eventContent').innerText = event.extendedProps.content;
              
             $('#view_schedule_modal').modal('show');
@@ -200,11 +197,10 @@ padding: 0;
                 
                 $('#modify_scheduleModal').find('#cal_title').val(event.title);
                 $('#modify_scheduleModal').find('#cal_category').val(event.extendedProps.category);
-                /* $('#modify_scheduleModal').find('#line_name').val(event.extendedProps.line); */
                 $('#modify_scheduleModal').find('#cal_content').val(event.extendedProps.content);
                 
                 $('#modify_scheduleModal').find('#eventIdx').text(event.extendedProps.cal_idx);
-                $('#modify_scheduleModal').find('#eventLineName').text(event.extendedProps.line_name);
+                /* $('#modify_scheduleModal').find('#eventLineName').text(event.extendedProps.line_name); */
                 $('#modify_scheduleModal').find('#eventDate').text(event.startStr + (event.endStr ? ' - ' + event.endStr : ''));
                 $('#modify_scheduleModal').find('#cal_idx').val(cal_idx);
                 
@@ -212,26 +208,6 @@ padding: 0;
 
                });
             
-            $('#schedule_modify').on('click', function() {
-               var eventIdx = $('#eventIdx').text();
-               
-               /* $.ajax({
-                  type: 'POST',
-                  url: ,
-                  data: ,
-                  success: function(response) {
-                     console.log('수정 성공', response);
-                     
-                     
-                     calendar.getEventById(eventIdx).setTitle(event.title);
-                     $('#modify_scheduleModal').modal('hide');
-                  },
-                  error: function(error) {
-                    console.error('오류 발생', error);
-                }
-                  
-               }); */
-            });
             
             //취소버튼
             $('#schedule_cancel').on('click', function() {
@@ -303,6 +279,7 @@ padding: 0;
       
       document.querySelector('#scheduleModal .close').addEventListener('click',closeModalSchedule);
       
+      //수정 x버튼
       function closeModalModify() {
           /* document.getElementById('scheduleModal').style.display = 'none'; */
           $('#modify_scheduleModal').modal('hide');
@@ -310,6 +287,7 @@ padding: 0;
        
        document.querySelector('#modify_scheduleModal .close').addEventListener('click',closeModalModify);
 
+       //상세정보 x버튼
        function closeModalView() {
           
           $('#view_schedule_modal').modal('hide');
@@ -318,7 +296,6 @@ padding: 0;
        document.querySelector('#view_schedule_modal .close').addEventListener('click',closeModalView);
        
    });
-   
 
 </script>
 
@@ -353,30 +330,23 @@ padding: 0;
 
          <main>
          
-         <div style="width: 80%; margin : 0 15% 0 15%;">
-               <nav class="top-nav border-bottom mb-1" style="width: 70%">
-                  <span class="text-muted h4 font-weight-bold">캘린더</span>
+         <div style="width: 100%; margin : 0 0 0 auto;">
+               <nav class="top-nav border-bottom mb-2" style="width: 100%">
+                  <span class="text h2 font-weight-bold" style="margin-left: 180px; ">캘린더</span>
                </nav>
                
                <div class="mb-4 d-flex" style="width: 70%;">
-                  <select id="kind-calendar" class="custom-select custom-select-sm" style="width: 125px;">
-                     <option value="0">전체 조직</option>
-                     <option value="1">내가 속한 조직</option>
-                  </select>
-                  <div style="margin-left: auto; margin-top: 1px">
-                     <div class="d-flex">
-                        <div class="kind-color mr-1" style="background: #ffd699;"></div>
-                        <span class="kind-name mr-3">미팅</span>
-                        <div class="kind-color mr-1" style="background: #bfbfbf;"></div>
-                        <span class="kind-name mr-3">출장</span>
-                        <div class="kind-color mr-1" style="background: #6666ff;"></div>
-                        <span class="kind-name mr-3">회의</span>
-                     </div>
-                  </div>
+               
+               
+                  <div style="margin-top: 20px;">
+                  <button type="button" class="btn btn-secondary" id="whole" onclick="location.href='${root}calendar/main'"  style="margin-left: 180px;">전체</button>
+                  <button type="button" class="btn btn-primary" id="team" onclick="location.href='${root}calendar/team'">내팀</button>
+                </div>   
+
                </div>
                
                
-            </div>
+          </div>
          
             <div id='calendar'></div>
 
@@ -416,31 +386,14 @@ padding: 0;
                               <option>미팅</option>
                            </select>
                         </div>
-                        
-                        <div class="form-group">
-                           <label for="category">공개범위<span style="color: red;">*</span></label>
-                           <select name="line_name" id="line_name" name="line_name" class="custom-select">
-                              <option>전체</option>
-                              <option>내팀</option>
-                           </select>
-                           
-                   
-                        </div>
-                        
-       
-                        
+
                         <div class="form-group">
                            <label for="content">내용<span style="color: red;">*</span></label>
                            <textarea name="cal_content" id="cal_content" class="form-control" rows="5"></textarea>
                         </div>
-                        
-                        <div class="form-group">
-                           <%-- <input type="hidden" name="employee_id" value="${sessionScope.loginuser.employee_id }"/><!-- 여기에 작성자 아이디 --> --%>
-                           <input type="hidden" name="line_name" value="${sessionScope.loginuser.line_name }"/><!-- 여기에 작성자 부서이름 -->
-                        </div>
-                        
-                    
-                        
+
+                  <input type="hidden" id="cal_idx" name="cal_idx" value="">
+
                      </div>
                      
                      <div class="modal-footer">
@@ -465,7 +418,7 @@ padding: 0;
                   <div class="modal-content">
                   
                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">일정</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">일정 수정</h5>
                    
                         <span class="close" onclick="closeModalModify()">&times;</span>
                      </div>
@@ -494,17 +447,15 @@ padding: 0;
                               </select>
                            </div>
                            
-                           <div class="form-group">
+                           <!-- <div class="form-group">
                               <label for="category">공개범위<span style="color: red;">*</span></label>
                               <select name="line_name" id="line_name" name="line_name" class="custom-select">
                                  <option>전체</option>
                                  <option>내팀</option>
                               </select>
                 
-                           </div>
-                           
-         
-                           
+                           </div> -->
+
                            <div class="form-group">
                               <label for="content">내용<span style="color: red;">*</span></label>
                               <textarea name="cal_content" id="cal_content" class="form-control" rows="5"></textarea>
@@ -543,9 +494,9 @@ padding: 0;
                            <p><strong>기간: </strong><span id="eventDate"></span></p>
                            <p><strong>제목: </strong><span id="eventTitle"></span></p>
                            <p><strong>분류: </strong><span id="eventCategory"></span></p>
-                           <p><strong>공개 범위: </strong><span id="eventLineName"></span></p>
+                           <!-- <p><strong>공개 범위: </strong><span id="eventLineName"></span></p> -->
                            <p><strong>내용: </strong><span id="eventContent"></span></p>
-                           <p><strong>IDX: </strong><span id="eventIdx"></span></p>
+                           <input type="hidden" id="eventIdx"/>
                         </div>
                      </div>
                      
@@ -553,7 +504,6 @@ padding: 0;
                         <button type="button" class="btn btn-secondary" id="view_close" >닫기</button>
                         <button type="button" class="btn btn-primary" id="view_modify">수정</button>
                         <button type="button" class="btn btn-danger" id="view_delete">삭제</button>
-                        <%-- <a href="${root }calendar/delete?cal_idx=${cal_idx}" class="btn btn-danger">삭제</a> --%>
                      </div>
                      
                   </div>

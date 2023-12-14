@@ -36,11 +36,9 @@ public class CalendarController {
          @RequestParam("cal_end_date") String cal_end_date,
          @RequestParam("cal_title") String cal_title,
          @RequestParam("cal_category") String cal_category,
-         @RequestParam("line_name") String line_name,
          @RequestParam("cal_content") String cal_content) {
       
-      calendarService.saveCalendar(cal_start_date, cal_end_date, cal_title, cal_category,
-            line_name, cal_content);
+      calendarService.saveCalendar(cal_start_date, cal_end_date, cal_title, cal_category, cal_content);
       
       return "redirect:/calendar/main";
    }
@@ -51,15 +49,13 @@ public class CalendarController {
             @RequestParam("cal_end_date") String cal_end_date,
             @RequestParam("cal_title") String cal_title,
             @RequestParam("cal_category") String cal_category,
-            @RequestParam("line_name") String line_name,
             @RequestParam("cal_content") String cal_content,
             @RequestParam("cal_idx") int cal_idx
             ) {
       
-      calendarMapper.updateCalendar(cal_start_date, cal_end_date, cal_title, cal_category, line_name, cal_content,cal_idx);
+      calendarMapper.updateCalendar(cal_start_date, cal_end_date, cal_title, cal_category, cal_content,cal_idx);
       return "redirect:/calendar/main";
    }
-   
    
        
 }

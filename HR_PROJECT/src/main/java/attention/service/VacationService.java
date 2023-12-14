@@ -1,5 +1,7 @@
 package attention.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,8 @@ public class VacationService {
    @Autowired
    private VacationMapper vacationMapper;
 
-   public void saveVacation(String employee_id, String line_name, String vacation_name,
-         String employee_name, String employee_id_approver, String employee_id_referrer, String vacation_start_date,
+   public void saveVacation(String employee_id, String line_name, String vacation_name, String employee_name,
+         String employee_id_approver, String employee_id_referrer, String vacation_start_date,
          String vacation_end_date, int vacation_days, String vacation_reason, String vacation_attachment) {
       VacationBean vacationBean = new VacationBean();
 
@@ -32,4 +34,17 @@ public class VacationService {
       vacationMapper.save(vacationBean);
 
    }
+
+   public List<VacationBean> getUpcomingVacations(String employee_id) {
+      return vacationMapper.getUpcomingVacations(employee_id);
+   }
+   
+   public List<VacationBean> getMemberVacations(String employee_id) {
+      return vacationMapper.getMemberVacations(employee_id);
+   }
+   
+   public void cancelVacation(int VA_idx) {
+       vacationMapper.cancelVacation(VA_idx);
+   }
+
 }

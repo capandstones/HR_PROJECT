@@ -15,9 +15,9 @@
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 <style>
 .head {
-	margin-left: 5%;
-	font-weight: bold;
-	text-shadow: 3px 3px 3px lightgray;
+   margin-left: 5%;
+   font-weight: bold;
+   text-shadow: 3px 3px 3px lightgray;
 }
 </style>
 
@@ -40,7 +40,7 @@
           <div class="container" style="margin-top: 100px">
             <div class="card shadow">
               <div class="card-body">
-                <h4 class="card-title">${boardInfoName}</h4>
+                <h4 class="card-title"><b>${boardInfoName}</b></h4>
                 <table class="table table-hover" id='board_list'>
                   <thead>
                     <tr>
