@@ -14,11 +14,18 @@
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="${root}css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<style>
+.head {
+  margin-left: 5%;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px lightgray;
+}
+</style>
 </head>
-<c:import url="/WEB-INF/views/include/admin_top_menu.jsp" />
+<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
-		<c:import url="/WEB-INF/views/include/admin_side_menu.jsp" />
+		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
 		<div id="layoutSidenav_content" style="padding-top: 20px; height: auto;">
 			<main>
 				<!-- top 시작 -->
@@ -52,7 +59,7 @@
 										</div>
 										<div class="form-group">
 											<div class="text-right">
-												<form:button type="submit" class="btn btn-primary">작성하기</form:button>
+												<form:button type="submit" class="btn" style="background-color:#415971; color:white; margin-top:15px;">작성하기</form:button>
 											</div>
 										</div>
 									</form:form>

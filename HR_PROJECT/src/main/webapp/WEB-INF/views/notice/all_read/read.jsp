@@ -64,7 +64,7 @@ s
 
 									<div class="form-group">
 										<div class="text-right">
-											<a href="${root }notice/all_read/noticeAll?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">목록보기</a>
+											<a style="background-color:#415971; color:white; margin-top:15px;" href="${root }notice/all_read/noticeAll?board_info_idx=1&page=${page}" class="btn">목록보기</a>
 
 										</div>
 									</div>

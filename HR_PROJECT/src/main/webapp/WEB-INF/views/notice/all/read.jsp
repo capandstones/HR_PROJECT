@@ -64,9 +64,9 @@
 
 									<div class="form-group">
 										<div class="text-right">
-											<a href="${root }notice/all/noticeAll?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">목록보기</a>
-											<a href="${root }notice/all/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">수정하기</a>
-											<a href="${root }notice/all/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-danger">삭제하기</a>
+											<a style="background-color:#415971; color:white; margin-top:15px;" href="${root }notice/all/noticeAll?board_info_idx=1&page=${page}" class="btn">목록보기</a>
+											<a style="background-color:#46649B; color:white; margin-top:15px;" href="${root }notice/all/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn">수정하기</a>
+											<a style="background-color:#CD426B; color:white; margin-top:15px;" href="${root }notice/all/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn">삭제하기</a>
 										</div>
 									</div>
 								</div>

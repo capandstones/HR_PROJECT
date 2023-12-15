@@ -64,8 +64,8 @@
 							</div>
 							<div class="form-group">
 								<div class="text-right">
-									<form:button type="submit" class="btn btn-primary">수정완료</form:button>
-									<a href="${root }notice/sub_read/read?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">취소</a>
+									<form:button type="submit" class="btn" style="background-color:#46649B; color:white; margin-top:15px;">수정완료</form:button>
+									<a style="background-color: #CD426B; color: white; margin-top: 15px;" href="${root }notice/sub_read/read?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn">취소</a>
 								</div>
 							</div>
 						</form:form>
