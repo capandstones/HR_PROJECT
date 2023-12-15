@@ -510,6 +510,7 @@ div#attachArea {
 1.계약서를 첨부해주세요
 
 
+<<<<<<< Updated upstream
 
 
 
@@ -526,6 +527,11 @@ div#attachArea {
 
 
 
+=======
+2.검토 내용
+
+
+>>>>>>> Stashed changes
 						</textarea>
 									</div>
 								</div>
