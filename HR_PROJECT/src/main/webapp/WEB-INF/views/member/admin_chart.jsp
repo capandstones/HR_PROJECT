@@ -281,7 +281,7 @@
       <div id="layoutSidenav_content" style="padding-top: 20px; height: auto; background-color: #fff;">
          <main>
             <div>
-               <h2 class="head">조직도</h2>
+               <h2 class="head">구성원</h2>
             </div>
             <hr />
            <div class="main_container">

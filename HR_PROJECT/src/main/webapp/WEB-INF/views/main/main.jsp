@@ -122,7 +122,7 @@
               <div class="card text-black mb-4 " style="height: 220px; color: #fff;">
                 <div class="card-header">
                   나의 정보
-                  <button type="button" class="btn btn-outline-dark" style="float: right; font-size: 10px; font-weight: normal; text-align: center; line-height: 1.1em; border-style: solid; border-color: rgb(190, 190, 190);">관리</button>
+                  <button type="button" class="btn btn-outline-dark" onclick="location.href='${root}user/modify'" style="float: right; font-size: 10px; font-weight: normal; text-align: center; line-height: 1.1em; border-style: solid; border-color: rgb(190, 190, 190);">관리</button>
                 </div>
                 <div class="card-body">
                   <ul style="padding: 0px; ">

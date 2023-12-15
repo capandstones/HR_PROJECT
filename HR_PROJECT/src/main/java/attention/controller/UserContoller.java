@@ -59,7 +59,7 @@ public class UserContoller {
 
          if (loginUserBean.getEmployee_position().equals("관리자")) {
 
-            return "admin/main";
+            return "member/admin_chart";
          }
          
          return "user/login_success";
