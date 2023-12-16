@@ -83,30 +83,30 @@
 
 .department-info {
    display: flex;
-   align-items: stretch; /* 수직으로 채우기 */
+   align-items: stretch;
 }
 
 .employee-rows-container {
    margin-top:10px;
    display: flex;
    flex-direction: column;
-   flex-grow: 1; /* 유연한 크기 조정 */
+   flex-grow: 1;
 }
 
 .vacation-info-container {
    display: flex;
-   align-items: center; /* 세로 중앙 정렬 */
+   align-items: center;
 }
 
 .department-image-container {
    display: flex;
-   align-items: center; /* 세로 중앙 정렬 */
-   flex-grow: 0; /* 고정된 크기 유지 */
+   align-items: center;
+   flex-grow: 0;
 }
 
 .department-image {
-   max-width: 200px; /* 최대 너비 설정 */
-   height: auto; /* 높이 자동 조정 */
+   max-width: 200px;
+   height: auto;
 }
 </style>
 </head>
@@ -241,15 +241,10 @@
                      <div class="card text-black mb-4" style="height: 260px; color: #fff;">
                         <div class="card-header">일일 나의 근태</div>
                         <div class="card-body">
-                           <%-- <%
-                           java.util.Date currentDate = new java.util.Date();
-                           java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("MM.dd(E)");
-                           String formattedDate = dateFormat.format(currentDate);
-                           %> --%>
 
                            <table class="commute-table">
                               <tr>
-                                 <td style="width: 80px;">12.17(일)<%-- <%=formattedDate%> --%></td>
+                                 <td style="width: 80px;">12.17(일)</td>
                                  <td>-</td>
                               </tr>
                               <tr>
