@@ -40,7 +40,7 @@
           <div class="container" style="margin-top: 100px">
             <div class="card shadow">
               <div class="card-body">
-                <h4 class="card-title"><b>${boardInfoName}</b></h4>
+                <h4 class="card-title"><b style="color: #415971;">${boardInfoName}</b></h4>
                 <table class="table table-hover" id='board_list'>
                   <thead>
                     <tr>
@@ -54,7 +54,7 @@
                     <c:forEach items="${contentList}" var='obj'>
                       <tr>
                         <td class="text-center d-none d-md-table-cell">${obj.content_idx}</td>
-                        <td><a href="${root}notice/sub_read/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}">${obj.content_subject}</a></td>
+                        <td><a style="color: navy; text-decoration: none;" href="${root}notice/sub_read/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}">${obj.content_subject}</a></td>
                         <td class="text-center d-none d-md-table-cell">${obj.content_writer_name}</td>
                         <td class="text-center d-none d-md-table-cell">${obj.content_date}</td>
                       </tr>
@@ -76,10 +76,10 @@
                     <c:forEach var='idx' begin="${pageBean.min }" end="${pageBean.max }">
                       <c:choose>
                         <c:when test="${idx==pageBean.currentPage }">
-                          <li class="page-item active"><a href="#" class="page-link">${idx }</a></li>
+                          <li class="page-item active"><a style="background-color: #415971; border-color: #415971;" href="#" class="page-link">${idx }</a></li>
                         </c:when>
                         <c:otherwise>
-                          <li class="page-item"><a href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${idx}" class="page-link">${idx }</a></li>
+                          <li class="page-item"><a style="color: #415971;" href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${idx}" class="page-link">${idx }</a></li>
                         </c:otherwise>
                       </c:choose>
                     </c:forEach>
@@ -104,7 +104,7 @@
 
                 <div class="text-right">
                   <c:if test="${canCRUD }">
-                    <a href="${root }notice/sub_read/write?board_info_idx=${board_info_idx }" class="btn btn-primary">글쓰기</a>
+                    <a href="${root }notice/sub_read/write?board_info_idx=${board_info_idx }" class="btn" style="background-color: #415971; color: white;">글쓰기</a>
                   </c:if>
                 </div>
 

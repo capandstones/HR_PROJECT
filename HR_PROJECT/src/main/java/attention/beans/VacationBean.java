@@ -12,6 +12,7 @@ public class VacationBean {
    private String line_name;
    private String employee_name;
    private String vacation_name;
+   private String department_name;
    private String employee_position;
    private String employee_id_approver;
    private String employee_id_referrer;

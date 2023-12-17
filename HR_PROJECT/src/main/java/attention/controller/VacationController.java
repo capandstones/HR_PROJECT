@@ -1,12 +1,12 @@
 package attention.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import attention.beans.UserBean;
 import attention.beans.VacationBean;
 import attention.service.VacationService;
 
@@ -22,9 +23,9 @@ import attention.service.VacationService;
 @RequestMapping("/vacation")
 @CrossOrigin(origins = "http://yourfrontenddomain.com")
 public class VacationController {
-   
+
    @Autowired
-    private VacationService vacationService;
+   private VacationService vacationService;
 
    @GetMapping("/main")
    public String main() {
@@ -72,34 +73,37 @@ public class VacationController {
    }
 
    @PostMapping("/submit_pro")
-   public String submit_pro(
-         @RequestParam("employee_id") String employee_id,
-         @RequestParam("line_name") String line_name,
-         @RequestParam("department_name") String department_name,
+   public String submit_pro(@RequestParam("employee_id") String employee_id,
+         @RequestParam("line_name") String line_name, @RequestParam("department_name") String department_name,
          @RequestParam("employee_position") String employee_position,
-         @RequestParam("vacation_name") String vacation_name,
-         @RequestParam("employee_name") String employee_name,
+         @RequestParam("vacation_name") String vacation_name, @RequestParam("employee_name") String employee_name,
          @RequestParam("employee_id_approver") String employee_id_approver,
          @RequestParam("employee_id_referrer") String employee_id_referrer,
          @RequestParam("vacation_start_date") String vacation_start_date,
          @RequestParam("vacation_end_date") String vacation_end_date,
-         @RequestParam("vacation_days") int vacation_days,
-         @RequestParam("vacation_reason") String vacation_reason,
+         @RequestParam("vacation_days") int vacation_days, @RequestParam("vacation_reason") String vacation_reason,
          @RequestParam("vacation_attachment") String vacation_attachment,
          @RequestParam("vacation_state") String vacation_state) {
 
-      vacationService.saveVacation(
-            employee_id, line_name, department_name, employee_position, vacation_name, employee_name, employee_id_approver, employee_id_referrer, vacation_start_date, vacation_end_date, vacation_days, vacation_reason, vacation_attachment, vacation_state);
+      vacationService.saveVacation(employee_id, line_name, department_name, employee_position, vacation_name,
+            employee_name, employee_id_approver, employee_id_referrer, vacation_start_date, vacation_end_date,
+            vacation_days, vacation_reason, vacation_attachment, vacation_state);
 
       return "vacation/success";
    }
-   
+
    @GetMapping("/getVacations")
    @ResponseBody
    public List<VacationBean> getVacations(@RequestParam("employee_id") String employee_id) {
       return vacationService.getUpcomingVacations(employee_id);
    }
-   
+
+   @GetMapping("/getVacationHistory")
+   @ResponseBody
+   public List<VacationBean> getVacationHistory(@RequestParam("employee_id") String employee_id) {
+      return vacationService.getVacationHistory(employee_id);
+   }
+
    @GetMapping("/getMemberVacations")
    @ResponseBody
    public List<VacationBean> getMemberVacations(@RequestParam("employee_id") String employee_id) {
@@ -108,9 +112,31 @@ public class VacationController {
 
    @PostMapping("/cancelVacation")
    @ResponseBody
-   public String cancelVacation(@RequestParam("VA_idx") int VA_idx) {
-       vacationService.cancelVacation(VA_idx);
-       return "취소되었습니다";
+   public String cancelVacation(@RequestParam("va_idx") int va_idx) {
+      vacationService.cancelVacation(va_idx);
+      return "취소되었습니다";
+   }
+
+   @GetMapping("/getMemberVacationList")
+   @ResponseBody
+   public List<UserBean> getMemberVacationList(@RequestParam("line_name") String line_name) {
+      return vacationService.getMemberVacationList(line_name);
+   }
+
+   @PostMapping("/rejectVacation")
+   @ResponseBody
+   public String rejectVacation(@RequestBody Map<String, String> params) {
+      String va_idx = params.get("va_idx");
+      vacationService.rejectVacation(va_idx, "반려");
+      return "반려 처리되었습니다";
+   }
+
+   @PostMapping("/approveVacation")
+   @ResponseBody
+   public String approveVacation(@RequestBody Map<String, String> params) {
+      String va_idx = params.get("va_idx");
+      vacationService.approveVacation(va_idx, "승인");
+      return "승인 처리되었습니다";
    }
 
 }

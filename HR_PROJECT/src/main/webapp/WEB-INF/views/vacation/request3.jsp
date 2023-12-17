@@ -28,7 +28,6 @@
                <input type="hidden" id="line_name" name="line_name" value="${line_name }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
                <input type="hidden" id="department_name" name="department_name" value="${department_name }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
                <input type="hidden" id="employee_position" name="employee_position" value="${employee_position }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
-               <input type="hidden" id="employee_position" name="employee_position" value="${employee_position }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
                <div class="mb-3">
                   <label for="vacationType" class="form-label">휴가종류:</label>
                   <input type="text" id="vacation_name" name="vacation_name" value="조의" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
@@ -41,10 +40,7 @@
                   <label for="approver" class="form-label">결재자:</label>
                   <input type="text" id="employee_id_approver" name="employee_id_approver" class="form-control" required>
                </div>
-               <div class="mb-3">
-                  <label for="reference" class="form-label">참조:</label>
-                  <input type="text" id="employee_id_referrer" name="employee_id_referrer" class="form-control" required>
-               </div>
+               <input type="hidden" id="employee_id_referrer" name="employee_id_referrer" value="인사부" class="form-control" required>
                <div class="mb-3">
                   <label for="vacationDate" class="form-label">휴가일자:</label>
                   <div class="row">
@@ -118,6 +114,8 @@
             var formData = new FormData();
             formData.append("employee_id", $("#employee_id").val());
             formData.append("line_name", $("#line_name").val());
+            formData.append("department_name", $("#department_name").val());
+            formData.append("employee_position", $("#employee_position").val());
             formData.append("vacation_name", $("#vacation_name").val());
             formData.append("employee_name", $("#employee_name").val());
             formData.append("employee_id_approver", $("#employee_id_approver").val());
@@ -127,6 +125,7 @@
             formData.append("vacation_days", $("#vacation_days").val());
             formData.append("vacation_reason", $("#vacation_reason").val());
             formData.append("vacation_attachment", $("#vacation_attachment").val());
+            formData.append("vacation_state", $("#vacation_state").val());
             console.log("FormData:", formData);
 
             $.ajax({

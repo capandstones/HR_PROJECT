@@ -34,6 +34,20 @@ body {
    margin: 0 auto;
 }
 
+::-webkit-scrollbar {
+   width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #d9d9d9;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: #f2f2f2;
+   border-radius: 10px;
+}
+
 </style>
 
 <script>
@@ -111,6 +125,9 @@ body {
             //document.getElementById('scheduleModal').style.display = 'block';
   
             $('#scheduleModal').modal('show');
+            
+            $('#cal_start_date').val(info.dateStr);
+            $('#cal_end_date').val(info.dateStr);
             
          },
          

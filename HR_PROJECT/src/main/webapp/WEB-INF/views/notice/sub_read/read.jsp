@@ -23,70 +23,70 @@
 </head>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 <body class="sb-nav-fixed">
-	<div id="layoutSidenav">
-		<c:import url="/WEB-INF/views/include/side_menu.jsp" />
-		<div id="layoutSidenav_content" style="padding-top: 20px; height: auto;">
-			<main>
-				<!-- top 시작 -->
-				<div>
-					<h2 class="head">부서별 공지사항</h2>
-				</div>
-				<hr />
-				<!-- top 끝 -->
+   <div id="layoutSidenav">
+      <c:import url="/WEB-INF/views/include/side_menu.jsp" />
+      <div id="layoutSidenav_content" style="padding-top: 20px; height: auto;">
+         <main>
+            <!-- top 시작 -->
+            <div>
+               <h2 class="head">부서별 공지사항</h2>
+            </div>
+            <hr />
+            <!-- top 끝 -->
 
-				<div class="container" style="margin-top: 100px">
-					<div class="row">
-						<div class="col-sm-3"></div>
-						<div class="col-sm-6">
-							<div class="card shadow">
-								<div class="card-body">
-									<div class="form-group">
-										<label for="board_writer_name">작성자</label> <input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="${readContentBean.content_writer_name}" disabled="disabled" />
-									</div>
-									<div class="form-group">
-										<label for="board_date">작성날짜</label> <input type="text" id="board_date" name="board_date" class="form-control" value="${readContentBean.content_date }" disabled="disabled" />
-									</div>
-									<div class="form-group">
-										<label for="board_subject">제목</label> <input type="text" id="board_subject" name="board_subject" class="form-control" value="${readContentBean.content_subject }" disabled="disabled" />
-									</div>
-									<div class="form-group">
-										<label for="board_content">내용</label>
-										<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize: none" disabled="disabled">${readContentBean.content_text }</textarea>
-									</div>
+            <div class="container" style="margin-top: 100px">
+               <div class="row">
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-6">
+                     <div class="card shadow">
+                        <div class="card-body">
+                           <div class="form-group">
+                              <label for="board_writer_name">작성자</label> <input type="text" id="board_writer_name" name="board_writer_name" class="form-control" value="${readContentBean.content_writer_name}" disabled="disabled" />
+                           </div>
+                           <div class="form-group">
+                              <label for="board_date">작성날짜</label> <input type="text" id="board_date" name="board_date" class="form-control" value="${readContentBean.content_date }" disabled="disabled" />
+                           </div>
+                           <div class="form-group">
+                              <label for="board_subject">제목</label> <input type="text" id="board_subject" name="board_subject" class="form-control" value="${readContentBean.content_subject }" disabled="disabled" />
+                           </div>
+                           <div class="form-group">
+                              <label for="board_content">내용</label>
+                              <textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize: none" disabled="disabled">${readContentBean.content_text }</textarea>
+                           </div>
 
-									<c:if test="${readContentBean.content_file != null }">
+                           <c:if test="${readContentBean.content_file != null }">
 
-										<div class="form-group">
-											<label for="board_file">첨부 이미지</label> <img src="${root}upload/${readContentBean.content_file}" width="100%" />
-										</div>
+                              <div class="form-group">
+                                 <label for="board_file">첨부 이미지</label> <img src="${root}upload/${readContentBean.content_file}" width="100%" />
+                              </div>
 
-									</c:if>
+                           </c:if>
 
-									<div class="form-group">
-										<div class="text-right">
-											<a href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${page}" class="btn btn-primary">목록보기</a>
+                           <div class="form-group">
+                              <div class="text-right">
+                                 <a style="background-color:#415971; color:white; margin-top:15px;" href="${root }notice/sub_read/noticeSubDetail?board_info_idx=${board_info_idx}&page=${page}" class="btn">목록보기</a>
                                     <c:if test="${canCRUD }">
-											<a href="${root }notice/sub_read/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-info">수정하기</a>
-											<a href="${root }notice/sub_read/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn btn-danger">삭제하기</a>
+                                 <a style="background-color:#46649B; color:white; margin-top:15px;" href="${root }notice/sub_read/modify?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn">수정하기</a>
+                                 <a style="background-color:#CD426B; color:white; margin-top:15px;" href="${root }notice/sub_read/delete?board_info_idx=${board_info_idx}&content_idx=${content_idx}&page=${page}" class="btn">삭제하기</a>
                                     </c:if>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3"></div>
-					</div>
-				</div>
-			</main>
-		</div>
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="${root }js/scripts.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script src="${root }assets/demo/chart-area-demo.js"></script>
-	<script src="${root }assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-	<script src="${root }js/datatables-simple-demo.js"></script>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-3"></div>
+               </div>
+            </div>
+         </main>
+      </div>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+   <script src="${root }js/scripts.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+   <script src="${root }assets/demo/chart-area-demo.js"></script>
+   <script src="${root }assets/demo/chart-bar-demo.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+   <script src="${root }js/datatables-simple-demo.js"></script>
 
 </body>
 </html>

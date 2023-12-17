@@ -34,6 +34,19 @@ body {
    margin: 0 auto;
 }
 
+::-webkit-scrollbar {
+   width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   background-color: #d9d9d9;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: #f2f2f2;
+   border-radius: 10px;
+}
 
 </style>
 
@@ -47,23 +60,21 @@ body {
             console.log(result);
             
             var events = result.map(function(event){
-            	return {
-                    id: event.cal_idx,
-                    title: event.cal_title,
-                    start: event.cal_start_date,
-                    end: event.cal_end_date,
-                    content: event.cal_content,
-                    category: event.cal_category,
-                    color: getCategoryColor(event.cal_category),
-                    extendedProps: {
-                       cal_idx: event.cal_idx,
-                    }
+               return {
+                  id: event.cal_idx,
+                  title: event.cal_title,
+                  start: event.cal_start_date,
+                  end: event.cal_end_date,
+                  content: event.cal_content,
+                  category: event.cal_category,
+                  color: getCategoryColor(event.cal_category),
+                  extendedProps: {
+                     cal_idx: event.cal_idx,
+                  }
                };
             });
-            
-
-      
-      var employeePosition = "${employee_position}";          
+     
+      var employeePosition = "${employee_position}";      
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
 
@@ -80,13 +91,14 @@ body {
                text : "일정추가",
                click : function(){
                   
-            	   if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
-                       console.log("부장 또는 차장입니다.");
-                       $('#scheduleModal').modal('show');
-                    }else {
-                       alert("권한이 없습니다.");
-                    }
-            	   
+                  if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
+                      console.log("부장 또는 차장입니다.");
+                      $('#scheduleModal').modal('show');
+                   }else {
+                      alert("권한이 없습니다.");
+                   
+                   }
+
                }
             }
          },
@@ -111,32 +123,36 @@ body {
          ],
          
          events: events,
-         
-         
-         
+ 
          dateClick : function(info) {
             //alert('clicked ' + info.dateStr);
             //document.getElementById('modalContent').innerText = 'Clicked '+info.dateStr;
             //document.getElementById('scheduleModal').style.display = 'block';
-  
+            
             if(employeePosition === "부장" || employeePosition === "차장" || employeePosition === "사장" || employeePosition === "부사장") {
                console.log("부장 또는 차장입니다.");
                $('#scheduleModal').modal('show');
+               
+               $('#cal_start_date').val(info.dateStr);
+               $('#cal_end_date').val(info.dateStr);
+               
             }else {
                
             }
+  
+            
             
          },
          
          eventClick : function(info) {
-            
+
              var event = info.event;
              var startDate = event.startStr; 
              var endDate = event.endStr ? event.endStr : '';
-             
+
              var formattedStartDate = new Date(startDate).toLocaleDateString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit' });
              var formattedEndDate = endDate ? new Date(endDate).toLocaleDateString(undefined, { year: 'numeric', month: '2-digit', day: '2-digit' }) : '';
-
+             
              console.log(event);
              
              var cal_idx = event.extendedProps.cal_idx;
@@ -144,7 +160,7 @@ body {
              
              document.getElementById('eventIdx').innerText = cal_idx;
              /* document.getElementById('eventLineName').innerText = line_name; */
-             document.getElementById('eventDate').innerText = startDate + (endDate ? ' - ' + endDate : '');
+             document.getElementById('eventDate').innerText = formattedStartDate + (formattedEndDate ? ' ~ ' + formattedEndDate : '');
              document.getElementById('eventTitle').innerText = event.title;
              document.getElementById('eventCategory').innerText = event.extendedProps.category;
              document.getElementById('eventContent').innerText = event.extendedProps.content;
@@ -334,7 +350,7 @@ body {
                
                   <div style="margin-top: 20px;">
                   <button type="button" class="btn btn-secondary" id="whole" onclick="location.href='${root}calendar/main'"  style="margin-left: 180px;">전체</button>
-                  <button type="button" class="btn btn-primary" id="team" onclick="location.href='${root}calendar/team'">부서</button>
+                  <button type="button" style="color: white; background-color: #415971;" class="btn" id="team" onclick="location.href='${root}calendar/team'">부서</button>
                 </div>   
 
                </div>
@@ -391,8 +407,8 @@ body {
                      </div>
                      
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="schedule_close" >닫기</button>
-                        <button type="submit" class="btn btn-primary" id="schedule_register" >등록</button>
+                        <button type="button" style="background-color:#415971; color: white; " class="btn btn-secondary" id="schedule_close" >닫기</button>
+                        <button type="submit" style="background-color:#46649b; color: white; " class="btn" id="schedule_register" >등록</button>
                      </div>
                   </form>
                   
@@ -461,9 +477,9 @@ body {
                         </div>
                         
                         <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary" id="modify_close" >닫기</button>
-                           <button type="submit" class="btn btn-primary" id="schedule_modify">수정완료</button>
-                           <button type="button" class="btn btn-danger" id="schedule_cancel">취소</button>
+                           <button type="button"  style="background-color:#415971; color: white; "  class="btn" id="modify_close" >닫기</button>
+                           <button type="submit"  style="background-color:#46649b; color: white; "  class="btn" id="schedule_modify">수정완료</button>
+                           <button type="button" style="background-color:#cd426b; color: white; "  class="btn" id="schedule_cancel">취소</button>
                         </div>
                      </form>
                      
@@ -495,9 +511,9 @@ body {
                      </div>
                      
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="view_close" >닫기</button>
-                        <button type="button" class="btn btn-primary" id="view_modify">수정</button>
-                        <button type="button" class="btn btn-danger" id="view_delete">삭제</button>
+                        <button type="button" style="background-color:#415971; color: white; " class="btn" id="view_close" >닫기</button>
+                        <button type="button" style="background-color:#46649b; color: white; " class="btn" id="view_modify">수정</button>
+                        <button type="button" style="background-color:#cd426b; color: white; " class="btn" id="view_delete">삭제</button>
                      </div>
                      
                   </div>
