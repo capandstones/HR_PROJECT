@@ -480,7 +480,7 @@ div#child2 {
                               <input type="hidden" name="icon" value="annual.svg" readonly />
                            </div>
                            <div id="fontSubject">연차</div>
-                           <div id="fontpurpose">남은일수</div>
+                           <div id="fontpurpose">${employee_annual_leave }</div>
                         </div>
                      </form>
 
@@ -491,7 +491,7 @@ div#child2 {
                               <input type="hidden" name="icon" value="calendar.svg" readonly />
                            </div>
                            <div id="fontSubject">반차</div>
-                           <div id="fontpurpose">남은일수</div>
+                           <div id="fontpurpose">연차에서 차감</div>
                         </div>
                      </form>
 
@@ -736,7 +736,7 @@ div#child2 {
 <script>
 	function fetchMemberVacations() {
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '${root}vacation/getMemberVacations?employee_id=${employee_id}' , true);
+		xhr.open('GET', '${root}vacation/getMemberVacations?&employee_id=${employee_id}&employee_name=${username}&line_name=${line_name}' , true);
 		xhr.onload = function() {
 			if (this.status === 200) {
 				var memberVacations = JSON.parse(this.responseText);

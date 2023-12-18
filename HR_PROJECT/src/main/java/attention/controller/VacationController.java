@@ -106,8 +106,8 @@ public class VacationController {
 
    @GetMapping("/getMemberVacations")
    @ResponseBody
-   public List<VacationBean> getMemberVacations(@RequestParam("employee_id") String employee_id) {
-      return vacationService.getMemberVacations(employee_id);
+   public List<VacationBean> getMemberVacations(@RequestParam("employee_id") String employee_id, @RequestParam("employee_name") String employee_name, @RequestParam("line_name") String line_name) {
+      return vacationService.getMemberVacations(employee_id, employee_name, line_name);
    }
 
    @PostMapping("/cancelVacation")

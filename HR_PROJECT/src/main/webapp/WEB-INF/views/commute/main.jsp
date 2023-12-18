@@ -41,13 +41,30 @@ main {
    width: 100%;
 }
 
-.new-table tr, .new-table td {
+.new-table thead tr, .new-table thead td {
    color:#fff;
    background-color:#415971 ;
    border: 1px solid #ccc;
    width: 4em;
    height: 3em;
    text-align: center;
+}
+
+.new-table tbody {
+   background-color: white;
+}
+
+.new-table tbody tr {
+   border-bottom: 1px solid #ddd; 
+}
+
+.new-table tbody tr:hover {
+   background-color: #ccc;
+}
+
+.new-table tbody td {
+   text-align: center;
+   padding: 8px;
 }
 
 .week-table-container {
@@ -130,7 +147,8 @@ main {
                <div class="today" onclick="goToToday()" style="font-size: 25pt;">Today</div>
             </div>
 
-            <table class="new-table">
+            <table class="new-table" id="new-table">
+            <thead>
                <tr>
                   <td>이번주 누적</td>
                   <td>이번주 초과</td>
@@ -138,7 +156,10 @@ main {
                   <td>이번달 누적</td>
                   <td>이번달 잔여</td>
                </tr>
-
+             </thead>
+             <tbody>
+             
+             </tbody>
             </table>
 
             <div class="week-table-container" style="flex-direction: row;"></div>
@@ -279,7 +300,7 @@ main {
               };
 
               var weekNumber = index + 1;
-              weekTable.innerHTML = '<tr><th>' + weekNumber + '주차</th></tr><tr class="no-style"><th style="text-align: center; font-weight: 200;">주차 근무시간 ' + totalWorkHours + 'h <br/> 초과 근무 시간 0h 0m </th></tr>';
+              weekTable.innerHTML = '<tr><th>' + weekNumber + '주차</th></tr><tr class="no-style"><th style="text-align: center; font-weight: 200;">초과 근무 시간 0h 0m </th></tr>';
 
               weekTableContainer.appendChild(weekTable);
               weekTableContainer.appendChild(document.createElement('div'));

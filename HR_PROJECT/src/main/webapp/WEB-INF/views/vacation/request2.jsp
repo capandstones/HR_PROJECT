@@ -62,7 +62,7 @@
                </div>
                <div class="mb-3">
                   <label for="attachment" class="form-label">첨부파일:</label>
-                  <input type="file" id="attachment" name="attachment" class="form-control">
+                  <input type="file" id="vacation_attachment" name="vacation_attachment" class="form-control">
                </div>
                <input type="hidden" id="vacation_state" name="vacation_state" value="대기" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
                <div class="mb-3">

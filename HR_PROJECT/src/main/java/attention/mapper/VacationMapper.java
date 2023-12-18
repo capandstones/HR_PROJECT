@@ -31,7 +31,7 @@ public interface VacationMapper {
    void cancelVacation(int va_idx);
 
    @Select("select employee_name, employee_id, employee_position, vacation_start_date, vacation_end_date, vacation_name, vacation_days, vacation_attachment, vacation_reason, vacation_state, va_idx FROM HRPROJECT.vacation_Application WHERE (employee_id_approver=#{employee_id}) OR (employee_id_approver=#{employee_name} AND line_name=#{line_name})")
-   List<VacationBean> getMemberVacations(String employee_id);
+   List<VacationBean> getMemberVacations(@Param("employee_id") String employee_id, @Param("employee_name") String employee_name, @Param("line_name") String line_name);
 
    @Select("select employee_name, employee_id, department_name, employee_position, employee_annual_leave FROM HRPROJECT.employees WHERE line_name=#{line_name}")
    List<UserBean> getMemberVacationList(String line_name);

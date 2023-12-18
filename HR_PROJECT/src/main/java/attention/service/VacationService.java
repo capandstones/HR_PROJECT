@@ -49,8 +49,8 @@ public class VacationService {
       return vacationMapper.getVacationHistory(employee_id);
    }
 
-   public List<VacationBean> getMemberVacations(String employee_id) {
-      return vacationMapper.getMemberVacations(employee_id);
+   public List<VacationBean> getMemberVacations(String employee_id, String employee_name, String line_name) {
+      return vacationMapper.getMemberVacations(employee_id, employee_name, line_name);
    }
 
    public void cancelVacation(int va_idx) {
