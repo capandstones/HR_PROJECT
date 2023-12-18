@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import attention.beans.UserBean;
 import attention.beans.VacationBean;
+import attention.mapper.UserMapper;
 import attention.mapper.VacationMapper;
 
 @Service
@@ -15,6 +16,9 @@ public class VacationService {
 
    @Autowired
    private VacationMapper vacationMapper;
+   
+   @Autowired
+   private UserMapper userMapper;
 
    public void saveVacation(String employee_id, String line_name, String department_name, String employee_position,
          String vacation_name, String employee_name, String employee_id_approver, String employee_id_referrer,
@@ -66,11 +70,15 @@ public class VacationService {
    }
 
    @Transactional
-   public void approveVacation(String va_idx, String vacation_state) {
-      vacationMapper.approveVacation(va_idx, vacation_state);
+    public void approveVacation(String va_idx, String vacation_state) {
+        vacationMapper.approveVacation(va_idx, vacation_state);
+        vacationMapper.archiveVacation(va_idx);
+        vacationMapper.deleteVacation(va_idx);
 
-      vacationMapper.archiveVacation(va_idx);
+        VacationBean vacation = vacationMapper.getVacationApplication(va_idx);
+        int vacation_days = vacation.getVacation_days();
+        String employee_id = vacation.getEmployee_id();
 
-      vacationMapper.deleteVacation(va_idx);
-   }
+        vacationMapper.updateAnnualLeave(employee_id, vacation_days);
+    }
 }

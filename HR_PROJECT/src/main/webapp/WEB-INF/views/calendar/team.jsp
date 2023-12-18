@@ -121,7 +121,7 @@ body {
          
          dateClick : function(info) {
             //alert('clicked ' + info.dateStr);
-            document.getElementById('modalContent').innerText = 'Clicked '+info.dateStr;
+            //document.getElementById('modalContent').innerText = 'Clicked '+info.dateStr;
             //document.getElementById('scheduleModal').style.display = 'block';
   
             $('#scheduleModal').modal('show');
