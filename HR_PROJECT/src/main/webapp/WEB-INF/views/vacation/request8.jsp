@@ -17,22 +17,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-<style type="text/css">
-::-webkit-scrollbar {
-   width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-   background-color: #d9d9d9;
-   border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-   background-color: #f2f2f2;
-   border-radius: 10px;
-}
-
-</style>
 </head>
 <body>
 
@@ -42,6 +26,8 @@
             <form action="${root}vacation/submit_pro" method="post" enctype="multipart/form-data">
                <input type="hidden" id="employee_id" name="employee_id" value="${employee_id }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
                <input type="hidden" id="line_name" name="line_name" value="${line_name }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
+               <input type="hidden" id="department_name" name="department_name" value="${department_name }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
+               <input type="hidden" id="employee_position" name="employee_position" value="${employee_position }" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
                <div class="mb-3">
                   <label for="vacationType" class="form-label">휴가종류:</label>
                   <input type="text" id="vacation_name" name="vacation_name" value="기타" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
@@ -54,10 +40,7 @@
                   <label for="approver" class="form-label">결재자:</label>
                   <input type="text" id="employee_id_approver" name="employee_id_approver" class="form-control" required>
                </div>
-               <div class="mb-3">
-                  <label for="reference" class="form-label">참조:</label>
-                  <input type="text" id="employee_id_referrer" name="employee_id_referrer" class="form-control" required>
-               </div>
+               <input type="hidden" id="employee_id_referrer" name="employee_id_referrer" value="인사부" class="form-control" required>
                <div class="mb-3">
                   <label for="vacationDate" class="form-label">휴가일자:</label>
                   <div class="row">
@@ -79,8 +62,9 @@
                </div>
                <div class="mb-3">
                   <label for="attachment" class="form-label">첨부파일:</label>
-                  <input type="file" id="attachment" name="attachment" class="form-control" required>
+                  <input type="file" id="vacation_attachment" name="vacation_attachment" class="form-control" required>
                </div>
+               <input type="hidden" id="vacation_state" name="vacation_state" value="대기" class="form-control" readonly="readonly" style="background: #D1D1D1;" required>
                <div class="mb-3">
                <input type="submit" value="휴가 신청">
                </div>
@@ -140,6 +124,8 @@
             var formData = new FormData();
             formData.append("employee_id", $("#employee_id").val());
             formData.append("line_name", $("#line_name").val());
+            formData.append("department_name", $("#department_name").val());
+            formData.append("employee_position", $("#employee_position").val());
             formData.append("vacation_name", $("#vacation_name").val());
             formData.append("employee_name", $("#employee_name").val());
             formData.append("employee_id_approver", $("#employee_id_approver").val());
@@ -149,6 +135,7 @@
             formData.append("vacation_days", $("#vacation_days").val());
             formData.append("vacation_reason", $("#vacation_reason").val());
             formData.append("vacation_attachment", $("#vacation_attachment").val());
+            formData.append("vacation_state", $("#vacation_state").val());
             console.log("FormData:", formData);
 
             $.ajax({

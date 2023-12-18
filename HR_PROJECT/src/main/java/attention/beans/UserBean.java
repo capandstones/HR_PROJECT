@@ -43,7 +43,8 @@ public class UserBean {
 	private String employee_first_name;
 	private String employee_profile_picture;
 	private Date update_date;
-
+	private String employee_annual_leave;
+	
 	private boolean userLogin;
 	
 	

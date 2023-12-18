@@ -339,19 +339,10 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <body class="sb-nav-fixed">
     <div id="layoutSidenav">
       <c:import url="/WEB-INF/views/include/admin_side_menu.jsp" />
-      <div
-        id="layoutSidenav_content"
-        style="padding-top: 20px; height: auto; background-color: #fff"
-      >
-        <main>
-          <div>
-            <h2 class="head">조직도</h2>
-          </div>
-          <hr />
-          <div class="main_container">
-            <!--  btn_area Container -->
-            <div class="side" id="side">
-              <div class="btn_area" id="btn_area"></div>
+      <div id="layoutSidenav_content" style="padding-top: 20px; height: auto; background-color: #fff;">
+         <main>
+            <div>
+               <h2 class="head">구성원</h2>
             </div>
             <!--  card_area Container  -->
             <div id="right" class="right">
