@@ -548,11 +548,11 @@ div#attachArea {
                            <div style="border: 1px solid #ccced0; width: 400px; margin-top: 20px; border-radius: 10px;">
                               <div style="padding: 25px 10px 25px 25px; border-bottom: 0.5px solid #ddd; font-size: 15pt; font-weight: bold;">승인 대상</div>
                               <button id="modal" type="button" onclick="openModal()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px; background-color: #415971'>변경</button> 
-                              <div id="selectedEmployeeName" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[1].employee_name} · ${list[1].department_name} · ${list[1].employee_position} </div>
+                              <div id="selectedEmployeeName" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[0].employee_name} · ${list[0].department_name} · ${list[0].employee_position} </div>
 							  <button id="modal" type="button" onclick="openModal2()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px; background-color: #415971'>변경</button>                              
-                              <div id="selectedEmployeeName2" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[2].employee_name} · ${list[2].department_name} · ${list[2].employee_position} </div>
+                              <div id="selectedEmployeeName2" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[1].employee_name} · ${list[1].department_name} · ${list[1].employee_position} </div>
                               <button id="modal" type="button" onclick="openModal3()" style='position: absolute; right: 150px; margin-top: 18px; height: 30px; width: 50px; background-color: #415971'>변경</button> 
-                              <div id="selectedEmployeeName3" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[0].employee_name} · ${list[0].department_name} · ${list[0].employee_position}</div>
+                              <div id="selectedEmployeeName3" style="padding: 20px 10px 20px 20px; font-size: 13pt; font-weight: bold;">${list[2].employee_name} · ${list[2].department_name} · ${list[2].employee_position}</div>
                            </div>
                         </div>
                      </div>         

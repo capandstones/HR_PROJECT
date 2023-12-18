@@ -734,77 +734,79 @@ div#child2 {
    </script>
 
 <script>
-	function fetchMemberVacations() {
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '${root}vacation/getMemberVacations?&employee_id=${employee_id}&employee_name=${username}&line_name=${line_name}' , true);
-		xhr.onload = function() {
-			if (this.status === 200) {
-				var memberVacations = JSON.parse(this.responseText);
-				displayMemberVacations(memberVacations);	
-			} else {
-				console.error('서버로부터 데이터를 가져오는데 실패했습니다.');
-			}
-		};
-		xhr.send();
-		}
-	function displayMemberVacations(memberVacations) {
-	    var memberVacationsList = document.querySelector('#memberVacationList tbody');
-	    memberVacationsList.innerHTML = '';
-	    memberVacations.forEach(function(membervacation3) {
-	        var startDate = membervacation3.vacation_start_date.split(' ')[0];
-	        var endDate = membervacation3.vacation_end_date.split(' ')[0];
-	        var va_idx = membervacation3.va_idx;
-	        var vacationAttachment = membervacation3.vacation_attachment ? membervacation3.vacation_attachment : '';
-	        var row = document.createElement('tr');
-	        row.innerHTML = '<td>' + membervacation3.employee_name + '</td>'
-	                    + '<td>' + membervacation3.employee_id + '</td>'
-	                    + '<td>' + membervacation3.employee_position + '</td>'
-	                    + '<td>' + startDate + ' ~ ' + endDate + '</td>'
-	                    + '<td>' + membervacation3.vacation_name + '</td>'
-	                    + '<td>' + membervacation3.vacation_days + '</td>'
-	                    + '<td>' + vacationAttachment + '</td>'
-	                    + '<td>' + membervacation3.vacation_reason + '</td>'
-	                    + '<td>' + membervacation3.vacation_state + '</td>'
-	                    + '<td><button class="transparent-button" onclick="approveVacation(' + va_idx + ')">승인</button>'
-	                    + '<button class="transparent-button" onclick="rejectVacation(' + va_idx + ')">반려</button></td>';
-	        memberVacationsList.appendChild(row);
-	    });
-	}
-		document.addEventListener('DOMContentLoaded', function() {
-			fetchMemberVacations();
-		});
-		
-		function approveVacation(va_idx) {
-		    var xhr = new XMLHttpRequest();
-		    xhr.open('POST', '${root}vacation/approveVacation', true);
-		    xhr.setRequestHeader('Content-Type', 'application/json');
-		    xhr.onload = function() {
-		        if (this.status === 200) {
-		            alert("승인되었습니다.");
-		            console.log('승인 처리 완료');
-		        } else {
-		            console.error('승인 처리 실패');
-		        }
-		    };
-		    console.log(va_idx);
-		    xhr.send(JSON.stringify({va_idx: va_idx}));
-		}
+   function fetchMemberVacations() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '${root}vacation/getMemberVacations?&employee_id=${employee_id}&employee_name=${username}&line_name=${line_name}' , true);
+      xhr.onload = function() {
+         if (this.status === 200) {
+            var memberVacations = JSON.parse(this.responseText);
+            displayMemberVacations(memberVacations);   
+         } else {
+            console.error('서버로부터 데이터를 가져오는데 실패했습니다.');
+         }
+      };
+      xhr.send();
+      }
+   function displayMemberVacations(memberVacations) {
+       var memberVacationsList = document.querySelector('#memberVacationList tbody');
+       memberVacationsList.innerHTML = '';
+       memberVacations.forEach(function(membervacation3) {
+           var startDate = membervacation3.vacation_start_date.split(' ')[0];
+           var endDate = membervacation3.vacation_end_date.split(' ')[0];
+           var va_idx = membervacation3.va_idx;
+           var vacationAttachment = membervacation3.vacation_attachment ? membervacation3.vacation_attachment : '';
+           var row = document.createElement('tr');
+           row.innerHTML = '<td>' + membervacation3.employee_name + '</td>'
+                       + '<td>' + membervacation3.employee_id + '</td>'
+                       + '<td>' + membervacation3.employee_position + '</td>'
+                       + '<td>' + startDate + ' ~ ' + endDate + '</td>'
+                       + '<td>' + membervacation3.vacation_name + '</td>'
+                       + '<td>' + membervacation3.vacation_days + '</td>'
+                       + '<td>' + vacationAttachment + '</td>'
+                       + '<td>' + membervacation3.vacation_reason + '</td>'
+                       + '<td>' + membervacation3.vacation_state + '</td>'
+                       + '<td><button class="transparent-button" onclick="approveVacation(' + va_idx + ')">승인</button>'
+                       + '<button class="transparent-button" onclick="rejectVacation(' + va_idx + ')">반려</button></td>';
+           memberVacationsList.appendChild(row);
+       });
+   }
+      document.addEventListener('DOMContentLoaded', function() {
+         fetchMemberVacations();
+      });
+      
+      function approveVacation(va_idx) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '${root}vacation/approveVacation', true);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.onload = function() {
+              if (this.status === 200) {
+                  alert("승인되었습니다.");
+                  console.log('승인 처리 완료');
+                  window.location.reload();
+              } else {
+                  console.error('승인 처리 실패');
+              }
+          };
+          console.log(va_idx);
+          xhr.send(JSON.stringify({va_idx: va_idx}));
+      }
 
-		function rejectVacation(va_idx) {
-		    var xhr = new XMLHttpRequest();
-		    xhr.open('POST', '${root}vacation/rejectVacation', true);
-		    xhr.setRequestHeader('Content-Type', 'application/json');
-		    xhr.onload = function() {
-		        if (this.status === 200) {
-		        	alert("반려되었습니다.");
-		            console.log('반려 처리 완료');
-		        } else {
-		            console.error('반려 처리 실패');
-		        }
-		    };
-		    xhr.send(JSON.stringify({va_idx: va_idx}));
-		}
-	</script>
+      function rejectVacation(va_idx) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '${root}vacation/rejectVacation', true);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.onload = function() {
+              if (this.status === 200) {
+                 alert("반려되었습니다.");
+                  console.log('반려 처리 완료');
+                  window.location.reload();
+              } else {
+                  console.error('반려 처리 실패');
+              }
+          };
+          xhr.send(JSON.stringify({va_idx: va_idx}));
+      }
+   </script>
 
 <script>
 function getMemberVacationList() {

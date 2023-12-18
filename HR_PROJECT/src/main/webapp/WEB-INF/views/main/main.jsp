@@ -361,7 +361,7 @@
                            <div class="vacation-info-container">
                               <img src="${root}image/vacation.png" alt="휴가 이미지" style="width: 80px; height: 80px; margin-right: 10px;">
                               <div>
-                                 <span style="font-size: 19px;">올해 사용 가능한 휴가는 <strong>7</strong>일 입니다.
+                                 <span style="font-size: 19px;">올해 사용 가능한 휴가는 <strong>${employee_annual_leave }</strong>일 입니다.
                                  </span>
                               </div>
                            </div>
@@ -373,8 +373,8 @@
                               </tr>
                               <tr>
                                  <td style="font-size: 15pt;"><strong>20</strong>일</td>
-                                 <td style="font-size: 15pt;"><strong>0</strong>일</td>
-                                 <td style="font-size: 15pt;"><strong>20</strong>일</td>
+                                 <td style="font-size: 15pt;"><strong>${20-employee_annual_leave }</strong>일</td>
+                                 <td style="font-size: 15pt;"><strong>${employee_annual_leave }</strong>일</td>
                               </tr>
                            </table>
                         </div>

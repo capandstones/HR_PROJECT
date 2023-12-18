@@ -38,13 +38,20 @@ public interface VacationMapper {
 
    @Update("update HRPROJECT.vacation_Application set vacation_state=#{vacation_state} where va_idx=#{va_idx}")
    void rejectVacation(@Param("va_idx") String va_idx, @Param("vacation_state") String vacation_state);
-
+   
    @Update("update HRPROJECT.vacation_Application set vacation_state=#{vacation_state} where va_idx=#{va_idx}")
    void approveVacation(@Param("va_idx") String va_idx, @Param("vacation_state") String vacation_state);
-
+   
+   @Select("SELECT * FROM HRPROJECT.vacation_Application_check WHERE va_idx = #{va_idx}")
+   VacationBean getVacationApplication(String va_idx);
+   
    @Insert("INSERT INTO HRPROJECT.vacation_Application_check SELECT * FROM HRPROJECT.vacation_Application WHERE va_idx = #{va_idx}")
    void archiveVacation(String va_idx);
 
    @Delete("DELETE FROM HRPROJECT.vacation_Application WHERE va_idx = #{va_idx}")
    void deleteVacation(String va_idx);
+   
+   @Update("UPDATE HRPROJECT.employees SET employee_annual_leave = employee_annual_leave - #{vacation_days} WHERE employee_id = #{employee_id}")
+   void updateAnnualLeave(@Param("employee_id") String employee_id, @Param("vacation_days") int vacation_days);
+
 }
