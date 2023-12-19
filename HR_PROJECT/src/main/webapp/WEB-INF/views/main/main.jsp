@@ -279,7 +279,7 @@
 
                            <div style="color: black; font-size: 17pt; margin-top: 25px;">
                               <p>
-                                 14시간 00분 <strong>( 21시간 00분 부족 )</strong>
+                                 7시간 00분 <strong>( 28시간 00분 부족 )</strong>
                               </p>
                               <p>근무했습니다</p>
                               <p style="font-size: 10pt; color: grey;">잔여 기본 근로시간: 49시간 00분 (잔여일수 12일)</p>
