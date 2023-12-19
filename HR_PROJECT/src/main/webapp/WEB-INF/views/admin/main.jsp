@@ -33,8 +33,6 @@
 		<div id="layoutSidenav_content"
 			style="padding-top: 20px; height: auto; background-color: rgb(224, 224, 224);">
 			<main>
-				<h1>관리자 메인입니다</h1>
-
 
 			</main>
 
@@ -53,6 +51,10 @@
       src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
       crossorigin="anonymous"></script>
    <script src="${root }js/datatables-simple-demo.js"></script>
-
+	  <script>
+      window.onload = function() {
+         window.location.href = '${root}member/admin_chart';
+      };
+   </script>
 </body>
 </html>

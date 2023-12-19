@@ -86,14 +86,14 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <span class="employee-span-status">재직중</span>
       </div>
       <div class="employee-inner-button-wrap">
-       <div class="employee-inner-button-message" onclick="goToMassenger()">
-          <span><i class="fa-solid fa-at"></i></span>
-          <span>메신저</span>
-       </div>
-       <div class="employee-inner-button-calender" onclick="goToCalender()">
-          <span><i class="fa-solid fa-calendar-days"></i></span>
-          <span>캘린더</span>
-       </div>
+<!--        <div class="employee-inner-button-message" onclick="goToMassenger()"> -->
+<!--           <span><i class="fa-solid fa-at"></i></span> -->
+<!--           <span>메신저</span> -->
+<!--        </div> -->
+<!--        <div class="employee-inner-button-calender" onclick="goToCalender()"> -->
+<!--           <span><i class="fa-solid fa-calendar-days"></i></span> -->
+<!--           <span>캘린더</span> -->
+<!--        </div> -->
       </div>
     </div>
      <div class="employee-info-detail-wrap">
